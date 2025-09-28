@@ -59,6 +59,30 @@ public:
   virtual void enterPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) = 0;
   virtual void exitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) = 0;
 
+  virtual void enterPonx_variable(LogotecGramarParser::Ponx_variableContext *ctx) = 0;
+  virtual void exitPonx_variable(LogotecGramarParser::Ponx_variableContext *ctx) = 0;
+
+  virtual void enterPony_variable(LogotecGramarParser::Pony_variableContext *ctx) = 0;
+  virtual void exitPony_variable(LogotecGramarParser::Pony_variableContext *ctx) = 0;
+
+  virtual void enterBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *ctx) = 0;
+  virtual void exitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *ctx) = 0;
+
+  virtual void enterSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *ctx) = 0;
+  virtual void exitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *ctx) = 0;
+
+  virtual void enterPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *ctx) = 0;
+  virtual void exitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *ctx) = 0;
+
+  virtual void enterCentro_variable(LogotecGramarParser::Centro_variableContext *ctx) = 0;
+  virtual void exitCentro_variable(LogotecGramarParser::Centro_variableContext *ctx) = 0;
+
+  virtual void enterEsperar_variable(LogotecGramarParser::Esperar_variableContext *ctx) = 0;
+  virtual void exitEsperar_variable(LogotecGramarParser::Esperar_variableContext *ctx) = 0;
+
+  virtual void enterColores(LogotecGramarParser::ColoresContext *ctx) = 0;
+  virtual void exitColores(LogotecGramarParser::ColoresContext *ctx) = 0;
+
   virtual void enterExpr(LogotecGramarParser::ExprContext *ctx) = 0;
   virtual void exitExpr(LogotecGramarParser::ExprContext *ctx) = 0;
 

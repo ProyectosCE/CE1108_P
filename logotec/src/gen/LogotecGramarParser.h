@@ -15,12 +15,14 @@ public:
     T__0 = 1, T__1 = 2, HAZ = 3, INIC = 4, INC = 5, AVANZA = 6, AV = 7, 
     RETROCEDE = 8, RE = 9, GIRA_DERECHA = 10, GD = 11, GIRA_IZQUIERDA = 12, 
     GI = 13, OCULTAR_TORTUGA = 14, OT = 15, PONPOS = 16, PONXY = 17, PONRUMBO = 18, 
-    TRUE = 19, FALSE = 20, NUMBER = 21, CADENA_TEXTO = 22, ID = 23, NEWLINE = 24, 
-    WS = 25, LINE_COMMENT = 26, PROGRAM = 27, VAR = 28, PRINTLN = 29, PLUS = 30, 
-    MINUS = 31, MULT = 32, DIV = 33, IF = 34, ELSE = 35, WHILE = 36, FOR = 37, 
-    AND = 38, OR = 39, NOT = 40, GT = 41, LT = 42, GEQ = 43, LEQ = 44, EQ = 45, 
-    NEQ = 46, ASSIGN = 47, BRACKET_OPEN = 48, BRACKET_CLOSE = 49, PAR_OPEN = 50, 
-    PAR_CLOSE = 51, SEMICOLON = 52
+    PONX = 19, PONY = 20, BAJALAPIZ = 21, BL = 22, SUBELAPIZ = 23, SL = 24, 
+    AZUL = 25, NEGRO = 26, ROJO = 27, PONCOLORLAPIZ = 28, PCL = 29, CENTRO = 30, 
+    ESPERAR = 31, TRUE = 32, FALSE = 33, NUMBER = 34, CADENA_TEXTO = 35, 
+    ID = 36, NEWLINE = 37, WS = 38, LINE_COMMENT = 39, PROGRAM = 40, VAR = 41, 
+    PRINTLN = 42, PLUS = 43, MINUS = 44, MULT = 45, DIV = 46, IF = 47, ELSE = 48, 
+    WHILE = 49, FOR = 50, AND = 51, OR = 52, NOT = 53, GT = 54, LT = 55, 
+    GEQ = 56, LEQ = 57, EQ = 58, NEQ = 59, ASSIGN = 60, BRACKET_OPEN = 61, 
+    BRACKET_CLOSE = 62, PAR_OPEN = 63, PAR_CLOSE = 64, SEMICOLON = 65
   };
 
   enum {
@@ -28,8 +30,10 @@ public:
     RuleHaz_variable = 4, RuleInic_variable = 5, RuleInc_variable = 6, RuleAvanza_variable = 7, 
     RuleRetrocede_variable = 8, RuleGira_derecha_variable = 9, RuleGira_izquierda_variable = 10, 
     RuleOcultar_tortuga_variable = 11, RulePonpos_variable = 12, RulePonxy_variable = 13, 
-    RulePonrumbo_variable = 14, RuleExpr = 15, RuleLogico = 16, RuleValor = 17, 
-    RuleOperador = 18
+    RulePonrumbo_variable = 14, RulePonx_variable = 15, RulePony_variable = 16, 
+    RuleBajalapiz_variable = 17, RuleSubelapiz_variable = 18, RulePoncolorlapiz_variable = 19, 
+    RuleCentro_variable = 20, RuleEsperar_variable = 21, RuleColores = 22, 
+    RuleExpr = 23, RuleLogico = 24, RuleValor = 25, RuleOperador = 26
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -64,6 +68,14 @@ public:
   class Ponpos_variableContext;
   class Ponxy_variableContext;
   class Ponrumbo_variableContext;
+  class Ponx_variableContext;
+  class Pony_variableContext;
+  class Bajalapiz_variableContext;
+  class Subelapiz_variableContext;
+  class Poncolorlapiz_variableContext;
+  class Centro_variableContext;
+  class Esperar_variableContext;
+  class ColoresContext;
   class ExprContext;
   class LogicoContext;
   class ValorContext;
@@ -104,6 +116,13 @@ public:
     Ponpos_variableContext *ponpos_variable();
     Ponxy_variableContext *ponxy_variable();
     Ponrumbo_variableContext *ponrumbo_variable();
+    Ponx_variableContext *ponx_variable();
+    Pony_variableContext *pony_variable();
+    Bajalapiz_variableContext *bajalapiz_variable();
+    Subelapiz_variableContext *subelapiz_variable();
+    Poncolorlapiz_variableContext *poncolorlapiz_variable();
+    Centro_variableContext *centro_variable();
+    Esperar_variableContext *esperar_variable();
     ComentarioContext *comentario();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -290,8 +309,6 @@ public:
 
   class  Ponpos_variableContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *n1 = nullptr;
-    antlr4::Token *n2 = nullptr;
     Ponpos_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PONPOS();
@@ -339,6 +356,135 @@ public:
   };
 
   Ponrumbo_variableContext* ponrumbo_variable();
+
+  class  Ponx_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Ponx_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *PONX();
+    antlr4::tree::TerminalNode *NUMBER();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Ponx_variableContext* ponx_variable();
+
+  class  Pony_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Pony_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *PONY();
+    antlr4::tree::TerminalNode *NUMBER();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Pony_variableContext* pony_variable();
+
+  class  Bajalapiz_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Bajalapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *BAJALAPIZ();
+    antlr4::tree::TerminalNode *BL();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Bajalapiz_variableContext* bajalapiz_variable();
+
+  class  Subelapiz_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Subelapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *SUBELAPIZ();
+    antlr4::tree::TerminalNode *SL();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Subelapiz_variableContext* subelapiz_variable();
+
+  class  Poncolorlapiz_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Poncolorlapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ColoresContext *colores();
+    antlr4::tree::TerminalNode *PONCOLORLAPIZ();
+    antlr4::tree::TerminalNode *PCL();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Poncolorlapiz_variableContext* poncolorlapiz_variable();
+
+  class  Centro_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Centro_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *CENTRO();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Centro_variableContext* centro_variable();
+
+  class  Esperar_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Esperar_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ESPERAR();
+    antlr4::tree::TerminalNode *NUMBER();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Esperar_variableContext* esperar_variable();
+
+  class  ColoresContext : public antlr4::ParserRuleContext {
+  public:
+    ColoresContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *AZUL();
+    antlr4::tree::TerminalNode *NEGRO();
+    antlr4::tree::TerminalNode *ROJO();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ColoresContext* colores();
 
   class  ExprContext : public antlr4::ParserRuleContext {
   public:

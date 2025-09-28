@@ -56,83 +56,112 @@ void logotecgramarParserInitialize() {
       "programa", "instruccion", "comentario_linea", "comentario", "haz_variable", 
       "inic_variable", "inc_variable", "avanza_variable", "retrocede_variable", 
       "gira_derecha_variable", "gira_izquierda_variable", "ocultar_tortuga_variable", 
-      "ponpos_variable", "ponxy_variable", "ponrumbo_variable", "expr", 
-      "logico", "valor", "operador"
+      "ponpos_variable", "ponxy_variable", "ponrumbo_variable", "ponx_variable", 
+      "pony_variable", "bajalapiz_variable", "subelapiz_variable", "poncolorlapiz_variable", 
+      "centro_variable", "esperar_variable", "colores", "expr", "logico", 
+      "valor", "operador"
     },
     std::vector<std::string>{
       "", "'['", "']'", "'Haz'", "'INIC'", "'INC'", "'avanza'", "'av'", 
       "'retrocede'", "'re'", "'GiraDerecha'", "'GD'", "'GiraIzquierda'", 
       "'GI'", "'OcultarTortuga'", "'OT'", "'ponpos'", "'ponxy'", "'ponrumbo'", 
-      "'True'", "'False'", "", "", "", "", "", "", "'program'", "'var'", 
-      "'println'", "'+'", "'-'", "'*'", "'/'", "'if'", "'else'", "'while'", 
-      "'for'", "'&&'", "'||'", "'!'", "'>'", "'<'", "'>='", "'<='", "'=='", 
-      "'!='", "'='", "'{'", "'}'", "'('", "')'", "';'"
+      "'ponx'", "'pony'", "'bajalapiz'", "'BL'", "'subelapiz'", "'SL'", 
+      "'azul'", "'negro'", "'rojo'", "'poncolorlapiz'", "'poncl'", "'centro'", 
+      "'espera'", "'True'", "'False'", "", "", "", "", "", "", "'program'", 
+      "'var'", "'println'", "'+'", "'-'", "'*'", "'/'", "'if'", "'else'", 
+      "'while'", "'for'", "'&&'", "'||'", "'!'", "'>'", "'<'", "'>='", "'<='", 
+      "'=='", "'!='", "'='", "'{'", "'}'", "'('", "')'", "';'"
     },
     std::vector<std::string>{
       "", "", "", "HAZ", "INIC", "INC", "AVANZA", "AV", "RETROCEDE", "RE", 
       "GIRA_DERECHA", "GD", "GIRA_IZQUIERDA", "GI", "OCULTAR_TORTUGA", "OT", 
-      "PONPOS", "PONXY", "PONRUMBO", "TRUE", "FALSE", "NUMBER", "CADENA_TEXTO", 
-      "ID", "NEWLINE", "WS", "LINE_COMMENT", "PROGRAM", "VAR", "PRINTLN", 
-      "PLUS", "MINUS", "MULT", "DIV", "IF", "ELSE", "WHILE", "FOR", "AND", 
-      "OR", "NOT", "GT", "LT", "GEQ", "LEQ", "EQ", "NEQ", "ASSIGN", "BRACKET_OPEN", 
+      "PONPOS", "PONXY", "PONRUMBO", "PONX", "PONY", "BAJALAPIZ", "BL", 
+      "SUBELAPIZ", "SL", "AZUL", "NEGRO", "ROJO", "PONCOLORLAPIZ", "PCL", 
+      "CENTRO", "ESPERAR", "TRUE", "FALSE", "NUMBER", "CADENA_TEXTO", "ID", 
+      "NEWLINE", "WS", "LINE_COMMENT", "PROGRAM", "VAR", "PRINTLN", "PLUS", 
+      "MINUS", "MULT", "DIV", "IF", "ELSE", "WHILE", "FOR", "AND", "OR", 
+      "NOT", "GT", "LT", "GEQ", "LEQ", "EQ", "NEQ", "ASSIGN", "BRACKET_OPEN", 
       "BRACKET_CLOSE", "PAR_OPEN", "PAR_CLOSE", "SEMICOLON"
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,52,169,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,65,233,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
-  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,1,0,1,0,1,0,5,0,42,8,0,10,
-  	0,12,0,45,9,0,1,0,1,0,1,1,1,1,3,1,51,8,1,1,1,1,1,3,1,55,8,1,1,1,1,1,3,
-  	1,59,8,1,1,1,1,1,3,1,63,8,1,1,1,1,1,3,1,67,8,1,1,1,1,1,3,1,71,8,1,1,1,
-  	1,1,3,1,75,8,1,1,1,1,1,3,1,79,8,1,1,1,1,1,3,1,83,8,1,1,1,1,1,3,1,87,8,
-  	1,1,1,1,1,3,1,91,8,1,1,1,3,1,94,8,1,1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,4,1,
-  	5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,1,6,3,6,113,8,6,1,6,1,6,1,7,1,7,1,7,1,8,
-  	1,8,1,8,1,9,1,9,1,9,1,10,1,10,1,10,1,11,1,11,1,12,1,12,1,12,1,12,1,12,
-  	1,12,1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,3,15,
-  	149,8,15,1,15,1,15,1,15,1,15,5,15,155,8,15,10,15,12,15,158,9,15,1,16,
-  	1,16,1,17,1,17,1,17,3,17,165,8,17,1,18,1,18,1,18,0,1,30,19,0,2,4,6,8,
-  	10,12,14,16,18,20,22,24,26,28,30,32,34,36,0,8,2,0,21,21,23,23,1,0,6,7,
-  	1,0,8,9,1,0,10,11,1,0,12,13,1,0,14,15,1,0,19,20,1,0,30,33,179,0,43,1,
-  	0,0,0,2,93,1,0,0,0,4,95,1,0,0,0,6,97,1,0,0,0,8,99,1,0,0,0,10,103,1,0,
-  	0,0,12,108,1,0,0,0,14,116,1,0,0,0,16,119,1,0,0,0,18,122,1,0,0,0,20,125,
-  	1,0,0,0,22,128,1,0,0,0,24,130,1,0,0,0,26,136,1,0,0,0,28,140,1,0,0,0,30,
-  	148,1,0,0,0,32,159,1,0,0,0,34,164,1,0,0,0,36,166,1,0,0,0,38,39,3,2,1,
-  	0,39,40,5,24,0,0,40,42,1,0,0,0,41,38,1,0,0,0,42,45,1,0,0,0,43,41,1,0,
-  	0,0,43,44,1,0,0,0,44,46,1,0,0,0,45,43,1,0,0,0,46,47,5,0,0,1,47,1,1,0,
-  	0,0,48,50,3,8,4,0,49,51,3,4,2,0,50,49,1,0,0,0,50,51,1,0,0,0,51,94,1,0,
-  	0,0,52,54,3,10,5,0,53,55,3,4,2,0,54,53,1,0,0,0,54,55,1,0,0,0,55,94,1,
-  	0,0,0,56,58,3,12,6,0,57,59,3,4,2,0,58,57,1,0,0,0,58,59,1,0,0,0,59,94,
-  	1,0,0,0,60,62,3,14,7,0,61,63,3,4,2,0,62,61,1,0,0,0,62,63,1,0,0,0,63,94,
-  	1,0,0,0,64,66,3,16,8,0,65,67,3,4,2,0,66,65,1,0,0,0,66,67,1,0,0,0,67,94,
-  	1,0,0,0,68,70,3,18,9,0,69,71,3,4,2,0,70,69,1,0,0,0,70,71,1,0,0,0,71,94,
-  	1,0,0,0,72,74,3,20,10,0,73,75,3,4,2,0,74,73,1,0,0,0,74,75,1,0,0,0,75,
-  	94,1,0,0,0,76,78,3,22,11,0,77,79,3,4,2,0,78,77,1,0,0,0,78,79,1,0,0,0,
-  	79,94,1,0,0,0,80,82,3,24,12,0,81,83,3,4,2,0,82,81,1,0,0,0,82,83,1,0,0,
-  	0,83,94,1,0,0,0,84,86,3,26,13,0,85,87,3,4,2,0,86,85,1,0,0,0,86,87,1,0,
-  	0,0,87,94,1,0,0,0,88,90,3,28,14,0,89,91,3,4,2,0,90,89,1,0,0,0,90,91,1,
-  	0,0,0,91,94,1,0,0,0,92,94,3,6,3,0,93,48,1,0,0,0,93,52,1,0,0,0,93,56,1,
-  	0,0,0,93,60,1,0,0,0,93,64,1,0,0,0,93,68,1,0,0,0,93,72,1,0,0,0,93,76,1,
-  	0,0,0,93,80,1,0,0,0,93,84,1,0,0,0,93,88,1,0,0,0,93,92,1,0,0,0,94,3,1,
-  	0,0,0,95,96,5,26,0,0,96,5,1,0,0,0,97,98,5,26,0,0,98,7,1,0,0,0,99,100,
-  	5,3,0,0,100,101,5,23,0,0,101,102,3,34,17,0,102,9,1,0,0,0,103,104,5,4,
-  	0,0,104,105,5,23,0,0,105,106,5,47,0,0,106,107,3,30,15,0,107,11,1,0,0,
-  	0,108,109,5,5,0,0,109,110,5,1,0,0,110,112,5,23,0,0,111,113,7,0,0,0,112,
-  	111,1,0,0,0,112,113,1,0,0,0,113,114,1,0,0,0,114,115,5,2,0,0,115,13,1,
-  	0,0,0,116,117,7,1,0,0,117,118,3,30,15,0,118,15,1,0,0,0,119,120,7,2,0,
-  	0,120,121,3,30,15,0,121,17,1,0,0,0,122,123,7,3,0,0,123,124,3,30,15,0,
-  	124,19,1,0,0,0,125,126,7,4,0,0,126,127,3,30,15,0,127,21,1,0,0,0,128,129,
-  	7,5,0,0,129,23,1,0,0,0,130,131,5,16,0,0,131,132,5,1,0,0,132,133,5,21,
-  	0,0,133,134,5,21,0,0,134,135,5,2,0,0,135,25,1,0,0,0,136,137,5,17,0,0,
-  	137,138,5,21,0,0,138,139,5,21,0,0,139,27,1,0,0,0,140,141,5,18,0,0,141,
-  	142,5,21,0,0,142,29,1,0,0,0,143,144,6,15,-1,0,144,149,5,21,0,0,145,149,
-  	3,32,16,0,146,149,5,22,0,0,147,149,5,23,0,0,148,143,1,0,0,0,148,145,1,
-  	0,0,0,148,146,1,0,0,0,148,147,1,0,0,0,149,156,1,0,0,0,150,151,10,5,0,
-  	0,151,152,3,36,18,0,152,153,3,30,15,6,153,155,1,0,0,0,154,150,1,0,0,0,
-  	155,158,1,0,0,0,156,154,1,0,0,0,156,157,1,0,0,0,157,31,1,0,0,0,158,156,
-  	1,0,0,0,159,160,7,6,0,0,160,33,1,0,0,0,161,165,5,21,0,0,162,165,3,32,
-  	16,0,163,165,5,22,0,0,164,161,1,0,0,0,164,162,1,0,0,0,164,163,1,0,0,0,
-  	165,35,1,0,0,0,166,167,7,7,0,0,167,37,1,0,0,0,17,43,50,54,58,62,66,70,
-  	74,78,82,86,90,93,112,148,156,164
+  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,
+  	21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,1,0,1,0,1,0,5,0,
+  	58,8,0,10,0,12,0,61,9,0,1,0,1,0,1,1,1,1,3,1,67,8,1,1,1,1,1,3,1,71,8,1,
+  	1,1,1,1,3,1,75,8,1,1,1,1,1,3,1,79,8,1,1,1,1,1,3,1,83,8,1,1,1,1,1,3,1,
+  	87,8,1,1,1,1,1,3,1,91,8,1,1,1,1,1,3,1,95,8,1,1,1,1,1,3,1,99,8,1,1,1,1,
+  	1,3,1,103,8,1,1,1,1,1,3,1,107,8,1,1,1,1,1,3,1,111,8,1,1,1,1,1,3,1,115,
+  	8,1,1,1,1,1,3,1,119,8,1,1,1,1,1,3,1,123,8,1,1,1,1,1,3,1,127,8,1,1,1,1,
+  	1,3,1,131,8,1,1,1,1,1,3,1,135,8,1,1,1,3,1,138,8,1,1,2,1,2,1,3,1,3,1,4,
+  	1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,1,6,3,6,157,8,6,1,6,1,6,1,
+  	7,1,7,1,7,1,8,1,8,1,8,1,9,1,9,1,9,1,10,1,10,1,10,1,11,1,11,1,12,1,12,
+  	1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,
+  	1,16,1,16,1,16,1,17,1,17,1,18,1,18,1,19,1,19,1,19,1,20,1,20,1,21,1,21,
+  	1,21,1,22,1,22,1,23,1,23,1,23,1,23,1,23,3,23,213,8,23,1,23,1,23,1,23,
+  	1,23,5,23,219,8,23,10,23,12,23,222,9,23,1,24,1,24,1,25,1,25,1,25,3,25,
+  	229,8,25,1,26,1,26,1,26,0,1,46,27,0,2,4,6,8,10,12,14,16,18,20,22,24,26,
+  	28,30,32,34,36,38,40,42,44,46,48,50,52,0,12,2,0,34,34,36,36,1,0,6,7,1,
+  	0,8,9,1,0,10,11,1,0,12,13,1,0,14,15,1,0,21,22,1,0,23,24,1,0,28,29,1,0,
+  	25,27,1,0,32,33,1,0,43,46,249,0,59,1,0,0,0,2,137,1,0,0,0,4,139,1,0,0,
+  	0,6,141,1,0,0,0,8,143,1,0,0,0,10,147,1,0,0,0,12,152,1,0,0,0,14,160,1,
+  	0,0,0,16,163,1,0,0,0,18,166,1,0,0,0,20,169,1,0,0,0,22,172,1,0,0,0,24,
+  	174,1,0,0,0,26,180,1,0,0,0,28,184,1,0,0,0,30,187,1,0,0,0,32,190,1,0,0,
+  	0,34,193,1,0,0,0,36,195,1,0,0,0,38,197,1,0,0,0,40,200,1,0,0,0,42,202,
+  	1,0,0,0,44,205,1,0,0,0,46,212,1,0,0,0,48,223,1,0,0,0,50,228,1,0,0,0,52,
+  	230,1,0,0,0,54,55,3,2,1,0,55,56,5,37,0,0,56,58,1,0,0,0,57,54,1,0,0,0,
+  	58,61,1,0,0,0,59,57,1,0,0,0,59,60,1,0,0,0,60,62,1,0,0,0,61,59,1,0,0,0,
+  	62,63,5,0,0,1,63,1,1,0,0,0,64,66,3,8,4,0,65,67,3,4,2,0,66,65,1,0,0,0,
+  	66,67,1,0,0,0,67,138,1,0,0,0,68,70,3,10,5,0,69,71,3,4,2,0,70,69,1,0,0,
+  	0,70,71,1,0,0,0,71,138,1,0,0,0,72,74,3,12,6,0,73,75,3,4,2,0,74,73,1,0,
+  	0,0,74,75,1,0,0,0,75,138,1,0,0,0,76,78,3,14,7,0,77,79,3,4,2,0,78,77,1,
+  	0,0,0,78,79,1,0,0,0,79,138,1,0,0,0,80,82,3,16,8,0,81,83,3,4,2,0,82,81,
+  	1,0,0,0,82,83,1,0,0,0,83,138,1,0,0,0,84,86,3,18,9,0,85,87,3,4,2,0,86,
+  	85,1,0,0,0,86,87,1,0,0,0,87,138,1,0,0,0,88,90,3,20,10,0,89,91,3,4,2,0,
+  	90,89,1,0,0,0,90,91,1,0,0,0,91,138,1,0,0,0,92,94,3,22,11,0,93,95,3,4,
+  	2,0,94,93,1,0,0,0,94,95,1,0,0,0,95,138,1,0,0,0,96,98,3,24,12,0,97,99,
+  	3,4,2,0,98,97,1,0,0,0,98,99,1,0,0,0,99,138,1,0,0,0,100,102,3,26,13,0,
+  	101,103,3,4,2,0,102,101,1,0,0,0,102,103,1,0,0,0,103,138,1,0,0,0,104,106,
+  	3,28,14,0,105,107,3,4,2,0,106,105,1,0,0,0,106,107,1,0,0,0,107,138,1,0,
+  	0,0,108,110,3,30,15,0,109,111,3,4,2,0,110,109,1,0,0,0,110,111,1,0,0,0,
+  	111,138,1,0,0,0,112,114,3,32,16,0,113,115,3,4,2,0,114,113,1,0,0,0,114,
+  	115,1,0,0,0,115,138,1,0,0,0,116,118,3,34,17,0,117,119,3,4,2,0,118,117,
+  	1,0,0,0,118,119,1,0,0,0,119,138,1,0,0,0,120,122,3,36,18,0,121,123,3,4,
+  	2,0,122,121,1,0,0,0,122,123,1,0,0,0,123,138,1,0,0,0,124,126,3,38,19,0,
+  	125,127,3,4,2,0,126,125,1,0,0,0,126,127,1,0,0,0,127,138,1,0,0,0,128,130,
+  	3,40,20,0,129,131,3,4,2,0,130,129,1,0,0,0,130,131,1,0,0,0,131,138,1,0,
+  	0,0,132,134,3,42,21,0,133,135,3,4,2,0,134,133,1,0,0,0,134,135,1,0,0,0,
+  	135,138,1,0,0,0,136,138,3,6,3,0,137,64,1,0,0,0,137,68,1,0,0,0,137,72,
+  	1,0,0,0,137,76,1,0,0,0,137,80,1,0,0,0,137,84,1,0,0,0,137,88,1,0,0,0,137,
+  	92,1,0,0,0,137,96,1,0,0,0,137,100,1,0,0,0,137,104,1,0,0,0,137,108,1,0,
+  	0,0,137,112,1,0,0,0,137,116,1,0,0,0,137,120,1,0,0,0,137,124,1,0,0,0,137,
+  	128,1,0,0,0,137,132,1,0,0,0,137,136,1,0,0,0,138,3,1,0,0,0,139,140,5,39,
+  	0,0,140,5,1,0,0,0,141,142,5,39,0,0,142,7,1,0,0,0,143,144,5,3,0,0,144,
+  	145,5,36,0,0,145,146,3,50,25,0,146,9,1,0,0,0,147,148,5,4,0,0,148,149,
+  	5,36,0,0,149,150,5,60,0,0,150,151,3,46,23,0,151,11,1,0,0,0,152,153,5,
+  	5,0,0,153,154,5,1,0,0,154,156,5,36,0,0,155,157,7,0,0,0,156,155,1,0,0,
+  	0,156,157,1,0,0,0,157,158,1,0,0,0,158,159,5,2,0,0,159,13,1,0,0,0,160,
+  	161,7,1,0,0,161,162,3,46,23,0,162,15,1,0,0,0,163,164,7,2,0,0,164,165,
+  	3,46,23,0,165,17,1,0,0,0,166,167,7,3,0,0,167,168,3,46,23,0,168,19,1,0,
+  	0,0,169,170,7,4,0,0,170,171,3,46,23,0,171,21,1,0,0,0,172,173,7,5,0,0,
+  	173,23,1,0,0,0,174,175,5,16,0,0,175,176,5,1,0,0,176,177,5,34,0,0,177,
+  	178,5,34,0,0,178,179,5,2,0,0,179,25,1,0,0,0,180,181,5,17,0,0,181,182,
+  	5,34,0,0,182,183,5,34,0,0,183,27,1,0,0,0,184,185,5,18,0,0,185,186,5,34,
+  	0,0,186,29,1,0,0,0,187,188,5,19,0,0,188,189,5,34,0,0,189,31,1,0,0,0,190,
+  	191,5,20,0,0,191,192,5,34,0,0,192,33,1,0,0,0,193,194,7,6,0,0,194,35,1,
+  	0,0,0,195,196,7,7,0,0,196,37,1,0,0,0,197,198,7,8,0,0,198,199,3,44,22,
+  	0,199,39,1,0,0,0,200,201,5,30,0,0,201,41,1,0,0,0,202,203,5,31,0,0,203,
+  	204,5,34,0,0,204,43,1,0,0,0,205,206,7,9,0,0,206,45,1,0,0,0,207,208,6,
+  	23,-1,0,208,213,5,34,0,0,209,213,3,48,24,0,210,213,5,35,0,0,211,213,5,
+  	36,0,0,212,207,1,0,0,0,212,209,1,0,0,0,212,210,1,0,0,0,212,211,1,0,0,
+  	0,213,220,1,0,0,0,214,215,10,5,0,0,215,216,3,52,26,0,216,217,3,46,23,
+  	6,217,219,1,0,0,0,218,214,1,0,0,0,219,222,1,0,0,0,220,218,1,0,0,0,220,
+  	221,1,0,0,0,221,47,1,0,0,0,222,220,1,0,0,0,223,224,7,10,0,0,224,49,1,
+  	0,0,0,225,229,5,34,0,0,226,229,3,48,24,0,227,229,5,35,0,0,228,225,1,0,
+  	0,0,228,226,1,0,0,0,228,227,1,0,0,0,229,51,1,0,0,0,230,231,7,11,0,0,231,
+  	53,1,0,0,0,24,59,66,70,74,78,82,86,90,94,98,102,106,110,114,118,122,126,
+  	130,134,137,156,212,220,228
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -246,20 +275,20 @@ LogotecGramarParser::ProgramaContext* LogotecGramarParser::programa() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(43);
+    setState(59);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 67633144) != 0)) {
-      setState(38);
+      ((1ULL << _la) & 553815900152) != 0)) {
+      setState(54);
       instruccion();
-      setState(39);
+      setState(55);
       match(LogotecGramarParser::NEWLINE);
-      setState(45);
+      setState(61);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(46);
+    setState(62);
     match(LogotecGramarParser::EOF);
    
   }
@@ -326,6 +355,34 @@ LogotecGramarParser::Ponrumbo_variableContext* LogotecGramarParser::InstruccionC
   return getRuleContext<LogotecGramarParser::Ponrumbo_variableContext>(0);
 }
 
+LogotecGramarParser::Ponx_variableContext* LogotecGramarParser::InstruccionContext::ponx_variable() {
+  return getRuleContext<LogotecGramarParser::Ponx_variableContext>(0);
+}
+
+LogotecGramarParser::Pony_variableContext* LogotecGramarParser::InstruccionContext::pony_variable() {
+  return getRuleContext<LogotecGramarParser::Pony_variableContext>(0);
+}
+
+LogotecGramarParser::Bajalapiz_variableContext* LogotecGramarParser::InstruccionContext::bajalapiz_variable() {
+  return getRuleContext<LogotecGramarParser::Bajalapiz_variableContext>(0);
+}
+
+LogotecGramarParser::Subelapiz_variableContext* LogotecGramarParser::InstruccionContext::subelapiz_variable() {
+  return getRuleContext<LogotecGramarParser::Subelapiz_variableContext>(0);
+}
+
+LogotecGramarParser::Poncolorlapiz_variableContext* LogotecGramarParser::InstruccionContext::poncolorlapiz_variable() {
+  return getRuleContext<LogotecGramarParser::Poncolorlapiz_variableContext>(0);
+}
+
+LogotecGramarParser::Centro_variableContext* LogotecGramarParser::InstruccionContext::centro_variable() {
+  return getRuleContext<LogotecGramarParser::Centro_variableContext>(0);
+}
+
+LogotecGramarParser::Esperar_variableContext* LogotecGramarParser::InstruccionContext::esperar_variable() {
+  return getRuleContext<LogotecGramarParser::Esperar_variableContext>(0);
+}
+
 LogotecGramarParser::ComentarioContext* LogotecGramarParser::InstruccionContext::comentario() {
   return getRuleContext<LogotecGramarParser::ComentarioContext>(0);
 }
@@ -368,75 +425,13 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
     exitRule();
   });
   try {
-    setState(93);
+    setState(137);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::HAZ: {
         enterOuterAlt(_localctx, 1);
-        setState(48);
-        haz_variable();
-        setState(50);
-        _errHandler->sync(this);
-
-        _la = _input->LA(1);
-        if (_la == LogotecGramarParser::LINE_COMMENT) {
-          setState(49);
-          comentario_linea();
-        }
-        break;
-      }
-
-      case LogotecGramarParser::INIC: {
-        enterOuterAlt(_localctx, 2);
-        setState(52);
-        inic_variable();
-        setState(54);
-        _errHandler->sync(this);
-
-        _la = _input->LA(1);
-        if (_la == LogotecGramarParser::LINE_COMMENT) {
-          setState(53);
-          comentario_linea();
-        }
-        break;
-      }
-
-      case LogotecGramarParser::INC: {
-        enterOuterAlt(_localctx, 3);
-        setState(56);
-        inc_variable();
-        setState(58);
-        _errHandler->sync(this);
-
-        _la = _input->LA(1);
-        if (_la == LogotecGramarParser::LINE_COMMENT) {
-          setState(57);
-          comentario_linea();
-        }
-        break;
-      }
-
-      case LogotecGramarParser::AVANZA:
-      case LogotecGramarParser::AV: {
-        enterOuterAlt(_localctx, 4);
-        setState(60);
-        avanza_variable();
-        setState(62);
-        _errHandler->sync(this);
-
-        _la = _input->LA(1);
-        if (_la == LogotecGramarParser::LINE_COMMENT) {
-          setState(61);
-          comentario_linea();
-        }
-        break;
-      }
-
-      case LogotecGramarParser::RETROCEDE:
-      case LogotecGramarParser::RE: {
-        enterOuterAlt(_localctx, 5);
         setState(64);
-        retrocede_variable();
+        haz_variable();
         setState(66);
         _errHandler->sync(this);
 
@@ -448,11 +443,10 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::GIRA_DERECHA:
-      case LogotecGramarParser::GD: {
-        enterOuterAlt(_localctx, 6);
+      case LogotecGramarParser::INIC: {
+        enterOuterAlt(_localctx, 2);
         setState(68);
-        gira_derecha_variable();
+        inic_variable();
         setState(70);
         _errHandler->sync(this);
 
@@ -464,11 +458,10 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::GIRA_IZQUIERDA:
-      case LogotecGramarParser::GI: {
-        enterOuterAlt(_localctx, 7);
+      case LogotecGramarParser::INC: {
+        enterOuterAlt(_localctx, 3);
         setState(72);
-        gira_izquierda_variable();
+        inc_variable();
         setState(74);
         _errHandler->sync(this);
 
@@ -480,11 +473,11 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::OCULTAR_TORTUGA:
-      case LogotecGramarParser::OT: {
-        enterOuterAlt(_localctx, 8);
+      case LogotecGramarParser::AVANZA:
+      case LogotecGramarParser::AV: {
+        enterOuterAlt(_localctx, 4);
         setState(76);
-        ocultar_tortuga_variable();
+        avanza_variable();
         setState(78);
         _errHandler->sync(this);
 
@@ -496,10 +489,11 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::PONPOS: {
-        enterOuterAlt(_localctx, 9);
+      case LogotecGramarParser::RETROCEDE:
+      case LogotecGramarParser::RE: {
+        enterOuterAlt(_localctx, 5);
         setState(80);
-        ponpos_variable();
+        retrocede_variable();
         setState(82);
         _errHandler->sync(this);
 
@@ -511,10 +505,11 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::PONXY: {
-        enterOuterAlt(_localctx, 10);
+      case LogotecGramarParser::GIRA_DERECHA:
+      case LogotecGramarParser::GD: {
+        enterOuterAlt(_localctx, 6);
         setState(84);
-        ponxy_variable();
+        gira_derecha_variable();
         setState(86);
         _errHandler->sync(this);
 
@@ -526,10 +521,11 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::PONRUMBO: {
-        enterOuterAlt(_localctx, 11);
+      case LogotecGramarParser::GIRA_IZQUIERDA:
+      case LogotecGramarParser::GI: {
+        enterOuterAlt(_localctx, 7);
         setState(88);
-        ponrumbo_variable();
+        gira_izquierda_variable();
         setState(90);
         _errHandler->sync(this);
 
@@ -541,9 +537,178 @@ LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
         break;
       }
 
-      case LogotecGramarParser::LINE_COMMENT: {
-        enterOuterAlt(_localctx, 12);
+      case LogotecGramarParser::OCULTAR_TORTUGA:
+      case LogotecGramarParser::OT: {
+        enterOuterAlt(_localctx, 8);
         setState(92);
+        ocultar_tortuga_variable();
+        setState(94);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(93);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONPOS: {
+        enterOuterAlt(_localctx, 9);
+        setState(96);
+        ponpos_variable();
+        setState(98);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(97);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONXY: {
+        enterOuterAlt(_localctx, 10);
+        setState(100);
+        ponxy_variable();
+        setState(102);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(101);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONRUMBO: {
+        enterOuterAlt(_localctx, 11);
+        setState(104);
+        ponrumbo_variable();
+        setState(106);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(105);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONX: {
+        enterOuterAlt(_localctx, 12);
+        setState(108);
+        ponx_variable();
+        setState(110);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(109);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONY: {
+        enterOuterAlt(_localctx, 13);
+        setState(112);
+        pony_variable();
+        setState(114);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(113);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::BAJALAPIZ:
+      case LogotecGramarParser::BL: {
+        enterOuterAlt(_localctx, 14);
+        setState(116);
+        bajalapiz_variable();
+        setState(118);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(117);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::SUBELAPIZ:
+      case LogotecGramarParser::SL: {
+        enterOuterAlt(_localctx, 15);
+        setState(120);
+        subelapiz_variable();
+        setState(122);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(121);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::PONCOLORLAPIZ:
+      case LogotecGramarParser::PCL: {
+        enterOuterAlt(_localctx, 16);
+        setState(124);
+        poncolorlapiz_variable();
+        setState(126);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(125);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::CENTRO: {
+        enterOuterAlt(_localctx, 17);
+        setState(128);
+        centro_variable();
+        setState(130);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(129);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::ESPERAR: {
+        enterOuterAlt(_localctx, 18);
+        setState(132);
+        esperar_variable();
+        setState(134);
+        _errHandler->sync(this);
+
+        _la = _input->LA(1);
+        if (_la == LogotecGramarParser::LINE_COMMENT) {
+          setState(133);
+          comentario_linea();
+        }
+        break;
+      }
+
+      case LogotecGramarParser::LINE_COMMENT: {
+        enterOuterAlt(_localctx, 19);
+        setState(136);
         comentario();
         break;
       }
@@ -610,7 +775,7 @@ LogotecGramarParser::Comentario_lineaContext* LogotecGramarParser::comentario_li
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(95);
+    setState(139);
     match(LogotecGramarParser::LINE_COMMENT);
    
   }
@@ -671,7 +836,7 @@ LogotecGramarParser::ComentarioContext* LogotecGramarParser::comentario() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(97);
+    setState(141);
     match(LogotecGramarParser::LINE_COMMENT);
    
   }
@@ -740,11 +905,11 @@ LogotecGramarParser::Haz_variableContext* LogotecGramarParser::haz_variable() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(99);
+    setState(143);
     match(LogotecGramarParser::HAZ);
-    setState(100);
+    setState(144);
     match(LogotecGramarParser::ID);
-    setState(101);
+    setState(145);
     antlrcpp::downCast<Haz_variableContext *>(_localctx)->v = valor();
    
   }
@@ -817,13 +982,13 @@ LogotecGramarParser::Inic_variableContext* LogotecGramarParser::inic_variable() 
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(103);
+    setState(147);
     match(LogotecGramarParser::INIC);
-    setState(104);
+    setState(148);
     match(LogotecGramarParser::ID);
-    setState(105);
+    setState(149);
     match(LogotecGramarParser::ASSIGN);
-    setState(106);
+    setState(150);
     antlrcpp::downCast<Inic_variableContext *>(_localctx)->e = expr(0);
    
   }
@@ -897,20 +1062,20 @@ LogotecGramarParser::Inc_variableContext* LogotecGramarParser::inc_variable() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(108);
+    setState(152);
     match(LogotecGramarParser::INC);
-    setState(109);
+    setState(153);
     match(LogotecGramarParser::T__0);
-    setState(110);
+    setState(154);
     match(LogotecGramarParser::ID);
-    setState(112);
+    setState(156);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == LogotecGramarParser::NUMBER
 
     || _la == LogotecGramarParser::ID) {
-      setState(111);
+      setState(155);
       _la = _input->LA(1);
       if (!(_la == LogotecGramarParser::NUMBER
 
@@ -922,7 +1087,7 @@ LogotecGramarParser::Inc_variableContext* LogotecGramarParser::inc_variable() {
         consume();
       }
     }
-    setState(114);
+    setState(158);
     match(LogotecGramarParser::T__1);
    
   }
@@ -992,7 +1157,7 @@ LogotecGramarParser::Avanza_variableContext* LogotecGramarParser::avanza_variabl
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(116);
+    setState(160);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::AVANZA
 
@@ -1003,7 +1168,7 @@ LogotecGramarParser::Avanza_variableContext* LogotecGramarParser::avanza_variabl
       _errHandler->reportMatch(this);
       consume();
     }
-    setState(117);
+    setState(161);
     antlrcpp::downCast<Avanza_variableContext *>(_localctx)->e = expr(0);
    
   }
@@ -1073,7 +1238,7 @@ LogotecGramarParser::Retrocede_variableContext* LogotecGramarParser::retrocede_v
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(119);
+    setState(163);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::RETROCEDE
 
@@ -1084,7 +1249,7 @@ LogotecGramarParser::Retrocede_variableContext* LogotecGramarParser::retrocede_v
       _errHandler->reportMatch(this);
       consume();
     }
-    setState(120);
+    setState(164);
     antlrcpp::downCast<Retrocede_variableContext *>(_localctx)->e = expr(0);
    
   }
@@ -1154,7 +1319,7 @@ LogotecGramarParser::Gira_derecha_variableContext* LogotecGramarParser::gira_der
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(122);
+    setState(166);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::GIRA_DERECHA
 
@@ -1165,7 +1330,7 @@ LogotecGramarParser::Gira_derecha_variableContext* LogotecGramarParser::gira_der
       _errHandler->reportMatch(this);
       consume();
     }
-    setState(123);
+    setState(167);
     antlrcpp::downCast<Gira_derecha_variableContext *>(_localctx)->e = expr(0);
    
   }
@@ -1235,7 +1400,7 @@ LogotecGramarParser::Gira_izquierda_variableContext* LogotecGramarParser::gira_i
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(125);
+    setState(169);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::GIRA_IZQUIERDA
 
@@ -1246,7 +1411,7 @@ LogotecGramarParser::Gira_izquierda_variableContext* LogotecGramarParser::gira_i
       _errHandler->reportMatch(this);
       consume();
     }
-    setState(126);
+    setState(170);
     antlrcpp::downCast<Gira_izquierda_variableContext *>(_localctx)->e = expr(0);
    
   }
@@ -1312,7 +1477,7 @@ LogotecGramarParser::Ocultar_tortuga_variableContext* LogotecGramarParser::ocult
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(128);
+    setState(172);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::OCULTAR_TORTUGA
 
@@ -1390,15 +1555,15 @@ LogotecGramarParser::Ponpos_variableContext* LogotecGramarParser::ponpos_variabl
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(130);
+    setState(174);
     match(LogotecGramarParser::PONPOS);
-    setState(131);
+    setState(175);
     match(LogotecGramarParser::T__0);
-    setState(132);
-    antlrcpp::downCast<Ponpos_variableContext *>(_localctx)->n1 = match(LogotecGramarParser::NUMBER);
-    setState(133);
-    antlrcpp::downCast<Ponpos_variableContext *>(_localctx)->n2 = match(LogotecGramarParser::NUMBER);
-    setState(134);
+    setState(176);
+    match(LogotecGramarParser::NUMBER);
+    setState(177);
+    match(LogotecGramarParser::NUMBER);
+    setState(178);
     match(LogotecGramarParser::T__1);
    
   }
@@ -1467,11 +1632,11 @@ LogotecGramarParser::Ponxy_variableContext* LogotecGramarParser::ponxy_variable(
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(136);
+    setState(180);
     match(LogotecGramarParser::PONXY);
-    setState(137);
+    setState(181);
     match(LogotecGramarParser::NUMBER);
-    setState(138);
+    setState(182);
     match(LogotecGramarParser::NUMBER);
    
   }
@@ -1536,10 +1701,581 @@ LogotecGramarParser::Ponrumbo_variableContext* LogotecGramarParser::ponrumbo_var
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(140);
+    setState(184);
     match(LogotecGramarParser::PONRUMBO);
-    setState(141);
+    setState(185);
     match(LogotecGramarParser::NUMBER);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Ponx_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Ponx_variableContext::Ponx_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Ponx_variableContext::PONX() {
+  return getToken(LogotecGramarParser::PONX, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Ponx_variableContext::NUMBER() {
+  return getToken(LogotecGramarParser::NUMBER, 0);
+}
+
+
+size_t LogotecGramarParser::Ponx_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RulePonx_variable;
+}
+
+void LogotecGramarParser::Ponx_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPonx_variable(this);
+}
+
+void LogotecGramarParser::Ponx_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPonx_variable(this);
+}
+
+
+std::any LogotecGramarParser::Ponx_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitPonx_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Ponx_variableContext* LogotecGramarParser::ponx_variable() {
+  Ponx_variableContext *_localctx = _tracker.createInstance<Ponx_variableContext>(_ctx, getState());
+  enterRule(_localctx, 30, LogotecGramarParser::RulePonx_variable);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(187);
+    match(LogotecGramarParser::PONX);
+    setState(188);
+    match(LogotecGramarParser::NUMBER);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Pony_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Pony_variableContext::Pony_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Pony_variableContext::PONY() {
+  return getToken(LogotecGramarParser::PONY, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Pony_variableContext::NUMBER() {
+  return getToken(LogotecGramarParser::NUMBER, 0);
+}
+
+
+size_t LogotecGramarParser::Pony_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RulePony_variable;
+}
+
+void LogotecGramarParser::Pony_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPony_variable(this);
+}
+
+void LogotecGramarParser::Pony_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPony_variable(this);
+}
+
+
+std::any LogotecGramarParser::Pony_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitPony_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Pony_variableContext* LogotecGramarParser::pony_variable() {
+  Pony_variableContext *_localctx = _tracker.createInstance<Pony_variableContext>(_ctx, getState());
+  enterRule(_localctx, 32, LogotecGramarParser::RulePony_variable);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(190);
+    match(LogotecGramarParser::PONY);
+    setState(191);
+    match(LogotecGramarParser::NUMBER);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Bajalapiz_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Bajalapiz_variableContext::Bajalapiz_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Bajalapiz_variableContext::BAJALAPIZ() {
+  return getToken(LogotecGramarParser::BAJALAPIZ, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Bajalapiz_variableContext::BL() {
+  return getToken(LogotecGramarParser::BL, 0);
+}
+
+
+size_t LogotecGramarParser::Bajalapiz_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RuleBajalapiz_variable;
+}
+
+void LogotecGramarParser::Bajalapiz_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBajalapiz_variable(this);
+}
+
+void LogotecGramarParser::Bajalapiz_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBajalapiz_variable(this);
+}
+
+
+std::any LogotecGramarParser::Bajalapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitBajalapiz_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Bajalapiz_variableContext* LogotecGramarParser::bajalapiz_variable() {
+  Bajalapiz_variableContext *_localctx = _tracker.createInstance<Bajalapiz_variableContext>(_ctx, getState());
+  enterRule(_localctx, 34, LogotecGramarParser::RuleBajalapiz_variable);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(193);
+    _la = _input->LA(1);
+    if (!(_la == LogotecGramarParser::BAJALAPIZ
+
+    || _la == LogotecGramarParser::BL)) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Subelapiz_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Subelapiz_variableContext::Subelapiz_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Subelapiz_variableContext::SUBELAPIZ() {
+  return getToken(LogotecGramarParser::SUBELAPIZ, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Subelapiz_variableContext::SL() {
+  return getToken(LogotecGramarParser::SL, 0);
+}
+
+
+size_t LogotecGramarParser::Subelapiz_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RuleSubelapiz_variable;
+}
+
+void LogotecGramarParser::Subelapiz_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSubelapiz_variable(this);
+}
+
+void LogotecGramarParser::Subelapiz_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSubelapiz_variable(this);
+}
+
+
+std::any LogotecGramarParser::Subelapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitSubelapiz_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Subelapiz_variableContext* LogotecGramarParser::subelapiz_variable() {
+  Subelapiz_variableContext *_localctx = _tracker.createInstance<Subelapiz_variableContext>(_ctx, getState());
+  enterRule(_localctx, 36, LogotecGramarParser::RuleSubelapiz_variable);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(195);
+    _la = _input->LA(1);
+    if (!(_la == LogotecGramarParser::SUBELAPIZ
+
+    || _la == LogotecGramarParser::SL)) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Poncolorlapiz_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Poncolorlapiz_variableContext::Poncolorlapiz_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+LogotecGramarParser::ColoresContext* LogotecGramarParser::Poncolorlapiz_variableContext::colores() {
+  return getRuleContext<LogotecGramarParser::ColoresContext>(0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Poncolorlapiz_variableContext::PONCOLORLAPIZ() {
+  return getToken(LogotecGramarParser::PONCOLORLAPIZ, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Poncolorlapiz_variableContext::PCL() {
+  return getToken(LogotecGramarParser::PCL, 0);
+}
+
+
+size_t LogotecGramarParser::Poncolorlapiz_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RulePoncolorlapiz_variable;
+}
+
+void LogotecGramarParser::Poncolorlapiz_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPoncolorlapiz_variable(this);
+}
+
+void LogotecGramarParser::Poncolorlapiz_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPoncolorlapiz_variable(this);
+}
+
+
+std::any LogotecGramarParser::Poncolorlapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitPoncolorlapiz_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Poncolorlapiz_variableContext* LogotecGramarParser::poncolorlapiz_variable() {
+  Poncolorlapiz_variableContext *_localctx = _tracker.createInstance<Poncolorlapiz_variableContext>(_ctx, getState());
+  enterRule(_localctx, 38, LogotecGramarParser::RulePoncolorlapiz_variable);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(197);
+    _la = _input->LA(1);
+    if (!(_la == LogotecGramarParser::PONCOLORLAPIZ
+
+    || _la == LogotecGramarParser::PCL)) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
+    setState(198);
+    colores();
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Centro_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Centro_variableContext::Centro_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Centro_variableContext::CENTRO() {
+  return getToken(LogotecGramarParser::CENTRO, 0);
+}
+
+
+size_t LogotecGramarParser::Centro_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RuleCentro_variable;
+}
+
+void LogotecGramarParser::Centro_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCentro_variable(this);
+}
+
+void LogotecGramarParser::Centro_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCentro_variable(this);
+}
+
+
+std::any LogotecGramarParser::Centro_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitCentro_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Centro_variableContext* LogotecGramarParser::centro_variable() {
+  Centro_variableContext *_localctx = _tracker.createInstance<Centro_variableContext>(_ctx, getState());
+  enterRule(_localctx, 40, LogotecGramarParser::RuleCentro_variable);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(200);
+    match(LogotecGramarParser::CENTRO);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Esperar_variableContext ------------------------------------------------------------------
+
+LogotecGramarParser::Esperar_variableContext::Esperar_variableContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::Esperar_variableContext::ESPERAR() {
+  return getToken(LogotecGramarParser::ESPERAR, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::Esperar_variableContext::NUMBER() {
+  return getToken(LogotecGramarParser::NUMBER, 0);
+}
+
+
+size_t LogotecGramarParser::Esperar_variableContext::getRuleIndex() const {
+  return LogotecGramarParser::RuleEsperar_variable;
+}
+
+void LogotecGramarParser::Esperar_variableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEsperar_variable(this);
+}
+
+void LogotecGramarParser::Esperar_variableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEsperar_variable(this);
+}
+
+
+std::any LogotecGramarParser::Esperar_variableContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitEsperar_variable(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::Esperar_variableContext* LogotecGramarParser::esperar_variable() {
+  Esperar_variableContext *_localctx = _tracker.createInstance<Esperar_variableContext>(_ctx, getState());
+  enterRule(_localctx, 42, LogotecGramarParser::RuleEsperar_variable);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(202);
+    match(LogotecGramarParser::ESPERAR);
+    setState(203);
+    match(LogotecGramarParser::NUMBER);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- ColoresContext ------------------------------------------------------------------
+
+LogotecGramarParser::ColoresContext::ColoresContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* LogotecGramarParser::ColoresContext::AZUL() {
+  return getToken(LogotecGramarParser::AZUL, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::ColoresContext::NEGRO() {
+  return getToken(LogotecGramarParser::NEGRO, 0);
+}
+
+tree::TerminalNode* LogotecGramarParser::ColoresContext::ROJO() {
+  return getToken(LogotecGramarParser::ROJO, 0);
+}
+
+
+size_t LogotecGramarParser::ColoresContext::getRuleIndex() const {
+  return LogotecGramarParser::RuleColores;
+}
+
+void LogotecGramarParser::ColoresContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterColores(this);
+}
+
+void LogotecGramarParser::ColoresContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitColores(this);
+}
+
+
+std::any LogotecGramarParser::ColoresContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
+    return parserVisitor->visitColores(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+LogotecGramarParser::ColoresContext* LogotecGramarParser::colores() {
+  ColoresContext *_localctx = _tracker.createInstance<ColoresContext>(_ctx, getState());
+  enterRule(_localctx, 44, LogotecGramarParser::RuleColores);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(205);
+    _la = _input->LA(1);
+    if (!((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 234881024) != 0))) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
    
   }
   catch (RecognitionException &e) {
@@ -1621,8 +2357,8 @@ LogotecGramarParser::ExprContext* LogotecGramarParser::expr(int precedence) {
   LogotecGramarParser::ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, parentState);
   LogotecGramarParser::ExprContext *previousContext = _localctx;
   (void)previousContext; // Silence compiler, in case the context is not used by generated code.
-  size_t startState = 30;
-  enterRecursionRule(_localctx, 30, LogotecGramarParser::RuleExpr, precedence);
+  size_t startState = 46;
+  enterRecursionRule(_localctx, 46, LogotecGramarParser::RuleExpr, precedence);
 
     
 
@@ -1636,30 +2372,30 @@ LogotecGramarParser::ExprContext* LogotecGramarParser::expr(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(148);
+    setState(212);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::NUMBER: {
-        setState(144);
+        setState(208);
         match(LogotecGramarParser::NUMBER);
         break;
       }
 
       case LogotecGramarParser::TRUE:
       case LogotecGramarParser::FALSE: {
-        setState(145);
+        setState(209);
         logico();
         break;
       }
 
       case LogotecGramarParser::CADENA_TEXTO: {
-        setState(146);
+        setState(210);
         match(LogotecGramarParser::CADENA_TEXTO);
         break;
       }
 
       case LogotecGramarParser::ID: {
-        setState(147);
+        setState(211);
         match(LogotecGramarParser::ID);
         break;
       }
@@ -1668,9 +2404,9 @@ LogotecGramarParser::ExprContext* LogotecGramarParser::expr(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(156);
+    setState(220);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 15, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 22, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
@@ -1679,17 +2415,17 @@ LogotecGramarParser::ExprContext* LogotecGramarParser::expr(int precedence) {
         _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
         _localctx->e1 = previousContext;
         pushNewRecursionContext(_localctx, startState, RuleExpr);
-        setState(150);
+        setState(214);
 
         if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
-        setState(151);
+        setState(215);
         operador();
-        setState(152);
+        setState(216);
         antlrcpp::downCast<ExprContext *>(_localctx)->e2 = expr(6); 
       }
-      setState(158);
+      setState(222);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 15, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 22, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -1741,7 +2477,7 @@ std::any LogotecGramarParser::LogicoContext::accept(tree::ParseTreeVisitor *visi
 
 LogotecGramarParser::LogicoContext* LogotecGramarParser::logico() {
   LogicoContext *_localctx = _tracker.createInstance<LogicoContext>(_ctx, getState());
-  enterRule(_localctx, 32, LogotecGramarParser::RuleLogico);
+  enterRule(_localctx, 48, LogotecGramarParser::RuleLogico);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1753,7 +2489,7 @@ LogotecGramarParser::LogicoContext* LogotecGramarParser::logico() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(159);
+    setState(223);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::TRUE
 
@@ -1820,7 +2556,7 @@ std::any LogotecGramarParser::ValorContext::accept(tree::ParseTreeVisitor *visit
 
 LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
   ValorContext *_localctx = _tracker.createInstance<ValorContext>(_ctx, getState());
-  enterRule(_localctx, 34, LogotecGramarParser::RuleValor);
+  enterRule(_localctx, 50, LogotecGramarParser::RuleValor);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1830,12 +2566,12 @@ LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
     exitRule();
   });
   try {
-    setState(164);
+    setState(228);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::NUMBER: {
         enterOuterAlt(_localctx, 1);
-        setState(161);
+        setState(225);
         match(LogotecGramarParser::NUMBER);
         break;
       }
@@ -1843,14 +2579,14 @@ LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
       case LogotecGramarParser::TRUE:
       case LogotecGramarParser::FALSE: {
         enterOuterAlt(_localctx, 2);
-        setState(162);
+        setState(226);
         logico();
         break;
       }
 
       case LogotecGramarParser::CADENA_TEXTO: {
         enterOuterAlt(_localctx, 3);
-        setState(163);
+        setState(227);
         match(LogotecGramarParser::CADENA_TEXTO);
         break;
       }
@@ -1918,7 +2654,7 @@ std::any LogotecGramarParser::OperadorContext::accept(tree::ParseTreeVisitor *vi
 
 LogotecGramarParser::OperadorContext* LogotecGramarParser::operador() {
   OperadorContext *_localctx = _tracker.createInstance<OperadorContext>(_ctx, getState());
-  enterRule(_localctx, 36, LogotecGramarParser::RuleOperador);
+  enterRule(_localctx, 52, LogotecGramarParser::RuleOperador);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1930,10 +2666,10 @@ LogotecGramarParser::OperadorContext* LogotecGramarParser::operador() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(166);
+    setState(230);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 16106127360) != 0))) {
+      ((1ULL << _la) & 131941395333120) != 0))) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -1953,7 +2689,7 @@ LogotecGramarParser::OperadorContext* LogotecGramarParser::operador() {
 
 bool LogotecGramarParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 15: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
+    case 23: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
 
   default:
     break;

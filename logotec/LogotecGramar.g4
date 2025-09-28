@@ -21,6 +21,13 @@ instruccion
     | ponpos_variable (comentario_linea)?
     | ponxy_variable (comentario_linea)?
     | ponrumbo_variable (comentario_linea)?
+    | ponx_variable (comentario_linea)?
+    | pony_variable (comentario_linea)?
+    | bajalapiz_variable (comentario_linea)?
+    | subelapiz_variable (comentario_linea)?
+    | poncolorlapiz_variable (comentario_linea)?
+    | centro_variable (comentario_linea)?
+    | esperar_variable (comentario_linea)?
     | comentario
     ;
 
@@ -79,6 +86,35 @@ ponrumbo_variable
     : PONRUMBO NUMBER
     ;
 
+ponx_variable
+    : PONX NUMBER
+    ;
+
+pony_variable
+    : PONY NUMBER
+    ;
+
+bajalapiz_variable
+    : (BAJALAPIZ | BL)
+    ;
+
+subelapiz_variable
+    : (SUBELAPIZ | SL)
+    ;
+
+poncolorlapiz_variable
+    : (PONCOLORLAPIZ | PCL) colores
+    ;
+
+ centro_variable
+    : CENTRO;
+
+ esperar_variable
+    : ESPERAR NUMBER;
+
+colores
+    : AZUL | NEGRO | ROJO
+    ;
 // Expresiones (solo suma simple de momento)
 expr
     : e1=expr operador e2=expr
@@ -133,6 +169,25 @@ PONXY: 'ponxy' ;
 
 PONRUMBO: 'ponrumbo' ;
 
+PONX: 'ponx' ;
+
+PONY: 'pony' ;
+
+BAJALAPIZ: 'bajalapiz' ;
+BL: 'BL' ;
+
+SUBELAPIZ: 'subelapiz' ;
+SL: 'SL' ;
+
+AZUL: 'azul' ;
+NEGRO: 'negro' ;
+ROJO: 'rojo' ;
+
+PONCOLORLAPIZ: 'poncolorlapiz' ;
+PCL: 'poncl' ;
+
+CENTRO: 'centro' ;
+ESPERAR: 'espera' ;
 
 TRUE         : 'True' ;
 FALSE        : 'False' ;

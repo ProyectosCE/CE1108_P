@@ -14,6 +14,7 @@
 
 using namespace std;
 
+
 class CodeGen : public LogotecGramarBaseVisitor {
 public:
     unordered_map<string,string> tablaTipos;
@@ -48,6 +49,14 @@ public:
     void agregarComentarioLinea(LogotecGramarParser::InstruccionContext *ctx);
 
     void agregarComentario(LogotecGramarParser::InstruccionContext *ctx);
+
+    virtual any visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *context) override;
+    virtual any visitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *context) override;
+    virtual any visitCentro_variable(LogotecGramarParser::Centro_variableContext *context) override;
+    virtual any visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) override;
+    virtual any visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) override;
+    virtual any visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) override;
+    virtual any visitPony_variable(LogotecGramarParser::Pony_variableContext *context) override;
 
 private:
     void error(const string &msg) {

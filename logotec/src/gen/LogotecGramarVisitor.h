@@ -49,6 +49,22 @@ public:
 
     virtual std::any visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *context) = 0;
 
+    virtual std::any visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) = 0;
+
+    virtual std::any visitPony_variable(LogotecGramarParser::Pony_variableContext *context) = 0;
+
+    virtual std::any visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *context) = 0;
+
+    virtual std::any visitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *context) = 0;
+
+    virtual std::any visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) = 0;
+
+    virtual std::any visitCentro_variable(LogotecGramarParser::Centro_variableContext *context) = 0;
+
+    virtual std::any visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) = 0;
+
+    virtual std::any visitColores(LogotecGramarParser::ColoresContext *context) = 0;
+
     virtual std::any visitExpr(LogotecGramarParser::ExprContext *context) = 0;
 
     virtual std::any visitLogico(LogotecGramarParser::LogicoContext *context) = 0;

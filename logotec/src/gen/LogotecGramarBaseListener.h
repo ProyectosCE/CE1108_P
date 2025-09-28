@@ -61,6 +61,30 @@ public:
   virtual void enterPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext * /*ctx*/) override { }
   virtual void exitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext * /*ctx*/) override { }
 
+  virtual void enterPonx_variable(LogotecGramarParser::Ponx_variableContext * /*ctx*/) override { }
+  virtual void exitPonx_variable(LogotecGramarParser::Ponx_variableContext * /*ctx*/) override { }
+
+  virtual void enterPony_variable(LogotecGramarParser::Pony_variableContext * /*ctx*/) override { }
+  virtual void exitPony_variable(LogotecGramarParser::Pony_variableContext * /*ctx*/) override { }
+
+  virtual void enterBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext * /*ctx*/) override { }
+  virtual void exitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext * /*ctx*/) override { }
+
+  virtual void enterSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext * /*ctx*/) override { }
+  virtual void exitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext * /*ctx*/) override { }
+
+  virtual void enterPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext * /*ctx*/) override { }
+  virtual void exitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext * /*ctx*/) override { }
+
+  virtual void enterCentro_variable(LogotecGramarParser::Centro_variableContext * /*ctx*/) override { }
+  virtual void exitCentro_variable(LogotecGramarParser::Centro_variableContext * /*ctx*/) override { }
+
+  virtual void enterEsperar_variable(LogotecGramarParser::Esperar_variableContext * /*ctx*/) override { }
+  virtual void exitEsperar_variable(LogotecGramarParser::Esperar_variableContext * /*ctx*/) override { }
+
+  virtual void enterColores(LogotecGramarParser::ColoresContext * /*ctx*/) override { }
+  virtual void exitColores(LogotecGramarParser::ColoresContext * /*ctx*/) override { }
+
   virtual void enterExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
   virtual void exitExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
 

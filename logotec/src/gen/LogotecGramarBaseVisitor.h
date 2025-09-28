@@ -75,6 +75,38 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitPonx_variable(LogotecGramarParser::Ponx_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPony_variable(LogotecGramarParser::Pony_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitCentro_variable(LogotecGramarParser::Centro_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitColores(LogotecGramarParser::ColoresContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitExpr(LogotecGramarParser::ExprContext *ctx) override {
     return visitChildren(ctx);
   }
