@@ -43,11 +43,35 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) override {
+  virtual std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) override {
+  virtual std::any visitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) override {
     return visitChildren(ctx);
   }
 

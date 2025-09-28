@@ -35,11 +35,29 @@ public:
   virtual void enterInc_variable(LogotecGramarParser::Inc_variableContext *ctx) = 0;
   virtual void exitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) = 0;
 
-  virtual void enterTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) = 0;
-  virtual void exitTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) = 0;
-
   virtual void enterAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) = 0;
   virtual void exitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) = 0;
+
+  virtual void enterRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx) = 0;
+  virtual void exitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx) = 0;
+
+  virtual void enterGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) = 0;
+  virtual void exitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) = 0;
+
+  virtual void enterGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) = 0;
+  virtual void exitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) = 0;
+
+  virtual void enterOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx) = 0;
+  virtual void exitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx) = 0;
+
+  virtual void enterPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx) = 0;
+  virtual void exitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx) = 0;
+
+  virtual void enterPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx) = 0;
+  virtual void exitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx) = 0;
+
+  virtual void enterPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) = 0;
+  virtual void exitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) = 0;
 
   virtual void enterExpr(LogotecGramarParser::ExprContext *ctx) = 0;
   virtual void exitExpr(LogotecGramarParser::ExprContext *ctx) = 0;

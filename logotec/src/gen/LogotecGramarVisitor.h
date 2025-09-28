@@ -33,9 +33,21 @@ public:
 
     virtual std::any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) = 0;
 
-    virtual std::any visitTodo_variable(LogotecGramarParser::Todo_variableContext *context) = 0;
-
     virtual std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *context) = 0;
+
+    virtual std::any visitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *context) = 0;
+
+    virtual std::any visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *context) = 0;
+
+    virtual std::any visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *context) = 0;
+
+    virtual std::any visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *context) = 0;
+
+    virtual std::any visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *context) = 0;
+
+    virtual std::any visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *context) = 0;
+
+    virtual std::any visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *context) = 0;
 
     virtual std::any visitExpr(LogotecGramarParser::ExprContext *context) = 0;
 

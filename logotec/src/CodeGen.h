@@ -28,7 +28,20 @@ public:
     virtual any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) override;
 
     std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx);
-    virtual any visitTodo_variable(LogotecGramarParser::Todo_variableContext *context) override;
+
+    any visitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx);
+
+    any visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *context) override;
+
+    any visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx);
+
+    any visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx);
+
+    any visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx);
+
+    any visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx);
+
+    any visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx);
 
     std::any visitComentario(LogotecGramarParser::ComentarioContext *ctx);
 

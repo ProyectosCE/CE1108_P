@@ -37,11 +37,29 @@ public:
   virtual void enterInc_variable(LogotecGramarParser::Inc_variableContext * /*ctx*/) override { }
   virtual void exitInc_variable(LogotecGramarParser::Inc_variableContext * /*ctx*/) override { }
 
-  virtual void enterTodo_variable(LogotecGramarParser::Todo_variableContext * /*ctx*/) override { }
-  virtual void exitTodo_variable(LogotecGramarParser::Todo_variableContext * /*ctx*/) override { }
-
   virtual void enterAvanza_variable(LogotecGramarParser::Avanza_variableContext * /*ctx*/) override { }
   virtual void exitAvanza_variable(LogotecGramarParser::Avanza_variableContext * /*ctx*/) override { }
+
+  virtual void enterRetrocede_variable(LogotecGramarParser::Retrocede_variableContext * /*ctx*/) override { }
+  virtual void exitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext * /*ctx*/) override { }
+
+  virtual void enterGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext * /*ctx*/) override { }
+  virtual void exitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext * /*ctx*/) override { }
+
+  virtual void enterGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext * /*ctx*/) override { }
+  virtual void exitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext * /*ctx*/) override { }
+
+  virtual void enterOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext * /*ctx*/) override { }
+  virtual void exitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext * /*ctx*/) override { }
+
+  virtual void enterPonpos_variable(LogotecGramarParser::Ponpos_variableContext * /*ctx*/) override { }
+  virtual void exitPonpos_variable(LogotecGramarParser::Ponpos_variableContext * /*ctx*/) override { }
+
+  virtual void enterPonxy_variable(LogotecGramarParser::Ponxy_variableContext * /*ctx*/) override { }
+  virtual void exitPonxy_variable(LogotecGramarParser::Ponxy_variableContext * /*ctx*/) override { }
+
+  virtual void enterPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext * /*ctx*/) override { }
+  virtual void exitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext * /*ctx*/) override { }
 
   virtual void enterExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
   virtual void exitExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }

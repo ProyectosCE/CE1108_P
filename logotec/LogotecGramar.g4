@@ -1,6 +1,6 @@
 grammar LogotecGramar;
 
-options { language=Cpp; }
+options { language=Cpp;}
 
 // Programa
 programa
@@ -14,7 +14,13 @@ instruccion
     | inic_variable (comentario_linea)?
     | inc_variable (comentario_linea)?
     | avanza_variable (comentario_linea)?
-    | todo_variable (comentario_linea)?
+    | retrocede_variable (comentario_linea)?
+    | gira_derecha_variable (comentario_linea)?
+    | gira_izquierda_variable (comentario_linea)?
+    | ocultar_tortuga_variable (comentario_linea)?
+    | ponpos_variable (comentario_linea)?
+    | ponxy_variable (comentario_linea)?
+    | ponrumbo_variable (comentario_linea)?
     | comentario
     ;
 
@@ -40,19 +46,38 @@ inc_variable
     : INC '[' ID (ID | NUMBER)? ']'   // N1 obligatorio, N2 opcional
     ;
 
-
-// TO-DO: instrucción futura
-todo_variable
-    : TODO expr?    // permite opcionalmente una expresión
-    ;
-
-
-
 // AVANZA: mover avatar
 avanza_variable
     : (AVANZA | AV) e=expr
     ;
 
+retrocede_variable
+    : (RETROCEDE | RE) e=expr
+    ;
+
+gira_derecha_variable
+    : (GIRA_DERECHA | GD) e=expr
+    ;
+
+gira_izquierda_variable
+    : (GIRA_IZQUIERDA | GI) e=expr
+    ;
+
+ocultar_tortuga_variable
+    : (OCULTAR_TORTUGA | OT)
+    ;
+
+ponpos_variable
+    : PONPOS '[' NUMBER NUMBER ']'
+    ;
+
+ponxy_variable
+    : PONXY NUMBER NUMBER
+    ;
+
+ponrumbo_variable
+    : PONRUMBO NUMBER
+    ;
 
 // Expresiones (solo suma simple de momento)
 expr
@@ -86,11 +111,27 @@ valor
 HAZ          : 'Haz' ;
 INIC         : 'INIC' ;
 INC : 'INC' ;
-// Token para TODO
-TODO : 'TODO' ;
 
-AVANZA : 'AVANZA' ;
-AV     : 'AV' ;
+AVANZA : 'avanza' ;
+AV     : 'av' ;
+
+RETROCEDE: 'retrocede' ;
+RE: 're' ;
+
+
+GIRA_DERECHA: 'GiraDerecha' ;
+GD: 'GD';
+
+GIRA_IZQUIERDA: 'GiraIzquierda' ;
+GI: 'GI';
+
+OCULTAR_TORTUGA: 'OcultarTortuga' ;
+OT: 'OT';
+
+PONPOS: 'ponpos' ;
+PONXY: 'ponxy' ;
+
+PONRUMBO: 'ponrumbo' ;
 
 
 TRUE         : 'True' ;
