@@ -50,7 +50,7 @@ set(ANTLR_GENERATED_FILES
 )
 
 add_executable(logotec
-        main.cpp
+        src/main.cpp
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)
