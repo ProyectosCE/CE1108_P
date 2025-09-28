@@ -10,10 +10,22 @@ programa
 
 // Instrucciones
 instruccion
-    : haz_variable
-    | inic_variable
+    : haz_variable (comentario_linea)?
+    | inic_variable (comentario_linea)?
+    | inc_variable (comentario_linea)?
+    | avanza_variable (comentario_linea)?
+    | todo_variable (comentario_linea)?
+    | comentario
     ;
 
+// Comentario de línea
+comentario_linea
+    : LINE_COMMENT
+    ;
+
+comentario
+    : LINE_COMMENT
+    ;
 
 
 // Haz: creación de variable
@@ -22,6 +34,25 @@ haz_variable: HAZ ID v=valor;
     // INIC: inicialización o asignación
 inic_variable
     : INIC ID '=' e=expr;
+
+// INC: incremento de variable
+inc_variable
+    : INC '[' ID (ID | NUMBER)? ']'   // N1 obligatorio, N2 opcional
+    ;
+
+
+// TO-DO: instrucción futura
+todo_variable
+    : TODO expr?    // permite opcionalmente una expresión
+    ;
+
+
+
+// AVANZA: mover avatar
+avanza_variable
+    : (AVANZA | AV) e=expr
+    ;
+
 
 // Expresiones (solo suma simple de momento)
 expr
@@ -54,11 +85,20 @@ valor
 // === TOKENS ===
 HAZ          : 'Haz' ;
 INIC         : 'INIC' ;
+INC : 'INC' ;
+// Token para TODO
+TODO : 'TODO' ;
+
+AVANZA : 'AVANZA' ;
+AV     : 'AV' ;
+
+
 TRUE         : 'True' ;
 FALSE        : 'False' ;
 NUMBER       : [0-9]+ ;
 CADENA_TEXTO : '"' (~["\r\n])* '"' ;
 ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
+
 
 // Saltos de línea significativos
 NEWLINE      : [\r\n]+ ;
@@ -66,8 +106,8 @@ NEWLINE      : [\r\n]+ ;
 // Ignorar espacios y tabs
 WS           : [ \t]+ -> skip ;
 
-// Comentario de línea
-LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+// Token para comentarios
+LINE_COMMENT : '//' ~[\r\n]* ;
 
 
 PROGRAM: 'program';

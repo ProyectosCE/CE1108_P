@@ -23,6 +23,14 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitComentario_linea(LogotecGramarParser::Comentario_lineaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitComentario(LogotecGramarParser::ComentarioContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -32,6 +40,14 @@ public:
   }
 
   virtual std::any visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) override {
     return visitChildren(ctx);
   }
 

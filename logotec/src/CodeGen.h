@@ -11,25 +11,38 @@
 #include <string>
 #include <unordered_map>
 #include <iostream>
+
+using namespace std;
+
 class CodeGen : public LogotecGramarBaseVisitor {
 public:
-    std::unordered_map<std::string,std::string> tablaTipos;
-    std::string codigo;
+    unordered_map<string,string> tablaTipos;
+    string codigo;
 
     bool hayError = false; // <-- flag de error
 
-    virtual std::any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
-    virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
-    virtual std::any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
-    virtual std::any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
+    virtual any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
+    virtual any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
+    virtual any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
+    virtual any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
+    virtual any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) override;
+
+    std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx);
+    virtual any visitTodo_variable(LogotecGramarParser::Todo_variableContext *context) override;
+
+    std::any visitComentario(LogotecGramarParser::ComentarioContext *ctx);
+
+    void agregarComentarioLinea(LogotecGramarParser::InstruccionContext *ctx);
+
+    void agregarComentario(LogotecGramarParser::InstruccionContext *ctx);
 
 private:
-    void error(const std::string &msg) {
-        std::cerr << "Error: " << msg << std::endl;
+    void error(const string &msg) {
+        cerr << "Error: " << msg << endl;
         hayError = true;
     }
 
-    std::string inferTipo(LogotecGramarParser::ExprContext *ctx);
+    string inferTipo(LogotecGramarParser::ExprContext *ctx);
 };
 
 

@@ -12,13 +12,13 @@
 class  LogotecGramarLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, HAZ = 3, INIC = 4, INC = 5, TRUE = 6, FALSE = 7, 
-    NUMBER = 8, CADENA_TEXTO = 9, ID = 10, NEWLINE = 11, WS = 12, LINE_COMMENT = 13, 
-    PROGRAM = 14, VAR = 15, PRINTLN = 16, PLUS = 17, MINUS = 18, MULT = 19, 
-    DIV = 20, IF = 21, ELSE = 22, WHILE = 23, FOR = 24, AND = 25, OR = 26, 
-    NOT = 27, GT = 28, LT = 29, GEQ = 30, LEQ = 31, EQ = 32, NEQ = 33, ASSIGN = 34, 
-    BRACKET_OPEN = 35, BRACKET_CLOSE = 36, PAR_OPEN = 37, PAR_CLOSE = 38, 
-    SEMICOLON = 39
+    T__0 = 1, T__1 = 2, HAZ = 3, INIC = 4, INC = 5, TODO = 6, AVANZA = 7, 
+    AV = 8, TRUE = 9, FALSE = 10, NUMBER = 11, CADENA_TEXTO = 12, ID = 13, 
+    NEWLINE = 14, WS = 15, LINE_COMMENT = 16, PROGRAM = 17, VAR = 18, PRINTLN = 19, 
+    PLUS = 20, MINUS = 21, MULT = 22, DIV = 23, IF = 24, ELSE = 25, WHILE = 26, 
+    FOR = 27, AND = 28, OR = 29, NOT = 30, GT = 31, LT = 32, GEQ = 33, LEQ = 34, 
+    EQ = 35, NEQ = 36, ASSIGN = 37, BRACKET_OPEN = 38, BRACKET_CLOSE = 39, 
+    PAR_OPEN = 40, PAR_CLOSE = 41, SEMICOLON = 42
   };
 
   explicit LogotecGramarLexer(antlr4::CharStream *input);

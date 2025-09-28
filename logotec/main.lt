@@ -1,4 +1,5 @@
 Haz x 5
+Haz y 10
 Haz saludo "Hola"
 Haz bandera True
 
@@ -6,6 +7,16 @@ INIC x = 10
 INIC saludo = "Mundo"
 INIC bandera = False
 
-INIC x = "fa"  // Esto lanza error semántico
+// INIC x = "fa"  // Esto lanza error semántico
 
+INC [x]  // Esto incrementa x en 1
+INC [y x]  // Esto incrementa y en x
 
+//TODO Implementar avanza
+AVANZA 5
+//TODO Implementar avanza
+AVANZA 10*2//avanza 20 casillas
+//TODO Implementar avanza
+AV 2 //avanza 2 casillas
+//TODO Implementar avanza
+AV 9/3

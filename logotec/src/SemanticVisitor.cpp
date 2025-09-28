@@ -1,14 +1,15 @@
 #include "SemanticVisitor.h"
+using namespace std;
 
-std::any SemanticVisitor::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
+any SemanticVisitor::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
     return visitChildren(ctx);
 }
 
 
 
 // Haz: crear variable e inferir tipo
-std::any SemanticVisitor::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
-    std::string nombre = ctx->ID()->getText();
+any SemanticVisitor::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
+    string nombre = ctx->ID()->getText();
 
     if (tablaTipos.find(nombre) != tablaTipos.end()) {
         error("Variable '" + nombre + "' ya declarada.");
@@ -16,21 +17,21 @@ std::any SemanticVisitor::visitHaz_variable(LogotecGramarParser::Haz_variableCon
     }
 
     // Inferir tipo básico según valor
-    std::string tipo;
+    string tipo;
     if (ctx->v->NUMBER()) tipo = "int";
     else if (ctx->v->logico()) tipo = "bool";
     else if (ctx->v->CADENA_TEXTO()) tipo = "string";
     else tipo = "desconocido";
 
     tablaTipos[nombre] = tipo;
-    std::cout << "Variable '" << nombre << "' creada de tipo " << tipo << std::endl;
+    cout << "Variable '" << nombre << "' creada de tipo " << tipo << endl;
 
     return visitChildren(ctx);
 }
 
 // INIC: asignar valor, verificar tipo
-std::any SemanticVisitor::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) {
-    std::string nombre = ctx->ID()->getText();
+any SemanticVisitor::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) {
+    string nombre = ctx->ID()->getText();
 
     auto it = tablaTipos.find(nombre);
     if (it == tablaTipos.end()) {
@@ -38,10 +39,10 @@ std::any SemanticVisitor::visitInic_variable(LogotecGramarParser::Inic_variableC
         return nullptr;
     }
 
-    std::string tipoOriginal = it->second;
+    string tipoOriginal = it->second;
 
     // Inferir tipo de la expresión
-    std::string tipoNuevo;
+    string tipoNuevo;
     if (ctx->e->NUMBER()) tipoNuevo = "int";
     else if (ctx->e->logico()) tipoNuevo = "bool";
     else if (ctx->e->CADENA_TEXTO()) tipoNuevo = "string";
@@ -52,12 +53,51 @@ std::any SemanticVisitor::visitInic_variable(LogotecGramarParser::Inic_variableC
         error("Error semántico: asignación de tipo '" + tipoNuevo +
               "' a variable '" + nombre + "' de tipo '" + tipoOriginal + "'.");
     } else {
-        std::cout << "Variable '" << nombre << "' asignada de tipo " << tipoNuevo << std::endl;
+        cout << "Variable '" << nombre << "' asignada de tipo " << tipoNuevo << endl;
     }
 
     return visitChildren(ctx);
 }
 
-std::any SemanticVisitor::visitExpr(LogotecGramarParser::ExprContext *ctx) {
+any SemanticVisitor::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
+    std::string n1 = ctx->ID(0)->getText(); // primer parámetro
+    auto it = tablaTipos.find(n1);
+    if (it == tablaTipos.end()) {
+        error("Variable '" + n1 + "' no declarada antes de INC.");
+        return nullptr;
+    }
+
+    // Comprobar que N1 es int
+    if (it->second != "int") {
+        error("Variable '" + n1 + "' no es numérica y no se puede usar en INC.");
+        return nullptr;
+    }
+
+    std::string codigoLinea;
+
+    if (ctx->ID().size() == 2) {
+        // Segundo parámetro es una variable
+        std::string n2 = ctx->ID(1)->getText();
+        auto it2 = tablaTipos.find(n2);
+        if (it2 == tablaTipos.end()) {
+            error("Variable '" + n2 + "' no declarada como segundo parámetro de INC.");
+            return nullptr;
+        }
+        if (it2->second != "int") {
+            error("Variable '" + n2 + "' no es numérica y no se puede usar como segundo parámetro de INC.");
+            return nullptr;
+        }
+        codigoLinea = n1 + " += " + n2 + ";\n";
+    } else if (ctx->NUMBER()) {
+        // Segundo parámetro es un número literal
+        codigoLinea = n1 + " += " + ctx->NUMBER()->getText() + ";\n";
+    } else {
+        // Solo N1
+        codigoLinea = n1 + "++;\n";
+    }
+
+    return visitChildren(ctx);
+}
+any SemanticVisitor::visitExpr(LogotecGramarParser::ExprContext *ctx) {
     return visitChildren(ctx);
 }

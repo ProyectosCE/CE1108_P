@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
+using namespace std;
 
 /**
  * Clase para la verificación semántica.
@@ -20,24 +21,28 @@
 class SemanticVisitor : public LogotecGramarBaseVisitor {
 public:
     // Tabla de símbolos simple: nombre de variable -> tipo
-    std::unordered_map<std::string, std::string> symbolTable;
-    std::unordered_map<std::string, std::string> tablaTipos;
+    unordered_map<string, string> symbolTable;
+    unordered_map<string, string> tablaTipos;
 
     // Programa
-    virtual std::any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
+    virtual any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
 
     // Declaración de variable
-    virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
+    virtual any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
 
     // Inicialización de variable
-    virtual std::any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
+    virtual any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
 
     // Expresiones
-    virtual std::any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
+    virtual any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
+
+    // Incremento de variable
+    virtual any visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) override;
+    //
 
 private:
-    void error(const std::string &msg) {
-        std::cerr << "Error semántico: " << msg << std::endl;
+    void error(const string &msg) {
+        cerr << "Error semántico: " << msg << endl;
     }
 };
 

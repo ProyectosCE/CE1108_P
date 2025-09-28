@@ -22,6 +22,12 @@ public:
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
 
+  virtual void enterComentario_linea(LogotecGramarParser::Comentario_lineaContext * /*ctx*/) override { }
+  virtual void exitComentario_linea(LogotecGramarParser::Comentario_lineaContext * /*ctx*/) override { }
+
+  virtual void enterComentario(LogotecGramarParser::ComentarioContext * /*ctx*/) override { }
+  virtual void exitComentario(LogotecGramarParser::ComentarioContext * /*ctx*/) override { }
+
   virtual void enterHaz_variable(LogotecGramarParser::Haz_variableContext * /*ctx*/) override { }
   virtual void exitHaz_variable(LogotecGramarParser::Haz_variableContext * /*ctx*/) override { }
 
@@ -30,6 +36,12 @@ public:
 
   virtual void enterInc_variable(LogotecGramarParser::Inc_variableContext * /*ctx*/) override { }
   virtual void exitInc_variable(LogotecGramarParser::Inc_variableContext * /*ctx*/) override { }
+
+  virtual void enterTodo_variable(LogotecGramarParser::Todo_variableContext * /*ctx*/) override { }
+  virtual void exitTodo_variable(LogotecGramarParser::Todo_variableContext * /*ctx*/) override { }
+
+  virtual void enterAvanza_variable(LogotecGramarParser::Avanza_variableContext * /*ctx*/) override { }
+  virtual void exitAvanza_variable(LogotecGramarParser::Avanza_variableContext * /*ctx*/) override { }
 
   virtual void enterExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
   virtual void exitExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }

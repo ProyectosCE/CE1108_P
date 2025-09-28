@@ -23,11 +23,19 @@ public:
 
     virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *context) = 0;
 
+    virtual std::any visitComentario_linea(LogotecGramarParser::Comentario_lineaContext *context) = 0;
+
+    virtual std::any visitComentario(LogotecGramarParser::ComentarioContext *context) = 0;
+
     virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *context) = 0;
 
     virtual std::any visitInic_variable(LogotecGramarParser::Inic_variableContext *context) = 0;
 
     virtual std::any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) = 0;
+
+    virtual std::any visitTodo_variable(LogotecGramarParser::Todo_variableContext *context) = 0;
+
+    virtual std::any visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *context) = 0;
 
     virtual std::any visitExpr(LogotecGramarParser::ExprContext *context) = 0;
 

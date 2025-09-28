@@ -12,18 +12,20 @@
 class  LogotecGramarParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, HAZ = 3, INIC = 4, INC = 5, TRUE = 6, FALSE = 7, 
-    NUMBER = 8, CADENA_TEXTO = 9, ID = 10, NEWLINE = 11, WS = 12, LINE_COMMENT = 13, 
-    PROGRAM = 14, VAR = 15, PRINTLN = 16, PLUS = 17, MINUS = 18, MULT = 19, 
-    DIV = 20, IF = 21, ELSE = 22, WHILE = 23, FOR = 24, AND = 25, OR = 26, 
-    NOT = 27, GT = 28, LT = 29, GEQ = 30, LEQ = 31, EQ = 32, NEQ = 33, ASSIGN = 34, 
-    BRACKET_OPEN = 35, BRACKET_CLOSE = 36, PAR_OPEN = 37, PAR_CLOSE = 38, 
-    SEMICOLON = 39
+    T__0 = 1, T__1 = 2, HAZ = 3, INIC = 4, INC = 5, TODO = 6, AVANZA = 7, 
+    AV = 8, TRUE = 9, FALSE = 10, NUMBER = 11, CADENA_TEXTO = 12, ID = 13, 
+    NEWLINE = 14, WS = 15, LINE_COMMENT = 16, PROGRAM = 17, VAR = 18, PRINTLN = 19, 
+    PLUS = 20, MINUS = 21, MULT = 22, DIV = 23, IF = 24, ELSE = 25, WHILE = 26, 
+    FOR = 27, AND = 28, OR = 29, NOT = 30, GT = 31, LT = 32, GEQ = 33, LEQ = 34, 
+    EQ = 35, NEQ = 36, ASSIGN = 37, BRACKET_OPEN = 38, BRACKET_CLOSE = 39, 
+    PAR_OPEN = 40, PAR_CLOSE = 41, SEMICOLON = 42
   };
 
   enum {
-    RulePrograma = 0, RuleInstruccion = 1, RuleHaz_variable = 2, RuleInic_variable = 3, 
-    RuleInc_variable = 4, RuleExpr = 5, RuleLogico = 6, RuleValor = 7, RuleOperador = 8
+    RulePrograma = 0, RuleInstruccion = 1, RuleComentario_linea = 2, RuleComentario = 3, 
+    RuleHaz_variable = 4, RuleInic_variable = 5, RuleInc_variable = 6, RuleTodo_variable = 7, 
+    RuleAvanza_variable = 8, RuleExpr = 9, RuleLogico = 10, RuleValor = 11, 
+    RuleOperador = 12
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -45,9 +47,13 @@ public:
 
   class ProgramaContext;
   class InstruccionContext;
+  class Comentario_lineaContext;
+  class ComentarioContext;
   class Haz_variableContext;
   class Inic_variableContext;
   class Inc_variableContext;
+  class Todo_variableContext;
+  class Avanza_variableContext;
   class ExprContext;
   class LogicoContext;
   class ValorContext;
@@ -77,8 +83,12 @@ public:
     InstruccionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     Haz_variableContext *haz_variable();
+    Comentario_lineaContext *comentario_linea();
     Inic_variableContext *inic_variable();
     Inc_variableContext *inc_variable();
+    Avanza_variableContext *avanza_variable();
+    Todo_variableContext *todo_variable();
+    ComentarioContext *comentario();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -88,6 +98,36 @@ public:
   };
 
   InstruccionContext* instruccion();
+
+  class  Comentario_lineaContext : public antlr4::ParserRuleContext {
+  public:
+    Comentario_lineaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *LINE_COMMENT();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Comentario_lineaContext* comentario_linea();
+
+  class  ComentarioContext : public antlr4::ParserRuleContext {
+  public:
+    ComentarioContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *LINE_COMMENT();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ComentarioContext* comentario();
 
   class  Haz_variableContext : public antlr4::ParserRuleContext {
   public:
@@ -143,6 +183,40 @@ public:
   };
 
   Inc_variableContext* inc_variable();
+
+  class  Todo_variableContext : public antlr4::ParserRuleContext {
+  public:
+    Todo_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *TODO();
+    ExprContext *expr();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Todo_variableContext* todo_variable();
+
+  class  Avanza_variableContext : public antlr4::ParserRuleContext {
+  public:
+    LogotecGramarParser::ExprContext *e = nullptr;
+    Avanza_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *AVANZA();
+    antlr4::tree::TerminalNode *AV();
+    ExprContext *expr();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Avanza_variableContext* avanza_variable();
 
   class  ExprContext : public antlr4::ParserRuleContext {
   public:

@@ -20,6 +20,12 @@ public:
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext *ctx) = 0;
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext *ctx) = 0;
 
+  virtual void enterComentario_linea(LogotecGramarParser::Comentario_lineaContext *ctx) = 0;
+  virtual void exitComentario_linea(LogotecGramarParser::Comentario_lineaContext *ctx) = 0;
+
+  virtual void enterComentario(LogotecGramarParser::ComentarioContext *ctx) = 0;
+  virtual void exitComentario(LogotecGramarParser::ComentarioContext *ctx) = 0;
+
   virtual void enterHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) = 0;
   virtual void exitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) = 0;
 
@@ -28,6 +34,12 @@ public:
 
   virtual void enterInc_variable(LogotecGramarParser::Inc_variableContext *ctx) = 0;
   virtual void exitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) = 0;
+
+  virtual void enterTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) = 0;
+  virtual void exitTodo_variable(LogotecGramarParser::Todo_variableContext *ctx) = 0;
+
+  virtual void enterAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) = 0;
+  virtual void exitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) = 0;
 
   virtual void enterExpr(LogotecGramarParser::ExprContext *ctx) = 0;
   virtual void exitExpr(LogotecGramarParser::ExprContext *ctx) = 0;
