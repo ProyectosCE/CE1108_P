@@ -1,0 +1,11 @@
+Haz x 5
+Haz saludo "Hola"
+Haz bandera True
+
+INIC x = 10
+INIC saludo = "Mundo"
+INIC bandera = False
+
+INIC x = "fa"  // Esto lanza error semántico
+
+

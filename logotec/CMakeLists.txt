@@ -30,27 +30,19 @@ set(ANTLR_BUILD_CPP_TESTS OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(antlr4)
 
 
-set(ANTLR_GENERATED_FILES
-        src/SimpleParser.cpp
-        src/SimpleBaseListener.cpp
-        src/SimpleParser.h
-        src/SimpleBaseListener.h
-        src/SimpleBaseVisitor.cpp
-        src/SimpleBaseVisitor.h
-        src/SimpleLexer.cpp
-        src/SimpleLexer.h
-        src/SimpleLexer.interp
-        src/SimpleLexer.tokens
-        src/SimpleListener.cpp
-        src/SimpleListener.h
-        src/SimpleVisitor.cpp
-        src/SimpleVisitor.h
-        src/Simple.tokens
-        src/Simple.interp
-)
+set(ANTLR4_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/gen")
+set(GRAMMAR_NAME "LogotecGramar")
+
+# Buscar todos los archivos .cpp que empiecen con MiniLang
+file(GLOB GRAMMAR_CPP "${ANTLR4_OUTPUT_DIR}/${GRAMMAR_NAME}*.*")
 
 add_executable(logotec
         src/main.cpp
+        ${GRAMMAR_CPP}
+        src/SemanticVisitor.cpp
+        src/SemanticVisitor.h
+        src/CodeGen.cpp
+        src/CodeGen.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)
