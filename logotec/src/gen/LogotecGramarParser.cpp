@@ -1,9 +1,8 @@
 
-// Generated from C:/Users/amv22/Dev/repos/COMPILADORES/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from LogotecGramar.g4 by ANTLR 4.13.2
 
 
 #include "LogotecGramarListener.h"
-#include "LogotecGramarVisitor.h"
 
 #include "LogotecGramarParser.h"
 
@@ -253,14 +252,6 @@ void LogotecGramarParser::ProgramaContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitPrograma(this);
 }
 
-
-std::any LogotecGramarParser::ProgramaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPrograma(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::ProgramaContext* LogotecGramarParser::programa() {
   ProgramaContext *_localctx = _tracker.createInstance<ProgramaContext>(_ctx, getState());
   enterRule(_localctx, 0, LogotecGramarParser::RulePrograma);
@@ -402,14 +393,6 @@ void LogotecGramarParser::InstruccionContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitInstruccion(this);
-}
-
-
-std::any LogotecGramarParser::InstruccionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitInstruccion(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::InstruccionContext* LogotecGramarParser::instruccion() {
@@ -754,14 +737,6 @@ void LogotecGramarParser::Comentario_lineaContext::exitRule(tree::ParseTreeListe
     parserListener->exitComentario_linea(this);
 }
 
-
-std::any LogotecGramarParser::Comentario_lineaContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitComentario_linea(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Comentario_lineaContext* LogotecGramarParser::comentario_linea() {
   Comentario_lineaContext *_localctx = _tracker.createInstance<Comentario_lineaContext>(_ctx, getState());
   enterRule(_localctx, 4, LogotecGramarParser::RuleComentario_linea);
@@ -813,14 +788,6 @@ void LogotecGramarParser::ComentarioContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitComentario(this);
-}
-
-
-std::any LogotecGramarParser::ComentarioContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitComentario(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::ComentarioContext* LogotecGramarParser::comentario() {
@@ -882,14 +849,6 @@ void LogotecGramarParser::Haz_variableContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitHaz_variable(this);
-}
-
-
-std::any LogotecGramarParser::Haz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitHaz_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Haz_variableContext* LogotecGramarParser::haz_variable() {
@@ -961,14 +920,6 @@ void LogotecGramarParser::Inic_variableContext::exitRule(tree::ParseTreeListener
     parserListener->exitInic_variable(this);
 }
 
-
-std::any LogotecGramarParser::Inic_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitInic_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Inic_variableContext* LogotecGramarParser::inic_variable() {
   Inic_variableContext *_localctx = _tracker.createInstance<Inic_variableContext>(_ctx, getState());
   enterRule(_localctx, 10, LogotecGramarParser::RuleInic_variable);
@@ -1038,14 +989,6 @@ void LogotecGramarParser::Inc_variableContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitInc_variable(this);
-}
-
-
-std::any LogotecGramarParser::Inc_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitInc_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Inc_variableContext* LogotecGramarParser::inc_variable() {
@@ -1135,14 +1078,6 @@ void LogotecGramarParser::Avanza_variableContext::exitRule(tree::ParseTreeListen
     parserListener->exitAvanza_variable(this);
 }
 
-
-std::any LogotecGramarParser::Avanza_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitAvanza_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Avanza_variableContext* LogotecGramarParser::avanza_variable() {
   Avanza_variableContext *_localctx = _tracker.createInstance<Avanza_variableContext>(_ctx, getState());
   enterRule(_localctx, 14, LogotecGramarParser::RuleAvanza_variable);
@@ -1214,14 +1149,6 @@ void LogotecGramarParser::Retrocede_variableContext::exitRule(tree::ParseTreeLis
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitRetrocede_variable(this);
-}
-
-
-std::any LogotecGramarParser::Retrocede_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitRetrocede_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Retrocede_variableContext* LogotecGramarParser::retrocede_variable() {
@@ -1297,14 +1224,6 @@ void LogotecGramarParser::Gira_derecha_variableContext::exitRule(tree::ParseTree
     parserListener->exitGira_derecha_variable(this);
 }
 
-
-std::any LogotecGramarParser::Gira_derecha_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitGira_derecha_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Gira_derecha_variableContext* LogotecGramarParser::gira_derecha_variable() {
   Gira_derecha_variableContext *_localctx = _tracker.createInstance<Gira_derecha_variableContext>(_ctx, getState());
   enterRule(_localctx, 18, LogotecGramarParser::RuleGira_derecha_variable);
@@ -1378,14 +1297,6 @@ void LogotecGramarParser::Gira_izquierda_variableContext::exitRule(tree::ParseTr
     parserListener->exitGira_izquierda_variable(this);
 }
 
-
-std::any LogotecGramarParser::Gira_izquierda_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitGira_izquierda_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Gira_izquierda_variableContext* LogotecGramarParser::gira_izquierda_variable() {
   Gira_izquierda_variableContext *_localctx = _tracker.createInstance<Gira_izquierda_variableContext>(_ctx, getState());
   enterRule(_localctx, 20, LogotecGramarParser::RuleGira_izquierda_variable);
@@ -1453,14 +1364,6 @@ void LogotecGramarParser::Ocultar_tortuga_variableContext::exitRule(tree::ParseT
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitOcultar_tortuga_variable(this);
-}
-
-
-std::any LogotecGramarParser::Ocultar_tortuga_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitOcultar_tortuga_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Ocultar_tortuga_variableContext* LogotecGramarParser::ocultar_tortuga_variable() {
@@ -1534,14 +1437,6 @@ void LogotecGramarParser::Ponpos_variableContext::exitRule(tree::ParseTreeListen
     parserListener->exitPonpos_variable(this);
 }
 
-
-std::any LogotecGramarParser::Ponpos_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPonpos_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Ponpos_variableContext* LogotecGramarParser::ponpos_variable() {
   Ponpos_variableContext *_localctx = _tracker.createInstance<Ponpos_variableContext>(_ctx, getState());
   enterRule(_localctx, 24, LogotecGramarParser::RulePonpos_variable);
@@ -1611,14 +1506,6 @@ void LogotecGramarParser::Ponxy_variableContext::exitRule(tree::ParseTreeListene
     parserListener->exitPonxy_variable(this);
 }
 
-
-std::any LogotecGramarParser::Ponxy_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPonxy_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Ponxy_variableContext* LogotecGramarParser::ponxy_variable() {
   Ponxy_variableContext *_localctx = _tracker.createInstance<Ponxy_variableContext>(_ctx, getState());
   enterRule(_localctx, 26, LogotecGramarParser::RulePonxy_variable);
@@ -1680,14 +1567,6 @@ void LogotecGramarParser::Ponrumbo_variableContext::exitRule(tree::ParseTreeList
     parserListener->exitPonrumbo_variable(this);
 }
 
-
-std::any LogotecGramarParser::Ponrumbo_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPonrumbo_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Ponrumbo_variableContext* LogotecGramarParser::ponrumbo_variable() {
   Ponrumbo_variableContext *_localctx = _tracker.createInstance<Ponrumbo_variableContext>(_ctx, getState());
   enterRule(_localctx, 28, LogotecGramarParser::RulePonrumbo_variable);
@@ -1745,14 +1624,6 @@ void LogotecGramarParser::Ponx_variableContext::exitRule(tree::ParseTreeListener
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPonx_variable(this);
-}
-
-
-std::any LogotecGramarParser::Ponx_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPonx_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Ponx_variableContext* LogotecGramarParser::ponx_variable() {
@@ -1814,14 +1685,6 @@ void LogotecGramarParser::Pony_variableContext::exitRule(tree::ParseTreeListener
     parserListener->exitPony_variable(this);
 }
 
-
-std::any LogotecGramarParser::Pony_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPony_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Pony_variableContext* LogotecGramarParser::pony_variable() {
   Pony_variableContext *_localctx = _tracker.createInstance<Pony_variableContext>(_ctx, getState());
   enterRule(_localctx, 32, LogotecGramarParser::RulePony_variable);
@@ -1879,14 +1742,6 @@ void LogotecGramarParser::Bajalapiz_variableContext::exitRule(tree::ParseTreeLis
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBajalapiz_variable(this);
-}
-
-
-std::any LogotecGramarParser::Bajalapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitBajalapiz_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Bajalapiz_variableContext* LogotecGramarParser::bajalapiz_variable() {
@@ -1954,14 +1809,6 @@ void LogotecGramarParser::Subelapiz_variableContext::exitRule(tree::ParseTreeLis
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSubelapiz_variable(this);
-}
-
-
-std::any LogotecGramarParser::Subelapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitSubelapiz_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Subelapiz_variableContext* LogotecGramarParser::subelapiz_variable() {
@@ -2035,14 +1882,6 @@ void LogotecGramarParser::Poncolorlapiz_variableContext::exitRule(tree::ParseTre
     parserListener->exitPoncolorlapiz_variable(this);
 }
 
-
-std::any LogotecGramarParser::Poncolorlapiz_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitPoncolorlapiz_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Poncolorlapiz_variableContext* LogotecGramarParser::poncolorlapiz_variable() {
   Poncolorlapiz_variableContext *_localctx = _tracker.createInstance<Poncolorlapiz_variableContext>(_ctx, getState());
   enterRule(_localctx, 38, LogotecGramarParser::RulePoncolorlapiz_variable);
@@ -2108,14 +1947,6 @@ void LogotecGramarParser::Centro_variableContext::exitRule(tree::ParseTreeListen
     parserListener->exitCentro_variable(this);
 }
 
-
-std::any LogotecGramarParser::Centro_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitCentro_variable(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::Centro_variableContext* LogotecGramarParser::centro_variable() {
   Centro_variableContext *_localctx = _tracker.createInstance<Centro_variableContext>(_ctx, getState());
   enterRule(_localctx, 40, LogotecGramarParser::RuleCentro_variable);
@@ -2171,14 +2002,6 @@ void LogotecGramarParser::Esperar_variableContext::exitRule(tree::ParseTreeListe
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitEsperar_variable(this);
-}
-
-
-std::any LogotecGramarParser::Esperar_variableContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitEsperar_variable(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::Esperar_variableContext* LogotecGramarParser::esperar_variable() {
@@ -2242,14 +2065,6 @@ void LogotecGramarParser::ColoresContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitColores(this);
-}
-
-
-std::any LogotecGramarParser::ColoresContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitColores(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::ColoresContext* LogotecGramarParser::colores() {
@@ -2336,14 +2151,6 @@ void LogotecGramarParser::ExprContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExpr(this);
-}
-
-
-std::any LogotecGramarParser::ExprContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitExpr(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 
@@ -2467,14 +2274,6 @@ void LogotecGramarParser::LogicoContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitLogico(this);
 }
 
-
-std::any LogotecGramarParser::LogicoContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitLogico(this);
-  else
-    return visitor->visitChildren(this);
-}
-
 LogotecGramarParser::LogicoContext* LogotecGramarParser::logico() {
   LogicoContext *_localctx = _tracker.createInstance<LogicoContext>(_ctx, getState());
   enterRule(_localctx, 48, LogotecGramarParser::RuleLogico);
@@ -2544,14 +2343,6 @@ void LogotecGramarParser::ValorContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitValor(this);
-}
-
-
-std::any LogotecGramarParser::ValorContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitValor(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
@@ -2642,14 +2433,6 @@ void LogotecGramarParser::OperadorContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<LogotecGramarListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitOperador(this);
-}
-
-
-std::any LogotecGramarParser::OperadorContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<LogotecGramarVisitor*>(visitor))
-    return parserVisitor->visitOperador(this);
-  else
-    return visitor->visitChildren(this);
 }
 
 LogotecGramarParser::OperadorContext* LogotecGramarParser::operador() {

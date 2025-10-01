@@ -1,5 +1,5 @@
 
-// Generated from LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/josc/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.1
 
 
 #include "LogotecGramarLexer.h"
@@ -45,7 +45,7 @@ struct LogotecGramarLexerStaticData final {
 #if ANTLR4_USE_THREAD_LOCAL_CACHE
 static thread_local
 #endif
-std::unique_ptr<LogotecGramarLexerStaticData> logotecgramarlexerLexerStaticData = nullptr;
+LogotecGramarLexerStaticData *logotecgramarlexerLexerStaticData = nullptr;
 
 void logotecgramarlexerLexerInitialize() {
 #if ANTLR4_USE_THREAD_LOCAL_CACHE
@@ -258,7 +258,7 @@ void logotecgramarlexerLexerInitialize() {
   for (size_t i = 0; i < count; i++) { 
     staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
   }
-  logotecgramarlexerLexerStaticData = std::move(staticData);
+  logotecgramarlexerLexerStaticData = staticData.release();
 }
 
 }
