@@ -31,10 +31,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitLinea(LogotecGramarParser::LineaContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *ctx) override {
     return visitChildren(ctx);
   }

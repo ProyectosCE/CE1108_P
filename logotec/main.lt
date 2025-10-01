@@ -36,9 +36,7 @@ GiraDerecha 90
 GD 45
 
 //TODO
-GiraIzquierda 90
-//TODO
-GI 80
+GiraIzquierda 90 GI 80
 
 //TODO
 OcultarTortuga
@@ -63,15 +61,11 @@ bajalapiz
 BL
 
 //TODO
-subelapiz
-SL
+subelapiz SL
 
 //TODO
-poncolorlapiz azul
-poncl negro
+poncolorlapiz azul poncl negro
 
 //TODO
-centro
-
+centro espera 20
 //TODO
-espera 20
