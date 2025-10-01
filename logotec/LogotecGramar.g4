@@ -4,12 +4,13 @@ options { language=Cpp;}
 
 // Programa
 programa
-    : (procedimiento)* (linea NEWLINE)* linea? EOF
+    : (NEWLINE | (instruccion)+ | procedimiento)*
+      EOF
     ;
 
  // Definición de procedimiento
 procedimiento
-    : PARA ID parametros NEWLINE (linea NEWLINE)* linea? FIN
+    : PARA ID parametros NEWLINE ((instruccion)+ NEWLINE)* (instruccion)+? FIN
     ;
 
 parametros
@@ -19,13 +20,6 @@ parametros
 lista_parametros
     : ID (',' ID)*
     ;
-
-
-// Permite varias instrucciones por línea
-linea
-    : (instruccion)+
-    ;
-
 
 // Instrucciones
 instruccion

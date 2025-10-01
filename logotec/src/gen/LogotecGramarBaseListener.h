@@ -28,9 +28,6 @@ public:
   virtual void enterLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
   virtual void exitLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
 
-  virtual void enterLinea(LogotecGramarParser::LineaContext * /*ctx*/) override { }
-  virtual void exitLinea(LogotecGramarParser::LineaContext * /*ctx*/) override { }
-
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
 
