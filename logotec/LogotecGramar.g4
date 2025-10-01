@@ -4,7 +4,26 @@ options { language=Cpp;}
 
 // Programa
 programa
-    : (instruccion NEWLINE)* EOF
+    : (procedimiento)* (linea NEWLINE)* linea? EOF
+    ;
+
+ // Definición de procedimiento
+procedimiento
+    : PARA ID parametros NEWLINE (linea NEWLINE)* linea? FIN
+    ;
+
+parametros
+    : '[' lista_parametros? ']'
+    ;
+
+lista_parametros
+    : ID (',' ID)*
+    ;
+
+
+// Permite varias instrucciones por línea
+linea
+    : (instruccion)+
     ;
 
 
@@ -28,10 +47,23 @@ instruccion
     | poncolorlapiz_variable (comentario_linea)?
     | centro_variable (comentario_linea)?
     | esperar_variable (comentario_linea)?
+    | ejecuta_variable (comentario_linea)?
+    | repite_variable (comentario_linea)?
+    | si_sino_variable (comentario_linea)?
+    | si_variable (comentario_linea)?
+    | haz_hasta_variable (comentario_linea)?
+    | hasta_variable (comentario_linea)?
+    | haz_mientras_variable (comentario_linea)?
+    | mientras_variable (comentario_linea)?
+    | iguales_variable (comentario_linea)?
+    | y_variable (comentario_linea)?
+    | o_variable (comentario_linea)?
+    | mayorque_variable (comentario_linea)?
+    | menorque_variable (comentario_linea)?
     | comentario
     ;
 
-// Comentario de línea
+ // Comentario de línea
 comentario_linea
     : LINE_COMMENT
     ;
@@ -53,7 +85,7 @@ inc_variable
     : INC '[' ID (ID | NUMBER)? ']'   // N1 obligatorio, N2 opcional
     ;
 
-// AVANZA: mover avatar
+    // AVANZA: mover avatar
 avanza_variable
     : (AVANZA | AV) e=expr
     ;
@@ -112,6 +144,58 @@ poncolorlapiz_variable
  esperar_variable
     : ESPERAR NUMBER;
 
+ejecuta_variable
+    : EJECUTA '[' instruccion* ']'
+    ;
+
+repite_variable
+    : REPITE NUMBER '[' instruccion* ']'
+    ;
+
+si_variable
+    : SI '(' expr ')' '[' instruccion* ']'
+    ;
+
+si_sino_variable
+    : SI '(' expr ')' '[' instruccion* ']' '[' instruccion* ']'
+    ;
+
+haz_hasta_variable
+    : HAZ_HASTA '[' instruccion* ']' '(' expr ')'
+    ;
+
+hasta_variable
+    : HASTA '(' expr ')' '[' instruccion* ']'
+    ;
+
+haz_mientras_variable
+    : HAZ_MIENTRAS '[' instruccion* ']' '[' expr+ ']'
+    ;
+
+mientras_variable
+    : MIENTRAS '(' expr ')' '[' instruccion* ']'
+    ;
+
+iguales_variable
+    : IGUALESQ expr expr
+    ;
+
+y_variable
+    : Y '(' expr ')' '(' expr ')'
+    ;
+
+o_variable
+    : O '(' expr ')' '(' expr ')'
+    ;
+
+mayorque_variable
+    : MAYORQUEQ expr expr
+    ;
+
+menorque_variable
+    : MENORQUEQ expr expr
+    ;
+
 colores
     : AZUL | NEGRO | ROJO
     ;
@@ -122,6 +206,12 @@ expr
     | logico
     | CADENA_TEXTO
     | ID
+    | diferencia_expr
+    | azar_expr
+    | producto_expr
+    | potencia_expr
+    | division_expr
+    | suma_expr
     ;
 
     // Tipos lógicos
@@ -143,7 +233,31 @@ valor
     | MULT
     | DIV;
 
-// === TOKENS ===
+diferencia_expr
+    : DIFERENCIA expr (expr)+
+    ;
+
+azar_expr
+    : AZAR expr
+    ;
+
+producto_expr
+    : PRODUCTO expr (expr)+
+    ;
+
+potencia_expr
+    : POTENCIA expr expr
+    ;
+
+division_expr
+    : DIVISION expr expr
+    ;
+
+suma_expr
+    : SUMA expr (expr)+
+   ;
+
+    // === TOKENS ===
 HAZ          : 'Haz' ;
 INIC         : 'INIC' ;
 INC : 'INC' ;
@@ -244,3 +358,37 @@ PAR_OPEN: '(';
 PAR_CLOSE: ')';
 
 SEMICOLON: ';';
+
+REPITE : 'repite' ;
+
+SI : 'SI' ;
+
+HAZ_HASTA : 'HAZ.HASTA' ;
+
+HASTA : 'HASTA' ;
+
+HAZ_MIENTRAS : 'HAZ.MIENTRAS' ;
+
+MIENTRAS : 'MIENTRAS' ;
+
+IGUALESQ : 'Iguales?' ;
+
+Y : 'Y' ;
+
+O : 'O' ;
+
+MAYORQUEQ : 'MayorQue?' ;
+
+MENORQUEQ : 'MenorQue?' ;
+
+DIFERENCIA : 'Diferencia' ;
+AZAR : 'Azar' ;
+
+PRODUCTO : 'Producto' ;
+POTENCIA : 'Potencia' ;
+DIVISION : 'Division' ;
+SUMA : 'Suma' ;
+RESTA : 'Resta' ;
+PARA : 'Para' ;
+FIN : 'Fin' ;
+EJECUTA : 'Ejecuta' ;

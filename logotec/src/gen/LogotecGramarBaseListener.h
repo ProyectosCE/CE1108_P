@@ -19,6 +19,18 @@ public:
   virtual void enterPrograma(LogotecGramarParser::ProgramaContext * /*ctx*/) override { }
   virtual void exitPrograma(LogotecGramarParser::ProgramaContext * /*ctx*/) override { }
 
+  virtual void enterProcedimiento(LogotecGramarParser::ProcedimientoContext * /*ctx*/) override { }
+  virtual void exitProcedimiento(LogotecGramarParser::ProcedimientoContext * /*ctx*/) override { }
+
+  virtual void enterParametros(LogotecGramarParser::ParametrosContext * /*ctx*/) override { }
+  virtual void exitParametros(LogotecGramarParser::ParametrosContext * /*ctx*/) override { }
+
+  virtual void enterLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
+  virtual void exitLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
+
+  virtual void enterLinea(LogotecGramarParser::LineaContext * /*ctx*/) override { }
+  virtual void exitLinea(LogotecGramarParser::LineaContext * /*ctx*/) override { }
+
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
 
@@ -82,6 +94,45 @@ public:
   virtual void enterEsperar_variable(LogotecGramarParser::Esperar_variableContext * /*ctx*/) override { }
   virtual void exitEsperar_variable(LogotecGramarParser::Esperar_variableContext * /*ctx*/) override { }
 
+  virtual void enterEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext * /*ctx*/) override { }
+  virtual void exitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext * /*ctx*/) override { }
+
+  virtual void enterRepite_variable(LogotecGramarParser::Repite_variableContext * /*ctx*/) override { }
+  virtual void exitRepite_variable(LogotecGramarParser::Repite_variableContext * /*ctx*/) override { }
+
+  virtual void enterSi_variable(LogotecGramarParser::Si_variableContext * /*ctx*/) override { }
+  virtual void exitSi_variable(LogotecGramarParser::Si_variableContext * /*ctx*/) override { }
+
+  virtual void enterSi_sino_variable(LogotecGramarParser::Si_sino_variableContext * /*ctx*/) override { }
+  virtual void exitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext * /*ctx*/) override { }
+
+  virtual void enterHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableContext * /*ctx*/) override { }
+  virtual void exitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableContext * /*ctx*/) override { }
+
+  virtual void enterHasta_variable(LogotecGramarParser::Hasta_variableContext * /*ctx*/) override { }
+  virtual void exitHasta_variable(LogotecGramarParser::Hasta_variableContext * /*ctx*/) override { }
+
+  virtual void enterHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext * /*ctx*/) override { }
+  virtual void exitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext * /*ctx*/) override { }
+
+  virtual void enterMientras_variable(LogotecGramarParser::Mientras_variableContext * /*ctx*/) override { }
+  virtual void exitMientras_variable(LogotecGramarParser::Mientras_variableContext * /*ctx*/) override { }
+
+  virtual void enterIguales_variable(LogotecGramarParser::Iguales_variableContext * /*ctx*/) override { }
+  virtual void exitIguales_variable(LogotecGramarParser::Iguales_variableContext * /*ctx*/) override { }
+
+  virtual void enterY_variable(LogotecGramarParser::Y_variableContext * /*ctx*/) override { }
+  virtual void exitY_variable(LogotecGramarParser::Y_variableContext * /*ctx*/) override { }
+
+  virtual void enterO_variable(LogotecGramarParser::O_variableContext * /*ctx*/) override { }
+  virtual void exitO_variable(LogotecGramarParser::O_variableContext * /*ctx*/) override { }
+
+  virtual void enterMayorque_variable(LogotecGramarParser::Mayorque_variableContext * /*ctx*/) override { }
+  virtual void exitMayorque_variable(LogotecGramarParser::Mayorque_variableContext * /*ctx*/) override { }
+
+  virtual void enterMenorque_variable(LogotecGramarParser::Menorque_variableContext * /*ctx*/) override { }
+  virtual void exitMenorque_variable(LogotecGramarParser::Menorque_variableContext * /*ctx*/) override { }
+
   virtual void enterColores(LogotecGramarParser::ColoresContext * /*ctx*/) override { }
   virtual void exitColores(LogotecGramarParser::ColoresContext * /*ctx*/) override { }
 
@@ -96,6 +147,24 @@ public:
 
   virtual void enterOperador(LogotecGramarParser::OperadorContext * /*ctx*/) override { }
   virtual void exitOperador(LogotecGramarParser::OperadorContext * /*ctx*/) override { }
+
+  virtual void enterDiferencia_expr(LogotecGramarParser::Diferencia_exprContext * /*ctx*/) override { }
+  virtual void exitDiferencia_expr(LogotecGramarParser::Diferencia_exprContext * /*ctx*/) override { }
+
+  virtual void enterAzar_expr(LogotecGramarParser::Azar_exprContext * /*ctx*/) override { }
+  virtual void exitAzar_expr(LogotecGramarParser::Azar_exprContext * /*ctx*/) override { }
+
+  virtual void enterProducto_expr(LogotecGramarParser::Producto_exprContext * /*ctx*/) override { }
+  virtual void exitProducto_expr(LogotecGramarParser::Producto_exprContext * /*ctx*/) override { }
+
+  virtual void enterPotencia_expr(LogotecGramarParser::Potencia_exprContext * /*ctx*/) override { }
+  virtual void exitPotencia_expr(LogotecGramarParser::Potencia_exprContext * /*ctx*/) override { }
+
+  virtual void enterDivision_expr(LogotecGramarParser::Division_exprContext * /*ctx*/) override { }
+  virtual void exitDivision_expr(LogotecGramarParser::Division_exprContext * /*ctx*/) override { }
+
+  virtual void enterSuma_expr(LogotecGramarParser::Suma_exprContext * /*ctx*/) override { }
+  virtual void exitSuma_expr(LogotecGramarParser::Suma_exprContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
