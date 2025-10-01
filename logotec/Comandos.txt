@@ -1,0 +1,3 @@
+antlr4 -Dlanguage=Cpp Logotecgramar.g4
+
+
