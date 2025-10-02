@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QTreeWidgetItem>
-
+#include <QGraphicsScene>
 
 namespace Ui {
 class parsetreewindow;
@@ -18,9 +18,12 @@ public:
     explicit parsetreewindow(QWidget *parent = nullptr);
     ~parsetreewindow();
 
+    void drawTestTree();
+
+
 private:
     Ui::parsetreewindow *ui;
-
+    QGraphicsScene* scene;
 };
 
 #endif // PARSETREEWINDOW_H

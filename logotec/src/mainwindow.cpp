@@ -105,11 +105,12 @@ void MainWindow::compileProgram() {
 }
 
 void MainWindow::parseTree() {
-
-    parsetreewindow* treeWindow = new parsetreewindow();
+    auto treeWindow = new parsetreewindow();
+    treeWindow->drawTestTree(); // mostrar árbol de prueba
     treeWindow->show();
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
+
 
 
 
