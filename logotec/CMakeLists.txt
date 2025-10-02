@@ -36,6 +36,16 @@ set(GRAMMAR_NAME "LogotecGramar")
 # Buscar todos los archivos .cpp que empiecen con MiniLang
 file(GLOB GRAMMAR_CPP "${ANTLR4_OUTPUT_DIR}/${GRAMMAR_NAME}*.*")
 
+# ------------------------
+# Qt5
+# ------------------------
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+
 add_executable(logotec
         src/main.cpp
         ${GRAMMAR_CPP}
@@ -43,6 +53,12 @@ add_executable(logotec
         src/SemanticVisitor.h
         src/CodeGen.cpp
         src/CodeGen.h
+        src/compile.cpp
+        src/compile.h
+        src/compile.cpp
+        src/compile.h
+        src/mainwindow.cpp
+        src/mainwindow.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)
@@ -51,4 +67,5 @@ target_link_libraries(logotec
         PRIVATE
         antlr4_static   # o antlr4_shared si prefieres dinámico
         nlohmann_json::nlohmann_json
+        Qt5::Widgets
 )

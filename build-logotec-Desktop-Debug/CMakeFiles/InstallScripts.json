@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/cmake_install.cmake",
+		"/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/json-build/cmake_install.cmake",
+		"/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-build/cmake_install.cmake",
+		"/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-build/runtime/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

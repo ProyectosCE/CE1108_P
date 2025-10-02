@@ -1,0 +1,169 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				},
+				{
+					"build" : "_deps/json-build",
+					"jsonFile" : "directory-_deps.json-build-Debug-86ddc6ee31677510b2de.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/json-src"
+				},
+				{
+					"build" : "_deps/antlr4-build",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.antlr4-build-Debug-e538732c5e8a0aa0cde4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-src"
+				},
+				{
+					"build" : "_deps/antlr4-build/runtime",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.antlr4-build.runtime-Debug-da1b8a69ed1faa43b7a0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-src/runtime",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "logotec",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "nlohmann_json",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2,
+						3
+					],
+					"name" : "LIBANTLR4",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "antlr4_shared::@f1f2e913eab88f3c4f52",
+					"jsonFile" : "target-antlr4_shared-Debug-29d45ba956cfde594b11.json",
+					"name" : "antlr4_shared",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "antlr4_static::@f1f2e913eab88f3c4f52",
+					"jsonFile" : "target-antlr4_static-Debug-889764037e07299f40a3.json",
+					"name" : "antlr4_static",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "logotec::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-logotec-Debug-dda788b5fb37e6560274.json",
+					"name" : "logotec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "logotec_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-logotec_autogen-Debug-13ff23e0c1615d28d705.json",
+					"name" : "logotec_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "logotec_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-logotec_autogen_timestamp_deps-Debug-cfc1562a770cc74b4c03.json",
+					"name" : "logotec_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug",
+		"source" : "/home/jimmy/Documents/GitHub/CE1108_P/logotec"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}
