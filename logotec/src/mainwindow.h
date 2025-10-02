@@ -23,6 +23,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QString currentFilePath; // Ruta del archivo abierto
 };
 
 #endif // MAINWINDOW_H

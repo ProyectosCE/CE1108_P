@@ -20,48 +20,88 @@ MainWindow::MainWindow(QWidget *parent)
 
 // Slots
 void MainWindow::newFile() {
+    // Abrir diálogo para seleccionar nombre y ubicación del nuevo archivo
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        tr("Create New File"),
+        "",
+        tr("Logotec Files (*.lt);;All Files (*)")
+    );
+
+    if (fileName.isEmpty())
+        return; // Usuario canceló
+
+    // Agregar .lt automáticamente
+    if (!fileName.endsWith(".lt"))
+        fileName += ".lt";
+
+    // Limpiar el textEdit para empezar con un archivo vacío
     ui->textEdit->clear();
-    QMessageBox::information(this, "New File", "Nuevo archivo creado.");
+
+    // Guardar la ruta del archivo
+    currentFilePath = fileName;
+
+    QMessageBox::information(this, "New File", "New file created:\n" + fileName);
 }
 
+
 void MainWindow::openFile() {
-    // Abrir un diálogo para seleccionar archivo
     QString fileName = QFileDialog::getOpenFileName(this,
                         tr("Open File"), "",
                         tr("Text Files (*.txt *.lt);;All Files (*)"));
 
     if (fileName.isEmpty())
-        return; // el usuario canceló
+        return;
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(this, tr("Error"),
-                             tr("No se pudo abrir el archivo:\n%1").arg(fileName));
+                             tr("Could not open the file:\n%1").arg(fileName));
         return;
     }
 
     QTextStream in(&file);
-    QString content = in.readAll();   // leer todo el contenido
+    QString content = in.readAll();
     file.close();
 
-    ui->textEdit->setPlainText(content); // mostrar en QTextEdit
+    ui->textEdit->setPlainText(content);
+    currentFilePath = fileName; // Guardar la ruta
 }
+
 
 void MainWindow::saveFile() {
-    QMessageBox::information(this, "Save", "Guardar archivo...");
+    if (currentFilePath.isEmpty()) {
+        QMessageBox::warning(this, "Save", "Please open a file first.");
+        return;
+    }
+
+    QFile file(currentFilePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Save", "Could not save the file:\n" + currentFilePath);
+        return;
+    }
+
+    QTextStream out(&file);
+    out << ui->textEdit->toPlainText();
+    file.close();
+
+    QMessageBox::information(this, "Save", "File saved successfully.");
 }
 
+
 void MainWindow::compileProgram() {
-    QMessageBox::information(this, "Compile", "Compilando...");
-    QString fileName = QFileDialog::getOpenFileName(this, "Selecciona archivo", ".", "*.lt");
-    if (!fileName.isEmpty()) {
-        int result = compileFile(fileName.toStdString());
-        if (result == 0)
-            QMessageBox::information(this, "Éxito", "Compilación terminada correctamente.");
-        else
-            QMessageBox::critical(this, "Error", "Hubo errores en la compilación.");
+    if (currentFilePath.isEmpty()) {
+        QMessageBox::warning(this, "Compile", "Please open a file first.");
+        return;
     }
+
+    int result = compileFile(currentFilePath.toStdString());
+    if (result == 0)
+        QMessageBox::information(this, "Success", "Compilation finished successfully.");
+    else
+        QMessageBox::critical(this, "Error", "There were errors during compilation.");
 }
+
 
 MainWindow::~MainWindow()
 {
