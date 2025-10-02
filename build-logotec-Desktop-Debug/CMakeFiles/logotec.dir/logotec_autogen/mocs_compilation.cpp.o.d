@@ -311,4 +311,8 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/moc_parsetreewindow.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/../../../logotec/src/parsetreewindow.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h

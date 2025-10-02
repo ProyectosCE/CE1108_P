@@ -157,6 +157,12 @@
 			"MU",
 			"UVLADIE3JM/moc_mainwindow.cpp",
 			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.h",
+			"MU",
+			"UVLADIE3JM/moc_parsetreewindow.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -272,6 +278,11 @@
 		],
 		[
 			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp",
 			"MU",
 			null
 		]

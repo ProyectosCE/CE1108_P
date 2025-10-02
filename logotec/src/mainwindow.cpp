@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
+#include "parsetreewindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->action_Open, &QAction::triggered, this, &MainWindow::openFile);
     connect(ui->action_Save, &QAction::triggered, this, &MainWindow::saveFile);
 
+    connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
 }
 
@@ -36,7 +38,7 @@ void MainWindow::newFile() {
         fileName += ".lt";
 
     // Limpiar el textEdit para empezar con un archivo vacío
-    ui->textEdit->clear();
+    ui->plainTextEdit->clear();
 
     // Guardar la ruta del archivo
     currentFilePath = fileName;
@@ -64,7 +66,7 @@ void MainWindow::openFile() {
     QString content = in.readAll();
     file.close();
 
-    ui->textEdit->setPlainText(content);
+    ui->plainTextEdit->setPlainText(content);
     currentFilePath = fileName; // Guardar la ruta
 }
 
@@ -82,7 +84,7 @@ void MainWindow::saveFile() {
     }
 
     QTextStream out(&file);
-    out << ui->textEdit->toPlainText();
+    out << ui->plainTextEdit->toPlainText();
     file.close();
 
     QMessageBox::information(this, "Save", "File saved successfully.");
@@ -101,6 +103,15 @@ void MainWindow::compileProgram() {
     else
         QMessageBox::critical(this, "Error", "There were errors during compilation.");
 }
+
+void MainWindow::parseTree() {
+
+    parsetreewindow* treeWindow = new parsetreewindow();
+    treeWindow->show();
+    treeWindow->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+
 
 
 MainWindow::~MainWindow()

@@ -25,6 +25,8 @@ logotec_autogen/timestamp: \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/main.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.h \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.h \
 	/snap/cmake/1487/share/cmake-4.1/Modules/CMakeCInformation.cmake \
 	/snap/cmake/1487/share/cmake-4.1/Modules/CMakeCXXInformation.cmake \
 	/snap/cmake/1487/share/cmake-4.1/Modules/CMakeCommonLanguageInclude.cmake \
@@ -368,6 +370,7 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
@@ -422,4 +425,5 @@ logotec_autogen/timestamp: \
 	/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake \
 	/usr/share/qtcreator/package-manager/auto-setup.cmake \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.ui \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.ui \
 	/snap/cmake/1487/bin/cmake

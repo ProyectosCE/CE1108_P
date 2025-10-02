@@ -20,6 +20,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.cpp" "CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.o" "gcc" "CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.o.d"
   "/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/main.cpp" "CMakeFiles/logotec.dir/src/main.cpp.o" "gcc" "CMakeFiles/logotec.dir/src/main.cpp.o.d"
   "/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.cpp" "CMakeFiles/logotec.dir/src/mainwindow.cpp.o" "gcc" "CMakeFiles/logotec.dir/src/mainwindow.cpp.o.d"
+  "/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp" "CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o" "gcc" "CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

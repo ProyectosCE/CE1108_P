@@ -156,7 +156,7 @@ CMakeFiles/logotec.dir/all: CMakeFiles/logotec_autogen_timestamp_deps.dir/all
 CMakeFiles/logotec.dir/all: CMakeFiles/logotec_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=96,97,98,99 "Built target logotec"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=95,96,97,98,99 "Built target logotec"
 .PHONY : CMakeFiles/logotec.dir/all
 
 # Build rule for subdir invocation for target.
@@ -172,8 +172,9 @@ logotec: CMakeFiles/logotec.dir/rule
 
 # codegen rule for target.
 CMakeFiles/logotec.dir/codegen: CMakeFiles/logotec_autogen_timestamp_deps.dir/all
+CMakeFiles/logotec.dir/codegen: CMakeFiles/logotec_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=96,97,98,99 "Finished codegen for target logotec"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=95,96,97,98,99 "Finished codegen for target logotec"
 .PHONY : CMakeFiles/logotec.dir/codegen
 
 # clean rule for target.
@@ -193,7 +194,7 @@ CMakeFiles/logotec_autogen_timestamp_deps.dir/all: _deps/antlr4-build/runtime/CM
 
 # Build rule for subdir invocation for target.
 CMakeFiles/logotec_autogen_timestamp_deps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 48
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 47
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/logotec_autogen_timestamp_deps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 0
 .PHONY : CMakeFiles/logotec_autogen_timestamp_deps.dir/rule
@@ -225,7 +226,7 @@ CMakeFiles/logotec_autogen.dir/all: CMakeFiles/logotec_autogen_timestamp_deps.di
 
 # Build rule for subdir invocation for target.
 CMakeFiles/logotec_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 49
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 48
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/logotec_autogen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 0
 .PHONY : CMakeFiles/logotec_autogen.dir/rule
@@ -284,12 +285,12 @@ _deps/antlr4-build/runtime/CMakeFiles/antlr4_shared.dir/clean:
 _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/build.make _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/build.make _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95 "Built target antlr4_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94 "Built target antlr4_static"
 .PHONY : _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 48
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 47
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles 0
 .PHONY : _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/rule
@@ -301,7 +302,7 @@ antlr4_static: _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/rule
 # codegen rule for target.
 _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/build.make _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95 "Finished codegen for target antlr4_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94 "Finished codegen for target antlr4_static"
 .PHONY : _deps/antlr4-build/runtime/CMakeFiles/antlr4_static.dir/codegen
 
 # clean rule for target.

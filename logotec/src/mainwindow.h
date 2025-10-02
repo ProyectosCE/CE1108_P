@@ -20,6 +20,7 @@ private slots:
     void openFile();
     void saveFile();
     void compileProgram();
+    void parseTree();
 
 private:
     Ui::MainWindow *ui;

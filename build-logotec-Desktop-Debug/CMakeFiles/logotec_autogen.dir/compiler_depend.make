@@ -28,6 +28,9 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
   /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.cpp \
   /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.h \
   /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.ui \
+  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp \
+  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.h \
+  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.ui \
   /snap/cmake/1487/bin/cmake \
   /snap/cmake/1487/share/cmake-4.1/Modules/CMakeCInformation.cmake \
   /snap/cmake/1487/share/cmake-4.1/Modules/CMakeCXXInformation.cmake \
@@ -372,6 +375,7 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
@@ -503,6 +507,8 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h:
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget:
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow:
 
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h:
@@ -537,9 +543,9 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h:
 
-/usr/include/c++/11/cstdint:
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h:
 
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h:
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h:
 
 /usr/include/c++/11/cctype:
 
@@ -577,8 +583,6 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/c++/11/bits/ostream.tcc:
 
-/usr/include/c++/11/bits/node_handle.h:
-
 /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake:
 
 /usr/include/c++/11/bits/uses_allocator_args.h:
@@ -605,11 +609,11 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/c++/11/bits/invoke.h:
 
-/usr/include/c++/11/cstddef:
-
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h:
 
 /usr/include/c++/11/bits/std_abs.h:
+
+/usr/include/c++/11/cstddef:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -645,12 +649,6 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
-/usr/include/c++/11/bits/concept_check.h:
-
-/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.h:
-
-/usr/include/c++/11/vector:
-
 /usr/include/c++/11/bits/basic_string.h:
 
 /usr/include/c++/11/bits/c++0x_warning.h:
@@ -658,6 +656,22 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 /usr/include/c++/11/bits/basic_ios.tcc:
 
 /usr/include/c++/11/numbers:
+
+/usr/include/c++/11/bits/basic_ios.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/c++/11/bits/atomic_wait.h:
+
+/usr/include/c++/11/initializer_list:
+
+/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake:
+
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h:
+
+/usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
 /usr/include/c++/11/bits/vector.tcc:
 
@@ -679,6 +693,38 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/usr/include/c++/11/bits/concept_check.h:
+
+/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.h:
+
+/usr/include/c++/11/vector:
+
+/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.h:
+
+/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.ui:
+
+/usr/include/c++/11/bits/ranges_cmp.h:
+
+/usr/include/c++/11/backward/binders.h:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp:
+
+/snap/cmake/1487/share/cmake-4.1/Modules/Platform/Linux-GNU-CXX.cmake:
+
+/usr/include/c++/11/cerrno:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/c++/11/ext/atomicity.h:
+
+/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarBaseVisitor.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h:
+
 /usr/include/c++/11/bits/exception.h:
 
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.h:
@@ -689,6 +735,10 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 
 /usr/include/c++/11/bits/ranges_base.h:
 
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h:
+
+/snap/cmake/1487/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake:
+
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.ui:
 
 /snap/cmake/1487/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake:
@@ -698,8 +748,6 @@ logotec_autogen/timestamp: CMakeFiles/4.1.2/CMakeCCompiler.cmake \
 /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h:
-
-/snap/cmake/1487/share/cmake-4.1/Modules/CMakeParseArguments.cmake:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
@@ -720,8 +768,6 @@ CMakeFiles/4.1.2/CMakeCXXCompiler.cmake:
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarBaseListener.h:
 
 /usr/include/c++/11/bits/ios_base.h:
-
-/snap/cmake/1487/share/cmake-4.1/Modules/Platform/Linux-Initialize.cmake:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
@@ -779,26 +825,6 @@ logotec_autogen/moc_predefs.h:
 
 /usr/include/c++/11/bits/move.h:
 
-/snap/cmake/1487/share/cmake-4.1/Modules/Platform/Linux-GNU-CXX.cmake:
-
-/usr/include/c++/11/cerrno:
-
-/usr/include/c++/11/bits/stl_algo.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/c++/11/ext/atomicity.h:
-
-/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake:
-
-/usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h:
-
-/usr/include/c++/11/bits/atomic_lockfree_defines.h:
-
-/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarBaseVisitor.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h:
-
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.cpp:
 
 /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake:
@@ -830,6 +856,14 @@ logotec_autogen/moc_predefs.h:
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarLexer.cpp:
 
 /usr/include/assert.h:
+
+/snap/cmake/1487/share/cmake-4.1/Modules/CMakeParseArguments.cmake:
+
+/usr/include/c++/11/compare:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+/snap/cmake/1487/share/cmake-4.1/Modules/Platform/Linux-Initialize.cmake:
 
 /usr/include/c++/11/bits/locale_classes.h:
 
@@ -921,12 +955,6 @@ logotec_autogen/moc_predefs.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
-/usr/include/c++/11/bits/stl_relops.h:
-
-/usr/include/c++/11/compare:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
 /usr/include/c++/11/ext/alloc_traits.h:
 
 /usr/include/c++/11/algorithm:
@@ -949,10 +977,6 @@ logotec_autogen/moc_predefs.h:
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
-/usr/include/c++/11/bits/ranges_cmp.h:
-
-/usr/include/c++/11/backward/binders.h:
-
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h:
 
 /usr/include/c++/11/bits/algorithmfwd.h:
@@ -960,10 +984,6 @@ logotec_autogen/moc_predefs.h:
 CMakeFiles/4.1.2/CMakeCCompiler.cmake:
 
 /usr/include/c++/11/bits/allocator.h:
-
-/usr/include/c++/11/bits/basic_ios.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.cpp:
 
@@ -973,9 +993,9 @@ CMakeFiles/4.1.2/CMakeCCompiler.cmake:
 
 /usr/include/c++/11/exception:
 
-/usr/include/c++/11/bits/atomic_wait.h:
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h:
 
-/usr/include/c++/11/initializer_list:
+/usr/include/c++/11/cstdint:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
@@ -1008,6 +1028,12 @@ CMakeFiles/4.1.2/CMakeCCompiler.cmake:
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h:
 
 /usr/include/c++/11/iosfwd:
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h:
+
+/snap/cmake/1487/share/cmake-4.1/Modules/Internal/CMakeCLinkerInformation.cmake:
+
+/usr/include/c++/11/limits:
 
 /usr/include/c++/11/map:
 
@@ -1193,6 +1219,10 @@ CMakeFiles/4.1.2/CMakeCCompiler.cmake:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
@@ -1255,22 +1285,4 @@ CMakeFiles/4.1.2/CMakeCCompiler.cmake:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qlogging.h:
 
-/snap/cmake/1487/share/cmake-4.1/Modules/Internal/CMakeCLinkerInformation.cmake:
-
-/usr/include/c++/11/limits:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h:
-
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h:
-
-/snap/cmake/1487/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake:
-
-/usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h:

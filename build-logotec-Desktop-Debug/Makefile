@@ -534,6 +534,30 @@ src/mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/mainwindow.cpp.s
 .PHONY : src/mainwindow.cpp.s
 
+src/parsetreewindow.o: src/parsetreewindow.cpp.o
+.PHONY : src/parsetreewindow.o
+
+# target to build an object file
+src/parsetreewindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o
+.PHONY : src/parsetreewindow.cpp.o
+
+src/parsetreewindow.i: src/parsetreewindow.cpp.i
+.PHONY : src/parsetreewindow.i
+
+# target to preprocess a source file
+src/parsetreewindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.i
+.PHONY : src/parsetreewindow.cpp.i
+
+src/parsetreewindow.s: src/parsetreewindow.cpp.s
+.PHONY : src/parsetreewindow.s
+
+# target to generate assembly for a file
+src/parsetreewindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.s
+.PHONY : src/parsetreewindow.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -589,6 +613,9 @@ help:
 	@echo "... src/mainwindow.o"
 	@echo "... src/mainwindow.i"
 	@echo "... src/mainwindow.s"
+	@echo "... src/parsetreewindow.o"
+	@echo "... src/parsetreewindow.i"
+	@echo "... src/parsetreewindow.s"
 .PHONY : help
 
 

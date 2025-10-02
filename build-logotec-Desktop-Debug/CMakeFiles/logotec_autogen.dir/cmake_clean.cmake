@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/logotec_autogen"
+  "logotec_autogen/include/src/ui_parsetreewindow.h"
   "logotec_autogen/mocs_compilation.cpp"
   "logotec_autogen/timestamp"
 )

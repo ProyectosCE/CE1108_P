@@ -59,6 +59,9 @@ add_executable(logotec
         src/compile.h
         src/mainwindow.cpp
         src/mainwindow.h
+        src/parsetreewindow.h
+        src/parsetreewindow.cpp
+        src/parsetreewindow.ui
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)

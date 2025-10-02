@@ -26,6 +26,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/logotec.dir/src/main.cpp.o.d"
   "CMakeFiles/logotec.dir/src/mainwindow.cpp.o"
   "CMakeFiles/logotec.dir/src/mainwindow.cpp.o.d"
+  "CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o"
+  "CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o.d"
   "logotec"
   "logotec.pdb"
 )
