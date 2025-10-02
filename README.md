@@ -31,3 +31,9 @@
 las herramientas de validación necesarias.
 - Creación del FrontEnd y el BackEnd de un compilador totalmente funcional.
 - Coordinación entre el objeto generado del compilador con un dispositivo de hardware.
+
+
+### Dependencias
+
+sudo apt update
+sudo apt install qt5-qmake qtbase5-dev qttools5-dev-tools qtcreator
