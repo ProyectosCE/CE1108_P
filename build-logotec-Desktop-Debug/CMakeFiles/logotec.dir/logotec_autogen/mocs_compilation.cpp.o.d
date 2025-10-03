@@ -1,7 +1,7 @@
 CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/moc_mainwindow.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/moc_mainwindow.cpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -200,7 +200,7 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/../../../logotec/src/mainwindow.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/../../../logotec/src/ui/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -312,7 +312,34 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/moc_parsetreewindow.cpp \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/UVLADIE3JM/../../../logotec/src/parsetreewindow.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/moc_parsetreewindow.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/../../../logotec/src/ui/parsetreewindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTreeWidgetItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtreewidget.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtreeview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+ /usr/include/c++/11/variant \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qitemselectionmodel.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemdelegate.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyleoption.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractspinbox.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvalidator.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qregularexpression.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractslider.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyle.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabbar.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtreewidgetitemiterator.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h

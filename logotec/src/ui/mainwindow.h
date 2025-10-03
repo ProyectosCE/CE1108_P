@@ -15,6 +15,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void printTerminal(const QString &message);
+
 private slots:
     void newFile();
     void openFile();

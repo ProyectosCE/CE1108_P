@@ -510,53 +510,53 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/mainwindow.o: src/mainwindow.cpp.o
-.PHONY : src/mainwindow.o
+src/ui/mainwindow.o: src/ui/mainwindow.cpp.o
+.PHONY : src/ui/mainwindow.o
 
 # target to build an object file
-src/mainwindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/mainwindow.cpp.o
-.PHONY : src/mainwindow.cpp.o
+src/ui/mainwindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/mainwindow.cpp.o
+.PHONY : src/ui/mainwindow.cpp.o
 
-src/mainwindow.i: src/mainwindow.cpp.i
-.PHONY : src/mainwindow.i
+src/ui/mainwindow.i: src/ui/mainwindow.cpp.i
+.PHONY : src/ui/mainwindow.i
 
 # target to preprocess a source file
-src/mainwindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/mainwindow.cpp.i
-.PHONY : src/mainwindow.cpp.i
+src/ui/mainwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/mainwindow.cpp.i
+.PHONY : src/ui/mainwindow.cpp.i
 
-src/mainwindow.s: src/mainwindow.cpp.s
-.PHONY : src/mainwindow.s
+src/ui/mainwindow.s: src/ui/mainwindow.cpp.s
+.PHONY : src/ui/mainwindow.s
 
 # target to generate assembly for a file
-src/mainwindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/mainwindow.cpp.s
-.PHONY : src/mainwindow.cpp.s
+src/ui/mainwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/mainwindow.cpp.s
+.PHONY : src/ui/mainwindow.cpp.s
 
-src/parsetreewindow.o: src/parsetreewindow.cpp.o
-.PHONY : src/parsetreewindow.o
+src/ui/parsetreewindow.o: src/ui/parsetreewindow.cpp.o
+.PHONY : src/ui/parsetreewindow.o
 
 # target to build an object file
-src/parsetreewindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.o
-.PHONY : src/parsetreewindow.cpp.o
+src/ui/parsetreewindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.o
+.PHONY : src/ui/parsetreewindow.cpp.o
 
-src/parsetreewindow.i: src/parsetreewindow.cpp.i
-.PHONY : src/parsetreewindow.i
+src/ui/parsetreewindow.i: src/ui/parsetreewindow.cpp.i
+.PHONY : src/ui/parsetreewindow.i
 
 # target to preprocess a source file
-src/parsetreewindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.i
-.PHONY : src/parsetreewindow.cpp.i
+src/ui/parsetreewindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.i
+.PHONY : src/ui/parsetreewindow.cpp.i
 
-src/parsetreewindow.s: src/parsetreewindow.cpp.s
-.PHONY : src/parsetreewindow.s
+src/ui/parsetreewindow.s: src/ui/parsetreewindow.cpp.s
+.PHONY : src/ui/parsetreewindow.s
 
 # target to generate assembly for a file
-src/parsetreewindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/parsetreewindow.cpp.s
-.PHONY : src/parsetreewindow.cpp.s
+src/ui/parsetreewindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.s
+.PHONY : src/ui/parsetreewindow.cpp.s
 
 # Help Target
 help:
@@ -610,12 +610,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/mainwindow.o"
-	@echo "... src/mainwindow.i"
-	@echo "... src/mainwindow.s"
-	@echo "... src/parsetreewindow.o"
-	@echo "... src/parsetreewindow.i"
-	@echo "... src/parsetreewindow.s"
+	@echo "... src/ui/mainwindow.o"
+	@echo "... src/ui/mainwindow.i"
+	@echo "... src/ui/mainwindow.s"
+	@echo "... src/ui/parsetreewindow.o"
+	@echo "... src/ui/parsetreewindow.i"
+	@echo "... src/ui/parsetreewindow.s"
 .PHONY : help
 
 

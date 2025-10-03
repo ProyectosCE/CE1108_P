@@ -1,10 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "compile.h"
+#include "../compile.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
 #include "parsetreewindow.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,7 +44,9 @@ void MainWindow::newFile() {
     // Guardar la ruta del archivo
     currentFilePath = fileName;
 
-    QMessageBox::information(this, "New File", "New file created:\n" + fileName);
+    printTerminal(QString("File %1 opened in %2")
+                .arg(QFileInfo(fileName).fileName())
+                .arg(QFileInfo(fileName).absolutePath()));
 }
 
 
@@ -68,6 +71,10 @@ void MainWindow::openFile() {
 
     ui->plainTextEdit->setPlainText(content);
     currentFilePath = fileName; // Guardar la ruta
+
+    printTerminal(QString("File %1 opened in %2")
+                .arg(QFileInfo(fileName).fileName())
+                .arg(QFileInfo(fileName).absolutePath()));
 }
 
 
@@ -86,8 +93,6 @@ void MainWindow::saveFile() {
     QTextStream out(&file);
     out << ui->plainTextEdit->toPlainText();
     file.close();
-
-    QMessageBox::information(this, "Save", "File saved successfully.");
 }
 
 
@@ -112,7 +117,9 @@ void MainWindow::parseTree() {
 }
 
 
-
+void MainWindow::printTerminal(const QString &message) {
+    ui->terminal->appendPlainText(message);
+}
 
 
 MainWindow::~MainWindow()

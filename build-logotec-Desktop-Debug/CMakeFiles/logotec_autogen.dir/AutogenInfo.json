@@ -153,15 +153,15 @@
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.h",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/mainwindow.h",
 			"MU",
-			"UVLADIE3JM/moc_mainwindow.cpp",
+			"YPKJ5OE7LN/moc_mainwindow.cpp",
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.h",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/parsetreewindow.h",
 			"MU",
-			"UVLADIE3JM/moc_parsetreewindow.cpp",
+			"YPKJ5OE7LN/moc_parsetreewindow.cpp",
 			null
 		]
 	],
@@ -277,12 +277,12 @@
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.cpp",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/mainwindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/parsetreewindow.cpp",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/parsetreewindow.cpp",
 			"MU",
 			null
 		]

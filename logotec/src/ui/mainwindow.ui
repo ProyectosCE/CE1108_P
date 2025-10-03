@@ -2,18 +2,30 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -26,13 +38,19 @@
    </size>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>800</width>
+     <height>578</height>
+    </size>
+   </property>
    <property name="maximumSize">
     <size>
      <width>100000</width>
      <height>100000</height>
     </size>
    </property>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="codigo" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -67,61 +85,10 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="widget_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>70</y>
-      <width>400</width>
-      <height>491</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>400</width>
-      <height>491</height>
-     </size>
-    </property>
-    <widget class="QGraphicsView" name="graphicsView">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>0</y>
-       <width>411</width>
-       <height>491</height>
-      </rect>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="backgroundBrush">
-      <brush brushstyle="Dense2Pattern">
-       <color alpha="255">
-        <red>237</red>
-        <green>51</green>
-        <blue>59</blue>
-       </color>
-      </brush>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>210</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Comming soon....</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QCommandLinkButton" name="CompileButton">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>880</x>
       <y>10</y>
       <width>81</width>
       <height>41</height>
@@ -131,13 +98,50 @@
      <string>Compile</string>
     </property>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>399</x>
+      <y>69</y>
+      <width>561</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGraphicsView" name="graphicsView"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>29</x>
+      <y>579</y>
+      <width>931</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPlainTextEdit" name="terminal">
+       <property name="lineWrapMode">
+        <enum>QPlainTextEdit::NoWrap</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1000</width>
      <height>22</height>
     </rect>
    </property>

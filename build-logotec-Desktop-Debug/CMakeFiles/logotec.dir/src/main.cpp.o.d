@@ -283,7 +283,7 @@ CMakeFiles/logotec.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
  /usr/include/c++/11/variant \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
- /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/mainwindow.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
