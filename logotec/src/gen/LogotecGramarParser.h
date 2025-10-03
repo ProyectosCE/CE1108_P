@@ -18,33 +18,34 @@ public:
     PONX = 20, PONY = 21, BAJALAPIZ = 22, BL = 23, SUBELAPIZ = 24, SL = 25, 
     AZUL = 26, NEGRO = 27, ROJO = 28, PONCOLORLAPIZ = 29, PCL = 30, CENTRO = 31, 
     ESPERAR = 32, TRUE = 33, FALSE = 34, NUMBER = 35, CADENA_TEXTO = 36, 
-    ID = 37, NEWLINE = 38, WS = 39, LINE_COMMENT = 40, PROGRAM = 41, VAR = 42, 
-    PRINTLN = 43, PLUS = 44, MINUS = 45, MULT = 46, DIV = 47, IF = 48, ELSE = 49, 
-    WHILE = 50, FOR = 51, AND = 52, OR = 53, NOT = 54, GT = 55, LT = 56, 
-    GEQ = 57, LEQ = 58, EQ = 59, NEQ = 60, ASSIGN = 61, BRACKET_OPEN = 62, 
-    BRACKET_CLOSE = 63, PAR_OPEN = 64, PAR_CLOSE = 65, SEMICOLON = 66, REPITE = 67, 
-    SI = 68, HAZ_HASTA = 69, HASTA = 70, HAZ_MIENTRAS = 71, MIENTRAS = 72, 
-    IGUALESQ = 73, Y = 74, O = 75, MAYORQUEQ = 76, MENORQUEQ = 77, DIFERENCIA = 78, 
-    AZAR = 79, PRODUCTO = 80, POTENCIA = 81, DIVISION = 82, SUMA = 83, RESTA = 84, 
-    PARA = 85, FIN = 86, EJECUTA = 87
+    PROGRAM = 37, VAR = 38, PRINTLN = 39, PLUS = 40, MINUS = 41, MULT = 42, 
+    DIV = 43, IF = 44, ELSE = 45, WHILE = 46, FOR = 47, AND = 48, OR = 49, 
+    NOT = 50, GT = 51, LT = 52, GEQ = 53, LEQ = 54, EQ = 55, NEQ = 56, ASSIGN = 57, 
+    BRACKET_OPEN = 58, BRACKET_CLOSE = 59, PAR_OPEN = 60, PAR_CLOSE = 61, 
+    SEMICOLON = 62, REPITE = 63, SI = 64, HAZ_HASTA = 65, HASTA = 66, HAZ_MIENTRAS = 67, 
+    MIENTRAS = 68, IGUALESQ = 69, Y = 70, O = 71, MAYORQUEQ = 72, MENORQUEQ = 73, 
+    DIFERENCIA = 74, AZAR = 75, PRODUCTO = 76, POTENCIA = 77, DIVISION = 78, 
+    SUMA = 79, RESTA = 80, PARA = 81, FIN = 82, EJECUTA = 83, ID = 84, NEWLINE = 85, 
+    WS = 86, LINE_COMMENT = 87
   };
 
   enum {
-    RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLista_parametros = 3, 
-    RuleInstruccion = 4, RuleComentario_linea = 5, RuleComentario = 6, RuleHaz_variable = 7, 
-    RuleInic_variable = 8, RuleInc_variable = 9, RuleAvanza_variable = 10, 
-    RuleRetrocede_variable = 11, RuleGira_derecha_variable = 12, RuleGira_izquierda_variable = 13, 
-    RuleOcultar_tortuga_variable = 14, RulePonpos_variable = 15, RulePonxy_variable = 16, 
-    RulePonrumbo_variable = 17, RulePonx_variable = 18, RulePony_variable = 19, 
-    RuleBajalapiz_variable = 20, RuleSubelapiz_variable = 21, RulePoncolorlapiz_variable = 22, 
-    RuleCentro_variable = 23, RuleEsperar_variable = 24, RuleEjecuta_variable = 25, 
-    RuleRepite_variable = 26, RuleSi_variable = 27, RuleSi_sino_variable = 28, 
-    RuleHaz_hasta_variable = 29, RuleHasta_variable = 30, RuleHaz_mientras_variable = 31, 
-    RuleMientras_variable = 32, RuleIguales_variable = 33, RuleY_variable = 34, 
-    RuleO_variable = 35, RuleMayorque_variable = 36, RuleMenorque_variable = 37, 
-    RuleColores = 38, RuleExpr = 39, RuleLogico = 40, RuleValor = 41, RuleOperador = 42, 
-    RuleDiferencia_expr = 43, RuleAzar_expr = 44, RuleProducto_expr = 45, 
-    RulePotencia_expr = 46, RuleDivision_expr = 47, RuleSuma_expr = 48
+    RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLinea_instrucciones = 3, 
+    RuleLista_parametros = 4, RuleInstruccion = 5, RuleComentario_linea = 6, 
+    RuleComentario = 7, RuleHaz_variable = 8, RuleInic_variable = 9, RuleInc_variable = 10, 
+    RuleAvanza_variable = 11, RuleRetrocede_variable = 12, RuleGira_derecha_variable = 13, 
+    RuleGira_izquierda_variable = 14, RuleOcultar_tortuga_variable = 15, 
+    RulePonpos_variable = 16, RulePonxy_variable = 17, RulePonrumbo_variable = 18, 
+    RulePonx_variable = 19, RulePony_variable = 20, RuleBajalapiz_variable = 21, 
+    RuleSubelapiz_variable = 22, RulePoncolorlapiz_variable = 23, RuleCentro_variable = 24, 
+    RuleEsperar_variable = 25, RuleEjecuta_variable = 26, RuleRepite_variable = 27, 
+    RuleSi_variable = 28, RuleSi_sino_variable = 29, RuleHaz_hasta_variable = 30, 
+    RuleHasta_variable = 31, RuleHaz_mientras_variable = 32, RuleMientras_variable = 33, 
+    RuleIguales_variable = 34, RuleY_variable = 35, RuleO_variable = 36, 
+    RuleMayorque_variable = 37, RuleMenorque_variable = 38, RuleColores = 39, 
+    RuleExpr = 40, RuleLogico = 41, RuleValor = 42, RuleOperador = 43, RuleDiferencia_expr = 44, 
+    RuleAzar_expr = 45, RuleProducto_expr = 46, RulePotencia_expr = 47, 
+    RuleDivision_expr = 48, RuleSuma_expr = 49
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -67,6 +68,7 @@ public:
   class ProgramaContext;
   class ProcedimientoContext;
   class ParametrosContext;
+  class Linea_instruccionesContext;
   class Lista_parametrosContext;
   class InstruccionContext;
   class Comentario_lineaContext;
@@ -121,10 +123,10 @@ public:
     antlr4::tree::TerminalNode *EOF();
     std::vector<antlr4::tree::TerminalNode *> NEWLINE();
     antlr4::tree::TerminalNode* NEWLINE(size_t i);
+    std::vector<Linea_instruccionesContext *> linea_instrucciones();
+    Linea_instruccionesContext* linea_instrucciones(size_t i);
     std::vector<ProcedimientoContext *> procedimiento();
     ProcedimientoContext* procedimiento(size_t i);
-    std::vector<InstruccionContext *> instruccion();
-    InstruccionContext* instruccion(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -145,8 +147,8 @@ public:
     std::vector<antlr4::tree::TerminalNode *> NEWLINE();
     antlr4::tree::TerminalNode* NEWLINE(size_t i);
     antlr4::tree::TerminalNode *FIN();
-    std::vector<InstruccionContext *> instruccion();
-    InstruccionContext* instruccion(size_t i);
+    std::vector<Linea_instruccionesContext *> linea_instrucciones();
+    Linea_instruccionesContext* linea_instrucciones(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -171,6 +173,22 @@ public:
   };
 
   ParametrosContext* parametros();
+
+  class  Linea_instruccionesContext : public antlr4::ParserRuleContext {
+  public:
+    Linea_instruccionesContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<InstruccionContext *> instruccion();
+    InstruccionContext* instruccion(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Linea_instruccionesContext* linea_instrucciones();
 
   class  Lista_parametrosContext : public antlr4::ParserRuleContext {
   public:

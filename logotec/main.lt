@@ -69,3 +69,9 @@ poncolorlapiz azul poncl negro
 //TODO
 centro espera 20
 //TODO
+
+Para MIFUN [x,y]
+    INC [x 1]
+    INC [y 1]
+    avanza 101
+Fin

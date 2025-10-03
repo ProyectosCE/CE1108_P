@@ -55,6 +55,9 @@ public:
     virtual any visitCentro_variable(LogotecGramarParser::Centro_variableContext *context) override;
     virtual any visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) override;
     virtual any visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) override;
+
+    any visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx);
+
     virtual any visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) override;
     virtual any visitPony_variable(LogotecGramarParser::Pony_variableContext *context) override;
 
