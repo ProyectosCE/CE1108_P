@@ -45,7 +45,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-
 add_executable(logotec
         src/main.cpp
         ${GRAMMAR_CPP}
@@ -62,6 +61,7 @@ add_executable(logotec
         src/ui/parsetreewindow.h
         src/ui/parsetreewindow.cpp
         src/ui/parsetreewindow.ui
+        src/utils/coutredirect.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)

@@ -163,6 +163,12 @@
 			"MU",
 			"YPKJ5OE7LN/moc_parsetreewindow.cpp",
 			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/utils/coutredirect.h",
+			"MU",
+			"VSCBVMNR7M/moc_coutredirect.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],

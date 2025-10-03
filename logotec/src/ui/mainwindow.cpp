@@ -1,11 +1,11 @@
 #include "mainwindow.h"
+#include <iostream>
 #include "ui_mainwindow.h"
 #include "../compile.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
 #include "parsetreewindow.h"
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,9 +19,22 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
+
+    coutRedirect = new CoutRedirect(ui->terminal, false);
+    cerrRedirect = new CoutRedirect(ui->terminal, true);
+
+    // Redirigir cout y cerr
+    std::cout.rdbuf(coutRedirect);
+    std::cerr.rdbuf(cerrRedirect);
 }
 
 // Slots
+
+void MainWindow::printTerminal(const QString &message) {
+    ui->terminal->appendPlainText(message);
+}
+
+
 void MainWindow::newFile() {
     // Abrir diálogo para seleccionar nombre y ubicación del nuevo archivo
     QString fileName = QFileDialog::getSaveFileName(
@@ -114,11 +127,6 @@ void MainWindow::parseTree() {
     treeWindow->drawTestTree(); // mostrar árbol de prueba
     treeWindow->show();
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
-}
-
-
-void MainWindow::printTerminal(const QString &message) {
-    ui->terminal->appendPlainText(message);
 }
 
 

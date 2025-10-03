@@ -151,10 +151,15 @@ any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
 }
 
 any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) {
-    if (hayError) return nullptr; // no generar nada si hay error previo
+    if (hayError) return nullptr;
 
-    // Obtener valor de la expresión
+    if (!ctx->e) {
+        error("Error semántico: AVANZA requiere una expresión válida.");
+        return nullptr;
+    }
+
     string valor;
+
     if (ctx->e->NUMBER()) {
         valor = ctx->e->NUMBER()->getText();
     } else if (ctx->e->ID()) {
@@ -169,8 +174,7 @@ any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *c
             return nullptr;
         }
         valor = id;
-    } else if (ctx->e->expr().size() == 2) {
-        // Operación binaria simple (+,-,*,/) por ejemplo
+    } else if (ctx->e->expr().size() == 2 && ctx->e->expr(0) && ctx->e->expr(1)) {
         string left = any_cast<string>(visit(ctx->e->expr(0)));
         string right = any_cast<string>(visit(ctx->e->expr(1)));
         string op;
@@ -186,7 +190,6 @@ any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *c
 
     codigo += "avanzaTortuga(" + valor + ");";
 
-    // Agregar comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
@@ -194,27 +197,33 @@ any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *c
     return nullptr;
 }
 
+
 any CodeGen::visitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx) {
     if (hayError) return nullptr; // no generar nada si hay error previo
 
-    // Obtener valor de la expresión
+    if (!ctx->e) {
+        error("Error semántico: RETROCEDE requiere una expresión válida.");
+        return nullptr;
+    }
+
     string valor;
+
     if (ctx->e->NUMBER()) {
         valor = ctx->e->NUMBER()->getText();
     } else if (ctx->e->ID()) {
         string id = ctx->e->ID()->getText();
         auto it = tablaTipos.find(id);
         if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
+            error("Variable '" + id + "' no declarada antes de RETROCEDE.");
             return nullptr;
         }
         if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
+            error("Variable '" + id + "' no es numérica y no se puede usar en RETROCEDE.");
             return nullptr;
         }
         valor = id;
-    } else if (ctx->e->expr().size() == 2) {
-        // Operación binaria simple (+,-,*,/) por ejemplo
+    } else if (ctx->e->expr().size() == 2 && ctx->e->expr(0) && ctx->e->expr(1)) {
+        // Operación binaria simple (+,-,*,/)
         string left = any_cast<string>(visit(ctx->e->expr(0)));
         string right = any_cast<string>(visit(ctx->e->expr(1)));
         string op;
@@ -224,7 +233,7 @@ any CodeGen::visitRetrocede_variable(LogotecGramarParser::Retrocede_variableCont
         else if (ctx->e->operador()->DIV()) op = " / ";
         valor = left + op + right;
     } else {
-        error("Expresión inválida en AVANZA.");
+        error("Expresión inválida en RETROCEDE.");
         return nullptr;
     }
 
@@ -234,79 +243,91 @@ any CodeGen::visitRetrocede_variable(LogotecGramarParser::Retrocede_variableCont
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
 
-any CodeGen::visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) {
-    //gira a la derecha un numero de grados
-    if (hayError) return nullptr; // no generar nada si hay error previo
 
-    // Obtener valor de la expresión
+any CodeGen::visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    if (!ctx->e) {
+        error("Error semántico: GIRA DERECHA requiere una expresión válida.");
+        return nullptr;
+    }
+
     string valor;
+
     if (ctx->e->NUMBER()) {
         valor = ctx->e->NUMBER()->getText();
     } else if (ctx->e->ID()) {
         string id = ctx->e->ID()->getText();
         auto it = tablaTipos.find(id);
         if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
+            error("Variable '" + id + "' no declarada antes de GIRA DERECHA.");
             return nullptr;
         }
         if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
+            error("Variable '" + id + "' no es numérica y no se puede usar en GIRA DERECHA.");
             return nullptr;
         }
         valor = id;
     } else {
-        error("Expresión inválida en AVANZA.");
+        error("Expresión inválida en GIRA DERECHA.");
         return nullptr;
     }
 
     codigo += "giraDerecha(" + valor + ");";
 
-    // Agregar comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
 
-any CodeGen::visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) {
-    //gira a la izquierda un numero de grados
-    if (hayError) return nullptr; // no generar nada si hay error previo
 
-    // Obtener valor de la expresión
+any CodeGen::visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    if (!ctx->e) {
+        error("Error semántico: GIRA IZQUIERDA requiere una expresión válida.");
+        return nullptr;
+    }
+
     string valor;
+
     if (ctx->e->NUMBER()) {
         valor = ctx->e->NUMBER()->getText();
     } else if (ctx->e->ID()) {
         string id = ctx->e->ID()->getText();
         auto it = tablaTipos.find(id);
         if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
+            error("Variable '" + id + "' no declarada antes de GIRA IZQUIERDA.");
             return nullptr;
         }
         if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
+            error("Variable '" + id + "' no es numérica y no se puede usar en GIRA IZQUIERDA.");
             return nullptr;
         }
         valor = id;
     } else {
-        error("Expresión inválida en AVANZA.");
+        error("Expresión inválida en GIRA IZQUIERDA.");
         return nullptr;
     }
 
     codigo += "giraIzquierda(" + valor + ");";
 
-    // Agregar comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
+
 
 any CodeGen::visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx) {
     if (hayError) return nullptr; // no generar nada si hay error previo
@@ -321,24 +342,35 @@ any CodeGen::visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_
 
 
 any CodeGen::visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx) {
-    if (hayError) return nullptr; // no generar nada si hay error previo
+    if (hayError) return nullptr;
 
-        string n1 = ctx->NUMBER(0)->getText();
-        string n2 = ctx->NUMBER(1)->getText();
-
-        codigo += "ponPos(" + n1 + "," + n2 + ");";
-
-        // comentario si existe
-        if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
-            agregarComentarioLinea(instrCtx);
-        }
-        codigo += "\n";
+    if (ctx->NUMBER().size() < 2 || !ctx->NUMBER(0) || !ctx->NUMBER(1)) {
+        error("Error semántico: 'ponPos' requiere dos números.");
         return nullptr;
     }
+
+    string n1 = ctx->NUMBER(0)->getText();
+    string n2 = ctx->NUMBER(1)->getText();
+
+    codigo += "ponPos(" + n1 + "," + n2 + ");";
+
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+
+    codigo += "\n";
+    return nullptr;
+}
+
 
 
 any CodeGen::visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx) {
     if (hayError) return nullptr;
+
+    if (ctx->NUMBER().size() < 2 || !ctx->NUMBER(0) || !ctx->NUMBER(1)) {
+        error("Error semántico: 'ponXY' requiere dos números.");
+        return nullptr;
+    }
 
     string n1 = ctx->NUMBER(0)->getText();
     string n2 = ctx->NUMBER(1)->getText();
@@ -348,12 +380,19 @@ any CodeGen::visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
 
+
 any CodeGen::visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) {
     if (hayError) return nullptr;
+
+    if (!ctx->NUMBER()) {
+        error("Error semántico: 'ponRumbo' requiere un número.");
+        return nullptr;
+    }
 
     string n1 = ctx->NUMBER()->getText();
 
@@ -362,9 +401,11 @@ any CodeGen::visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContex
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
+
 
 
 any CodeGen::visitComentario(LogotecGramarParser::ComentarioContext *ctx) {
@@ -418,25 +459,43 @@ string CodeGen::inferTipo(LogotecGramarParser::ExprContext *ctx) {
 
 any CodeGen::visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) {
     if (hayError) return nullptr;
+
+    if (!context->NUMBER()) {
+        error("Error semántico: 'ponX' requiere un número.");
+        return nullptr;
+    }
+
     string n1 = context->NUMBER()->getText();
     codigo += "ponX(" + n1 + ");";
+
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
 
+
 any CodeGen::visitPony_variable(LogotecGramarParser::Pony_variableContext *context) {
     if (hayError) return nullptr;
+
+    if (!context->NUMBER()) {
+        error("Error semántico: 'ponY' requiere un número.");
+        return nullptr;
+    }
+
     string n1 = context->NUMBER()->getText();
     codigo += "ponY(" + n1 + ");";
+
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
+
 
 any CodeGen::visitCentro_variable(LogotecGramarParser::Centro_variableContext *context) {
     if (hayError) return nullptr;
@@ -470,24 +529,42 @@ any CodeGen::visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableCont
 
 any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) {
     if (hayError) return nullptr;
+
+    if (!context->NUMBER()) {
+        error("Error semántico: 'esperar' requiere un número.");
+        return nullptr;
+    }
+
     string n1 = context->NUMBER()->getText();
     codigo += "espera(" + n1 + ");";
+
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
 
+
 any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) {
     if (hayError) return nullptr;
+
+    if (!context->colores()) {
+        error("Error semántico: 'ponColorLapiz' requiere un color válido.");
+        return nullptr;
+    }
+
     string n1 = context->colores()->getText();
     codigo += "ponColorLapiz(" + n1 + ");";
+
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
+
     codigo += "\n";
     return nullptr;
 }
+
 
 

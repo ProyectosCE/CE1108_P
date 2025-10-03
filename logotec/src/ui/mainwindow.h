@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "../utils/coutredirect.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,6 +28,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString currentFilePath; // Ruta del archivo abierto
+
+    CoutRedirect* coutRedirect;
+    CoutRedirect* cerrRedirect;
 };
 
 #endif // MAINWINDOW_H
