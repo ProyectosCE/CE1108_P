@@ -26,7 +26,8 @@ public:
 private:
     Ui::parsetreewindow *ui;
     QGraphicsScene* scene;
-    void drawJsonNode(const QJsonObject &node, int x, int y, int xOffset, int yOffset);
+    int calculateSubtreeWidth(const QJsonObject &node);
+    void drawJsonNode(const QJsonObject &node, int x, int y, int yOffset);
 };
 
 #endif // PARSETREEWINDOW_H

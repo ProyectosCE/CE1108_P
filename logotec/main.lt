@@ -1,2 +1,77 @@
 Haz x 5
 Haz y 10
+Haz saludo "Hola"
+Haz bandera True
+
+INIC x = 10
+INIC saludo = "Mundo"
+INIC bandera = False
+
+// INIC x = "fa"  // Esto lanza error semántico
+
+INC [x]  // Esto incrementa x en 1
+INC [y x]  // Esto incrementa y en x
+
+//TODO Implementar avanza
+avanza 5
+//TODO Implementar avanza
+avanza 10*2//avanza 20 casillas
+//TODO Implementar avanza
+av 2 //avanza 2 casillas
+//TODO Implementar avanza
+av 9/3
+
+//TODO
+retrocede 5
+//TODO
+retrocede 10*2//retrocede 20 casillas
+//TODO
+re 2 //retrocede 2 casillas
+//TODO
+re 9/3
+
+//TODO
+GiraDerecha 90
+//TODO
+GD 45
+
+//TODO
+GiraIzquierda 90
+//TODO
+GI 80
+
+//TODO
+OcultarTortuga
+//TODO
+OT
+
+//TODO
+ponpos [10 20]
+ponxy 15 40
+
+//TODO
+ponrumbo 45
+
+//TODO
+ponx 12
+
+//TODO
+pony 15
+
+//TODO
+bajalapiz
+BL
+
+//TODO
+subelapiz
+SL
+
+//TODO
+poncolorlapiz azul
+poncl negro
+
+//TODO
+centro
+
+//TODO
+espera 20

@@ -24,37 +24,69 @@ parsetreewindow::~parsetreewindow()
     delete ui;
 }
 
-// Recursiva para dibujar JSON
-void parsetreewindow::drawJsonNode(const QJsonObject &node, int x, int y, int xOffset, int yOffset) {
-    QString nodeText = node["text"].toString();
+// Calcular ancho total del subárbol (sin dibujar)
+int parsetreewindow::calculateSubtreeWidth(const QJsonObject &node) {
+    int spacing = 20;
+    int textWidth = QGraphicsTextItem(node["text"].toString()).boundingRect().width();
 
-    scene->addRect(x, y, 80, 40);
-    scene->addText(nodeText)->setPos(x + 5, y + 5);
+    QJsonArray children = node["children"].toArray();
+    int childCount = children.size();
+    if (childCount == 0) return textWidth;
+
+    int totalWidth = 0;
+    for (int i = 0; i < childCount; i++) {
+        totalWidth += calculateSubtreeWidth(children[i].toObject());
+    }
+    totalWidth += spacing * (childCount - 1);
+    return std::max(textWidth, totalWidth);
+}
+
+// Dibujar nodo en la posición correcta
+void parsetreewindow::drawJsonNode(const QJsonObject &node, int x, int y, int yOffset) {
+    int spacing = 20;
+
+    QGraphicsTextItem* textItem = scene->addText(node["text"].toString());
+    textItem->setPos(x, y);
+    int textWidth = textItem->boundingRect().width();
+    int textHeight = textItem->boundingRect().height();
 
     QJsonArray children = node["children"].toArray();
     int childCount = children.size();
     if (childCount == 0) return;
 
-    int step = (childCount > 1) ? xOffset / (childCount-1) : 0;
-    int startX = x - xOffset / 2;
-
+    // Calcular ancho de cada hijo
+    QVector<int> childWidths;
+    int totalChildrenWidth = 0;
     for (int i = 0; i < childCount; i++) {
-        QJsonObject child = children[i].toObject();
-        int childX = startX + i * step;
+        int w = calculateSubtreeWidth(children[i].toObject());
+        childWidths.append(w);
+        totalChildrenWidth += w;
+    }
+    totalChildrenWidth += spacing * (childCount - 1);
+
+    // Posicionar hijos y dibujar líneas
+    int startX = x - totalChildrenWidth / 2;
+    for (int i = 0; i < childCount; i++) {
+        int childX = startX + childWidths[i] / 2;
         int childY = y + yOffset;
 
-        drawJsonNode(child, childX, childY, xOffset / 2, yOffset);
-        scene->addLine(x + 40, y + 40, childX + 40, childY);
+        drawJsonNode(children[i].toObject(), childX, childY, yOffset);
+
+        scene->addLine(x + textWidth/2, y + textHeight,
+                       childX + QGraphicsTextItem(children[i].toObject()["text"].toString()).boundingRect().width()/2,
+                       childY);
+
+        startX += childWidths[i] + spacing;
     }
 }
 
-// Función pública para cargar JSON desde archivo
+// Cargar JSON y dibujar árbol
 void parsetreewindow::drawTreeFromJsonFile(const QString &filename) {
     scene->clear();
 
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning("No se pudo abrir el archivo JSON");
+        qWarning("Could not open JSON file");
         return;
     }
 
@@ -63,10 +95,14 @@ void parsetreewindow::drawTreeFromJsonFile(const QString &filename) {
 
     QJsonDocument doc = QJsonDocument::fromJson(data);
     if (!doc.isObject()) {
-        qWarning("JSON inválido");
+        qWarning("Invalid JSON");
         return;
     }
 
     QJsonObject root = doc.object();
-    drawJsonNode(root, 0, 0, 400, 100); // Ajusta offsets a tu vista
+    int treeWidth = calculateSubtreeWidth(root);
+    drawJsonNode(root, 0, 0, 100);
+
+    // Centrar árbol
+    scene->setSceneRect(-treeWidth/2, 0, treeWidth, 600);
 }
