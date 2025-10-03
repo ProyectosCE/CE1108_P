@@ -4,22 +4,26 @@ options { language=Cpp;}
 
 // Programa
 programa
-    : (NEWLINE | (instruccion)+ | procedimiento)*
+    : (NEWLINE | linea_instrucciones | procedimiento)*
       EOF
     ;
 
  // Definición de procedimiento
 procedimiento
-    : PARA ID parametros NEWLINE ((instruccion)+ NEWLINE)* (instruccion)+? FIN
+    : PARA ID parametros NEWLINE (linea_instrucciones NEWLINE)* linea_instrucciones? FIN
     ;
 
 parametros
     : '[' lista_parametros? ']'
     ;
 
+linea_instrucciones
+    : (instruccion)+
+    ;
+
 lista_parametros
     : ID (',' ID)*
-    ;
+   ;
 
 // Instrucciones
 instruccion
@@ -301,18 +305,6 @@ TRUE         : 'True' ;
 FALSE        : 'False' ;
 NUMBER       : [0-9]+ ;
 CADENA_TEXTO : '"' (~["\r\n])* '"' ;
-ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
-
-
-// Saltos de línea significativos
-NEWLINE      : [\r\n]+ ;
-
-// Ignorar espacios y tabs
-WS           : [ \t]+ -> skip ;
-
-// Token para comentarios
-LINE_COMMENT : '//' ~[\r\n]* ;
-
 
 PROGRAM: 'program';
 VAR: 'var';
@@ -386,3 +378,13 @@ RESTA : 'Resta' ;
 PARA : 'Para' ;
 FIN : 'Fin' ;
 EJECUTA : 'Ejecuta' ;
+
+ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
+// Saltos de línea significativos
+NEWLINE      : [\r\n]+ ;
+
+// Ignorar espacios y tabs
+WS           : [ \t]+ -> skip ;
+
+// Token para comentarios
+LINE_COMMENT : '//' ~[\r\n]* ;

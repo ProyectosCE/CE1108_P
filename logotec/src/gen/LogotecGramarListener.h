@@ -23,6 +23,9 @@ public:
   virtual void enterParametros(LogotecGramarParser::ParametrosContext *ctx) = 0;
   virtual void exitParametros(LogotecGramarParser::ParametrosContext *ctx) = 0;
 
+  virtual void enterLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *ctx) = 0;
+  virtual void exitLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *ctx) = 0;
+
   virtual void enterLista_parametros(LogotecGramarParser::Lista_parametrosContext *ctx) = 0;
   virtual void exitLista_parametros(LogotecGramarParser::Lista_parametrosContext *ctx) = 0;
 

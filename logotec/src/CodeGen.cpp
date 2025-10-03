@@ -6,8 +6,23 @@
 
 // Recorre el programa
 any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
-    for (auto instr : ctx->instruccion()) {
-        visit(instr);
+    for (size_t i = 0; i < ctx->children.size(); ++i) {
+        auto child = ctx->children[i];
+        // Ignorar NEWLINE
+        if (dynamic_cast<antlr4::tree::TerminalNode*>(child)) {
+            auto terminal = dynamic_cast<antlr4::tree::TerminalNode*>(child);
+            if (terminal->getSymbol()->getType() == LogotecGramarParser::NEWLINE) {
+                continue;
+            }
+        }
+        // Visitar linea_instrucciones
+        if (auto linea = dynamic_cast<LogotecGramarParser::Linea_instruccionesContext*>(child)) {
+            visit(linea);
+        }
+        // Visitar procedimiento
+        else if (auto proc = dynamic_cast<LogotecGramarParser::ProcedimientoContext*>(child)) {
+            visit(proc);
+        }
     }
     return nullptr;
 }
@@ -490,4 +505,38 @@ any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_vari
     return nullptr;
 }
 
+any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) {
+    if (hayError) return nullptr;
 
+    // Obtener nombre del procedimiento
+    std::string nombre = ctx->ID()->getText();
+
+    // Obtener lista de parámetros
+    std::vector<std::string> parametros;
+    if (ctx->parametros()->lista_parametros()) {
+        auto lista = ctx->parametros()->lista_parametros();
+        parametros.push_back(lista->ID(0)->getText());
+        for (size_t i = 1; i < lista->ID().size(); ++i) {
+            parametros.push_back(lista->ID(i)->getText());
+        }
+    }
+
+    // Generar cabecera del procedimiento (asumimos tipo void y parámetros tipo int)
+    codigo += "void " + nombre + "(";
+    for (size_t i = 0; i < parametros.size(); ++i) {
+        if (i > 0) codigo += ", ";
+        codigo += "int " + parametros[i];
+    }
+    codigo += ") {\n";
+
+    // Recorrer instrucciones
+    for (size_t i = 0; i < ctx->children.size(); ++i) {
+        auto child = ctx->children[i];
+        if (auto linea = dynamic_cast<LogotecGramarParser::Linea_instruccionesContext*>(child)) {
+            visit(linea);
+        }
+    }
+
+    codigo += "}\n";
+    return nullptr;
+}
