@@ -20,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
 
-    coutRedirect = new CoutRedirect(ui->terminal, false);
-    cerrRedirect = new CoutRedirect(ui->terminal, true);
+    ui->plainTextEdit->setReadOnly(true);
+    ui->plainTextEdit->setPlainText("Open File / New File to start editing...");
 
     // Redirigir cout y cerr
+    coutRedirect = new CoutRedirect(ui->terminal, false);
+    cerrRedirect = new CoutRedirect(ui->terminal, true);
     std::cout.rdbuf(coutRedirect);
     std::cerr.rdbuf(cerrRedirect);
 }
@@ -36,7 +38,6 @@ void MainWindow::printTerminal(const QString &message) {
 
 
 void MainWindow::newFile() {
-    // Abrir diálogo para seleccionar nombre y ubicación del nuevo archivo
     QString fileName = QFileDialog::getSaveFileName(
         this,
         tr("Create New File"),
@@ -44,32 +45,33 @@ void MainWindow::newFile() {
         tr("Logotec Files (*.lt);;All Files (*)")
     );
 
-    if (fileName.isEmpty())
-        return; // Usuario canceló
+    if (fileName.isEmpty()) return;
 
-    // Agregar .lt automáticamente
     if (!fileName.endsWith(".lt"))
         fileName += ".lt";
 
-    // Limpiar el textEdit para empezar con un archivo vacío
-    ui->plainTextEdit->clear();
+    ui->plainTextEdit->clear();          // Limpiar mensaje
+    ui->plainTextEdit->setReadOnly(false); // Permitir edición
 
-    // Guardar la ruta del archivo
     currentFilePath = fileName;
+    compiled = false;
+    currentJsonPath = "";
 
     printTerminal(QString("File %1 opened in %2")
-                .arg(QFileInfo(fileName).fileName())
-                .arg(QFileInfo(fileName).absolutePath()));
+                  .arg(QFileInfo(fileName).fileName())
+                  .arg(QFileInfo(fileName).absolutePath()));
 }
 
 
 void MainWindow::openFile() {
-    QString fileName = QFileDialog::getOpenFileName(this,
-                        tr("Open File"), "",
-                        tr("Text Files (*.txt *.lt);;All Files (*)"));
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Open File"),
+        "",
+        tr("Text Files (*.txt *.lt);;All Files (*)")
+    );
 
-    if (fileName.isEmpty())
-        return;
+    if (fileName.isEmpty()) return;
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -83,11 +85,15 @@ void MainWindow::openFile() {
     file.close();
 
     ui->plainTextEdit->setPlainText(content);
-    currentFilePath = fileName; // Guardar la ruta
+    ui->plainTextEdit->setReadOnly(false); // Permitir edición
+
+    currentFilePath = fileName;
+    compiled = false;
+    currentJsonPath = "";
 
     printTerminal(QString("File %1 opened in %2")
-                .arg(QFileInfo(fileName).fileName())
-                .arg(QFileInfo(fileName).absolutePath()));
+                  .arg(QFileInfo(fileName).fileName())
+                  .arg(QFileInfo(fileName).absolutePath()));
 }
 
 
@@ -115,25 +121,48 @@ void MainWindow::compileProgram() {
         return;
     }
 
+    // Guardar cambios antes de compilar
+    saveFile();
+
     int result = compileFile(currentFilePath.toStdString());
-    if (result == 0)
+    if (result == 0) {
         QMessageBox::information(this, "Success", "Compilation finished successfully.");
-    else
+        compiled = true;
+        currentJsonPath = "./out/tree.json"; // JSON temporal del árbol
+    } else {
         QMessageBox::critical(this, "Error", "There were errors during compilation.");
+        compiled = false;
+        currentJsonPath = "";
+    }
 }
 
+
 void MainWindow::parseTree() {
+    // Si no hay archivo cargado
+    if (currentFilePath.isEmpty()) {
+        std::cout << "No file is currently loaded. Please open or create a new file first." << std::endl;
+        return;
+    }
+
+    // Si el archivo no ha sido compilado exitosamente
+    if (!compiled || currentJsonPath.isEmpty()) {
+        std::cout << "The parse tree is unavailable. Compile the current file first." << std::endl;
+        return;
+    }
+
     auto treeWindow = new parsetreewindow();
-
-    // Llamar a la nueva función que lee el JSON y dibuja el árbol
-    treeWindow->drawTreeFromJsonFile("./out/tree.json");
-
+    treeWindow->drawTreeFromJsonFile(currentJsonPath);
     treeWindow->show();
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 
-MainWindow::~MainWindow()
-{
+
+
+MainWindow::~MainWindow() {
+    if (!currentJsonPath.isEmpty()) {
+        QFile::remove(currentJsonPath);
+    }
     delete ui;
 }
+

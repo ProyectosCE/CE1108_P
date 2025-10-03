@@ -28,6 +28,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString currentFilePath; // Ruta del archivo abierto
+    QString currentJsonPath = "";
+    bool compiled = false;
 
     CoutRedirect* coutRedirect;
     CoutRedirect* cerrRedirect;
