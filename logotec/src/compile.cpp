@@ -11,6 +11,8 @@
 
 #include "compile.h"
 
+#include "utils/parseTreeToJson.h"
+
 using namespace std;
 using namespace antlr4;
 using namespace antlr4::tree;
@@ -43,6 +45,12 @@ int compileFile(const std::string& program) {
     }
 
     std::filesystem::create_directories("./out");
+
+    // Guardar el arbol en un JSON
+    json treeJson = buildJsonFromANTLR(tree, &parser);
+    std::ofstream treeOut("./out/tree.json");
+    treeOut << treeJson.dump(4);
+    treeOut.close();
 
     std::ofstream outFile("./out/logotec.cpp");
     if (!outFile.is_open()) {

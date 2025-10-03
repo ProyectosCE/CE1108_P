@@ -124,7 +124,10 @@ void MainWindow::compileProgram() {
 
 void MainWindow::parseTree() {
     auto treeWindow = new parsetreewindow();
-    treeWindow->drawTestTree(); // mostrar árbol de prueba
+
+    // Llamar a la nueva función que lee el JSON y dibuja el árbol
+    treeWindow->drawTreeFromJsonFile("./out/tree.json");
+
     treeWindow->show();
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
 }

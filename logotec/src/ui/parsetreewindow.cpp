@@ -3,6 +3,10 @@
 
 #include <QGraphicsTextItem>
 #include <QGraphicsRectItem>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 parsetreewindow::parsetreewindow(QWidget *parent) :
     QWidget(parent),
@@ -20,20 +24,49 @@ parsetreewindow::~parsetreewindow()
     delete ui;
 }
 
-void parsetreewindow::drawTestTree() {
+// Recursiva para dibujar JSON
+void parsetreewindow::drawJsonNode(const QJsonObject &node, int x, int y, int xOffset, int yOffset) {
+    QString nodeText = node["text"].toString();
+
+    scene->addRect(x, y, 80, 40);
+    scene->addText(nodeText)->setPos(x + 5, y + 5);
+
+    QJsonArray children = node["children"].toArray();
+    int childCount = children.size();
+    if (childCount == 0) return;
+
+    int step = (childCount > 1) ? xOffset / (childCount-1) : 0;
+    int startX = x - xOffset / 2;
+
+    for (int i = 0; i < childCount; i++) {
+        QJsonObject child = children[i].toObject();
+        int childX = startX + i * step;
+        int childY = y + yOffset;
+
+        drawJsonNode(child, childX, childY, xOffset / 2, yOffset);
+        scene->addLine(x + 40, y + 40, childX + 40, childY);
+    }
+}
+
+// Función pública para cargar JSON desde archivo
+void parsetreewindow::drawTreeFromJsonFile(const QString &filename) {
     scene->clear();
 
-    // Dibujar nodos como rectángulos con texto
-    auto root = scene->addRect(0, 0, 80, 40);
-    scene->addText("Root")->setPos(10, 5);
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("No se pudo abrir el archivo JSON");
+        return;
+    }
 
-    auto child1 = scene->addRect(-120, 100, 80, 40);
-    scene->addText("Child1")->setPos(-110, 105);
+    QByteArray data = file.readAll();
+    file.close();
 
-    auto child2 = scene->addRect(120, 100, 80, 40);
-    scene->addText("Child2")->setPos(130, 105);
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (!doc.isObject()) {
+        qWarning("JSON inválido");
+        return;
+    }
 
-    // Conectar con líneas
-    scene->addLine(40, 40, -80, 100);  // root → child1
-    scene->addLine(40, 40, 160, 100);  // root → child2
+    QJsonObject root = doc.object();
+    drawJsonNode(root, 0, 0, 400, 100); // Ajusta offsets a tu vista
 }

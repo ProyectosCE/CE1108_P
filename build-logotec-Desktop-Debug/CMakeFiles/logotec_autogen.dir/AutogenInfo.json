@@ -169,6 +169,12 @@
 			"MU",
 			"VSCBVMNR7M/moc_coutredirect.cpp",
 			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/utils/parseTreeToJson.h",
+			"MU",
+			"VSCBVMNR7M/moc_parseTreeToJson.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],

@@ -6,23 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>825</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Parser Tree</string>
   </property>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>11</y>
-     <width>371</width>
-     <height>271</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGraphicsView" name="graphicsView"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
