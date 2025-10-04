@@ -52,6 +52,8 @@ add_executable(logotec
         src/SemanticVisitor.h
         src/CodeGen.cpp
         src/CodeGen.h
+        src/ProcedimientosGen.cpp
+        src/ProcedimientosGen.h
         src/compile.cpp
         src/compile.h
         src/compile.cpp

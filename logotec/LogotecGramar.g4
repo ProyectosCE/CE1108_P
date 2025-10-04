@@ -58,6 +58,7 @@ instruccion
     | o_variable (comentario_linea)?
     | mayorque_variable (comentario_linea)?
     | menorque_variable (comentario_linea)?
+    | procedimiento_llamado (comentario_linea)?
     | comentario
     ;
 
@@ -70,9 +71,19 @@ comentario
     : LINE_COMMENT
     ;
 
+procedimiento_llamado
+    : ID parametros_llamado
+    ;
 
+parametros_llamado
+    : '[' lista_parametros_llamado? ']'
+    ;
+
+lista_parametros_llamado
+    : expr (',' expr)*
+    ;
 // Haz: creación de variable
-haz_variable: HAZ ID v=valor;
+haz_variable: HAZ ID e=expr;
 
     // INIC: inicialización o asignación
 inic_variable
@@ -133,7 +144,7 @@ subelapiz_variable
     ;
 
 poncolorlapiz_variable
-    : (PONCOLORLAPIZ | PCL) colores
+    : (PONCOLORLAPIZ | PCL) (colores|ID)
     ;
 
  centro_variable
@@ -199,17 +210,47 @@ colores
     ;
 // Expresiones (solo suma simple de momento)
 expr
-    : e1=expr operador e2=expr
-    | NUMBER
-    | logico
-    | CADENA_TEXTO
+    : CADENA_TEXTO
     | ID
-    | diferencia_expr
-    | azar_expr
-    | producto_expr
-    | potencia_expr
-    | division_expr
-    | suma_expr
+    | NUMBER
+    | exp_logica
+    | exp_integer
+    | colores
+    ;
+
+
+
+exp_logica:
+        iguales_variable
+        | y_variable
+        | o_variable
+        | mayorque_variable
+        | menorque_variable
+        | logico
+        ;
+
+exp_integer:
+    exp_matematica
+    | exp_aritmetica
+    ;
+
+ exp_aritmetica:
+    '(' exp_matematica (operador exp_matematica)* operador  exp_matematica ')'
+     | exp_matematica (operador exp_matematica)* operador  exp_matematica;
+
+exp_matematica:
+        diferencia_expr
+        | azar_expr
+        | producto_expr
+        | potencia_expr
+        | division_expr
+        | suma_expr
+        | ID
+        | NUMBER;
+
+
+expr_mat_aritm:
+    exp_aritmetica|exp_matematica
     ;
 
     // Tipos lógicos
@@ -232,27 +273,27 @@ valor
     | DIV;
 
 diferencia_expr
-    : DIFERENCIA expr (expr)+
+    : DIFERENCIA (expr_mat_aritm) (expr_mat_aritm)+
     ;
 
 azar_expr
-    : AZAR expr
+    : AZAR (expr_mat_aritm)
     ;
 
 producto_expr
-    : PRODUCTO expr (expr)+
+    : PRODUCTO (expr_mat_aritm) (expr_mat_aritm)+
     ;
 
 potencia_expr
-    : POTENCIA expr expr
+    : POTENCIA (expr_mat_aritm) (expr_mat_aritm)+
     ;
 
 division_expr
-    : DIVISION expr expr
+    : DIVISION (expr_mat_aritm) (expr_mat_aritm)+
     ;
 
 suma_expr
-    : SUMA expr (expr)+
+    : SUMA (expr_mat_aritm) (expr_mat_aritm)+
    ;
 
     // === TOKENS ===

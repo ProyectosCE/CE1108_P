@@ -32,20 +32,22 @@ public:
   enum {
     RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLinea_instrucciones = 3, 
     RuleLista_parametros = 4, RuleInstruccion = 5, RuleComentario_linea = 6, 
-    RuleComentario = 7, RuleHaz_variable = 8, RuleInic_variable = 9, RuleInc_variable = 10, 
-    RuleAvanza_variable = 11, RuleRetrocede_variable = 12, RuleGira_derecha_variable = 13, 
-    RuleGira_izquierda_variable = 14, RuleOcultar_tortuga_variable = 15, 
-    RulePonpos_variable = 16, RulePonxy_variable = 17, RulePonrumbo_variable = 18, 
-    RulePonx_variable = 19, RulePony_variable = 20, RuleBajalapiz_variable = 21, 
-    RuleSubelapiz_variable = 22, RulePoncolorlapiz_variable = 23, RuleCentro_variable = 24, 
-    RuleEsperar_variable = 25, RuleEjecuta_variable = 26, RuleRepite_variable = 27, 
-    RuleSi_variable = 28, RuleSi_sino_variable = 29, RuleHaz_hasta_variable = 30, 
-    RuleHasta_variable = 31, RuleHaz_mientras_variable = 32, RuleMientras_variable = 33, 
-    RuleIguales_variable = 34, RuleY_variable = 35, RuleO_variable = 36, 
-    RuleMayorque_variable = 37, RuleMenorque_variable = 38, RuleColores = 39, 
-    RuleExpr = 40, RuleLogico = 41, RuleValor = 42, RuleOperador = 43, RuleDiferencia_expr = 44, 
-    RuleAzar_expr = 45, RuleProducto_expr = 46, RulePotencia_expr = 47, 
-    RuleDivision_expr = 48, RuleSuma_expr = 49
+    RuleComentario = 7, RuleProcedimiento_llamado = 8, RuleParametros_llamado = 9, 
+    RuleLista_parametros_llamado = 10, RuleHaz_variable = 11, RuleInic_variable = 12, 
+    RuleInc_variable = 13, RuleAvanza_variable = 14, RuleRetrocede_variable = 15, 
+    RuleGira_derecha_variable = 16, RuleGira_izquierda_variable = 17, RuleOcultar_tortuga_variable = 18, 
+    RulePonpos_variable = 19, RulePonxy_variable = 20, RulePonrumbo_variable = 21, 
+    RulePonx_variable = 22, RulePony_variable = 23, RuleBajalapiz_variable = 24, 
+    RuleSubelapiz_variable = 25, RulePoncolorlapiz_variable = 26, RuleCentro_variable = 27, 
+    RuleEsperar_variable = 28, RuleEjecuta_variable = 29, RuleRepite_variable = 30, 
+    RuleSi_variable = 31, RuleSi_sino_variable = 32, RuleHaz_hasta_variable = 33, 
+    RuleHasta_variable = 34, RuleHaz_mientras_variable = 35, RuleMientras_variable = 36, 
+    RuleIguales_variable = 37, RuleY_variable = 38, RuleO_variable = 39, 
+    RuleMayorque_variable = 40, RuleMenorque_variable = 41, RuleColores = 42, 
+    RuleExpr = 43, RuleExp_logica = 44, RuleExp_integer = 45, RuleExp_aritmetica = 46, 
+    RuleExp_matematica = 47, RuleExpr_mat_aritm = 48, RuleLogico = 49, RuleValor = 50, 
+    RuleOperador = 51, RuleDiferencia_expr = 52, RuleAzar_expr = 53, RuleProducto_expr = 54, 
+    RulePotencia_expr = 55, RuleDivision_expr = 56, RuleSuma_expr = 57
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -73,6 +75,9 @@ public:
   class InstruccionContext;
   class Comentario_lineaContext;
   class ComentarioContext;
+  class Procedimiento_llamadoContext;
+  class Parametros_llamadoContext;
+  class Lista_parametros_llamadoContext;
   class Haz_variableContext;
   class Inic_variableContext;
   class Inc_variableContext;
@@ -106,6 +111,11 @@ public:
   class Menorque_variableContext;
   class ColoresContext;
   class ExprContext;
+  class Exp_logicaContext;
+  class Exp_integerContext;
+  class Exp_aritmeticaContext;
+  class Exp_matematicaContext;
+  class Expr_mat_aritmContext;
   class LogicoContext;
   class ValorContext;
   class OperadorContext;
@@ -242,6 +252,7 @@ public:
     O_variableContext *o_variable();
     Mayorque_variableContext *mayorque_variable();
     Menorque_variableContext *menorque_variable();
+    Procedimiento_llamadoContext *procedimiento_llamado();
     ComentarioContext *comentario();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -283,14 +294,61 @@ public:
 
   ComentarioContext* comentario();
 
+  class  Procedimiento_llamadoContext : public antlr4::ParserRuleContext {
+  public:
+    Procedimiento_llamadoContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ID();
+    Parametros_llamadoContext *parametros_llamado();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Procedimiento_llamadoContext* procedimiento_llamado();
+
+  class  Parametros_llamadoContext : public antlr4::ParserRuleContext {
+  public:
+    Parametros_llamadoContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Lista_parametros_llamadoContext *lista_parametros_llamado();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Parametros_llamadoContext* parametros_llamado();
+
+  class  Lista_parametros_llamadoContext : public antlr4::ParserRuleContext {
+  public:
+    Lista_parametros_llamadoContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<ExprContext *> expr();
+    ExprContext* expr(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Lista_parametros_llamadoContext* lista_parametros_llamado();
+
   class  Haz_variableContext : public antlr4::ParserRuleContext {
   public:
-    LogotecGramarParser::ValorContext *v = nullptr;
+    LogotecGramarParser::ExprContext *e = nullptr;
     Haz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HAZ();
     antlr4::tree::TerminalNode *ID();
-    ValorContext *valor();
+    ExprContext *expr();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -544,9 +602,10 @@ public:
   public:
     Poncolorlapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    ColoresContext *colores();
     antlr4::tree::TerminalNode *PONCOLORLAPIZ();
     antlr4::tree::TerminalNode *PCL();
+    ColoresContext *colores();
+    antlr4::tree::TerminalNode *ID();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -854,23 +913,14 @@ public:
 
   class  ExprContext : public antlr4::ParserRuleContext {
   public:
-    LogotecGramarParser::ExprContext *e1 = nullptr;
-    LogotecGramarParser::ExprContext *e2 = nullptr;
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *NUMBER();
-    LogicoContext *logico();
     antlr4::tree::TerminalNode *CADENA_TEXTO();
     antlr4::tree::TerminalNode *ID();
-    Diferencia_exprContext *diferencia_expr();
-    Azar_exprContext *azar_expr();
-    Producto_exprContext *producto_expr();
-    Potencia_exprContext *potencia_expr();
-    Division_exprContext *division_expr();
-    Suma_exprContext *suma_expr();
-    OperadorContext *operador();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    antlr4::tree::TerminalNode *NUMBER();
+    Exp_logicaContext *exp_logica();
+    Exp_integerContext *exp_integer();
+    ColoresContext *colores();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -880,7 +930,101 @@ public:
   };
 
   ExprContext* expr();
-  ExprContext* expr(int precedence);
+
+  class  Exp_logicaContext : public antlr4::ParserRuleContext {
+  public:
+    Exp_logicaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Iguales_variableContext *iguales_variable();
+    Y_variableContext *y_variable();
+    O_variableContext *o_variable();
+    Mayorque_variableContext *mayorque_variable();
+    Menorque_variableContext *menorque_variable();
+    LogicoContext *logico();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Exp_logicaContext* exp_logica();
+
+  class  Exp_integerContext : public antlr4::ParserRuleContext {
+  public:
+    Exp_integerContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Exp_matematicaContext *exp_matematica();
+    Exp_aritmeticaContext *exp_aritmetica();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Exp_integerContext* exp_integer();
+
+  class  Exp_aritmeticaContext : public antlr4::ParserRuleContext {
+  public:
+    Exp_aritmeticaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *PAR_OPEN();
+    std::vector<Exp_matematicaContext *> exp_matematica();
+    Exp_matematicaContext* exp_matematica(size_t i);
+    std::vector<OperadorContext *> operador();
+    OperadorContext* operador(size_t i);
+    antlr4::tree::TerminalNode *PAR_CLOSE();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Exp_aritmeticaContext* exp_aritmetica();
+
+  class  Exp_matematicaContext : public antlr4::ParserRuleContext {
+  public:
+    Exp_matematicaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Diferencia_exprContext *diferencia_expr();
+    Azar_exprContext *azar_expr();
+    Producto_exprContext *producto_expr();
+    Potencia_exprContext *potencia_expr();
+    Division_exprContext *division_expr();
+    Suma_exprContext *suma_expr();
+    antlr4::tree::TerminalNode *ID();
+    antlr4::tree::TerminalNode *NUMBER();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Exp_matematicaContext* exp_matematica();
+
+  class  Expr_mat_aritmContext : public antlr4::ParserRuleContext {
+  public:
+    Expr_mat_aritmContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Exp_aritmeticaContext *exp_aritmetica();
+    Exp_matematicaContext *exp_matematica();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Expr_mat_aritmContext* expr_mat_aritm();
+
   class  LogicoContext : public antlr4::ParserRuleContext {
   public:
     LogicoContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -937,8 +1081,8 @@ public:
     Diferencia_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *DIFERENCIA();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -954,7 +1098,7 @@ public:
     Azar_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *AZAR();
-    ExprContext *expr();
+    Expr_mat_aritmContext *expr_mat_aritm();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -970,8 +1114,8 @@ public:
     Producto_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PRODUCTO();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -987,8 +1131,8 @@ public:
     Potencia_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *POTENCIA();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -1004,8 +1148,8 @@ public:
     Division_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *DIVISION();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -1021,8 +1165,8 @@ public:
     Suma_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *SUMA();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -1033,10 +1177,6 @@ public:
 
   Suma_exprContext* suma_expr();
 
-
-  bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
-
-  bool exprSempred(ExprContext *_localctx, size_t predicateIndex);
 
   // By default the static state used to implement the parser is lazily initialized during the first
   // call to the constructor. You can call this function if you wish to initialize the static state

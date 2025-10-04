@@ -58,6 +58,8 @@ public:
 
     any visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx);
 
+    any visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *ctx);
+
     virtual any visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) override;
     virtual any visitPony_variable(LogotecGramarParser::Pony_variableContext *context) override;
 
@@ -68,6 +70,32 @@ private:
     }
 
     string inferTipo(LogotecGramarParser::ExprContext *ctx);
+
+    // Verifica recursivamente que una expresión matemática sea válida y retorna su tipo
+    std::string checkMathExpr(LogotecGramarParser::ExprContext* ctx);
+    std::string checkMathExpr(LogotecGramarParser::Exp_integerContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Exp_matematicaContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Exp_aritmeticaContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Expr_mat_aritmContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Diferencia_exprContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Producto_exprContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Suma_exprContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Division_exprContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Potencia_exprContext *ctx);
+    std::string checkMathExpr(LogotecGramarParser::Azar_exprContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::ExprContext* ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Exp_integerContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Exp_matematicaContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Exp_aritmeticaContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Expr_mat_aritmContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Diferencia_exprContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Producto_exprContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Suma_exprContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Division_exprContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Potencia_exprContext *ctx);
+    std::string generarExprCodigo(LogotecGramarParser::Azar_exprContext *ctx);
+
 };
 
 

@@ -3,7 +3,8 @@ Haz y 10
 Haz saludo "Hola"
 Haz bandera True
 
-INIC x = 10
+INIC x = 10*3+20
+INIC y = 5
 INIC saludo = "Mundo"
 INIC bandera = False
 
@@ -70,8 +71,7 @@ poncolorlapiz azul poncl negro
 centro espera 20
 //TODO
 
-Para MIFUN [x,y]
-    INC [x 1]
-    INC [y 1]
-    avanza 101
-Fin
+Haz v azul
+Haz p 10*50-3
+
+Haz a Suma 10 p
