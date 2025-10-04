@@ -40,6 +40,15 @@ public:
   virtual void enterComentario(LogotecGramarParser::ComentarioContext * /*ctx*/) override { }
   virtual void exitComentario(LogotecGramarParser::ComentarioContext * /*ctx*/) override { }
 
+  virtual void enterProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext * /*ctx*/) override { }
+  virtual void exitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext * /*ctx*/) override { }
+
+  virtual void enterParametros_llamado(LogotecGramarParser::Parametros_llamadoContext * /*ctx*/) override { }
+  virtual void exitParametros_llamado(LogotecGramarParser::Parametros_llamadoContext * /*ctx*/) override { }
+
+  virtual void enterLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext * /*ctx*/) override { }
+  virtual void exitLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext * /*ctx*/) override { }
+
   virtual void enterHaz_variable(LogotecGramarParser::Haz_variableContext * /*ctx*/) override { }
   virtual void exitHaz_variable(LogotecGramarParser::Haz_variableContext * /*ctx*/) override { }
 
@@ -138,6 +147,21 @@ public:
 
   virtual void enterExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
   virtual void exitExpr(LogotecGramarParser::ExprContext * /*ctx*/) override { }
+
+  virtual void enterExp_logica(LogotecGramarParser::Exp_logicaContext * /*ctx*/) override { }
+  virtual void exitExp_logica(LogotecGramarParser::Exp_logicaContext * /*ctx*/) override { }
+
+  virtual void enterExp_integer(LogotecGramarParser::Exp_integerContext * /*ctx*/) override { }
+  virtual void exitExp_integer(LogotecGramarParser::Exp_integerContext * /*ctx*/) override { }
+
+  virtual void enterExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext * /*ctx*/) override { }
+  virtual void exitExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext * /*ctx*/) override { }
+
+  virtual void enterExp_matematica(LogotecGramarParser::Exp_matematicaContext * /*ctx*/) override { }
+  virtual void exitExp_matematica(LogotecGramarParser::Exp_matematicaContext * /*ctx*/) override { }
+
+  virtual void enterExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext * /*ctx*/) override { }
+  virtual void exitExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext * /*ctx*/) override { }
 
   virtual void enterLogico(LogotecGramarParser::LogicoContext * /*ctx*/) override { }
   virtual void exitLogico(LogotecGramarParser::LogicoContext * /*ctx*/) override { }

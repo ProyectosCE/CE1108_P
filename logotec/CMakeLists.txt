@@ -43,6 +43,8 @@ add_executable(logotec
         src/SemanticVisitor.h
         src/CodeGen.cpp
         src/CodeGen.h
+        src/ProcedimientosGen.cpp
+        src/ProcedimientosGen.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)

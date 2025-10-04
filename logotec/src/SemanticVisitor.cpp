@@ -18,9 +18,9 @@ any SemanticVisitor::visitHaz_variable(LogotecGramarParser::Haz_variableContext 
 
     // Inferir tipo básico según valor
     string tipo;
-    if (ctx->v->NUMBER()) tipo = "int";
-    else if (ctx->v->logico()) tipo = "bool";
-    else if (ctx->v->CADENA_TEXTO()) tipo = "string";
+    if (ctx->e->exp_integer()) tipo = "int";
+    else if (ctx->e->exp_logica()) tipo = "bool";
+    else if (ctx->e->CADENA_TEXTO()) tipo = "string";
     else tipo = "desconocido";
 
     tablaTipos[nombre] = tipo;
@@ -43,8 +43,8 @@ any SemanticVisitor::visitInic_variable(LogotecGramarParser::Inic_variableContex
 
     // Inferir tipo de la expresión
     string tipoNuevo;
-    if (ctx->e->NUMBER()) tipoNuevo = "int";
-    else if (ctx->e->logico()) tipoNuevo = "bool";
+    if (ctx->e->exp_integer()) tipoNuevo = "int";
+    else if (ctx->e->exp_logica()) tipoNuevo = "bool";
     else if (ctx->e->CADENA_TEXTO()) tipoNuevo = "string";
     else tipoNuevo = "desconocido";  // podrías mejorar para expresiones más complejas
 

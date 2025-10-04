@@ -15,7 +15,7 @@ using namespace antlr4::tree;
 int main(int argc, const char* argv[]) {
 
     const string EXTENSION = "lt";
-    string program = (argc > 1) ? argv[1] : "../main." + EXTENSION;
+    string program = (argc > 1) ? argv[1] : "../main_haz." + EXTENSION;
 
     cout << "Interpreting file: " << program << endl;
 
@@ -33,8 +33,8 @@ int main(int argc, const char* argv[]) {
 
     tree::ParseTree* tree = parser.programa();
 
-    SemanticVisitor visitor;
-    visitor.visit(tree);
+    //SemanticVisitor visitor;
+    //visitor.visit(tree);
 
     // Visitor / CodeGen
     CodeGen generator;
@@ -60,10 +60,8 @@ int main(int argc, const char* argv[]) {
     outFile << "#include <iostream>\n";
     outFile << "#include <string>\n";
     outFile << "using namespace std;\n\n";
-    outFile << "int main() {\n";
+
     outFile << generator.codigo;
-    outFile << "return 0;\n";
-    outFile << "}\n";
 
     outFile.close();
     std::cout << "Archivo generado en out/logotec.cpp" << std::endl;

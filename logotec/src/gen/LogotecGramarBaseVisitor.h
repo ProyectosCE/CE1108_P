@@ -47,6 +47,18 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitParametros_llamado(LogotecGramarParser::Parametros_llamadoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -176,6 +188,26 @@ public:
   }
 
   virtual std::any visitExpr(LogotecGramarParser::ExprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_integer(LogotecGramarParser::Exp_integerContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_matematica(LogotecGramarParser::Exp_matematicaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext *ctx) override {
     return visitChildren(ctx);
   }
 

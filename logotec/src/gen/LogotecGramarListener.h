@@ -38,6 +38,15 @@ public:
   virtual void enterComentario(LogotecGramarParser::ComentarioContext *ctx) = 0;
   virtual void exitComentario(LogotecGramarParser::ComentarioContext *ctx) = 0;
 
+  virtual void enterProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *ctx) = 0;
+  virtual void exitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *ctx) = 0;
+
+  virtual void enterParametros_llamado(LogotecGramarParser::Parametros_llamadoContext *ctx) = 0;
+  virtual void exitParametros_llamado(LogotecGramarParser::Parametros_llamadoContext *ctx) = 0;
+
+  virtual void enterLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext *ctx) = 0;
+  virtual void exitLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext *ctx) = 0;
+
   virtual void enterHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) = 0;
   virtual void exitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) = 0;
 
@@ -136,6 +145,21 @@ public:
 
   virtual void enterExpr(LogotecGramarParser::ExprContext *ctx) = 0;
   virtual void exitExpr(LogotecGramarParser::ExprContext *ctx) = 0;
+
+  virtual void enterExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
+  virtual void exitExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
+
+  virtual void enterExp_integer(LogotecGramarParser::Exp_integerContext *ctx) = 0;
+  virtual void exitExp_integer(LogotecGramarParser::Exp_integerContext *ctx) = 0;
+
+  virtual void enterExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext *ctx) = 0;
+  virtual void exitExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext *ctx) = 0;
+
+  virtual void enterExp_matematica(LogotecGramarParser::Exp_matematicaContext *ctx) = 0;
+  virtual void exitExp_matematica(LogotecGramarParser::Exp_matematicaContext *ctx) = 0;
+
+  virtual void enterExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext *ctx) = 0;
+  virtual void exitExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext *ctx) = 0;
 
   virtual void enterLogico(LogotecGramarParser::LogicoContext *ctx) = 0;
   virtual void exitLogico(LogotecGramarParser::LogicoContext *ctx) = 0;
