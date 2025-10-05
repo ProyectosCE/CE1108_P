@@ -3,7 +3,8 @@ Haz y 10
 Haz saludo "Hola"
 Haz bandera True
 
-INIC x = 10
+INIC x = 10*3+20
+INIC y = 5
 INIC saludo = "Mundo"
 INIC bandera = False
 
@@ -36,9 +37,7 @@ GiraDerecha 90
 GD 45
 
 //TODO
-GiraIzquierda 90
-//TODO
-GI 80
+GiraIzquierda 90 GI 80
 
 //TODO
 OcultarTortuga
@@ -63,15 +62,16 @@ bajalapiz
 BL
 
 //TODO
-subelapiz
-SL
+subelapiz SL
 
 //TODO
-poncolorlapiz azul
-poncl negro
+poncolorlapiz azul poncl negro
 
 //TODO
-centro
-
+centro espera 20
 //TODO
-espera 20
+
+Haz v azul
+Haz p 10*50-3
+
+Haz a Suma 10 p

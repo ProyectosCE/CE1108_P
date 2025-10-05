@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -21,11 +21,29 @@ public:
    */
     virtual std::any visitPrograma(LogotecGramarParser::ProgramaContext *context) = 0;
 
+    virtual std::any visitProcedimiento(LogotecGramarParser::ProcedimientoContext *context) = 0;
+
+    virtual std::any visitParametros(LogotecGramarParser::ParametrosContext *context) = 0;
+
+    virtual std::any visitLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *context) = 0;
+
+    virtual std::any visitLista_parametros(LogotecGramarParser::Lista_parametrosContext *context) = 0;
+
     virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *context) = 0;
+
+    virtual std::any visitMuestra(LogotecGramarParser::MuestraContext *context) = 0;
+
+    virtual std::any visitRumbo_get(LogotecGramarParser::Rumbo_getContext *context) = 0;
 
     virtual std::any visitComentario_linea(LogotecGramarParser::Comentario_lineaContext *context) = 0;
 
     virtual std::any visitComentario(LogotecGramarParser::ComentarioContext *context) = 0;
+
+    virtual std::any visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *context) = 0;
+
+    virtual std::any visitParametros_llamado(LogotecGramarParser::Parametros_llamadoContext *context) = 0;
+
+    virtual std::any visitLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext *context) = 0;
 
     virtual std::any visitHaz_variable(LogotecGramarParser::Haz_variableContext *context) = 0;
 
@@ -63,15 +81,81 @@ public:
 
     virtual std::any visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) = 0;
 
+    virtual std::any visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext *context) = 0;
+
+    virtual std::any visitRepite_variable(LogotecGramarParser::Repite_variableContext *context) = 0;
+
+    virtual std::any visitExp_logica(LogotecGramarParser::Exp_logicaContext *context) = 0;
+
+    virtual std::any visitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *context) = 0;
+
+    virtual std::any visitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *context) = 0;
+
+    virtual std::any visitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *context) = 0;
+
+    virtual std::any visitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *context) = 0;
+
+    virtual std::any visitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *context) = 0;
+
+    virtual std::any visitNegacion(LogotecGramarParser::NegacionContext *context) = 0;
+
+    virtual std::any visitAndor(LogotecGramarParser::AndorContext *context) = 0;
+
+    virtual std::any visitSi_variable(LogotecGramarParser::Si_variableContext *context) = 0;
+
+    virtual std::any visitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext *context) = 0;
+
+    virtual std::any visitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableContext *context) = 0;
+
+    virtual std::any visitHasta_variable(LogotecGramarParser::Hasta_variableContext *context) = 0;
+
+    virtual std::any visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext *context) = 0;
+
+    virtual std::any visitMientras_variable(LogotecGramarParser::Mientras_variableContext *context) = 0;
+
+    virtual std::any visitIguales_variable(LogotecGramarParser::Iguales_variableContext *context) = 0;
+
+    virtual std::any visitY_variable(LogotecGramarParser::Y_variableContext *context) = 0;
+
+    virtual std::any visitO_variable(LogotecGramarParser::O_variableContext *context) = 0;
+
+    virtual std::any visitMayorque_variable(LogotecGramarParser::Mayorque_variableContext *context) = 0;
+
+    virtual std::any visitMenorque_variable(LogotecGramarParser::Menorque_variableContext *context) = 0;
+
+    virtual std::any visitColores_variable(LogotecGramarParser::Colores_variableContext *context) = 0;
+
     virtual std::any visitColores(LogotecGramarParser::ColoresContext *context) = 0;
 
     virtual std::any visitExpr(LogotecGramarParser::ExprContext *context) = 0;
+
+    virtual std::any visitExp_integer(LogotecGramarParser::Exp_integerContext *context) = 0;
+
+    virtual std::any visitExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext *context) = 0;
+
+    virtual std::any visitExp_matematica(LogotecGramarParser::Exp_matematicaContext *context) = 0;
+
+    virtual std::any visitExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext *context) = 0;
 
     virtual std::any visitLogico(LogotecGramarParser::LogicoContext *context) = 0;
 
     virtual std::any visitValor(LogotecGramarParser::ValorContext *context) = 0;
 
+    virtual std::any visitOperador_logico(LogotecGramarParser::Operador_logicoContext *context) = 0;
+
     virtual std::any visitOperador(LogotecGramarParser::OperadorContext *context) = 0;
+
+    virtual std::any visitDiferencia_expr(LogotecGramarParser::Diferencia_exprContext *context) = 0;
+
+    virtual std::any visitAzar_expr(LogotecGramarParser::Azar_exprContext *context) = 0;
+
+    virtual std::any visitProducto_expr(LogotecGramarParser::Producto_exprContext *context) = 0;
+
+    virtual std::any visitPotencia_expr(LogotecGramarParser::Potencia_exprContext *context) = 0;
+
+    virtual std::any visitDivision_expr(LogotecGramarParser::Division_exprContext *context) = 0;
+
+    virtual std::any visitSuma_expr(LogotecGramarParser::Suma_exprContext *context) = 0;
 
 
 };

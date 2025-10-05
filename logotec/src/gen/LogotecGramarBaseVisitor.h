@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -19,7 +19,31 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitParametros(LogotecGramarParser::ParametrosContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitLista_parametros(LogotecGramarParser::Lista_parametrosContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitMuestra(LogotecGramarParser::MuestraContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitRumbo_get(LogotecGramarParser::Rumbo_getContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -28,6 +52,18 @@ public:
   }
 
   virtual std::any visitComentario(LogotecGramarParser::ComentarioContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llamadoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitParametros_llamado(LogotecGramarParser::Parametros_llamadoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitLista_parametros_llamado(LogotecGramarParser::Lista_parametros_llamadoContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -103,11 +139,115 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitRepite_variable(LogotecGramarParser::Repite_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNegacion(LogotecGramarParser::NegacionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAndor(LogotecGramarParser::AndorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSi_variable(LogotecGramarParser::Si_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitHasta_variable(LogotecGramarParser::Hasta_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitMientras_variable(LogotecGramarParser::Mientras_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitIguales_variable(LogotecGramarParser::Iguales_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitY_variable(LogotecGramarParser::Y_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitO_variable(LogotecGramarParser::O_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitMayorque_variable(LogotecGramarParser::Mayorque_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitMenorque_variable(LogotecGramarParser::Menorque_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitColores_variable(LogotecGramarParser::Colores_variableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitColores(LogotecGramarParser::ColoresContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual std::any visitExpr(LogotecGramarParser::ExprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_integer(LogotecGramarParser::Exp_integerContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_aritmetica(LogotecGramarParser::Exp_aritmeticaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExp_matematica(LogotecGramarParser::Exp_matematicaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpr_mat_aritm(LogotecGramarParser::Expr_mat_aritmContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -119,7 +259,35 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitOperador_logico(LogotecGramarParser::Operador_logicoContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitOperador(LogotecGramarParser::OperadorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitDiferencia_expr(LogotecGramarParser::Diferencia_exprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAzar_expr(LogotecGramarParser::Azar_exprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitProducto_expr(LogotecGramarParser::Producto_exprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPotencia_expr(LogotecGramarParser::Potencia_exprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitDivision_expr(LogotecGramarParser::Division_exprContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSuma_expr(LogotecGramarParser::Suma_exprContext *ctx) override {
     return visitChildren(ctx);
   }
 
