@@ -6,6 +6,8 @@
 #include "ProcedimientosGen.h"
 #include "SymbolTable.h"
 #include "TypeChecker.cpp"
+#include <algorithm>
+#include <cctype>
 
 // Instancia global/local de ProcedimientosGen
 procedimientos::ProcedimientosGen procGen;
@@ -546,14 +548,18 @@ any CodeGen::visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableCont
 
 any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext *context) {
     if (hayError) return nullptr;
-
-    if (!context->NUMBER()) {
-        error("Error semántico: 'esperar' requiere un número.");
+    if (!context->exp_integer()) {
+        error("La expresión en ESPERAR no es válida o no es de tipo int.");
         return nullptr;
     }
-
-    string n1 = context->NUMBER()->getText();
-    codigo += "espera(" + n1 + ");";
+    // Validar tipo de la expresión
+    if (checkMathExpr(context->exp_integer()) != "int") {
+        error("La expresión en ESPERAR no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    // generar código usando el valor de la expresión usnado generarExprCodigo
+    codigo += "esperar(" + generarExprCodigo(context->exp_integer()) + ");";
+    if (hayError) return nullptr;
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
@@ -883,9 +889,10 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::ExprContext* ctx) {
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
     if (ctx->ID()) return ctx->ID()->getText();
     if (ctx->exp_integer()) return generarExprCodigo(ctx->exp_integer());
-    if (ctx->exp_logica()) return ctx->exp_logica()->getText();
     if (ctx->CADENA_TEXTO()) return ctx->CADENA_TEXTO()->getText();
     if (ctx->colores()) return ctx->colores()->getText();
+    if (ctx->exp_logica()) if (ctx->exp_logica()->getText() == "True" || ctx->exp_logica()->getText() == "False")
+        return ctx->exp_logica()->getText() == "True" ? "true" : "false";
     return "";
 }
 
