@@ -48,8 +48,6 @@ set(CMAKE_AUTORCC ON)
 add_executable(logotec
         src/main.cpp
         ${GRAMMAR_CPP}
-        src/SemanticVisitor.cpp
-        src/SemanticVisitor.h
         src/CodeGen.cpp
         src/CodeGen.h
         src/ProcedimientosGen.cpp

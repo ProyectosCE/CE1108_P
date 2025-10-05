@@ -107,6 +107,15 @@ public:
   virtual void enterRepite_variable(LogotecGramarParser::Repite_variableContext *ctx) = 0;
   virtual void exitRepite_variable(LogotecGramarParser::Repite_variableContext *ctx) = 0;
 
+  virtual void enterExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
+  virtual void exitExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
+
+  virtual void enterExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *ctx) = 0;
+  virtual void exitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *ctx) = 0;
+
+  virtual void enterExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *ctx) = 0;
+  virtual void exitExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *ctx) = 0;
+
   virtual void enterSi_variable(LogotecGramarParser::Si_variableContext *ctx) = 0;
   virtual void exitSi_variable(LogotecGramarParser::Si_variableContext *ctx) = 0;
 
@@ -140,14 +149,14 @@ public:
   virtual void enterMenorque_variable(LogotecGramarParser::Menorque_variableContext *ctx) = 0;
   virtual void exitMenorque_variable(LogotecGramarParser::Menorque_variableContext *ctx) = 0;
 
+  virtual void enterColores_variable(LogotecGramarParser::Colores_variableContext *ctx) = 0;
+  virtual void exitColores_variable(LogotecGramarParser::Colores_variableContext *ctx) = 0;
+
   virtual void enterColores(LogotecGramarParser::ColoresContext *ctx) = 0;
   virtual void exitColores(LogotecGramarParser::ColoresContext *ctx) = 0;
 
   virtual void enterExpr(LogotecGramarParser::ExprContext *ctx) = 0;
   virtual void exitExpr(LogotecGramarParser::ExprContext *ctx) = 0;
-
-  virtual void enterExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
-  virtual void exitExp_logica(LogotecGramarParser::Exp_logicaContext *ctx) = 0;
 
   virtual void enterExp_integer(LogotecGramarParser::Exp_integerContext *ctx) = 0;
   virtual void exitExp_integer(LogotecGramarParser::Exp_integerContext *ctx) = 0;
@@ -166,6 +175,9 @@ public:
 
   virtual void enterValor(LogotecGramarParser::ValorContext *ctx) = 0;
   virtual void exitValor(LogotecGramarParser::ValorContext *ctx) = 0;
+
+  virtual void enterOperador_logico(LogotecGramarParser::Operador_logicoContext *ctx) = 0;
+  virtual void exitOperador_logico(LogotecGramarParser::Operador_logicoContext *ctx) = 0;
 
   virtual void enterOperador(LogotecGramarParser::OperadorContext *ctx) = 0;
   virtual void exitOperador(LogotecGramarParser::OperadorContext *ctx) = 0;
