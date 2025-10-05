@@ -151,7 +151,7 @@ poncolorlapiz_variable
     : CENTRO;
 
  esperar_variable
-    : ESPERAR NUMBER;
+    : ESPERAR exp_integer;
 
 ejecuta_variable
     : EJECUTA '[' instruccion* ']'
@@ -232,6 +232,7 @@ exp_logica:
 exp_integer:
     exp_matematica
     | exp_aritmetica
+    | NUMBER
     ;
 
  exp_aritmetica:

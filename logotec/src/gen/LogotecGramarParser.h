@@ -636,7 +636,7 @@ public:
     Esperar_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ESPERAR();
-    antlr4::tree::TerminalNode *NUMBER();
+    Exp_integerContext *exp_integer();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -957,6 +957,7 @@ public:
     virtual size_t getRuleIndex() const override;
     Exp_matematicaContext *exp_matematica();
     Exp_aritmeticaContext *exp_aritmetica();
+    antlr4::tree::TerminalNode *NUMBER();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

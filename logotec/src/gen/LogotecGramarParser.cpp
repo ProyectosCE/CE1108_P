@@ -100,7 +100,7 @@ void logotecgramarParserInitialize() {
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,87,629,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,87,630,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
   	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,
   	21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,
@@ -139,20 +139,20 @@ void logotecgramarParserInitialize() {
   	10,36,12,36,486,9,36,1,36,1,36,1,37,1,37,1,37,1,37,1,38,1,38,1,38,1,38,
   	1,38,1,38,1,38,1,38,1,39,1,39,1,39,1,39,1,39,1,39,1,39,1,39,1,40,1,40,
   	1,40,1,40,1,41,1,41,1,41,1,41,1,42,1,42,1,43,1,43,1,43,1,43,1,43,1,43,
-  	3,43,526,8,43,1,44,1,44,1,44,1,44,1,44,1,44,3,44,534,8,44,1,45,1,45,3,
-  	45,538,8,45,1,46,1,46,1,46,1,46,1,46,5,46,545,8,46,10,46,12,46,548,9,
-  	46,1,46,1,46,1,46,1,46,1,46,1,46,1,46,1,46,5,46,558,8,46,10,46,12,46,
-  	561,9,46,1,46,1,46,1,46,3,46,566,8,46,1,47,1,47,1,47,1,47,1,47,1,47,1,
-  	47,1,47,3,47,576,8,47,1,48,1,48,3,48,580,8,48,1,49,1,49,1,50,1,50,1,50,
-  	3,50,587,8,50,1,51,1,51,1,52,1,52,1,52,4,52,594,8,52,11,52,12,52,595,
-  	1,53,1,53,1,53,1,54,1,54,1,54,4,54,604,8,54,11,54,12,54,605,1,55,1,55,
-  	1,55,4,55,611,8,55,11,55,12,55,612,1,56,1,56,1,56,4,56,618,8,56,11,56,
-  	12,56,619,1,57,1,57,1,57,4,57,625,8,57,11,57,12,57,626,1,57,0,0,58,0,
+  	3,43,526,8,43,1,44,1,44,1,44,1,44,1,44,1,44,3,44,534,8,44,1,45,1,45,1,
+  	45,3,45,539,8,45,1,46,1,46,1,46,1,46,1,46,5,46,546,8,46,10,46,12,46,549,
+  	9,46,1,46,1,46,1,46,1,46,1,46,1,46,1,46,1,46,5,46,559,8,46,10,46,12,46,
+  	562,9,46,1,46,1,46,1,46,3,46,567,8,46,1,47,1,47,1,47,1,47,1,47,1,47,1,
+  	47,1,47,3,47,577,8,47,1,48,1,48,3,48,581,8,48,1,49,1,49,1,50,1,50,1,50,
+  	3,50,588,8,50,1,51,1,51,1,52,1,52,1,52,4,52,595,8,52,11,52,12,52,596,
+  	1,53,1,53,1,53,1,54,1,54,1,54,4,54,605,8,54,11,54,12,54,606,1,55,1,55,
+  	1,55,4,55,612,8,55,11,55,12,55,613,1,56,1,56,1,56,4,56,619,8,56,11,56,
+  	12,56,620,1,57,1,57,1,57,4,57,626,8,57,11,57,12,57,627,1,57,0,0,58,0,
   	2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,
   	52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,
   	98,100,102,104,106,108,110,112,114,0,12,2,0,35,35,84,84,1,0,7,8,1,0,9,
   	10,1,0,11,12,1,0,13,14,1,0,15,16,1,0,22,23,1,0,24,25,1,0,29,30,1,0,26,
-  	28,1,0,33,34,1,0,40,43,685,0,121,1,0,0,0,2,126,1,0,0,0,4,143,1,0,0,0,
+  	28,1,0,33,34,1,0,40,43,687,0,121,1,0,0,0,2,126,1,0,0,0,4,143,1,0,0,0,
   	6,150,1,0,0,0,8,154,1,0,0,0,10,291,1,0,0,0,12,293,1,0,0,0,14,295,1,0,
   	0,0,16,297,1,0,0,0,18,300,1,0,0,0,20,306,1,0,0,0,22,314,1,0,0,0,24,318,
   	1,0,0,0,26,323,1,0,0,0,28,331,1,0,0,0,30,334,1,0,0,0,32,337,1,0,0,0,34,
@@ -162,9 +162,9 @@ void logotecgramarParserInitialize() {
   	399,1,0,0,0,64,412,1,0,0,0,66,433,1,0,0,0,68,446,1,0,0,0,70,459,1,0,0,
   	0,72,476,1,0,0,0,74,489,1,0,0,0,76,493,1,0,0,0,78,501,1,0,0,0,80,509,
   	1,0,0,0,82,513,1,0,0,0,84,517,1,0,0,0,86,525,1,0,0,0,88,533,1,0,0,0,90,
-  	537,1,0,0,0,92,565,1,0,0,0,94,575,1,0,0,0,96,579,1,0,0,0,98,581,1,0,0,
-  	0,100,586,1,0,0,0,102,588,1,0,0,0,104,590,1,0,0,0,106,597,1,0,0,0,108,
-  	600,1,0,0,0,110,607,1,0,0,0,112,614,1,0,0,0,114,621,1,0,0,0,116,120,5,
+  	538,1,0,0,0,92,566,1,0,0,0,94,576,1,0,0,0,96,580,1,0,0,0,98,582,1,0,0,
+  	0,100,587,1,0,0,0,102,589,1,0,0,0,104,591,1,0,0,0,106,598,1,0,0,0,108,
+  	601,1,0,0,0,110,608,1,0,0,0,112,615,1,0,0,0,114,622,1,0,0,0,116,120,5,
   	85,0,0,117,120,3,6,3,0,118,120,3,2,1,0,119,116,1,0,0,0,119,117,1,0,0,
   	0,119,118,1,0,0,0,120,123,1,0,0,0,121,119,1,0,0,0,121,122,1,0,0,0,122,
   	124,1,0,0,0,123,121,1,0,0,0,124,125,5,0,0,1,125,1,1,0,0,0,126,127,5,81,
@@ -243,7 +243,7 @@ void logotecgramarParserInitialize() {
   	362,5,21,0,0,362,363,5,35,0,0,363,47,1,0,0,0,364,365,7,6,0,0,365,49,1,
   	0,0,0,366,367,7,7,0,0,367,51,1,0,0,0,368,371,7,8,0,0,369,372,3,84,42,
   	0,370,372,5,84,0,0,371,369,1,0,0,0,371,370,1,0,0,0,372,53,1,0,0,0,373,
-  	374,5,31,0,0,374,55,1,0,0,0,375,376,5,32,0,0,376,377,5,35,0,0,377,57,
+  	374,5,31,0,0,374,55,1,0,0,0,375,376,5,32,0,0,376,377,3,90,45,0,377,57,
   	1,0,0,0,378,379,5,83,0,0,379,383,5,1,0,0,380,382,3,10,5,0,381,380,1,0,
   	0,0,382,385,1,0,0,0,383,381,1,0,0,0,383,384,1,0,0,0,384,386,1,0,0,0,385,
   	383,1,0,0,0,386,387,5,2,0,0,387,59,1,0,0,0,388,389,5,63,0,0,389,390,5,
@@ -285,38 +285,38 @@ void logotecgramarParserInitialize() {
   	0,0,0,525,524,1,0,0,0,526,87,1,0,0,0,527,534,3,74,37,0,528,534,3,76,38,
   	0,529,534,3,78,39,0,530,534,3,80,40,0,531,534,3,82,41,0,532,534,3,98,
   	49,0,533,527,1,0,0,0,533,528,1,0,0,0,533,529,1,0,0,0,533,530,1,0,0,0,
-  	533,531,1,0,0,0,533,532,1,0,0,0,534,89,1,0,0,0,535,538,3,94,47,0,536,
-  	538,3,92,46,0,537,535,1,0,0,0,537,536,1,0,0,0,538,91,1,0,0,0,539,540,
-  	5,60,0,0,540,546,3,94,47,0,541,542,3,102,51,0,542,543,3,94,47,0,543,545,
-  	1,0,0,0,544,541,1,0,0,0,545,548,1,0,0,0,546,544,1,0,0,0,546,547,1,0,0,
-  	0,547,549,1,0,0,0,548,546,1,0,0,0,549,550,3,102,51,0,550,551,3,94,47,
-  	0,551,552,5,61,0,0,552,566,1,0,0,0,553,559,3,94,47,0,554,555,3,102,51,
-  	0,555,556,3,94,47,0,556,558,1,0,0,0,557,554,1,0,0,0,558,561,1,0,0,0,559,
-  	557,1,0,0,0,559,560,1,0,0,0,560,562,1,0,0,0,561,559,1,0,0,0,562,563,3,
-  	102,51,0,563,564,3,94,47,0,564,566,1,0,0,0,565,539,1,0,0,0,565,553,1,
-  	0,0,0,566,93,1,0,0,0,567,576,3,104,52,0,568,576,3,106,53,0,569,576,3,
-  	108,54,0,570,576,3,110,55,0,571,576,3,112,56,0,572,576,3,114,57,0,573,
-  	576,5,84,0,0,574,576,5,35,0,0,575,567,1,0,0,0,575,568,1,0,0,0,575,569,
-  	1,0,0,0,575,570,1,0,0,0,575,571,1,0,0,0,575,572,1,0,0,0,575,573,1,0,0,
-  	0,575,574,1,0,0,0,576,95,1,0,0,0,577,580,3,92,46,0,578,580,3,94,47,0,
-  	579,577,1,0,0,0,579,578,1,0,0,0,580,97,1,0,0,0,581,582,7,10,0,0,582,99,
-  	1,0,0,0,583,587,5,35,0,0,584,587,3,98,49,0,585,587,5,36,0,0,586,583,1,
-  	0,0,0,586,584,1,0,0,0,586,585,1,0,0,0,587,101,1,0,0,0,588,589,7,11,0,
-  	0,589,103,1,0,0,0,590,591,5,74,0,0,591,593,3,96,48,0,592,594,3,96,48,
-  	0,593,592,1,0,0,0,594,595,1,0,0,0,595,593,1,0,0,0,595,596,1,0,0,0,596,
-  	105,1,0,0,0,597,598,5,75,0,0,598,599,3,96,48,0,599,107,1,0,0,0,600,601,
-  	5,76,0,0,601,603,3,96,48,0,602,604,3,96,48,0,603,602,1,0,0,0,604,605,
-  	1,0,0,0,605,603,1,0,0,0,605,606,1,0,0,0,606,109,1,0,0,0,607,608,5,77,
-  	0,0,608,610,3,96,48,0,609,611,3,96,48,0,610,609,1,0,0,0,611,612,1,0,0,
-  	0,612,610,1,0,0,0,612,613,1,0,0,0,613,111,1,0,0,0,614,615,5,78,0,0,615,
-  	617,3,96,48,0,616,618,3,96,48,0,617,616,1,0,0,0,618,619,1,0,0,0,619,617,
-  	1,0,0,0,619,620,1,0,0,0,620,113,1,0,0,0,621,622,5,79,0,0,622,624,3,96,
-  	48,0,623,625,3,96,48,0,624,623,1,0,0,0,625,626,1,0,0,0,626,624,1,0,0,
-  	0,626,627,1,0,0,0,627,115,1,0,0,0,68,119,121,135,139,145,152,159,164,
-  	168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,
-  	240,244,248,252,256,260,264,268,272,276,280,284,288,291,302,311,327,371,
-  	383,394,407,420,428,438,454,464,472,484,525,533,537,546,559,565,575,579,
-  	586,595,605,612,619,626
+  	533,531,1,0,0,0,533,532,1,0,0,0,534,89,1,0,0,0,535,539,3,94,47,0,536,
+  	539,3,92,46,0,537,539,5,35,0,0,538,535,1,0,0,0,538,536,1,0,0,0,538,537,
+  	1,0,0,0,539,91,1,0,0,0,540,541,5,60,0,0,541,547,3,94,47,0,542,543,3,102,
+  	51,0,543,544,3,94,47,0,544,546,1,0,0,0,545,542,1,0,0,0,546,549,1,0,0,
+  	0,547,545,1,0,0,0,547,548,1,0,0,0,548,550,1,0,0,0,549,547,1,0,0,0,550,
+  	551,3,102,51,0,551,552,3,94,47,0,552,553,5,61,0,0,553,567,1,0,0,0,554,
+  	560,3,94,47,0,555,556,3,102,51,0,556,557,3,94,47,0,557,559,1,0,0,0,558,
+  	555,1,0,0,0,559,562,1,0,0,0,560,558,1,0,0,0,560,561,1,0,0,0,561,563,1,
+  	0,0,0,562,560,1,0,0,0,563,564,3,102,51,0,564,565,3,94,47,0,565,567,1,
+  	0,0,0,566,540,1,0,0,0,566,554,1,0,0,0,567,93,1,0,0,0,568,577,3,104,52,
+  	0,569,577,3,106,53,0,570,577,3,108,54,0,571,577,3,110,55,0,572,577,3,
+  	112,56,0,573,577,3,114,57,0,574,577,5,84,0,0,575,577,5,35,0,0,576,568,
+  	1,0,0,0,576,569,1,0,0,0,576,570,1,0,0,0,576,571,1,0,0,0,576,572,1,0,0,
+  	0,576,573,1,0,0,0,576,574,1,0,0,0,576,575,1,0,0,0,577,95,1,0,0,0,578,
+  	581,3,92,46,0,579,581,3,94,47,0,580,578,1,0,0,0,580,579,1,0,0,0,581,97,
+  	1,0,0,0,582,583,7,10,0,0,583,99,1,0,0,0,584,588,5,35,0,0,585,588,3,98,
+  	49,0,586,588,5,36,0,0,587,584,1,0,0,0,587,585,1,0,0,0,587,586,1,0,0,0,
+  	588,101,1,0,0,0,589,590,7,11,0,0,590,103,1,0,0,0,591,592,5,74,0,0,592,
+  	594,3,96,48,0,593,595,3,96,48,0,594,593,1,0,0,0,595,596,1,0,0,0,596,594,
+  	1,0,0,0,596,597,1,0,0,0,597,105,1,0,0,0,598,599,5,75,0,0,599,600,3,96,
+  	48,0,600,107,1,0,0,0,601,602,5,76,0,0,602,604,3,96,48,0,603,605,3,96,
+  	48,0,604,603,1,0,0,0,605,606,1,0,0,0,606,604,1,0,0,0,606,607,1,0,0,0,
+  	607,109,1,0,0,0,608,609,5,77,0,0,609,611,3,96,48,0,610,612,3,96,48,0,
+  	611,610,1,0,0,0,612,613,1,0,0,0,613,611,1,0,0,0,613,614,1,0,0,0,614,111,
+  	1,0,0,0,615,616,5,78,0,0,616,618,3,96,48,0,617,619,3,96,48,0,618,617,
+  	1,0,0,0,619,620,1,0,0,0,620,618,1,0,0,0,620,621,1,0,0,0,621,113,1,0,0,
+  	0,622,623,5,79,0,0,623,625,3,96,48,0,624,626,3,96,48,0,625,624,1,0,0,
+  	0,626,627,1,0,0,0,627,625,1,0,0,0,627,628,1,0,0,0,628,115,1,0,0,0,68,
+  	119,121,135,139,145,152,159,164,168,172,176,180,184,188,192,196,200,204,
+  	208,212,216,220,224,228,232,236,240,244,248,252,256,260,264,268,272,276,
+  	280,284,288,291,302,311,327,371,383,394,407,420,428,438,454,464,472,484,
+  	525,533,538,547,560,566,576,580,587,596,606,613,620,627
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -3387,8 +3387,8 @@ tree::TerminalNode* LogotecGramarParser::Esperar_variableContext::ESPERAR() {
   return getToken(LogotecGramarParser::ESPERAR, 0);
 }
 
-tree::TerminalNode* LogotecGramarParser::Esperar_variableContext::NUMBER() {
-  return getToken(LogotecGramarParser::NUMBER, 0);
+LogotecGramarParser::Exp_integerContext* LogotecGramarParser::Esperar_variableContext::exp_integer() {
+  return getRuleContext<LogotecGramarParser::Exp_integerContext>(0);
 }
 
 
@@ -3432,7 +3432,7 @@ LogotecGramarParser::Esperar_variableContext* LogotecGramarParser::esperar_varia
     setState(375);
     match(LogotecGramarParser::ESPERAR);
     setState(376);
-    match(LogotecGramarParser::NUMBER);
+    exp_integer();
    
   }
   catch (RecognitionException &e) {
@@ -5025,6 +5025,10 @@ LogotecGramarParser::Exp_aritmeticaContext* LogotecGramarParser::Exp_integerCont
   return getRuleContext<LogotecGramarParser::Exp_aritmeticaContext>(0);
 }
 
+tree::TerminalNode* LogotecGramarParser::Exp_integerContext::NUMBER() {
+  return getToken(LogotecGramarParser::NUMBER, 0);
+}
+
 
 size_t LogotecGramarParser::Exp_integerContext::getRuleIndex() const {
   return LogotecGramarParser::RuleExp_integer;
@@ -5062,7 +5066,7 @@ LogotecGramarParser::Exp_integerContext* LogotecGramarParser::exp_integer() {
     exitRule();
   });
   try {
-    setState(537);
+    setState(538);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 56, _ctx)) {
     case 1: {
@@ -5076,6 +5080,13 @@ LogotecGramarParser::Exp_integerContext* LogotecGramarParser::exp_integer() {
       enterOuterAlt(_localctx, 2);
       setState(536);
       exp_aritmetica();
+      break;
+    }
+
+    case 3: {
+      enterOuterAlt(_localctx, 3);
+      setState(537);
+      match(LogotecGramarParser::NUMBER);
       break;
     }
 
@@ -5161,34 +5172,34 @@ LogotecGramarParser::Exp_aritmeticaContext* LogotecGramarParser::exp_aritmetica(
   });
   try {
     size_t alt;
-    setState(565);
+    setState(566);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::PAR_OPEN: {
         enterOuterAlt(_localctx, 1);
-        setState(539);
-        match(LogotecGramarParser::PAR_OPEN);
         setState(540);
+        match(LogotecGramarParser::PAR_OPEN);
+        setState(541);
         exp_matematica();
-        setState(546);
+        setState(547);
         _errHandler->sync(this);
         alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 57, _ctx);
         while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
           if (alt == 1) {
-            setState(541);
-            operador();
             setState(542);
+            operador();
+            setState(543);
             exp_matematica(); 
           }
-          setState(548);
+          setState(549);
           _errHandler->sync(this);
           alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 57, _ctx);
         }
-        setState(549);
-        operador();
         setState(550);
-        exp_matematica();
+        operador();
         setState(551);
+        exp_matematica();
+        setState(552);
         match(LogotecGramarParser::PAR_CLOSE);
         break;
       }
@@ -5202,25 +5213,25 @@ LogotecGramarParser::Exp_aritmeticaContext* LogotecGramarParser::exp_aritmetica(
       case LogotecGramarParser::SUMA:
       case LogotecGramarParser::ID: {
         enterOuterAlt(_localctx, 2);
-        setState(553);
+        setState(554);
         exp_matematica();
-        setState(559);
+        setState(560);
         _errHandler->sync(this);
         alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 58, _ctx);
         while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
           if (alt == 1) {
-            setState(554);
-            operador();
             setState(555);
+            operador();
+            setState(556);
             exp_matematica(); 
           }
-          setState(561);
+          setState(562);
           _errHandler->sync(this);
           alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 58, _ctx);
         }
-        setState(562);
-        operador();
         setState(563);
+        operador();
+        setState(564);
         exp_matematica();
         break;
       }
@@ -5314,61 +5325,61 @@ LogotecGramarParser::Exp_matematicaContext* LogotecGramarParser::exp_matematica(
     exitRule();
   });
   try {
-    setState(575);
+    setState(576);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::DIFERENCIA: {
         enterOuterAlt(_localctx, 1);
-        setState(567);
+        setState(568);
         diferencia_expr();
         break;
       }
 
       case LogotecGramarParser::AZAR: {
         enterOuterAlt(_localctx, 2);
-        setState(568);
+        setState(569);
         azar_expr();
         break;
       }
 
       case LogotecGramarParser::PRODUCTO: {
         enterOuterAlt(_localctx, 3);
-        setState(569);
+        setState(570);
         producto_expr();
         break;
       }
 
       case LogotecGramarParser::POTENCIA: {
         enterOuterAlt(_localctx, 4);
-        setState(570);
+        setState(571);
         potencia_expr();
         break;
       }
 
       case LogotecGramarParser::DIVISION: {
         enterOuterAlt(_localctx, 5);
-        setState(571);
+        setState(572);
         division_expr();
         break;
       }
 
       case LogotecGramarParser::SUMA: {
         enterOuterAlt(_localctx, 6);
-        setState(572);
+        setState(573);
         suma_expr();
         break;
       }
 
       case LogotecGramarParser::ID: {
         enterOuterAlt(_localctx, 7);
-        setState(573);
+        setState(574);
         match(LogotecGramarParser::ID);
         break;
       }
 
       case LogotecGramarParser::NUMBER: {
         enterOuterAlt(_localctx, 8);
-        setState(574);
+        setState(575);
         match(LogotecGramarParser::NUMBER);
         break;
       }
@@ -5438,19 +5449,19 @@ LogotecGramarParser::Expr_mat_aritmContext* LogotecGramarParser::expr_mat_aritm(
     exitRule();
   });
   try {
-    setState(579);
+    setState(580);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 61, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(577);
+      setState(578);
       exp_aritmetica();
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(578);
+      setState(579);
       exp_matematica();
       break;
     }
@@ -5522,7 +5533,7 @@ LogotecGramarParser::LogicoContext* LogotecGramarParser::logico() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(581);
+    setState(582);
     _la = _input->LA(1);
     if (!(_la == LogotecGramarParser::TRUE
 
@@ -5599,12 +5610,12 @@ LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
     exitRule();
   });
   try {
-    setState(586);
+    setState(587);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case LogotecGramarParser::NUMBER: {
         enterOuterAlt(_localctx, 1);
-        setState(583);
+        setState(584);
         match(LogotecGramarParser::NUMBER);
         break;
       }
@@ -5612,14 +5623,14 @@ LogotecGramarParser::ValorContext* LogotecGramarParser::valor() {
       case LogotecGramarParser::TRUE:
       case LogotecGramarParser::FALSE: {
         enterOuterAlt(_localctx, 2);
-        setState(584);
+        setState(585);
         logico();
         break;
       }
 
       case LogotecGramarParser::CADENA_TEXTO: {
         enterOuterAlt(_localctx, 3);
-        setState(585);
+        setState(586);
         match(LogotecGramarParser::CADENA_TEXTO);
         break;
       }
@@ -5699,7 +5710,7 @@ LogotecGramarParser::OperadorContext* LogotecGramarParser::operador() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(588);
+    setState(589);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & 16492674416640) != 0))) {
@@ -5777,18 +5788,18 @@ LogotecGramarParser::Diferencia_exprContext* LogotecGramarParser::diferencia_exp
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(590);
+    setState(591);
     match(LogotecGramarParser::DIFERENCIA);
 
-    setState(591);
+    setState(592);
     expr_mat_aritm();
-    setState(593); 
+    setState(594); 
     _errHandler->sync(this);
     alt = 1;
     do {
       switch (alt) {
         case 1: {
-              setState(592);
+              setState(593);
               expr_mat_aritm();
               break;
             }
@@ -5796,7 +5807,7 @@ LogotecGramarParser::Diferencia_exprContext* LogotecGramarParser::diferencia_exp
       default:
         throw NoViableAltException(this);
       }
-      setState(595); 
+      setState(596); 
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 63, _ctx);
     } while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER);
@@ -5863,10 +5874,10 @@ LogotecGramarParser::Azar_exprContext* LogotecGramarParser::azar_expr() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(597);
+    setState(598);
     match(LogotecGramarParser::AZAR);
 
-    setState(598);
+    setState(599);
     expr_mat_aritm();
    
   }
@@ -5936,18 +5947,18 @@ LogotecGramarParser::Producto_exprContext* LogotecGramarParser::producto_expr() 
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(600);
+    setState(601);
     match(LogotecGramarParser::PRODUCTO);
 
-    setState(601);
+    setState(602);
     expr_mat_aritm();
-    setState(603); 
+    setState(604); 
     _errHandler->sync(this);
     alt = 1;
     do {
       switch (alt) {
         case 1: {
-              setState(602);
+              setState(603);
               expr_mat_aritm();
               break;
             }
@@ -5955,7 +5966,7 @@ LogotecGramarParser::Producto_exprContext* LogotecGramarParser::producto_expr() 
       default:
         throw NoViableAltException(this);
       }
-      setState(605); 
+      setState(606); 
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 64, _ctx);
     } while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER);
@@ -6027,18 +6038,18 @@ LogotecGramarParser::Potencia_exprContext* LogotecGramarParser::potencia_expr() 
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(607);
+    setState(608);
     match(LogotecGramarParser::POTENCIA);
 
-    setState(608);
+    setState(609);
     expr_mat_aritm();
-    setState(610); 
+    setState(611); 
     _errHandler->sync(this);
     alt = 1;
     do {
       switch (alt) {
         case 1: {
-              setState(609);
+              setState(610);
               expr_mat_aritm();
               break;
             }
@@ -6046,7 +6057,7 @@ LogotecGramarParser::Potencia_exprContext* LogotecGramarParser::potencia_expr() 
       default:
         throw NoViableAltException(this);
       }
-      setState(612); 
+      setState(613); 
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 65, _ctx);
     } while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER);
@@ -6118,18 +6129,18 @@ LogotecGramarParser::Division_exprContext* LogotecGramarParser::division_expr() 
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(614);
+    setState(615);
     match(LogotecGramarParser::DIVISION);
 
-    setState(615);
+    setState(616);
     expr_mat_aritm();
-    setState(617); 
+    setState(618); 
     _errHandler->sync(this);
     alt = 1;
     do {
       switch (alt) {
         case 1: {
-              setState(616);
+              setState(617);
               expr_mat_aritm();
               break;
             }
@@ -6137,7 +6148,7 @@ LogotecGramarParser::Division_exprContext* LogotecGramarParser::division_expr() 
       default:
         throw NoViableAltException(this);
       }
-      setState(619); 
+      setState(620); 
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 66, _ctx);
     } while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER);
@@ -6209,18 +6220,18 @@ LogotecGramarParser::Suma_exprContext* LogotecGramarParser::suma_expr() {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(621);
+    setState(622);
     match(LogotecGramarParser::SUMA);
 
-    setState(622);
+    setState(623);
     expr_mat_aritm();
-    setState(624); 
+    setState(625); 
     _errHandler->sync(this);
     alt = 1;
     do {
       switch (alt) {
         case 1: {
-              setState(623);
+              setState(624);
               expr_mat_aritm();
               break;
             }
@@ -6228,7 +6239,7 @@ LogotecGramarParser::Suma_exprContext* LogotecGramarParser::suma_expr() {
       default:
         throw NoViableAltException(this);
       }
-      setState(626); 
+      setState(627); 
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 67, _ctx);
     } while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER);
