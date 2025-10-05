@@ -59,10 +59,17 @@ instruccion
     | mayorque_variable (comentario_linea)?
     | menorque_variable (comentario_linea)?
     | procedimiento_llamado (comentario_linea)?
+    | rumbo_get (comentario_linea)?
+    | muestra (comentario_linea)?
     | comentario
     | NEWLINE
     ;
 
+muestra:
+    MUESTRA (expr|rumbo_get);
+
+rumbo_get:
+    RUMBO;
  // Comentario de línea
 comentario_linea
     : LINE_COMMENT
@@ -197,7 +204,7 @@ si_variable
 
 
 si_sino_variable
-    : SI '(' exp_logica ')' '[' instruccion* ']' '[' instruccion* ']'
+    : si_variable '[' instruccion* ']'
     ;
 
 haz_hasta_variable
@@ -356,6 +363,8 @@ PONPOS: 'ponpos' ;
 PONXY: 'ponxy' ;
 
 PONRUMBO: 'ponrumbo' ;
+RUMBO: 'rumbo';
+MUESTRA: 'Muestra';
 
 PONX: 'ponx' ;
 
