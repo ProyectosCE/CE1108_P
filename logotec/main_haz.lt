@@ -66,5 +66,5 @@ repite Suma 4 x [
     av 50
     GD 90
 ]
-
-SI (x>10) [poncl rojo]
+Haz novo True
+SI (O (x>10) False && MayorQue? x 5) [poncl rojo]

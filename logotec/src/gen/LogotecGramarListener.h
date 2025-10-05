@@ -113,8 +113,23 @@ public:
   virtual void enterExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *ctx) = 0;
   virtual void exitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *ctx) = 0;
 
-  virtual void enterExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *ctx) = 0;
-  virtual void exitExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *ctx) = 0;
+  virtual void enterOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *ctx) = 0;
+  virtual void exitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *ctx) = 0;
+
+  virtual void enterOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *ctx) = 0;
+  virtual void exitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *ctx) = 0;
+
+  virtual void enterExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *ctx) = 0;
+  virtual void exitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *ctx) = 0;
+
+  virtual void enterExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *ctx) = 0;
+  virtual void exitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *ctx) = 0;
+
+  virtual void enterNegacion(LogotecGramarParser::NegacionContext *ctx) = 0;
+  virtual void exitNegacion(LogotecGramarParser::NegacionContext *ctx) = 0;
+
+  virtual void enterAndor(LogotecGramarParser::AndorContext *ctx) = 0;
+  virtual void exitAndor(LogotecGramarParser::AndorContext *ctx) = 0;
 
   virtual void enterSi_variable(LogotecGramarParser::Si_variableContext *ctx) = 0;
   virtual void exitSi_variable(LogotecGramarParser::Si_variableContext *ctx) = 0;

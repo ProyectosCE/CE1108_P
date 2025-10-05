@@ -85,7 +85,17 @@ public:
 
     virtual std::any visitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext *context) = 0;
 
-    virtual std::any visitExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *context) = 0;
+    virtual std::any visitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *context) = 0;
+
+    virtual std::any visitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *context) = 0;
+
+    virtual std::any visitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *context) = 0;
+
+    virtual std::any visitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *context) = 0;
+
+    virtual std::any visitNegacion(LogotecGramarParser::NegacionContext *context) = 0;
+
+    virtual std::any visitAndor(LogotecGramarParser::AndorContext *context) = 0;
 
     virtual std::any visitSi_variable(LogotecGramarParser::Si_variableContext *context) = 0;
 
