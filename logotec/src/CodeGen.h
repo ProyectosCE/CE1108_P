@@ -88,6 +88,52 @@ private:
     std::string generarExprCodigo(LogotecGramarParser::Exp_integerContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Exp_matematicaContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Exp_aritmeticaContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Exp_logicaContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Exp_logicas_exprContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Exp_logica_operacionesContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Iguales_variableContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Y_variableContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::O_variableContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Mayorque_variableContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Menorque_variableContext *ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::LogicoContext *ctx);
+
+    any visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext *ctx);
+
+    any visitRepite_variable(LogotecGramarParser::Repite_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Exp_logicaContext *ctx);
+
+
+    int checkLogicExpr(int _cpp_par_);
+
+    std::string checkLogicExpr(LogotecGramarParser::Exp_logicas_exprContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Exp_logica_operacionesContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Iguales_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Y_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::O_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Menorque_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::Mayorque_variableContext *ctx);
+
+    std::string checkLogicExpr(LogotecGramarParser::LogicoContext *ctx);
+
+    any visitSi_variable(LogotecGramarParser::Si_variableContext *ctx);
+
     std::string generarExprCodigo(LogotecGramarParser::Expr_mat_aritmContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Diferencia_exprContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Producto_exprContext *ctx);

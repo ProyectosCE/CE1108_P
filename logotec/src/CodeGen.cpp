@@ -141,40 +141,39 @@ any CodeGen::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) 
 any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
     if (errorReporter.hasErrors()) return nullptr;
 
-    std::string n1 = ctx->ID(0)->getText();
+    std::string n1 = ctx->ID()->getText();
     auto sym1 = symbolTable.lookup(n1);
     if (!sym1) {
         errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n1 + "' no declarada antes de INC.");
         return nullptr;
     }
-    if (!tiposEquivalentes(sym1->type, Type::INT)) {
-        errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n1 + "' no es numérica y no se puede usar en INC.");
+    if (sym1->type != Type::INT) {
+        errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n1 + "' no es de tipo int y no se puede usar en INC.");
         return nullptr;
     }
-    std::string codigoLinea;
-    if (ctx->ID().size() == 2) {
-        std::string n2 = ctx->ID(1)->getText();
-        auto sym2 = symbolTable.lookup(n2);
-        if (!sym2) {
-            errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n2 + "' no declarada como segundo parámetro de INC.");
-            return nullptr;
+    //check the type of the expression
+    string n2;
+    if (!ctx->expr_mat_aritm()) {
+        n2 = "++";
+        codigo += n1 + "++;";
+        // comentario si existe
+        if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+            agregarComentarioLinea(instrCtx);
         }
-        if (!tiposEquivalentes(sym2->type, Type::INT)) {
-            errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n2 + "' no es numérica y no se puede usar como segundo parámetro de INC.");
-            return nullptr;
-        }
-        codigoLinea = n1 + " += " + n2 + ";";
-    } else if (ctx->NUMBER()) {
-        codigoLinea = n1 + " += " + ctx->NUMBER()->getText() + ";";
-    } else {
-        codigoLinea = n1 + "++;";
+        codigo += "\n";
+        return nullptr;
     }
-    codigo += codigoLinea;
+    if (checkMathExpr(ctx->expr_mat_aritm()) != "int") {
+        error("La expresión en INC no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    n2 = generarExprCodigo(ctx->expr_mat_aritm());
+    codigo += n1 + " = " + n1 + " + " + n2 + ";";
+    // comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
     codigo += "\n";
-
     return nullptr;
 }
 
@@ -187,29 +186,9 @@ any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *c
         return nullptr;
     }
 
-    // Obtener valor de la expresión
-    string valor;
-    if (ctx->e->exp_integer()) {
-        valor = ctx->e->exp_integer()->getText();
-    } else if (ctx->e->ID()) {
-        string id = ctx->e->ID()->getText();
-        auto it = tablaTipos.find(id);
-        if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
-            return nullptr;
-        }
-        if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
-            return nullptr;
-        }
-        valor = id;
-    } else if (ctx->e->exp_integer()) {
-        ctx->e->exp_integer()->getText();
-    }
-     else {
-        error("Expresión inválida en AVANZA.");
-        return nullptr;
-    }
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
 
     codigo += "avanzaTortuga(" + valor + ");";
 
@@ -226,34 +205,13 @@ any CodeGen::visitRetrocede_variable(LogotecGramarParser::Retrocede_variableCont
 
     // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        error("La expresión en RETROCEDE no es válida o no es de tipo int.");
+        error("La expresión en AVANZA no es válida o no es de tipo int.");
         return nullptr;
     }
 
-    // Obtener valor de la expresión
-    string valor;
-    if (ctx->e->exp_integer()) {
-        valor = ctx->e->exp_integer()->getText();
-    } else if (ctx->e->ID()) {
-        string id = ctx->e->ID()->getText();
-        auto it = tablaTipos.find(id);
-        if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
-            return nullptr;
-        }
-        if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
-            return nullptr;
-        }
-        valor = id;
-    } else if (ctx->e->exp_integer()) {
-        ctx->e->exp_integer()->getText();
-    }
-
-    else {
-        error("Expresión inválida en AVANZA.");
-        return nullptr;
-    }
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
 
     codigo += "retrocedeTortuga(" + valor + ");";
 
@@ -270,30 +228,13 @@ any CodeGen::visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variab
 
     // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        error("La expresión en GIRA_DERECHA no es válida o no es de tipo int.");
+        error("La expresión en AVANZA no es válida o no es de tipo int.");
         return nullptr;
     }
 
-    // Obtener valor de la expresión
-    string valor;
-    if (ctx->e->exp_integer()) {
-        valor = ctx->e->exp_integer()->getText();
-    } else if (ctx->e->ID()) {
-        string id = ctx->e->ID()->getText();
-        auto it = tablaTipos.find(id);
-        if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
-            return nullptr;
-        }
-        if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
-            return nullptr;
-        }
-        valor = id;
-    } else {
-        error("Expresión inválida en AVANZA.");
-        return nullptr;
-    }
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
 
     codigo += "giraDerecha(" + valor + ");";
 
@@ -310,30 +251,13 @@ any CodeGen::visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_va
 
     // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        error("La expresión en GIRA_IZQUIERDA no es válida o no es de tipo int.");
+        error("La expresión no es válida o no es de tipo int.");
         return nullptr;
     }
 
-    // Obtener valor de la expresión
-    string valor;
-    if (ctx->e->exp_integer()) {
-        valor = ctx->e->exp_integer()->getText();
-    } else if (ctx->e->ID()) {
-        string id = ctx->e->ID()->getText();
-        auto it = tablaTipos.find(id);
-        if (it == tablaTipos.end()) {
-            error("Variable '" + id + "' no declarada antes de AVANZA.");
-            return nullptr;
-        }
-        if (it->second != "int") {
-            error("Variable '" + id + "' no es numérica y no se puede usar en AVANZA.");
-            return nullptr;
-        }
-        valor = id;
-    } else {
-        error("Expresión inválida en AVANZA.");
-        return nullptr;
-    }
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
 
     codigo += "giraIzquierda(" + valor + ");";
 
@@ -360,9 +284,14 @@ any CodeGen::visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_
 any CodeGen::visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *ctx) {
     if (hayError) return nullptr; // no generar nada si hay error previo
 
-        string n1 = ctx->NUMBER(0)->getText();
-        string n2 = ctx->NUMBER(1)->getText();
-
+        //check the type of the expressions
+        // Validar tipo de la expresión
+        if (checkMathExpr(ctx->expr_mat_aritm(0)) != "int" || checkMathExpr(ctx->expr_mat_aritm(1)) != "int") {
+            error("La expresión en no es válida o no es de tipo int.");
+            return nullptr;
+        }
+        string n1 = generarExprCodigo(ctx->expr_mat_aritm(0));
+        string n2 = generarExprCodigo(ctx->expr_mat_aritm(1));
         codigo += "ponPos(" + n1 + "," + n2 + ");";
 
         // comentario si existe
@@ -377,8 +306,13 @@ any CodeGen::visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *c
 any CodeGen::visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx) {
     if (hayError) return nullptr;
 
-    string n1 = ctx->NUMBER(0)->getText();
-    string n2 = ctx->NUMBER(1)->getText();
+    // Validar tipo de la expresión
+    if (checkMathExpr(ctx->expr_mat_aritm(0)) != "int" || checkMathExpr(ctx->expr_mat_aritm(1)) != "int") {
+        error("La expresión en no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    string n1 = generarExprCodigo(ctx->expr_mat_aritm(0));
+    string n2 = generarExprCodigo(ctx->expr_mat_aritm(1));
 
     codigo += "ponXY(" + n1 + "," + n2 + ");";
 
@@ -392,7 +326,12 @@ any CodeGen::visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx
 any CodeGen::visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContext *ctx) {
     if (hayError) return nullptr;
 
-    string n1 = ctx->NUMBER()->getText();
+    // Validar tipo de la expresi��n
+    if (checkMathExpr(ctx->expr_mat_aritm()) != "int") {
+        error("La expresión en no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    string n1 = generarExprCodigo(ctx->expr_mat_aritm());
 
     codigo += "ponRumbo(" + n1 + ");";
 
@@ -454,7 +393,12 @@ string CodeGen::inferTipo(LogotecGramarParser::ExprContext *ctx) {
 
 any CodeGen::visitPonx_variable(LogotecGramarParser::Ponx_variableContext *context) {
     if (hayError) return nullptr;
-    string n1 = context->NUMBER()->getText();
+    // Validar tipo de la expresión
+    if (checkMathExpr(context->expr_mat_aritm()) != "int") {
+        error("La expresión en no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    string n1 = generarExprCodigo(context->expr_mat_aritm());
     codigo += "ponX(" + n1 + ");";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
@@ -465,7 +409,12 @@ any CodeGen::visitPonx_variable(LogotecGramarParser::Ponx_variableContext *conte
 
 any CodeGen::visitPony_variable(LogotecGramarParser::Pony_variableContext *context) {
     if (hayError) return nullptr;
-    string n1 = context->NUMBER()->getText();
+    // Validar tipo de la expresión
+    if (checkMathExpr(context->expr_mat_aritm()) != "int") {
+        error("La expresión en no es válida o no es de tipo int.");
+        return nullptr;
+    }
+    string n1 = generarExprCodigo(context->expr_mat_aritm());
     codigo += "ponY(" + n1 + ");";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
@@ -528,7 +477,27 @@ any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext 
 
 any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) {
     if (hayError) return nullptr;
-    string n1 = context->colores()->getText();
+    //check that the color is valid color or variable of type color
+    string n1;
+    if (context->colores_variable()->ID()) {
+        std::string colorVar = context->colores_variable()->ID()->getText();
+        auto sym = symbolTable.lookup(colorVar);
+        if (!sym) {
+            error("Variable de color '" + colorVar + "' no declarada.");
+            return nullptr;
+        }
+        if (sym->type != Type::COLOR) {
+            error("Variable '" + colorVar + "' no es de tipo Color.");
+            return nullptr;
+        }
+        n1 = colorVar;
+    }
+    else if (context->colores_variable()->colores()) {
+        n1 = context->colores_variable()->colores()->getText();
+    } else {
+        error("Color no válido en PONCOLORLAPIZ.");
+        return nullptr;
+    }
     codigo += "ponColorLapiz(" + n1 + ");";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
@@ -640,9 +609,7 @@ string CodeGen::checkMathExpr(LogotecGramarParser::ExprContext* ctx) {
         }
         return "int";
     }
-    if (ctx->exp_integer()) {
-        return checkMathExpr(ctx->exp_integer());
-    }
+    if (ctx->exp_integer()) return checkMathExpr(ctx->exp_integer());
     // No se permite CADENA_TEXTO, colores ni exp_logica en contexto matemático
     error("Expresión no válida en contexto matemático: debe ser número, variable int o expresión matemática.");
     return "error";
@@ -882,4 +849,363 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_aritmeticaContex
         result += " " + ops.back()->getText() + " " + generarExprCodigo(ems.back());
     }
     return result;
+}
+
+
+//geberar codigo para exoresuibes logicas
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_logicaContext* ctx) {
+    if (ctx->exp_logicas_expr()) return generarExprCodigo(ctx->exp_logicas_expr());
+    if (ctx->exp_logica_operaciones()) return generarExprCodigo(ctx->exp_logica_operaciones());
+    return "";
+}
+
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_logicas_exprContext* ctx) {
+    if (ctx->NOT()) return "!" + generarExprCodigo(ctx->exp_logicas_expr()[0]);
+    if (ctx->operador_logico()) {
+        std::string left = generarExprCodigo(ctx->exp_logica_operaciones());
+        std::string right = generarExprCodigo(ctx->exp_logicas_expr()[0]);
+        std::string op = ctx->operador_logico()->getText();
+        if (op == "Y") op = "&&";
+        else if (op == "O") op = "||";
+        return "(" + left + " " + op + " " + right + ")";
+    }
+    if (ctx->exp_logica_operaciones()) return generarExprCodigo(ctx->exp_logica_operaciones());
+    return "";
+}
+
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_logica_operacionesContext* ctx) {
+    if (ctx->iguales_variable()) return generarExprCodigo(ctx->iguales_variable());
+    if (ctx->y_variable()) return generarExprCodigo(ctx->y_variable());
+    if (ctx->o_variable()) return generarExprCodigo(ctx->o_variable());
+    if (ctx->mayorque_variable()) return generarExprCodigo(ctx->mayorque_variable());
+    if (ctx->menorque_variable()) return generarExprCodigo(ctx->menorque_variable());
+    if (ctx->logico()) return generarExprCodigo(ctx->logico());
+    if (ctx->ID()) {
+        // Si es solo una variable ID, debe ser de tipo bool
+        auto it = tablaTipos.find(ctx->getText());
+        if (it != tablaTipos.end()) {
+            if (it->second == "bool") return "bool";
+            else {
+                error("Variable '" + ctx->getText() + "' debe ser de tipo bool en expresión lógica simple.");
+                return "error";
+            }
+        } else {
+            error("Variable '" + ctx->getText() + "' no declarada.");
+            return "error";
+        }
+    }
+    if (ctx->NUMBER()) {
+        // Los números en contexto lógico se consideran válidos (0 = false, cualquier otro = true)
+        return "bool";
+    }
+
+    error("Expresión lógica inválida.");
+    return "error";
+}
+
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Iguales_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string left = generarExprCodigo(ctx->expr(0));
+        std::string right = generarExprCodigo(ctx->expr(1));
+        return "(" + left + " == " + right + ")";
+    }
+    return "";
+}
+
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Y_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string left = generarExprCodigo(ctx->expr(0));
+        std::string right = generarExprCodigo(ctx->expr(1));
+        return "(" + left + " && " + right + ")";
+    }
+    return "";
+}
+
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::O_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string left = generarExprCodigo(ctx->expr(0));
+        std::string right = generarExprCodigo(ctx->expr(1));
+        return "(" + left + " || " + right + ")";
+    }
+    return "";
+}
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Mayorque_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string left = generarExprCodigo(ctx->expr(0));
+        std::string right = generarExprCodigo(ctx->expr(1));
+        return "(" + left + " > " + right + ")";
+    }
+    return "";
+}
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Menorque_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string left = generarExprCodigo(ctx->expr(0));
+        std::string right = generarExprCodigo(ctx->expr(1));
+        return "(" + left + " < " + right + ")";
+    }
+    return "";
+}
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::LogicoContext* ctx) {
+    if (ctx->getText() == "True") return "true";
+    if (ctx->getText() == "False") return "false";
+    return "";
+}
+
+// Ejecuta [instrucciones*]
+any CodeGen::visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Abrir bloque de código para Ejecuta
+    codigo += "{\n";
+    // Recorrer cada instruccion dentro de EJECUTA
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
+    }
+    codigo += "}\n";
+    return nullptr;
+}
+
+//repite n [instrucciones*]
+any CodeGen::visitRepite_variable(LogotecGramarParser::Repite_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Validar tipo de la expresión
+    if (checkMathExpr(ctx->e) != "int") {
+        error("La expresión en REPITE no es válida o no es de tipo int.");
+        return nullptr;
+    }
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
+
+    // Abrir bloque de código para Repite
+    codigo += "for(int _i=0; _i<" + valor + "; _i++) {\n";
+    // Recorrer cada instruccion dentro de REPITE
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
+    }
+    codigo += "}\n";
+    return nullptr;
+}
+
+
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Exp_logicas_exprContext* ctx) {
+    if (ctx->NOT()) return checkLogicExpr(ctx->exp_logicas_expr()[0]);
+    if (ctx->operador_logico()) {
+        std::string left = checkLogicExpr(ctx->exp_logica_operaciones());
+        std::string right = checkLogicExpr(ctx->exp_logicas_expr()[0]);
+        if (left == "bool" && right == "bool") return "bool";
+        return "error";
+    }
+    if (ctx->exp_logica_operaciones()) return checkLogicExpr(ctx->exp_logica_operaciones());
+
+
+    error("exprcion_mat_aritm inválido en contexto matemático.");
+    return "error";
+}
+
+
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Exp_logicaContext* ctx) {
+    if (ctx->exp_logicas_expr()) return checkLogicExpr(ctx->exp_logicas_expr());
+    if (ctx->exp_logica_operaciones()) return checkLogicExpr(ctx->exp_logica_operaciones());
+    error("exprcion_mat_aritm inválido en contexto matemático.");
+    return "error";
+}
+
+
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Exp_logica_operacionesContext* ctx) {
+    if (ctx->iguales_variable()) return checkLogicExpr(ctx->iguales_variable());
+    if (ctx->y_variable()) return checkLogicExpr(ctx->y_variable());
+    if (ctx->o_variable()) return checkLogicExpr(ctx->o_variable());
+    if (ctx->mayorque_variable()) return checkLogicExpr(ctx->mayorque_variable());
+    if (ctx->menorque_variable()) return checkLogicExpr(ctx->menorque_variable());
+    if (ctx->logico()) return checkLogicExpr(ctx->logico());
+    if (ctx->ID()) {
+        // Si es solo una variable ID, debe ser de tipo bool
+        auto it = tablaTipos.find(ctx->getText());
+        if (it != tablaTipos.end()) {
+            if (it->second == "bool") return "bool";
+            else {
+                error("Variable '" + ctx->getText() + "' debe ser de tipo bool en expresión lógica simple.");
+                return "error";
+            }
+        } else {
+            error("Variable '" + ctx->getText() + "' no declarada.");
+            return "error";
+        }
+    }
+    if (ctx->NUMBER()) {
+        // Los números en contexto lógico se consideran válidos (0 = false, cualquier otro = true)
+        return "bool";
+    }
+
+    error("Expresión lógica inválida.");
+    return "error";
+}
+
+// Implementación faltante para checkLogicExpr(LogotecGramarParser::LogicoContext*)
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::LogicoContext* ctx) {
+    // Asume que LogicoContext representa un valor booleano literal (True/False)
+    std::string val = ctx->getText();
+    if (val == "True" || val == "False") {
+        return "bool";
+    }
+    error("Valor lógico inválido: " + val);
+    return "error";
+}
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Iguales_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string tipo1 = inferTipo(ctx->expr(0));
+        std::string tipo2 = inferTipo(ctx->expr(1));
+        if (tipo1 == "error" || tipo2 == "error") return "error";
+        
+        // Para igualdad, los tipos deben ser compatibles
+        if (tipo1 != tipo2) {
+            error("Error de tipos en comparación de igualdad: '" + tipo1 + "' y '" + tipo2 + "' no son compatibles.");
+            return "error";
+        }
+        // La comparación siempre retorna bool
+        return "bool";
+    }
+    return "error";
+}
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Y_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        // Para Y lógico, ambos operandos deben evaluar a bool
+        // Pero pueden ser expresiones que retornen bool, no necesariamente variables bool
+        std::string tipo1 = inferTipo(ctx->expr(0));
+        std::string tipo2 = inferTipo(ctx->expr(1));
+        
+        // Si son variables simples, deben ser bool
+        if (ctx->expr(0)->ID() && !ctx->expr(0)->exp_logica()) {
+            if (tipo1 != "bool") {
+                error("Variable '" + ctx->expr(0)->ID()->getText() + "' debe ser de tipo bool en operador Y.");
+                return "error";
+            }
+        }
+        if (ctx->expr(1)->ID() && !ctx->expr(1)->exp_logica()) {
+            if (tipo2 != "bool") {
+                error("Variable '" + ctx->expr(1)->ID()->getText() + "' debe ser de tipo bool en operador Y.");
+                return "error";
+            }
+        }
+        
+        // Si son expresiones lógicas, verificar que evalúen a bool
+        if (ctx->expr(0)->exp_logica()) {
+            if (checkLogicExpr(ctx->expr(0)->exp_logica()) != "bool") return "error";
+        }
+        if (ctx->expr(1)->exp_logica()) {
+            if (checkLogicExpr(ctx->expr(1)->exp_logica()) != "bool") return "error";
+        }
+        
+        return "bool";
+    }
+    return "error";
+}
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::O_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        // Para O lógico, mismo tratamiento que Y
+        std::string tipo1 = inferTipo(ctx->expr(0));
+        std::string tipo2 = inferTipo(ctx->expr(1));
+        
+        // Si son variables simples, deben ser bool
+        if (ctx->expr(0)->ID() && !ctx->expr(0)->exp_logica()) {
+            if (tipo1 != "bool") {
+                error("Variable '" + ctx->expr(0)->ID()->getText() + "' debe ser de tipo bool en operador O.");
+                return "error";
+            }
+        }
+        if (ctx->expr(1)->ID() && !ctx->expr(1)->exp_logica()) {
+            if (tipo2 != "bool") {
+                error("Variable '" + ctx->expr(1)->ID()->getText() + "' debe ser de tipo bool en operador O.");
+                return "error";
+            }
+        }
+        
+        // Si son expresiones lógicas, verificar que evalúen a bool
+        if (ctx->expr(0)->exp_logica()) {
+            if (checkLogicExpr(ctx->expr(0)->exp_logica()) != "bool") return "error";
+        }
+        if (ctx->expr(1)->exp_logica()) {
+            if (checkLogicExpr(ctx->expr(1)->exp_logica()) != "bool") return "error";
+        }
+        
+        return "bool";
+    }
+    return "error";
+}
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Menorque_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string tipo1 = inferTipo(ctx->expr(0));
+        std::string tipo2 = inferTipo(ctx->expr(1));
+        if (tipo1 == "error" || tipo2 == "error") return "error";
+        
+        // Para comparaciones relacionales, ambos deben ser numéricos o del mismo tipo
+        if (tipo1 == "int" && tipo2 == "int") {
+            return "bool";
+        } else if (tipo1 == tipo2) {
+            // Permitir comparación de otros tipos si son iguales
+            return "bool";
+        } else {
+            error("Error de tipos en operador menor que: los operandos deben ser del mismo tipo.");
+            return "error";
+        }
+    }
+    return "error";
+}
+
+std::string CodeGen::checkLogicExpr(LogotecGramarParser::Mayorque_variableContext* ctx) {
+    if (ctx->expr(0) && ctx->expr(1)) {
+        std::string tipo1 = inferTipo(ctx->expr(0));
+        std::string tipo2 = inferTipo(ctx->expr(1));
+        if (tipo1 == "error" || tipo2 == "error") return "error";
+        
+        // Para comparaciones relacionales, ambos deben ser numéricos o del mismo tipo
+        if (tipo1 == "int" && tipo2 == "int") {
+            return "bool";
+        } else if (tipo1 == tipo2) {
+            // Permitir comparación de otros tipos si son iguales
+            return "bool";
+        } else {
+            error("Error de tipos en operador mayor que: los operandos deben ser del mismo tipo.");
+            return "error";
+        }
+    }
+    return "error";
+}
+
+// visit Si_variable
+any CodeGen::visitSi_variable(LogotecGramarParser::Si_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Validar tipo de la expresión
+    if (checkLogicExpr(ctx->exp_logica()) != "bool") {
+        error("La expresión en SI no es válida o no es de tipo bool.");
+        return nullptr;
+    }
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->exp_logica());
+    if (hayError) return nullptr;
+
+    // Abrir bloque de código para Si
+    codigo += "if (" + valor + ") {\n";
+    // Recorrer cada instruccion dentro de SI
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
+    }
+    codigo += "}\n";
+
+    return nullptr;
 }

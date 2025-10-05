@@ -60,6 +60,7 @@ instruccion
     | menorque_variable (comentario_linea)?
     | procedimiento_llamado (comentario_linea)?
     | comentario
+    | NEWLINE
     ;
 
  // Comentario de línea
@@ -91,24 +92,24 @@ inic_variable
 
 // INC: incremento de variable
 inc_variable
-    : INC '[' ID (ID | NUMBER)? ']'   // N1 obligatorio, N2 opcional
+    : INC '[' ID (expr_mat_aritm)? ']'   // N1 obligatorio, N2 opcional
     ;
 
     // AVANZA: mover avatar
 avanza_variable
-    : (AVANZA | AV) e=expr
+    : (AVANZA | AV) e=expr_mat_aritm
     ;
 
 retrocede_variable
-    : (RETROCEDE | RE) e=expr
+    : (RETROCEDE | RE) e=expr_mat_aritm
     ;
 
 gira_derecha_variable
-    : (GIRA_DERECHA | GD) e=expr
+    : (GIRA_DERECHA | GD) e=expr_mat_aritm
     ;
 
 gira_izquierda_variable
-    : (GIRA_IZQUIERDA | GI) e=expr
+    : (GIRA_IZQUIERDA | GI) e=expr_mat_aritm
     ;
 
 ocultar_tortuga_variable
@@ -116,23 +117,23 @@ ocultar_tortuga_variable
     ;
 
 ponpos_variable
-    : PONPOS '[' NUMBER NUMBER ']'
+    : PONPOS '[' expr_mat_aritm expr_mat_aritm ']'
     ;
 
 ponxy_variable
-    : PONXY NUMBER NUMBER
+    : PONXY expr_mat_aritm expr_mat_aritm
     ;
 
 ponrumbo_variable
-    : PONRUMBO NUMBER
+    : PONRUMBO expr_mat_aritm
     ;
 
 ponx_variable
-    : PONX NUMBER
+    : PONX expr_mat_aritm
     ;
 
 pony_variable
-    : PONY NUMBER
+    : PONY expr_mat_aritm
     ;
 
 bajalapiz_variable
@@ -144,7 +145,7 @@ subelapiz_variable
     ;
 
 poncolorlapiz_variable
-    : (PONCOLORLAPIZ | PCL) (colores|ID)
+    : (PONCOLORLAPIZ | PCL) (colores_variable)
     ;
 
  centro_variable
@@ -158,12 +159,38 @@ ejecuta_variable
     ;
 
 repite_variable
-    : REPITE NUMBER '[' instruccion* ']'
+    : REPITE e=expr_mat_aritm '[' instruccion* ']'
+    ;
+
+exp_logica
+    : 
+     exp_logica_operaciones
+    | exp_logicas_expr
+    ;
+
+exp_logica_operaciones:
+    iguales_variable
+    | y_variable
+    | o_variable
+    | mayorque_variable
+    | logico
+    | ID
+    | NUMBER
+    | menorque_variable;
+
+exp_logicas_expr:
+    NOT exp_logicas_expr
+    |'(' exp_logicas_expr* ')'
+    | exp_logica_operaciones operador_logico exp_logicas_expr
+    | exp_logica_operaciones ((AND | OR) exp_logicas_expr)* ((AND | OR) exp_logicas_expr)
+    | exp_logica_operaciones
     ;
 
 si_variable
-    : SI '(' expr ')' '[' instruccion* ']'
+    : SI '(' exp_logica ')' '[' instruccion* ']'
     ;
+
+
 
 si_sino_variable
     : SI '(' expr ')' '[' instruccion* ']' '[' instruccion* ']'
@@ -205,6 +232,9 @@ menorque_variable
     : MENORQUEQ expr expr
     ;
 
+colores_variable:
+    colores |ID;
+
 colores
     : AZUL | NEGRO | ROJO
     ;
@@ -213,21 +243,10 @@ expr
     : CADENA_TEXTO
     | ID
     | NUMBER
-    | exp_logica
     | exp_integer
+    | exp_logica
     | colores
     ;
-
-
-
-exp_logica:
-        iguales_variable
-        | y_variable
-        | o_variable
-        | mayorque_variable
-        | menorque_variable
-        | logico
-        ;
 
 exp_integer:
     exp_matematica
@@ -267,6 +286,18 @@ valor
     | CADENA_TEXTO
     ;
 
+operador_logico:
+    | AND
+    | OR
+    | NOT
+    | GT
+    | LT
+    | GEQ
+    | LEQ
+    | EQ
+    | NEQ
+    ;
+
  operador:
     PLUS
     | MINUS
@@ -286,11 +317,11 @@ producto_expr
     ;
 
 potencia_expr
-    : POTENCIA (expr_mat_aritm) (expr_mat_aritm)+
+    : POTENCIA (expr_mat_aritm) (expr_mat_aritm)
     ;
 
 division_expr
-    : DIVISION (expr_mat_aritm) (expr_mat_aritm)+
+    : DIVISION (expr_mat_aritm) (expr_mat_aritm)
     ;
 
 suma_expr

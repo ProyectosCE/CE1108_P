@@ -5,7 +5,6 @@
 #include "CodeGen.h"
 #include "gen/LogotecGramarLexer.h"
 #include "gen/LogotecGramarParser.h"
-#include "SemanticVisitor.h"
 #include <filesystem>
 
 using namespace std;
