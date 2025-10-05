@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -15,41 +15,41 @@ public:
     T__0 = 1, T__1 = 2, T__2 = 3, HAZ = 4, INIC = 5, INC = 6, AVANZA = 7, 
     AV = 8, RETROCEDE = 9, RE = 10, GIRA_DERECHA = 11, GD = 12, GIRA_IZQUIERDA = 13, 
     GI = 14, OCULTAR_TORTUGA = 15, OT = 16, PONPOS = 17, PONXY = 18, PONRUMBO = 19, 
-    PONX = 20, PONY = 21, BAJALAPIZ = 22, BL = 23, SUBELAPIZ = 24, SL = 25, 
-    AZUL = 26, NEGRO = 27, ROJO = 28, PONCOLORLAPIZ = 29, PCL = 30, CENTRO = 31, 
-    ESPERAR = 32, TRUE = 33, FALSE = 34, NUMBER = 35, CADENA_TEXTO = 36, 
-    PROGRAM = 37, VAR = 38, PRINTLN = 39, PLUS = 40, MINUS = 41, MULT = 42, 
-    DIV = 43, IF = 44, ELSE = 45, WHILE = 46, FOR = 47, AND = 48, OR = 49, 
-    NOT = 50, GT = 51, LT = 52, GEQ = 53, LEQ = 54, EQ = 55, NEQ = 56, ASSIGN = 57, 
-    BRACKET_OPEN = 58, BRACKET_CLOSE = 59, PAR_OPEN = 60, PAR_CLOSE = 61, 
-    SEMICOLON = 62, REPITE = 63, SI = 64, HAZ_HASTA = 65, HASTA = 66, HAZ_MIENTRAS = 67, 
-    MIENTRAS = 68, IGUALESQ = 69, Y = 70, O = 71, MAYORQUEQ = 72, MENORQUEQ = 73, 
-    DIFERENCIA = 74, AZAR = 75, PRODUCTO = 76, POTENCIA = 77, DIVISION = 78, 
-    SUMA = 79, RESTA = 80, PARA = 81, FIN = 82, EJECUTA = 83, ID = 84, NEWLINE = 85, 
-    WS = 86, LINE_COMMENT = 87
+    RUMBO = 20, MUESTRA = 21, PONX = 22, PONY = 23, BAJALAPIZ = 24, BL = 25, 
+    SUBELAPIZ = 26, SL = 27, AZUL = 28, NEGRO = 29, ROJO = 30, PONCOLORLAPIZ = 31, 
+    PCL = 32, CENTRO = 33, ESPERAR = 34, TRUE = 35, FALSE = 36, NUMBER = 37, 
+    CADENA_TEXTO = 38, PROGRAM = 39, VAR = 40, PRINTLN = 41, PLUS = 42, 
+    MINUS = 43, MULT = 44, DIV = 45, IF = 46, ELSE = 47, WHILE = 48, FOR = 49, 
+    AND = 50, OR = 51, NOT = 52, GT = 53, LT = 54, GEQ = 55, LEQ = 56, EQ = 57, 
+    NEQ = 58, ASSIGN = 59, BRACKET_OPEN = 60, BRACKET_CLOSE = 61, PAR_OPEN = 62, 
+    PAR_CLOSE = 63, SEMICOLON = 64, REPITE = 65, SI = 66, HAZ_HASTA = 67, 
+    HASTA = 68, HAZ_MIENTRAS = 69, MIENTRAS = 70, IGUALESQ = 71, Y = 72, 
+    O = 73, MAYORQUEQ = 74, MENORQUEQ = 75, DIFERENCIA = 76, AZAR = 77, 
+    PRODUCTO = 78, POTENCIA = 79, DIVISION = 80, SUMA = 81, RESTA = 82, 
+    PARA = 83, FIN = 84, EJECUTA = 85, ID = 86, NEWLINE = 87, WS = 88, LINE_COMMENT = 89
   };
 
   enum {
     RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLinea_instrucciones = 3, 
-    RuleLista_parametros = 4, RuleInstruccion = 5, RuleComentario_linea = 6, 
-    RuleComentario = 7, RuleProcedimiento_llamado = 8, RuleParametros_llamado = 9, 
-    RuleLista_parametros_llamado = 10, RuleHaz_variable = 11, RuleInic_variable = 12, 
-    RuleInc_variable = 13, RuleAvanza_variable = 14, RuleRetrocede_variable = 15, 
-    RuleGira_derecha_variable = 16, RuleGira_izquierda_variable = 17, RuleOcultar_tortuga_variable = 18, 
-    RulePonpos_variable = 19, RulePonxy_variable = 20, RulePonrumbo_variable = 21, 
-    RulePonx_variable = 22, RulePony_variable = 23, RuleBajalapiz_variable = 24, 
-    RuleSubelapiz_variable = 25, RulePoncolorlapiz_variable = 26, RuleCentro_variable = 27, 
-    RuleEsperar_variable = 28, RuleEjecuta_variable = 29, RuleRepite_variable = 30, 
-    RuleExp_logica = 31, RuleExp_logica_operaciones = 32, RuleExp_logicas_expr = 33, 
-    RuleAndor = 34, RuleSi_variable = 35, RuleSi_sino_variable = 36, RuleHaz_hasta_variable = 37, 
-    RuleHasta_variable = 38, RuleHaz_mientras_variable = 39, RuleMientras_variable = 40, 
-    RuleIguales_variable = 41, RuleY_variable = 42, RuleO_variable = 43, 
-    RuleMayorque_variable = 44, RuleMenorque_variable = 45, RuleColores_variable = 46, 
-    RuleColores = 47, RuleExpr = 48, RuleExp_integer = 49, RuleExp_aritmetica = 50, 
-    RuleExp_matematica = 51, RuleExpr_mat_aritm = 52, RuleLogico = 53, RuleValor = 54, 
-    RuleOperador_logico = 55, RuleOperador = 56, RuleDiferencia_expr = 57, 
-    RuleAzar_expr = 58, RuleProducto_expr = 59, RulePotencia_expr = 60, 
-    RuleDivision_expr = 61, RuleSuma_expr = 62
+    RuleLista_parametros = 4, RuleInstruccion = 5, RuleMuestra = 6, RuleRumbo_get = 7, 
+    RuleComentario_linea = 8, RuleComentario = 9, RuleProcedimiento_llamado = 10, 
+    RuleParametros_llamado = 11, RuleLista_parametros_llamado = 12, RuleHaz_variable = 13, 
+    RuleInic_variable = 14, RuleInc_variable = 15, RuleAvanza_variable = 16, 
+    RuleRetrocede_variable = 17, RuleGira_derecha_variable = 18, RuleGira_izquierda_variable = 19, 
+    RuleOcultar_tortuga_variable = 20, RulePonpos_variable = 21, RulePonxy_variable = 22, 
+    RulePonrumbo_variable = 23, RulePonx_variable = 24, RulePony_variable = 25, 
+    RuleBajalapiz_variable = 26, RuleSubelapiz_variable = 27, RulePoncolorlapiz_variable = 28, 
+    RuleCentro_variable = 29, RuleEsperar_variable = 30, RuleEjecuta_variable = 31, 
+    RuleRepite_variable = 32, RuleExp_logica = 33, RuleExp_logica_operaciones = 34, 
+    RuleExp_logicas_expr = 35, RuleAndor = 36, RuleSi_variable = 37, RuleSi_sino_variable = 38, 
+    RuleHaz_hasta_variable = 39, RuleHasta_variable = 40, RuleHaz_mientras_variable = 41, 
+    RuleMientras_variable = 42, RuleIguales_variable = 43, RuleY_variable = 44, 
+    RuleO_variable = 45, RuleMayorque_variable = 46, RuleMenorque_variable = 47, 
+    RuleColores_variable = 48, RuleColores = 49, RuleExpr = 50, RuleExp_integer = 51, 
+    RuleExp_aritmetica = 52, RuleExp_matematica = 53, RuleExpr_mat_aritm = 54, 
+    RuleLogico = 55, RuleValor = 56, RuleOperador_logico = 57, RuleOperador = 58, 
+    RuleDiferencia_expr = 59, RuleAzar_expr = 60, RuleProducto_expr = 61, 
+    RulePotencia_expr = 62, RuleDivision_expr = 63, RuleSuma_expr = 64
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -75,6 +75,8 @@ public:
   class Linea_instruccionesContext;
   class Lista_parametrosContext;
   class InstruccionContext;
+  class MuestraContext;
+  class Rumbo_getContext;
   class Comentario_lineaContext;
   class ComentarioContext;
   class Procedimiento_llamadoContext;
@@ -260,6 +262,8 @@ public:
     Mayorque_variableContext *mayorque_variable();
     Menorque_variableContext *menorque_variable();
     Procedimiento_llamadoContext *procedimiento_llamado();
+    Rumbo_getContext *rumbo_get();
+    MuestraContext *muestra();
     ComentarioContext *comentario();
     antlr4::tree::TerminalNode *NEWLINE();
 
@@ -271,6 +275,38 @@ public:
   };
 
   InstruccionContext* instruccion();
+
+  class  MuestraContext : public antlr4::ParserRuleContext {
+  public:
+    MuestraContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *MUESTRA();
+    ExprContext *expr();
+    Rumbo_getContext *rumbo_get();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  MuestraContext* muestra();
+
+  class  Rumbo_getContext : public antlr4::ParserRuleContext {
+  public:
+    Rumbo_getContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *RUMBO();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Rumbo_getContext* rumbo_get();
 
   class  Comentario_lineaContext : public antlr4::ParserRuleContext {
   public:
@@ -846,10 +882,7 @@ public:
   public:
     Si_sino_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *SI();
-    antlr4::tree::TerminalNode *PAR_OPEN();
-    Exp_logicaContext *exp_logica();
-    antlr4::tree::TerminalNode *PAR_CLOSE();
+    Si_variableContext *si_variable();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 

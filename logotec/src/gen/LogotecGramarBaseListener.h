@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -33,6 +33,12 @@ public:
 
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
+
+  virtual void enterMuestra(LogotecGramarParser::MuestraContext * /*ctx*/) override { }
+  virtual void exitMuestra(LogotecGramarParser::MuestraContext * /*ctx*/) override { }
+
+  virtual void enterRumbo_get(LogotecGramarParser::Rumbo_getContext * /*ctx*/) override { }
+  virtual void exitRumbo_get(LogotecGramarParser::Rumbo_getContext * /*ctx*/) override { }
 
   virtual void enterComentario_linea(LogotecGramarParser::Comentario_lineaContext * /*ctx*/) override { }
   virtual void exitComentario_linea(LogotecGramarParser::Comentario_lineaContext * /*ctx*/) override { }

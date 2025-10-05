@@ -68,3 +68,5 @@ repite Suma 4 x [
 ]
 Haz novo True
 SI (O (x>10) False && MayorQue? x 5) [poncl rojo]
+
+Ejecuta [av 33 DG 1]

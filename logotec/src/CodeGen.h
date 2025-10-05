@@ -85,6 +85,9 @@ private:
     std::string checkMathExpr(LogotecGramarParser::Azar_exprContext *ctx);
 
     std::string generarExprCodigo(LogotecGramarParser::ExprContext* ctx);
+
+    std::string generarExprCodigo(LogotecGramarParser::Rumbo_getContext *ctx);
+
     std::string generarExprCodigo(LogotecGramarParser::Exp_integerContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Exp_matematicaContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Exp_aritmeticaContext *ctx);
@@ -147,9 +150,17 @@ private:
 
     any visitSi_variable(LogotecGramarParser::Si_variableContext *ctx);
 
-    any visitSi_no_variable(LogotecGramarParser::Si_sino_variableContext *ctx);
+    any visitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext *ctx);
 
     any visitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableContext *ctx);
+
+    any visitHasta_variable(LogotecGramarParser::Hasta_variableContext *ctx);
+
+    any visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext *ctx);
+
+    any visitMientras_variable(LogotecGramarParser::Mientras_variableContext *ctx);
+
+    any visitMuestra(LogotecGramarParser::MuestraContext *ctx);
 
     std::string generarExprCodigo(LogotecGramarParser::Expr_mat_aritmContext *ctx);
     std::string generarExprCodigo(LogotecGramarParser::Diferencia_exprContext *ctx);

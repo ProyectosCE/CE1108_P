@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <cctype>
 
+#include "gen/LogotecGramarParser.h"
+
 // Instancia global/local de ProcedimientosGen
 procedimientos::ProcedimientosGen procGen;
 // Instancia global/local de SymbolTable y ErrorReporter
@@ -834,6 +836,10 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::ExprContext* ctx) {
     return "";
 }
 
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::Rumbo_getContext* ctx) {
+    return "getRumbo()";
+}
+
 // Implementación faltante para generarExprCodigo(Exp_integerContext*)
 std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_integerContext* ctx) {
     if (ctx->exp_matematica()) return generarExprCodigo(ctx->exp_matematica());
@@ -996,7 +1002,7 @@ any CodeGen::visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext 
     if (hayError) return nullptr;
 
     // Abrir bloque de código para Ejecuta
-    codigo += "{\n";
+    codigo += "do{\n";
     // Recorrer cada instruccion dentro de EJECUTA
     for (auto instr : ctx->instruccion()) {
         visit(instr);
@@ -1290,36 +1296,35 @@ any CodeGen::visitSi_variable(LogotecGramarParser::Si_variableContext *ctx) {
 //implementar visit Si_no_variable
 //  si_sino_variable : SI '(' exp_logica ')' '[' instruccion* ']' '[' instruccion* ']' ;
 
-any CodeGen::visitSi_no_variable(LogotecGramarParser::Si_sino_variableContext *ctx) {
+any CodeGen::visitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext *ctx){
     if (hayError) return nullptr;
 
-    // Validar tipo de la expresión
-    if (checkLogicExpr(ctx->exp_logica()) != "bool") {
+    // Validar la expresión lógica del si_variable interno
+    auto siCtx = ctx->si_variable();
+    if (checkLogicExpr(siCtx->exp_logica()) != "bool") {
         error("La expresión en SI no es válida o no es de tipo bool.");
         return nullptr;
     }
 
-    // Obtener valor de la expresión usando generarExprCodigo
-    string valor = generarExprCodigo(ctx->exp_logica());
+    string valor = generarExprCodigo(siCtx->exp_logica());
     if (hayError) return nullptr;
 
-    // Abrir bloque de código para Si
+    // Bloque SI
     codigo += "if (" + valor + ") {\n";
-    // Recorrer cada instruccion dentro de SI
-    for (auto instr : ctx->instruccion(0)) {
+    for (auto instr : siCtx->instruccion()) {
         visit(instr);
-        // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
     }
     codigo += "} else {\n";
-    // Recorrer cada instruccion dentro de SINO
-    for (auto instr : ctx->instruccion(1)) {
-        visit(instr);
-        // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
-    }
-    codigo += "}\n";
 
+    // Bloque SINO
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+    }
+
+    codigo += "}\n";
     return nullptr;
 }
+
 
 // visit haz_hasta_variable
 //  haz_hasta_variable : HAZ_HASTA '[' instruccion* ']' '(' exp_logica ')' ;
@@ -1346,3 +1351,111 @@ any CodeGen::visitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableCont
 
     return nullptr;
 }
+
+any CodeGen::visitHasta_variable(LogotecGramarParser::Hasta_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Validar tipo de la expresión lógica
+    if (checkLogicExpr(ctx->exp_logica()) != "bool") {
+        error("La expresión en HASTA no es válida o no es de tipo bool.");
+        return nullptr;
+    }
+
+    // Generar código para la condición
+    std::string condicion = generarExprCodigo(ctx->exp_logica());
+    if (hayError) return nullptr;
+
+    // Abrir bloque while (se ejecuta mientras la condición sea falsa)
+    codigo += "while (!(" + condicion + ")) {\n";
+
+    // Generar las instrucciones dentro del bloque
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // Cada instrucción agrega su código a 'codigo'
+    }
+
+    // Cerrar el bloque
+    codigo += "}\n";
+
+    return nullptr;
+}
+
+
+any CodeGen::visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Validar tipo de la expresión lógica
+    if (checkLogicExpr(ctx->exp_logica()) != "bool") {
+        error("La expresión en HAZ.MIENTRAS no es válida o no es de tipo bool.");
+        return nullptr;
+    }
+
+    // Generar código para la condición
+    std::string condicion = generarExprCodigo(ctx->exp_logica());
+    if (hayError) return nullptr;
+
+    // Abrir bloque do-while
+    codigo += "do {\n";
+
+    // Generar las instrucciones dentro del bloque
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // Cada instrucción agrega su código a 'codigo'
+    }
+
+    // Cerrar el bloque do-while
+    codigo += "} while (" + condicion + ");\n";
+
+    return nullptr;
+}
+
+
+any CodeGen::visitMientras_variable(LogotecGramarParser::Mientras_variableContext *ctx) {
+    if (hayError) return nullptr;
+
+    // Validar tipo de la expresión lógica
+    if (checkLogicExpr(ctx->exp_logica()) != "bool") {
+        error("La expresión en MIENTRAS no es válida o no es de tipo bool.");
+        return nullptr;
+    }
+
+    // Generar código para la condición
+    std::string condicion = generarExprCodigo(ctx->exp_logica());
+    if (hayError) return nullptr;
+
+    // Abrir bloque while
+    codigo += "while (" + condicion + ") {\n";
+
+    // Generar las instrucciones dentro del bloque
+    for (auto instr : ctx->instruccion()) {
+        visit(instr);
+        // Cada instrucción agrega su código a 'codigo'
+    }
+
+    // Cerrar el bloque
+    codigo += "}\n";
+
+    return nullptr;
+}
+
+any CodeGen::visitMuestra(LogotecGramarParser::MuestraContext *ctx) {
+    if (hayError) return nullptr;
+
+    std::string valor;
+
+    if (ctx->expr()) {
+        // Si es una expresión normal
+        valor = generarExprCodigo(ctx->expr());
+    } else if (ctx->rumbo_get()) {
+        // Si es un RUMBO
+        valor = generarExprCodigo(ctx->rumbo_get());
+    }
+
+    if (hayError) return nullptr;
+
+    // Generar el cout
+    codigo += "std::cout << " + valor + " << std::endl;\n";
+
+    return nullptr;
+}
+
