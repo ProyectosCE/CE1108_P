@@ -176,15 +176,19 @@ exp_logica_operaciones:
     | logico
     | ID
     | NUMBER
+    | CADENA_TEXTO
     | menorque_variable;
 
 exp_logicas_expr:
-    NOT exp_logicas_expr
-    |'(' exp_logicas_expr* ')'
-    | exp_logica_operaciones operador_logico exp_logicas_expr
-    | exp_logica_operaciones ((AND | OR) exp_logicas_expr)* ((AND | OR) exp_logicas_expr)
-    | exp_logica_operaciones
+    NOT exp_logicas_expr                                                                            #Negacion
+    |'(' exp_logicas_expr ')'                                                                      #ExpLogicaParentesis
+    | exp_logicas_expr operador_logico exp_logicas_expr       #OperacionLogicaSimple
+    | exp_logicas_expr (andor exp_logicas_expr)* (andor exp_logicas_expr)           #OperacionLogicaCompleja
+    | exp_logica_operaciones                                                                        #ExpLogicaSimple
     ;
+
+andor:
+AND | OR;
 
 si_variable
     : SI '(' exp_logica ')' '[' instruccion* ']'
@@ -193,43 +197,43 @@ si_variable
 
 
 si_sino_variable
-    : SI '(' expr ')' '[' instruccion* ']' '[' instruccion* ']'
+    : SI '(' exp_logica ')' '[' instruccion* ']' '[' instruccion* ']'
     ;
 
 haz_hasta_variable
-    : HAZ_HASTA '[' instruccion* ']' '(' expr ')'
+    : HAZ_HASTA '[' instruccion* ']' '(' exp_logica ')'
     ;
 
 hasta_variable
-    : HASTA '(' expr ')' '[' instruccion* ']'
+    : HASTA '(' exp_logica ')' '[' instruccion* ']'
     ;
 
 haz_mientras_variable
-    : HAZ_MIENTRAS '[' instruccion* ']' '[' expr+ ']'
+    : HAZ_MIENTRAS '[' instruccion* ']' '[' exp_logica']'
     ;
 
 mientras_variable
-    : MIENTRAS '(' expr ')' '[' instruccion* ']'
+    : MIENTRAS '(' exp_logica ')' '[' instruccion* ']'
     ;
 
 iguales_variable
-    : IGUALESQ expr expr
+    : IGUALESQ exp_logica exp_logica
     ;
 
 y_variable
-    : Y '(' expr ')' '(' expr ')'
+    : Y exp_logica exp_logica
     ;
 
 o_variable
-    : O '(' expr ')' '(' expr ')'
+    : O exp_logica exp_logica
     ;
 
 mayorque_variable
-    : MAYORQUEQ expr expr
+    : MAYORQUEQ expr_mat_aritm expr_mat_aritm
     ;
 
 menorque_variable
-    : MENORQUEQ expr expr
+    : MENORQUEQ expr_mat_aritm expr_mat_aritm
     ;
 
 colores_variable:
@@ -287,9 +291,8 @@ valor
     ;
 
 operador_logico:
-    | AND
+    AND
     | OR
-    | NOT
     | GT
     | LT
     | GEQ

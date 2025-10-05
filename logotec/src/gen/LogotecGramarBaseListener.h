@@ -115,8 +115,23 @@ public:
   virtual void enterExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext * /*ctx*/) override { }
   virtual void exitExp_logica_operaciones(LogotecGramarParser::Exp_logica_operacionesContext * /*ctx*/) override { }
 
-  virtual void enterExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext * /*ctx*/) override { }
-  virtual void exitExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext * /*ctx*/) override { }
+  virtual void enterOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext * /*ctx*/) override { }
+  virtual void exitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext * /*ctx*/) override { }
+
+  virtual void enterOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext * /*ctx*/) override { }
+  virtual void exitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext * /*ctx*/) override { }
+
+  virtual void enterExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext * /*ctx*/) override { }
+  virtual void exitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext * /*ctx*/) override { }
+
+  virtual void enterExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext * /*ctx*/) override { }
+  virtual void exitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext * /*ctx*/) override { }
+
+  virtual void enterNegacion(LogotecGramarParser::NegacionContext * /*ctx*/) override { }
+  virtual void exitNegacion(LogotecGramarParser::NegacionContext * /*ctx*/) override { }
+
+  virtual void enterAndor(LogotecGramarParser::AndorContext * /*ctx*/) override { }
+  virtual void exitAndor(LogotecGramarParser::AndorContext * /*ctx*/) override { }
 
   virtual void enterSi_variable(LogotecGramarParser::Si_variableContext * /*ctx*/) override { }
   virtual void exitSi_variable(LogotecGramarParser::Si_variableContext * /*ctx*/) override { }

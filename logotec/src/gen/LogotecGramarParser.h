@@ -41,15 +41,15 @@ public:
     RuleSubelapiz_variable = 25, RulePoncolorlapiz_variable = 26, RuleCentro_variable = 27, 
     RuleEsperar_variable = 28, RuleEjecuta_variable = 29, RuleRepite_variable = 30, 
     RuleExp_logica = 31, RuleExp_logica_operaciones = 32, RuleExp_logicas_expr = 33, 
-    RuleSi_variable = 34, RuleSi_sino_variable = 35, RuleHaz_hasta_variable = 36, 
-    RuleHasta_variable = 37, RuleHaz_mientras_variable = 38, RuleMientras_variable = 39, 
-    RuleIguales_variable = 40, RuleY_variable = 41, RuleO_variable = 42, 
-    RuleMayorque_variable = 43, RuleMenorque_variable = 44, RuleColores_variable = 45, 
-    RuleColores = 46, RuleExpr = 47, RuleExp_integer = 48, RuleExp_aritmetica = 49, 
-    RuleExp_matematica = 50, RuleExpr_mat_aritm = 51, RuleLogico = 52, RuleValor = 53, 
-    RuleOperador_logico = 54, RuleOperador = 55, RuleDiferencia_expr = 56, 
-    RuleAzar_expr = 57, RuleProducto_expr = 58, RulePotencia_expr = 59, 
-    RuleDivision_expr = 60, RuleSuma_expr = 61
+    RuleAndor = 34, RuleSi_variable = 35, RuleSi_sino_variable = 36, RuleHaz_hasta_variable = 37, 
+    RuleHasta_variable = 38, RuleHaz_mientras_variable = 39, RuleMientras_variable = 40, 
+    RuleIguales_variable = 41, RuleY_variable = 42, RuleO_variable = 43, 
+    RuleMayorque_variable = 44, RuleMenorque_variable = 45, RuleColores_variable = 46, 
+    RuleColores = 47, RuleExpr = 48, RuleExp_integer = 49, RuleExp_aritmetica = 50, 
+    RuleExp_matematica = 51, RuleExpr_mat_aritm = 52, RuleLogico = 53, RuleValor = 54, 
+    RuleOperador_logico = 55, RuleOperador = 56, RuleDiferencia_expr = 57, 
+    RuleAzar_expr = 58, RuleProducto_expr = 59, RulePotencia_expr = 60, 
+    RuleDivision_expr = 61, RuleSuma_expr = 62
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -103,6 +103,7 @@ public:
   class Exp_logicaContext;
   class Exp_logica_operacionesContext;
   class Exp_logicas_exprContext;
+  class AndorContext;
   class Si_variableContext;
   class Si_sino_variableContext;
   class Haz_hasta_variableContext;
@@ -715,6 +716,7 @@ public:
     LogicoContext *logico();
     antlr4::tree::TerminalNode *ID();
     antlr4::tree::TerminalNode *NUMBER();
+    antlr4::tree::TerminalNode *CADENA_TEXTO();
     Menorque_variableContext *menorque_variable();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -729,18 +731,87 @@ public:
   class  Exp_logicas_exprContext : public antlr4::ParserRuleContext {
   public:
     Exp_logicas_exprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    Exp_logicas_exprContext() = default;
+    void copyFrom(Exp_logicas_exprContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *NOT();
+
+   
+  };
+
+  class  OperacionLogicaSimpleContext : public Exp_logicas_exprContext {
+  public:
+    OperacionLogicaSimpleContext(Exp_logicas_exprContext *ctx);
+
     std::vector<Exp_logicas_exprContext *> exp_logicas_expr();
     Exp_logicas_exprContext* exp_logicas_expr(size_t i);
-    antlr4::tree::TerminalNode *PAR_OPEN();
-    antlr4::tree::TerminalNode *PAR_CLOSE();
-    Exp_logica_operacionesContext *exp_logica_operaciones();
     Operador_logicoContext *operador_logico();
-    std::vector<antlr4::tree::TerminalNode *> AND();
-    antlr4::tree::TerminalNode* AND(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> OR();
-    antlr4::tree::TerminalNode* OR(size_t i);
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  OperacionLogicaComplejaContext : public Exp_logicas_exprContext {
+  public:
+    OperacionLogicaComplejaContext(Exp_logicas_exprContext *ctx);
+
+    std::vector<Exp_logicas_exprContext *> exp_logicas_expr();
+    Exp_logicas_exprContext* exp_logicas_expr(size_t i);
+    std::vector<AndorContext *> andor();
+    AndorContext* andor(size_t i);
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ExpLogicaParentesisContext : public Exp_logicas_exprContext {
+  public:
+    ExpLogicaParentesisContext(Exp_logicas_exprContext *ctx);
+
+    antlr4::tree::TerminalNode *PAR_OPEN();
+    Exp_logicas_exprContext *exp_logicas_expr();
+    antlr4::tree::TerminalNode *PAR_CLOSE();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ExpLogicaSimpleContext : public Exp_logicas_exprContext {
+  public:
+    ExpLogicaSimpleContext(Exp_logicas_exprContext *ctx);
+
+    Exp_logica_operacionesContext *exp_logica_operaciones();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  NegacionContext : public Exp_logicas_exprContext {
+  public:
+    NegacionContext(Exp_logicas_exprContext *ctx);
+
+    antlr4::tree::TerminalNode *NOT();
+    Exp_logicas_exprContext *exp_logicas_expr();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  Exp_logicas_exprContext* exp_logicas_expr();
+  Exp_logicas_exprContext* exp_logicas_expr(int precedence);
+  class  AndorContext : public antlr4::ParserRuleContext {
+  public:
+    AndorContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *AND();
+    antlr4::tree::TerminalNode *OR();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -749,7 +820,7 @@ public:
    
   };
 
-  Exp_logicas_exprContext* exp_logicas_expr();
+  AndorContext* andor();
 
   class  Si_variableContext : public antlr4::ParserRuleContext {
   public:
@@ -777,7 +848,7 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *SI();
     antlr4::tree::TerminalNode *PAR_OPEN();
-    ExprContext *expr();
+    Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
@@ -797,7 +868,7 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HAZ_HASTA();
     antlr4::tree::TerminalNode *PAR_OPEN();
-    ExprContext *expr();
+    Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
@@ -817,7 +888,7 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HASTA();
     antlr4::tree::TerminalNode *PAR_OPEN();
-    ExprContext *expr();
+    Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
@@ -836,10 +907,9 @@ public:
     Haz_mientras_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HAZ_MIENTRAS();
+    Exp_logicaContext *exp_logica();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -856,7 +926,7 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *MIENTRAS();
     antlr4::tree::TerminalNode *PAR_OPEN();
-    ExprContext *expr();
+    Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
@@ -875,8 +945,8 @@ public:
     Iguales_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *IGUALESQ();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Exp_logicaContext *> exp_logica();
+    Exp_logicaContext* exp_logica(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -892,12 +962,8 @@ public:
     Y_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *Y();
-    std::vector<antlr4::tree::TerminalNode *> PAR_OPEN();
-    antlr4::tree::TerminalNode* PAR_OPEN(size_t i);
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> PAR_CLOSE();
-    antlr4::tree::TerminalNode* PAR_CLOSE(size_t i);
+    std::vector<Exp_logicaContext *> exp_logica();
+    Exp_logicaContext* exp_logica(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -913,12 +979,8 @@ public:
     O_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *O();
-    std::vector<antlr4::tree::TerminalNode *> PAR_OPEN();
-    antlr4::tree::TerminalNode* PAR_OPEN(size_t i);
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> PAR_CLOSE();
-    antlr4::tree::TerminalNode* PAR_CLOSE(size_t i);
+    std::vector<Exp_logicaContext *> exp_logica();
+    Exp_logicaContext* exp_logica(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -934,8 +996,8 @@ public:
     Mayorque_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *MAYORQUEQ();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -951,8 +1013,8 @@ public:
     Menorque_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *MENORQUEQ();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<Expr_mat_aritmContext *> expr_mat_aritm();
+    Expr_mat_aritmContext* expr_mat_aritm(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -1130,7 +1192,6 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *AND();
     antlr4::tree::TerminalNode *OR();
-    antlr4::tree::TerminalNode *NOT();
     antlr4::tree::TerminalNode *GT();
     antlr4::tree::TerminalNode *LT();
     antlr4::tree::TerminalNode *GEQ();
@@ -1266,6 +1327,10 @@ public:
 
   Suma_exprContext* suma_expr();
 
+
+  bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
+
+  bool exp_logicas_exprSempred(Exp_logicas_exprContext *_localctx, size_t predicateIndex);
 
   // By default the static state used to implement the parser is lazily initialized during the first
   // call to the constructor. You can call this function if you wish to initialize the static state

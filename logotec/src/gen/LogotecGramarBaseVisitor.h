@@ -147,7 +147,27 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitExp_logicas_expr(LogotecGramarParser::Exp_logicas_exprContext *ctx) override {
+  virtual std::any visitOperacionLogicaSimple(LogotecGramarParser::OperacionLogicaSimpleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitOperacionLogicaCompleja(LogotecGramarParser::OperacionLogicaComplejaContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpLogicaParentesis(LogotecGramarParser::ExpLogicaParentesisContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitExpLogicaSimple(LogotecGramarParser::ExpLogicaSimpleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNegacion(LogotecGramarParser::NegacionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitAndor(LogotecGramarParser::AndorContext *ctx) override {
     return visitChildren(ctx);
   }
 
