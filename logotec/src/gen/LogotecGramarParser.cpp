@@ -1,5 +1,5 @@
 
-// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 
 #include "LogotecGramarListener.h"
@@ -79,7 +79,7 @@ void logotecgramarParserInitialize() {
       "'poncl'", "'centro'", "'espera'", "'True'", "'False'", "", "", "'program'", 
       "'var'", "'println'", "'+'", "'-'", "'*'", "'/'", "'if'", "'else'", 
       "'while'", "'for'", "'&&'", "'||'", "'!'", "'>'", "'<'", "'>='", "'<='", 
-      "'=='", "'!='", "'='", "'{'", "'}'", "'('", "')'", "';'", "'repite'", 
+      "'=='", "'!='", "'='", "'{'", "'}'", "'('", "')'", "';'", "'REPITE'", 
       "'SI'", "'HAZ.HASTA'", "'HASTA'", "'HAZ.MIENTRAS'", "'MIENTRAS'", 
       "'Iguales\\u003F'", "'Y'", "'O'", "'MayorQue\\u003F'", "'MenorQue\\u003F'", 
       "'Diferencia'", "'Azar'", "'Producto'", "'Potencia'", "'Division'", 

@@ -12,6 +12,10 @@
 #include <unordered_map>
 #include <iostream>
 
+#include "CodeGen.h"
+#include "ProcedimientosGen.h"
+#include "SymbolTable.h"
+
 using namespace std;
 
 
@@ -21,6 +25,19 @@ public:
     string codigo;
 
     bool hayError = false; // <-- flag de error
+
+    procedimientos::ProcedimientosGen procGen;
+    SymbolTable symbolTable;
+    ErrorReporter errorReporter;
+
+    void reset() {
+        tablaTipos.clear();
+        codigo.clear();
+        hayError = false;
+        procGen = procedimientos::ProcedimientosGen();
+        symbolTable = SymbolTable();
+        errorReporter = ErrorReporter();
+    }
 
     virtual any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
     virtual any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;

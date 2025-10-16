@@ -5,11 +5,13 @@
 #ifndef LOGOTEC_COMPILE_H
 #define LOGOTEC_COMPILE_H
 
-
-#pragma once
 #include <string>
 
-int compileFile(const std::string& program);
-
+class Compiler {
+public:
+    Compiler() = default;
+    int compileFile(const std::string& programPath);
+    void clear();
+};
 
 #endif //LOGOTEC_COMPILE_H

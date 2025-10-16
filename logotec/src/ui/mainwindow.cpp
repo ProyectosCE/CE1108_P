@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include "parsetreewindow.h"
+#include <QThread>
 
 
 
@@ -226,6 +227,8 @@ void MainWindow::saveFile() {
 
     QTextStream out(&file);
     out << ui->plainTextEdit->toPlainText();
+    out.flush();
+    file.flush();
     file.close();
 }
 
@@ -236,20 +239,26 @@ void MainWindow::compileProgram() {
         return;
     }
 
-    // Guardar cambios antes de compilar
+    // Guardar antes de compilar
     saveFile();
 
-    int result = compileFile(currentFilePath.toStdString());
+    Compiler compiler;
+
+    compiler.clear();
+
+    int result = compiler.compileFile(currentFilePath.toStdString());
+
     if (result == 0) {
         QMessageBox::information(this, "Success", "Compilation finished successfully.");
         compiled = true;
-        currentJsonPath = "./out/tree.json"; // JSON temporal del árbol
+        currentJsonPath = "./out/tree.json";
     } else {
         QMessageBox::critical(this, "Error", "There were errors during compilation.");
         compiled = false;
-        currentJsonPath = "";
+        currentJsonPath.clear();
     }
 }
+
 
 
 void MainWindow::parseTree() {

@@ -430,7 +430,7 @@ PAR_CLOSE: ')';
 
 SEMICOLON: ';';
 
-REPITE : 'repite' ;
+REPITE : 'REPITE' ;
 
 SI : 'SI' ;
 

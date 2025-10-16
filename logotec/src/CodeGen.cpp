@@ -11,11 +11,6 @@
 
 #include "gen/LogotecGramarParser.h"
 
-// Instancia global/local de ProcedimientosGen
-procedimientos::ProcedimientosGen procGen;
-// Instancia global/local de SymbolTable y ErrorReporter
-SymbolTable symbolTable;
-ErrorReporter errorReporter;
 
 // Recorre el programa
 any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
@@ -1458,4 +1453,3 @@ any CodeGen::visitMuestra(LogotecGramarParser::MuestraContext *ctx) {
 
     return nullptr;
 }
-

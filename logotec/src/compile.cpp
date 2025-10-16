@@ -1,27 +1,24 @@
+#include "compile.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <filesystem>
 
 #include "antlr4-runtime.h"
 #include "CodeGen.h"
 #include "gen/LogotecGramarLexer.h"
 #include "gen/LogotecGramarParser.h"
-
-#include "compile.h"
-
 #include "utils/parseTreeToJson.h"
 
 using namespace std;
 using namespace antlr4;
 using namespace antlr4::tree;
 
-int compileFile(const std::string& program) {
-    cout << "Interpreting file: " << program << endl;
+int Compiler::compileFile(const std::string& programPath) {
+    cout << "Interpreting file: " << programPath << endl;
 
-    std::ifstream stream(program);
-    if (!stream) {
-        std::cerr << "Could not open file: " << program << std::endl;
+    std::ifstream stream(programPath);
+    if (!stream.is_open()) {
+        cerr << "Could not open file: " << programPath << endl;
         return 1;
     }
 
@@ -33,24 +30,26 @@ int compileFile(const std::string& program) {
     tree::ParseTree* tree = parser.programa();
 
     CodeGen generator;
+    generator.reset();
     generator.visit(tree);
 
     if (generator.hayError) {
-        std::cerr << "Compilación cancelada debido a errores semánticos." << std::endl;
+        cerr << "Compilación cancelada debido a errores semánticos." << endl;
         return 1;
     }
 
     std::filesystem::create_directories("./out");
 
-    // Guardar el arbol en un JSON
+    // Guardar árbol JSON
     json treeJson = buildJsonFromANTLR(tree, &parser);
     std::ofstream treeOut("./out/tree.json");
     treeOut << treeJson.dump(4);
     treeOut.close();
 
+    // Generar archivo .cpp
     std::ofstream outFile("./out/logotec.cpp");
     if (!outFile.is_open()) {
-        std::cerr << "Error al crear el archivo de salida." << std::endl;
+        cerr << "Error al crear el archivo de salida." << endl;
         return 1;
     }
 
@@ -63,7 +62,17 @@ int compileFile(const std::string& program) {
     outFile << "}\n";
 
     outFile.close();
-    std::cout << "Archivo generado en out/logotec.cpp" << std::endl;
 
+    cout << "Archivo generado en out/logotec.cpp" << endl;
     return 0;
+}
+
+void Compiler::clear() {
+    // Limpieza de archivos generados
+    try {
+        std::filesystem::remove("./out/tree.json");
+        std::filesystem::remove("./out/logotec.cpp");
+    } catch (...) {
+        // Ignorar errores si los archivos no existen
+    }
 }
