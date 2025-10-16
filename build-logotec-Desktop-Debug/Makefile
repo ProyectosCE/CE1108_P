@@ -294,29 +294,29 @@ src/CodeGen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/CodeGen.cpp.s
 .PHONY : src/CodeGen.cpp.s
 
-src/SemanticVisitor.o: src/SemanticVisitor.cpp.o
-.PHONY : src/SemanticVisitor.o
+src/ProcedimientosGen.o: src/ProcedimientosGen.cpp.o
+.PHONY : src/ProcedimientosGen.o
 
 # target to build an object file
-src/SemanticVisitor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o
-.PHONY : src/SemanticVisitor.cpp.o
+src/ProcedimientosGen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o
+.PHONY : src/ProcedimientosGen.cpp.o
 
-src/SemanticVisitor.i: src/SemanticVisitor.cpp.i
-.PHONY : src/SemanticVisitor.i
+src/ProcedimientosGen.i: src/ProcedimientosGen.cpp.i
+.PHONY : src/ProcedimientosGen.i
 
 # target to preprocess a source file
-src/SemanticVisitor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.i
-.PHONY : src/SemanticVisitor.cpp.i
+src/ProcedimientosGen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.i
+.PHONY : src/ProcedimientosGen.cpp.i
 
-src/SemanticVisitor.s: src/SemanticVisitor.cpp.s
-.PHONY : src/SemanticVisitor.s
+src/ProcedimientosGen.s: src/ProcedimientosGen.cpp.s
+.PHONY : src/ProcedimientosGen.s
 
 # target to generate assembly for a file
-src/SemanticVisitor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.s
-.PHONY : src/SemanticVisitor.cpp.s
+src/ProcedimientosGen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.s
+.PHONY : src/ProcedimientosGen.cpp.s
 
 src/compile.o: src/compile.cpp.o
 .PHONY : src/compile.o
@@ -510,6 +510,54 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/turtle/turtlescene.o: src/turtle/turtlescene.cpp.o
+.PHONY : src/turtle/turtlescene.o
+
+# target to build an object file
+src/turtle/turtlescene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o
+.PHONY : src/turtle/turtlescene.cpp.o
+
+src/turtle/turtlescene.i: src/turtle/turtlescene.cpp.i
+.PHONY : src/turtle/turtlescene.i
+
+# target to preprocess a source file
+src/turtle/turtlescene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.i
+.PHONY : src/turtle/turtlescene.cpp.i
+
+src/turtle/turtlescene.s: src/turtle/turtlescene.cpp.s
+.PHONY : src/turtle/turtlescene.s
+
+# target to generate assembly for a file
+src/turtle/turtlescene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.s
+.PHONY : src/turtle/turtlescene.cpp.s
+
+src/turtle/turtleview.o: src/turtle/turtleview.cpp.o
+.PHONY : src/turtle/turtleview.o
+
+# target to build an object file
+src/turtle/turtleview.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o
+.PHONY : src/turtle/turtleview.cpp.o
+
+src/turtle/turtleview.i: src/turtle/turtleview.cpp.i
+.PHONY : src/turtle/turtleview.i
+
+# target to preprocess a source file
+src/turtle/turtleview.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.i
+.PHONY : src/turtle/turtleview.cpp.i
+
+src/turtle/turtleview.s: src/turtle/turtleview.cpp.s
+.PHONY : src/turtle/turtleview.s
+
+# target to generate assembly for a file
+src/turtle/turtleview.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/logotec.dir/build.make CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.s
+.PHONY : src/turtle/turtleview.cpp.s
+
 src/ui/mainwindow.o: src/ui/mainwindow.cpp.o
 .PHONY : src/ui/mainwindow.o
 
@@ -583,9 +631,9 @@ help:
 	@echo "... src/CodeGen.o"
 	@echo "... src/CodeGen.i"
 	@echo "... src/CodeGen.s"
-	@echo "... src/SemanticVisitor.o"
-	@echo "... src/SemanticVisitor.i"
-	@echo "... src/SemanticVisitor.s"
+	@echo "... src/ProcedimientosGen.o"
+	@echo "... src/ProcedimientosGen.i"
+	@echo "... src/ProcedimientosGen.s"
 	@echo "... src/compile.o"
 	@echo "... src/compile.i"
 	@echo "... src/compile.s"
@@ -610,6 +658,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/turtle/turtlescene.o"
+	@echo "... src/turtle/turtlescene.i"
+	@echo "... src/turtle/turtlescene.s"
+	@echo "... src/turtle/turtleview.o"
+	@echo "... src/turtle/turtleview.i"
+	@echo "... src/turtle/turtleview.s"
 	@echo "... src/ui/mainwindow.o"
 	@echo "... src/ui/mainwindow.i"
 	@echo "... src/ui/mainwindow.s"

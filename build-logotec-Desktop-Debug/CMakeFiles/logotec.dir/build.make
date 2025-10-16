@@ -184,24 +184,10 @@ CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.cpp -o CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.s
 
-CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o: CMakeFiles/logotec.dir/flags.make
-CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp
-CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o: CMakeFiles/logotec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o -MF CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o.d -o CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o -c /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp
-
-CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp > CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.i
-
-CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp -o CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.s
-
 CMakeFiles/logotec.dir/src/CodeGen.cpp.o: CMakeFiles/logotec.dir/flags.make
 CMakeFiles/logotec.dir/src/CodeGen.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.cpp
 CMakeFiles/logotec.dir/src/CodeGen.cpp.o: CMakeFiles/logotec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/logotec.dir/src/CodeGen.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/logotec.dir/src/CodeGen.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/logotec.dir/src/CodeGen.cpp.o -MF CMakeFiles/logotec.dir/src/CodeGen.cpp.o.d -o CMakeFiles/logotec.dir/src/CodeGen.cpp.o -c /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.cpp
 
 CMakeFiles/logotec.dir/src/CodeGen.cpp.i: cmake_force
@@ -211,6 +197,20 @@ CMakeFiles/logotec.dir/src/CodeGen.cpp.i: cmake_force
 CMakeFiles/logotec.dir/src/CodeGen.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/CodeGen.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.cpp -o CMakeFiles/logotec.dir/src/CodeGen.cpp.s
+
+CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o: CMakeFiles/logotec.dir/flags.make
+CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp
+CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o: CMakeFiles/logotec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o -MF CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o.d -o CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o -c /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp
+
+CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp > CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.i
+
+CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp -o CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.s
 
 CMakeFiles/logotec.dir/src/compile.cpp.o: CMakeFiles/logotec.dir/flags.make
 CMakeFiles/logotec.dir/src/compile.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.cpp
@@ -254,6 +254,34 @@ CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/parsetreewindow.cpp -o CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.s
 
+CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o: CMakeFiles/logotec.dir/flags.make
+CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp
+CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o: CMakeFiles/logotec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o -MF CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o.d -o CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o -c /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp
+
+CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp > CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.i
+
+CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp -o CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.s
+
+CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o: CMakeFiles/logotec.dir/flags.make
+CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o: /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp
+CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o: CMakeFiles/logotec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o -MF CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o.d -o CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o -c /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp
+
+CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp > CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.i
+
+CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp -o CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.s
+
 # Object files for target logotec
 logotec_OBJECTS = \
 "CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o" \
@@ -264,11 +292,13 @@ logotec_OBJECTS = \
 "CMakeFiles/logotec.dir/src/gen/LogotecGramarListener.cpp.o" \
 "CMakeFiles/logotec.dir/src/gen/LogotecGramarParser.cpp.o" \
 "CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.o" \
-"CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o" \
 "CMakeFiles/logotec.dir/src/CodeGen.cpp.o" \
+"CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o" \
 "CMakeFiles/logotec.dir/src/compile.cpp.o" \
 "CMakeFiles/logotec.dir/src/ui/mainwindow.cpp.o" \
-"CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.o"
+"CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.o" \
+"CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o" \
+"CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o"
 
 # External object files for target logotec
 logotec_EXTERNAL_OBJECTS =
@@ -281,18 +311,20 @@ logotec: CMakeFiles/logotec.dir/src/gen/LogotecGramarLexer.cpp.o
 logotec: CMakeFiles/logotec.dir/src/gen/LogotecGramarListener.cpp.o
 logotec: CMakeFiles/logotec.dir/src/gen/LogotecGramarParser.cpp.o
 logotec: CMakeFiles/logotec.dir/src/gen/LogotecGramarVisitor.cpp.o
-logotec: CMakeFiles/logotec.dir/src/SemanticVisitor.cpp.o
 logotec: CMakeFiles/logotec.dir/src/CodeGen.cpp.o
+logotec: CMakeFiles/logotec.dir/src/ProcedimientosGen.cpp.o
 logotec: CMakeFiles/logotec.dir/src/compile.cpp.o
 logotec: CMakeFiles/logotec.dir/src/ui/mainwindow.cpp.o
 logotec: CMakeFiles/logotec.dir/src/ui/parsetreewindow.cpp.o
+logotec: CMakeFiles/logotec.dir/src/turtle/turtlescene.cpp.o
+logotec: CMakeFiles/logotec.dir/src/turtle/turtleview.cpp.o
 logotec: CMakeFiles/logotec.dir/build.make
 logotec: _deps/antlr4-build/runtime/libantlr4-runtime.a
 logotec: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
 logotec: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 logotec: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 logotec: CMakeFiles/logotec.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable logotec"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable logotec"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/logotec.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

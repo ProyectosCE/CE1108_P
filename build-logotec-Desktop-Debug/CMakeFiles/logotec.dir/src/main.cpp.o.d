@@ -348,4 +348,16 @@ CMakeFiles/logotec.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qglyphrun.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrawfont.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontdatabase.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontdatabase.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/../turtle/turtlescene.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsLineItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsPolygonItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QTimer \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtimer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasictimer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h

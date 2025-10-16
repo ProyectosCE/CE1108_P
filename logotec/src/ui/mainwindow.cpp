@@ -1,11 +1,15 @@
 #include "mainwindow.h"
 #include <iostream>
+#include <math.h>
+
 #include "ui_mainwindow.h"
 #include "../compile.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
 #include "parsetreewindow.h"
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
+    connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
+    connect(ui->btn_reset, &QPushButton::clicked, this, &MainWindow::turtle_reset);
 
     ui->plainTextEdit->setReadOnly(true);
     ui->plainTextEdit->setPlainText("Open File / New File to start editing...");
@@ -28,9 +34,57 @@ MainWindow::MainWindow(QWidget *parent)
     cerrRedirect = new CoutRedirect(ui->terminal, true);
     std::cout.rdbuf(coutRedirect);
     std::cerr.rdbuf(cerrRedirect);
+
+    // Turtle
+    turtleScene = new TurtleScene(this);
+    turtleView = new TurtleView(this);
+
+    turtleView->setScene(turtleScene);
+    turtleView->setShowGrid(true);
+    turtleView->setUnitSize(50);
+
+    ui->verticalLayout->addWidget(turtleView);
+
 }
 
 // Slots
+
+void MainWindow::turtle_start() {
+
+    // Ejemplo inicial
+    turtleScene->setAnimado(true);
+    turtleScene->velocidad("normal");
+    turtleScene->subelapiz();
+    turtleScene->avanza(50);
+    turtleScene->poncolorlapiz("azul");
+    turtleScene->bajalapiz();
+    for (int i=0; i<4; i++) {
+        turtleScene->avanza(100);
+        turtleScene->gd(90);
+    }
+    turtleScene->gi(180);
+    turtleScene->subelapiz();
+    turtleScene->avanza(100);
+    turtleScene->bajalapiz();
+    for (int i=0; i<4; i++) {
+        turtleScene->avanza(100);
+        turtleScene->gi(90);
+    }
+    turtleScene->gd(90);
+    for (int i=0; i<2; i++) {
+        turtleScene->avanza(200);
+        turtleScene->gd(90);
+        turtleScene->avanza(100);
+        turtleScene->gd(90);
+    }
+
+    turtleScene->ocultaTortuga();
+
+}
+
+void MainWindow::turtle_reset() {
+    turtleScene->limpiar();
+}
 
 void MainWindow::printTerminal(const QString &message) {
     ui->terminal->appendPlainText(message);

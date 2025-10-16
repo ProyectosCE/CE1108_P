@@ -1,7 +1,7 @@
 CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/moc_mainwindow.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/HRY6KFR3GF/moc_turtlescene.cpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -200,9 +200,9 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/../../../logotec/src/ui/mainwindow.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/HRY6KFR3GF/../../../logotec/src/turtle/turtlescene.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
@@ -239,12 +239,10 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtgui-config.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgets-config.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
@@ -280,24 +278,24 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgba64.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
@@ -305,11 +303,51 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsLineItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+ /usr/include/c++/11/variant \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsPolygonItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QTimer \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtimer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasictimer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/HRY6KFR3GF/moc_turtleview.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/HRY6KFR3GF/../../../logotec/src/turtle/turtleview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QWheelEvent \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/moc_mainwindow.cpp \
+ /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/../../../logotec/src/ui/mainwindow.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/logotec_autogen/YPKJ5OE7LN/../../../logotec/src/ui/../utils/coutredirect.h \
@@ -318,26 +356,12 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPlainTextEdit \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qplaintextedit.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextedit.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextdocument.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
- /usr/include/c++/11/variant \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextcursor.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextformat.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qabstracttextdocumentlayout.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextlayout.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qglyphrun.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrawfont.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontdatabase.h \
@@ -363,8 +387,6 @@ CMakeFiles/logotec.dir/logotec_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtreewidgetitemiterator.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h \

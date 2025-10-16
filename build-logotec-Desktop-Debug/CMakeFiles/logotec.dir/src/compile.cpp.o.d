@@ -413,7 +413,6 @@ CMakeFiles/logotec.dir/src/compile.cpp.o: \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.h \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarParser.h \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarLexer.h \
- /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.h \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.h \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/utils/parseTreeToJson.h \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/json-src/include/nlohmann/json.hpp \

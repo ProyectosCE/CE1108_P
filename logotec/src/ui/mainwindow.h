@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "../utils/coutredirect.h"
+#include "../turtle/turtlescene.h"
+#include "../turtle/turtleview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +27,9 @@ private slots:
     void compileProgram();
     void parseTree();
 
+    void turtle_start();
+    void turtle_reset();
+
 private:
     Ui::MainWindow *ui;
     QString currentFilePath; // Ruta del archivo abierto
@@ -33,6 +38,9 @@ private:
 
     CoutRedirect* coutRedirect;
     CoutRedirect* cerrRedirect;
+
+    TurtleScene *turtleScene;
+    TurtleView *turtleView;
 };
 
 #endif // MAINWINDOW_H

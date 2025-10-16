@@ -405,4 +405,7 @@ CMakeFiles/logotec.dir/src/CodeGen.cpp.o: \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-src/runtime/src/tree/xpath/XPathWildcardAnywhereElement.h \
  /home/jimmy/Documents/GitHub/CE1108_P/build-logotec-Desktop-Debug/_deps/antlr4-src/runtime/src/tree/xpath/XPathWildcardElement.h \
  /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.h \
- /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarParser.h
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarParser.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SymbolTable.h \
+ /home/jimmy/Documents/GitHub/CE1108_P/logotec/src/TypeChecker.cpp

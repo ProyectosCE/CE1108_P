@@ -7,7 +7,6 @@
 #include "CodeGen.h"
 #include "gen/LogotecGramarLexer.h"
 #include "gen/LogotecGramarParser.h"
-#include "SemanticVisitor.h"
 
 #include "compile.h"
 
@@ -32,9 +31,6 @@ int compileFile(const std::string& program) {
     LogotecGramarParser parser(&tokens);
 
     tree::ParseTree* tree = parser.programa();
-
-    SemanticVisitor visitor;
-    visitor.visit(tree);
 
     CodeGen generator;
     generator.visit(tree);

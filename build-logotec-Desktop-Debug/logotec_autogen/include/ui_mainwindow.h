@@ -13,12 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCommandLinkButton>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -31,6 +31,7 @@ public:
     QAction *action_Open;
     QAction *action_Save;
     QAction *actionParser_Tree;
+    QAction *actionShow_Grid;
     QWidget *centralwidget;
     QWidget *codigo;
     QWidget *horizontalLayoutWidget;
@@ -39,14 +40,19 @@ public:
     QCommandLinkButton *CompileButton;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
-    QGraphicsView *graphicsView;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QPlainTextEdit *terminal;
+    QWidget *horizontalLayoutWidget_3;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *btn_start;
+    QPushButton *btn_reset;
+    QPushButton *btn_pause;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuView;
+    QMenu *menuTurtle;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -66,6 +72,8 @@ public:
         action_Save->setObjectName(QString::fromUtf8("action_Save"));
         actionParser_Tree = new QAction(MainWindow);
         actionParser_Tree->setObjectName(QString::fromUtf8("actionParser_Tree"));
+        actionShow_Grid = new QAction(MainWindow);
+        actionShow_Grid->setObjectName(QString::fromUtf8("actionShow_Grid"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMinimumSize(QSize(800, 578));
@@ -88,18 +96,13 @@ public:
 
         CompileButton = new QCommandLinkButton(centralwidget);
         CompileButton->setObjectName(QString::fromUtf8("CompileButton"));
-        CompileButton->setGeometry(QRect(880, 10, 81, 41));
+        CompileButton->setGeometry(QRect(300, 30, 81, 31));
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(399, 69, 561, 491));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        graphicsView = new QGraphicsView(verticalLayoutWidget);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-
-        verticalLayout->addWidget(graphicsView);
-
         horizontalLayoutWidget_2 = new QWidget(centralwidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
         horizontalLayoutWidget_2->setGeometry(QRect(29, 579, 931, 181));
@@ -113,6 +116,27 @@ public:
 
         horizontalLayout_2->addWidget(terminal);
 
+        horizontalLayoutWidget_3 = new QWidget(centralwidget);
+        horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
+        horizontalLayoutWidget_3->setGeometry(QRect(700, 30, 263, 31));
+        horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        btn_start = new QPushButton(horizontalLayoutWidget_3);
+        btn_start->setObjectName(QString::fromUtf8("btn_start"));
+
+        horizontalLayout_3->addWidget(btn_start);
+
+        btn_reset = new QPushButton(horizontalLayoutWidget_3);
+        btn_reset->setObjectName(QString::fromUtf8("btn_reset"));
+
+        horizontalLayout_3->addWidget(btn_reset);
+
+        btn_pause = new QPushButton(horizontalLayoutWidget_3);
+        btn_pause->setObjectName(QString::fromUtf8("btn_pause"));
+
+        horizontalLayout_3->addWidget(btn_pause);
+
         MainWindow->setCentralWidget(centralwidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -123,15 +147,19 @@ public:
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuView = new QMenu(menuBar);
         menuView->setObjectName(QString::fromUtf8("menuView"));
+        menuTurtle = new QMenu(menuBar);
+        menuTurtle->setObjectName(QString::fromUtf8("menuTurtle"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuView->menuAction());
+        menuBar->addAction(menuTurtle->menuAction());
         menuFile->addAction(action_New_File);
         menuFile->addAction(action_Open);
         menuFile->addAction(action_Save);
         menuView->addAction(actionParser_Tree);
+        menuTurtle->addAction(actionShow_Grid);
 
         retranslateUi(MainWindow);
 
@@ -145,10 +173,15 @@ public:
         action_Open->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
         action_Save->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         actionParser_Tree->setText(QCoreApplication::translate("MainWindow", "Parser Tree", nullptr));
+        actionShow_Grid->setText(QCoreApplication::translate("MainWindow", "Show Grid", nullptr));
         CompileButton->setText(QCoreApplication::translate("MainWindow", "Compile", nullptr));
+        btn_start->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
+        btn_reset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
+        btn_pause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
+        menuTurtle->setTitle(QCoreApplication::translate("MainWindow", "Turtle", nullptr));
     } // retranslateUi
 
 };

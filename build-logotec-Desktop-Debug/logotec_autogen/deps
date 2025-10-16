@@ -6,8 +6,8 @@ logotec_autogen/timestamp: \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/CMakeLists.txt \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/CodeGen.h \
-	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp \
-	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.h \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.h \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/compile.h \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarBaseListener.cpp \
@@ -23,6 +23,10 @@ logotec_autogen/timestamp: \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.h \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/main.cpp \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.h \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp \
+	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.h \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/mainwindow.cpp \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/mainwindow.h \
 	/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ui/parsetreewindow.cpp \
@@ -301,12 +305,14 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/gnu/stubs.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/QTimer \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/qbasictimer.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qcborcommon.h \
@@ -370,6 +376,7 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qtcore-config.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/qtimer.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
@@ -377,6 +384,9 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \
+	/usr/include/x86_64-linux-gnu/qt5/QtGui/QPen \
+	/usr/include/x86_64-linux-gnu/qt5/QtGui/QWheelEvent \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qabstracttextdocumentlayout.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h \
@@ -392,6 +402,8 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
@@ -413,7 +425,10 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qvalidator.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsLineItem \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsPolygonItem \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPlainTextEdit \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTreeWidgetItem \
@@ -424,10 +439,13 @@ logotec_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractslider.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractspinbox.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qplaintextedit.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyle.h \

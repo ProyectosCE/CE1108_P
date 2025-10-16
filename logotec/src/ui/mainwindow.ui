@@ -88,10 +88,10 @@
    <widget class="QCommandLinkButton" name="CompileButton">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>10</y>
+      <x>300</x>
+      <y>30</y>
       <width>81</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -107,11 +107,7 @@
       <height>491</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QGraphicsView" name="graphicsView"/>
-     </item>
-    </layout>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
@@ -130,6 +126,39 @@
        </property>
        <property name="readOnly">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>30</y>
+      <width>263</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="btn_start">
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_reset">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_pause">
+       <property name="text">
+        <string>Pause</string>
        </property>
       </widget>
      </item>
@@ -164,9 +193,16 @@
     </property>
     <addaction name="actionParser_Tree"/>
    </widget>
+   <widget class="QMenu" name="menuTurtle">
+    <property name="title">
+     <string>Turtle</string>
+    </property>
+    <addaction name="actionShow_Grid"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
+   <addaction name="menuTurtle"/>
   </widget>
   <action name="action_New_File">
    <property name="text">
@@ -186,6 +222,11 @@
   <action name="actionParser_Tree">
    <property name="text">
     <string>Parser Tree</string>
+   </property>
+  </action>
+  <action name="actionShow_Grid">
+   <property name="text">
+    <string>Show Grid</string>
    </property>
   </action>
  </widget>

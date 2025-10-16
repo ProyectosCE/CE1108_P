@@ -105,9 +105,9 @@
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.h",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.h",
 			"MU",
-			"UVLADIE3JM/moc_SemanticVisitor.cpp",
+			"UVLADIE3JM/moc_ProcedimientosGen.cpp",
 			null
 		],
 		[
@@ -150,6 +150,18 @@
 			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/gen/LogotecGramarVisitor.h",
 			"MU",
 			"N3E7SVQUNG/moc_LogotecGramarVisitor.cpp",
+			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.h",
+			"MU",
+			"HRY6KFR3GF/moc_turtlescene.cpp",
+			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.h",
+			"MU",
+			"HRY6KFR3GF/moc_turtleview.cpp",
 			null
 		],
 		[
@@ -244,7 +256,7 @@
 			null
 		],
 		[
-			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/SemanticVisitor.cpp",
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/ProcedimientosGen.cpp",
 			"MU",
 			null
 		],
@@ -285,6 +297,16 @@
 		],
 		[
 			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/main.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtlescene.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/jimmy/Documents/GitHub/CE1108_P/logotec/src/turtle/turtleview.cpp",
 			"MU",
 			null
 		],
