@@ -71,31 +71,31 @@ void MainWindow::turtle_start() {
     turtleScene->setAnimado(true);
     turtleScene->velocidad("fast");
 
-    turtleScene->subelapiz();
-    turtleScene->avanza(1);
-    turtleScene->poncolorlapiz("azul");
-    turtleScene->bajalapiz();
+    turtleScene->sl();
+    turtleScene->av(1);
+    turtleScene->pocl("azul");
+    turtleScene->bajaLapiz();
     for (int i=0; i<4; i++) {
-        turtleScene->avanza(2);
+        turtleScene->av(2);
         turtleScene->gd(90);
     }
     turtleScene->gi(180);
-    turtleScene->subelapiz();
-    turtleScene->avanza(2);
-    turtleScene->bajalapiz();
+    turtleScene->sl();
+    turtleScene->av(2);
+    turtleScene->bl();
     for (int i=0; i<4; i++) {
-        turtleScene->avanza(2);
+        turtleScene->av(2);
         turtleScene->gi(90);
     }
     turtleScene->gd(90);
     for (int i=0; i<2; i++) {
-        turtleScene->avanza(4);
+        turtleScene->av(4);
         turtleScene->gd(90);
-        turtleScene->avanza(2);
+        turtleScene->av(2);
         turtleScene->gd(90);
     }
 
-    turtleScene->ocultaTortuga();
+    //turtleScene->ocultaTortuga();
 
     // Animación terminada
     turtleEnEjecucion = false;

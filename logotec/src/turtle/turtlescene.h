@@ -19,32 +19,32 @@ public:
     explicit TurtleScene(QObject *parent = nullptr);
 
     // comandos tipo turtle
-    void avanza(double n);
-    void retrocede(double n);
-    void giraderecha(double grados);
-    void giraizquierda(double grados);
+    void avanzaTortuga(double n);
+    void retrocedeTortuga(double n);
+    void giraDerecha(double grados);
+    void giraIzquierda(double grados);
     void ocultaTortuga();
-    void ponpos(double x, double y);
-    void ponrumbo(double grados);
-    double rumbo() const { return m_angleDeg; }
-    void ponx(double x);
-    void pony(double y);
-    void bajalapiz();
-    void subelapiz();
-    void poncolorlapiz(const QString &color);
+    void ponPos(double x, double y);
+    void ponRumbo(double grados);
+    double getRumbo() const { return m_angleDeg; }
+    void ponX(double x);
+    void ponY(double y);
+    void bajaLapiz();
+    void subeLapiz();
+    void ponColorLapiz(const QString &color);
     void centro();
-    void espera(int n); // n/60 s
+    void esperar(int n); // n/60 s
 
     // Alias de comandos
-    inline void av(double n) {avanza(n);}
-    inline void re(double n) {retrocede(n);}
-    inline void gd(double n) {giraderecha(n);}
-    inline void gi(double n) {giraizquierda(n);}
+    inline void av(double n) {avanzaTortuga(n);}
+    inline void re(double n) {retrocedeTortuga(n);}
+    inline void gd(double n) {giraDerecha(n);}
+    inline void gi(double n) {giraIzquierda(n);}
     inline void ot() {ocultaTortuga();}
-    inline void ponxy(double x, double y) { ponpos(x, y); }
-    inline void bl() { bajalapiz(); }
-    inline void sb() { subelapiz(); }
-    inline void pocl(const QString &c) { poncolorlapiz(c); }
+    inline void ponXY(double x, double y) { ponPos(x, y); }
+    inline void bl() { bajaLapiz(); }
+    inline void sl() { subeLapiz(); }
+    inline void pocl(const QString &c) { ponColorLapiz(c); }
 
     // Metodos adicionales
     void setAnimado(bool animado);

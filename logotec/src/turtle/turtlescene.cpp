@@ -164,7 +164,7 @@ void TurtleScene::usarFlecha() {
 
 // Metodos para controlar tortuga
 
-void TurtleScene::avanza(double n){
+void TurtleScene::avanzaTortuga(double n){
     double distancia = n * m_unitSize;
     double rad = qDegreesToRadians(m_angleDeg);
     QPointF dest = m_pos + QPointF(distancia*qCos(rad), distancia*qSin(rad));
@@ -196,9 +196,9 @@ void TurtleScene::avanza(double n){
 }
 
 
-void TurtleScene::retrocede(double n){ avanza(-n); }
+void TurtleScene::retrocedeTortuga(double n){ avanzaTortuga(-n); }
 
-void TurtleScene::giraderecha(double grados) {
+void TurtleScene::giraDerecha(double grados) {
     if (m_animado) {
         int pasos = qMax(1, int(qAbs(grados) / 3));
         double paso = grados / pasos;
@@ -222,7 +222,7 @@ void TurtleScene::giraderecha(double grados) {
     }
 }
 
-void TurtleScene::giraizquierda(double grados) {
+void TurtleScene::giraIzquierda(double grados) {
     if (m_animado) {
         int pasos = qMax(1, int(qAbs(grados) / 3));
         double paso = grados / pasos;
@@ -276,7 +276,7 @@ void TurtleScene::ocultaTortuga() {
 }
 
 
-void TurtleScene::ponpos(double x, double y){
+void TurtleScene::ponPos(double x, double y){
     QPointF dest(x, y);
     m_penDown = false;
     if (m_animado) {
@@ -304,7 +304,7 @@ void TurtleScene::ponpos(double x, double y){
     m_penDown = true;
 }
 
-void TurtleScene::ponrumbo(double grados){
+void TurtleScene::ponRumbo(double grados){
     // ajusta rumbo absoluto al angulo especificado (0..360)
     double target = fmod(grados, 360.0);
     if (target < 0) target += 360.0;
@@ -330,18 +330,18 @@ void TurtleScene::ponrumbo(double grados){
     updateTurtle();
 }
 
-void TurtleScene::ponx(double x){
-    ponpos(x, m_pos.y());
+void TurtleScene::ponX(double x){
+    ponPos(x, m_pos.y());
 }
 
-void TurtleScene::pony(double y){
-    ponpos(m_pos.x(), y);
+void TurtleScene::ponY(double y){
+    ponPos(m_pos.x(), y);
 }
 
-void TurtleScene::bajalapiz(){ m_penDown = true; }
-void TurtleScene::subelapiz(){ m_penDown = false; }
+void TurtleScene::bajaLapiz(){ m_penDown = true; }
+void TurtleScene::subeLapiz(){ m_penDown = false; }
 
-void TurtleScene::poncolorlapiz(const QString &color){
+void TurtleScene::ponColorLapiz(const QString &color){
     QString c = color.toLower();
     if (c == "rojo" || c == "red") m_penColor = Qt::red;
     else if (c == "azul" || c == "blue") m_penColor = Qt::blue;
@@ -353,10 +353,10 @@ void TurtleScene::poncolorlapiz(const QString &color){
 }
 
 void TurtleScene::centro(){
-    ponpos(m_center.x(), m_center.y());
+    ponPos(m_center.x(), m_center.y());
 }
 
-void TurtleScene::espera(int n){
+void TurtleScene::esperar(int n){
     // n en frames de 60 FPS (como tenías)
     int ms = int(n * (1000.0 / 60.0));
     QEventLoop loop;
