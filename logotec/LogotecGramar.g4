@@ -170,7 +170,7 @@ repite_variable
     ;
 
 exp_logica
-    : 
+    :
      exp_logica_operaciones
     | exp_logicas_expr
     ;
@@ -462,7 +462,7 @@ SUMA : 'Suma' ;
 RESTA : 'Resta' ;
 PARA : 'Para' ;
 FIN : 'Fin' ;
-EJECUTA : 'Ejecuta' ;
+EJECUTA : 'EJECUTA' ;
 
 ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
 // Saltos de línea significativos

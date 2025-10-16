@@ -83,7 +83,7 @@ void logotecgramarParserInitialize() {
       "'SI'", "'HAZ.HASTA'", "'HASTA'", "'HAZ.MIENTRAS'", "'MIENTRAS'", 
       "'Iguales\\u003F'", "'Y'", "'O'", "'MayorQue\\u003F'", "'MenorQue\\u003F'", 
       "'Diferencia'", "'Azar'", "'Producto'", "'Potencia'", "'Division'", 
-      "'Suma'", "'Resta'", "'Para'", "'Fin'", "'Ejecuta'"
+      "'Suma'", "'Resta'", "'Para'", "'Fin'", "'EJECUTA'"
     },
     std::vector<std::string>{
       "", "", "", "", "HAZ", "INIC", "INC", "AVANZA", "AV", "RETROCEDE", 

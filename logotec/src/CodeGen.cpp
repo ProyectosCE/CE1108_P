@@ -295,8 +295,6 @@ any CodeGen::visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *c
         string n2 = generarExprCodigo(ctx->expr_mat_aritm(1));
         codigo += "ponPos(" + n1 + "," + n2 + ");";
 
-    codigo += "ponPos(" + n1 + "," + n2 + ");";
-
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }

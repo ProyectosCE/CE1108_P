@@ -13,6 +13,22 @@ using namespace std;
 using namespace antlr4;
 using namespace antlr4::tree;
 
+// ------------------
+// BailErrorListener
+// ------------------
+class BailErrorListener : public antlr4::BaseErrorListener {
+public:
+    void syntaxError(Recognizer *recognizer, Token *offendingSymbol,
+                     size_t line, size_t charPositionInLine,
+                     const std::string &msg, std::exception_ptr e) override {
+        throw std::runtime_error("Syntax error at line " + std::to_string(line) +
+                                 ":" + std::to_string(charPositionInLine) + " -> " + msg);
+    }
+};
+
+// ------------------
+// CompileFile
+// ------------------
 int Compiler::compileFile(const std::string& programPath) {
     cout << "Interpreting file: " << programPath << endl;
 
@@ -27,14 +43,24 @@ int Compiler::compileFile(const std::string& programPath) {
     CommonTokenStream tokens(&lexer);
     LogotecGramarParser parser(&tokens);
 
-    tree::ParseTree* tree = parser.programa();
+    parser.removeErrorListeners();
+    parser.addErrorListener(new BailErrorListener());
 
+    ParseTree* tree = nullptr;
     CodeGen generator;
-    generator.reset();
-    generator.visit(tree);
 
-    if (generator.hayError) {
-        cerr << "Compilación cancelada debido a errores semánticos." << endl;
+    try {
+        generator.reset();
+        tree = parser.programa();
+        generator.visit(tree);
+
+        if (generator.hayError) {
+            cerr << "Compilación cancelada debido a errores semánticos." << endl;
+            return 1;
+        }
+
+    } catch (const std::runtime_error &e) {
+        cerr << "Error de sintaxis: " << e.what() << endl;
         return 1;
     }
 
@@ -53,14 +79,9 @@ int Compiler::compileFile(const std::string& programPath) {
         return 1;
     }
 
-    outFile << "#include <iostream>\n";
-    outFile << "#include <string>\n";
-    outFile << "using namespace std;\n\n";
-    //outFile << "int main() {\n";
+    outFile << "#include <iostream>\n#include <string>\nusing namespace std;\n\n";
     outFile << generator.codigo;
-    outFile << "return 0;\n";
-    outFile << "}\n";
-
+    outFile << "return 0;\n}\n";
     outFile.close();
 
     cout << "Archivo generado en out/logotec.cpp" << endl;

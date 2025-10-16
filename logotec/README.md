@@ -2,11 +2,11 @@
 
 ## 📋 Instrucciones Básicas de Variables
 
-| Instrucción LogoTec | Sintaxis         | Código C++ Generado | Descripción |
-|---------------------|------------------|---------------------|-------------|
-| **Haz** | `Haz id = expr`   | `tipo id = valor;` | Declaración y asignación de variable |
+| Instrucción LogoTec | Sintaxis        | Código C++ Generado | Descripción |
+|---------------------|-----------------|---------------------|-------------|
+| **Haz** | `Haz id expr`   | `tipo id = valor;` | Declaración y asignación de variable |
 | **INIC** | `INIC id = expr` | `id = valor;` | Reasignación de variable existente |
-| **INC** | `INC [id expr]`  | `id++;` o `id = id + expr;` | Incremento de variable |
+| **INC** | `INC [id expr]` | `id++;` o `id = id + expr;` | Incremento de variable |
 
 ## 🐢 Instrucciones de Movimiento de Tortuga
 
@@ -20,14 +20,14 @@
 
 ## 📍 Instrucciones de Posición
 
-| Instrucción LogoTec | Sintaxis | Código C++ Generado | Descripción |
-|---------------------|----------|---------------------|-------------|
-| **ponpos**          | `ponpos [expr expr]` | `ponPos(x, y);` | Posiciona en coordenadas |
-| **ponxy**           | `ponxy expr expr` | `ponXY(x, y);` | Establece posición X,Y |
-| **ponx**            | `ponx expr` | `ponX(x);` | Establece coordenada X |
-| **pony**            | `pony expr` | `ponY(y);` | Establece coordenada Y |
-| **ponrumbo**        | `ponrumbo expr` | `ponRumbo(grados);` | Establece rumbo |
-| **centro**          | `centro` | `centro();` | Centra la tortuga |
+| Instrucción LogoTec | Sintaxis | Código C++ Generado | Descripción                   |
+|---------------------|----------|---------------------|-------------------------------|
+| **ponpos**          | `ponpos [expr expr]` | `ponPos(x, y);` | Posiciona en coordenadas X, Y |
+| **ponxy**           | `ponxy expr expr` | `ponXY(x, y);` | Posiciona en coordenadas X, Y       |
+| **ponx**            | `ponx expr` | `ponX(x);` | Establece coordenada X        |
+| **pony**            | `pony expr` | `ponY(y);` | Establece coordenada Y        |
+| **ponrumbo**        | `ponrumbo expr` | `ponRumbo(grados);` | Establece rumbo               |
+| **centro**          | `centro` | `centro();` | Centra la tortuga             |
 
 ## ✏️ Instrucciones de Dibujo
 
@@ -39,9 +39,9 @@
 
 ## ⏱️ Instrucciones de Control de Tiempo
 
-| Instrucción LogoTec | Sintaxis | Código C++ Generado | Descripción |
-|---------------------|----------|---------------------|-------------|
-| **espera** | `espera expr` | `esperar(tiempo);` | Pausa ejecución |
+| Instrucción LogoTec | Sintaxis | Código C++ Generado | Descripción                      |
+|---------------------|----------|---------------------|----------------------------------|
+| **espera** | `espera expr` | `esperar(tiempo);` | Pausa ejecución en n/60 segundos |
 
 ## 🔄 Estructuras de Control
 
@@ -49,7 +49,7 @@
 |---------------------|---------------------------------------|---------------------|-------------|
 | **SI**              | `SI (cond) [instrucciones]`           | `if (cond) { ... }` | Condicional simple |
 | **SI**              | `SI (cond) [si] [sino]`               | `if (cond) { ... } else { ... }` | Condicional con else |
-| **repite**          | `repite expr [instrucciones]`         | `for(int _i=0; _i<n; _i++) { ... }` | Bucle contado |
+| **REPITE**          | `REPITE n [instrucciones]`            | `for(int _i=0; _i<n; _i++) { ... }` | Bucle contado |
 | **EJECUTA**         | `EJECUTA [instrucciones]`             | `do { ... }` | Ejecuta bloque una vez |
 | **HAZ.HASTA**       | `HAZ.HASTA [instrucciones] (cond)`    | `do { ... } while (!(cond));` | Bucle do-while inverso |
 | **HASTA**           | `HASTA (cond) [instrucciones]`        | `while (!(cond)) { ... }` | Bucle while inverso |
