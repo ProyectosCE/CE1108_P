@@ -26,7 +26,6 @@ protected:
 
 private:
     bool m_showGrid;
-    double m_unitSize;
     double m_zoomLevel;
 };
 

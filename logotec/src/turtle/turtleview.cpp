@@ -11,7 +11,6 @@
 TurtleView::TurtleView(QWidget *parent)
     : QGraphicsView(parent),
       m_showGrid(true),
-      m_unitSize(50.0),
       m_zoomLevel(1.0)
 {
     setRenderHint(QPainter::Antialiasing);
@@ -25,9 +24,14 @@ void TurtleView::setShowGrid(bool show) {
 }
 
 void TurtleView::setUnitSize(double unit) {
-    m_unitSize = unit;
+    // actualizar la escena si existe
+    TurtleScene* ts = dynamic_cast<TurtleScene*>(scene());
+    if(ts) ts->setUnitSize(unit);
+
+    // actualizar la vista
     viewport()->update();
 }
+
 
 void TurtleView::resetZoom() {
     resetTransform();
@@ -36,23 +40,29 @@ void TurtleView::resetZoom() {
 
 void TurtleView::drawBackground(QPainter *painter, const QRectF &rect) {
     QGraphicsView::drawBackground(painter, rect);
+
+    // obtener la unidad de la escena si es TurtleScene
+    double unit = 50.0; // valor por defecto
+    if(TurtleScene* ts = dynamic_cast<TurtleScene*>(scene()))
+        unit = ts->unitSize();
+
     if (!m_showGrid) {
         painter->resetTransform();
         painter->setPen(Qt::black);
-        painter->drawText(10, 20, QString("Zoom: %1x | Unidad: %2 px").arg(m_zoomLevel, 0, 'f', 2).arg(m_unitSize, 0, 'f', 0));
+        painter->drawText(10, 20, QString("Zoom: %1x | Unidad: %2 px").arg(m_zoomLevel, 0, 'f', 2).arg(unit, 0, 'f', 0));
         return;
     }
 
     // Líneas de cuadrícula
-    const double left = std::floor(rect.left() / m_unitSize) * m_unitSize;
-    const double top = std::floor(rect.top() / m_unitSize) * m_unitSize;
+    const double left = std::floor(rect.left() / unit) * unit;
+    const double top = std::floor(rect.top() / unit) * unit;
 
     QPen gridPen(Qt::lightGray, 0);
     painter->setPen(gridPen);
 
-    for (double x = left; x < rect.right(); x += m_unitSize)
+    for (double x = left; x < rect.right(); x += unit)
         painter->drawLine(QLineF(x, rect.top(), x, rect.bottom()));
-    for (double y = top; y < rect.bottom(); y += m_unitSize)
+    for (double y = top; y < rect.bottom(); y += unit)
         painter->drawLine(QLineF(rect.left(), y, rect.right(), y));
 
     // Dibujar ejes X e Y
@@ -63,8 +73,9 @@ void TurtleView::drawBackground(QPainter *painter, const QRectF &rect) {
     // Texto con zoom/unidad
     painter->resetTransform();
     painter->setPen(Qt::black);
-    painter->drawText(10, 20, QString("Zoom: %1x | Unidad: %2 px").arg(m_zoomLevel, 0, 'f', 2).arg(m_unitSize, 0, 'f', 0));
+    painter->drawText(10, 20, QString("Zoom: %1x | Unidad: %2 px").arg(m_zoomLevel, 0, 'f', 2).arg(unit, 0, 'f', 0));
 }
+
 
 void TurtleView::wheelEvent(QWheelEvent *event) {
     constexpr double scaleFactor = 1.15;

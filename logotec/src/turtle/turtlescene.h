@@ -41,6 +41,7 @@ public:
     inline void gd(double n) {giraderecha(n);}
     inline void gi(double n) {giraizquierda(n);}
     inline void ot() {ocultaTortuga();}
+    inline void ponxy(double x, double y) { ponpos(x, y); }
     inline void bl() { bajalapiz(); }
     inline void sb() { subelapiz(); }
     inline void pocl(const QString &c) { poncolorlapiz(c); }
@@ -52,6 +53,10 @@ public:
 
     void usarIcono(const QPixmap &pixmap);
     void usarFlecha();
+
+    double unitSize() const { return m_unitSize; }
+    void setUnitSize(double u) { m_unitSize = u; }
+
 
 private:
     //estados
@@ -72,6 +77,7 @@ private:
     //Icono
     QGraphicsPixmapItem* m_turtleIcon = nullptr;
     bool m_usarIcono = false;
+    double m_unitSize = 50.0;
 };
 
 

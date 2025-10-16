@@ -69,28 +69,29 @@ void MainWindow::turtle_start() {
 
     // Ejemplo inicial
     turtleScene->setAnimado(true);
-    turtleScene->velocidad("normal");
+    turtleScene->velocidad("fast");
+
     turtleScene->subelapiz();
-    turtleScene->avanza(50);
+    turtleScene->avanza(1);
     turtleScene->poncolorlapiz("azul");
     turtleScene->bajalapiz();
     for (int i=0; i<4; i++) {
-        turtleScene->avanza(100);
+        turtleScene->avanza(2);
         turtleScene->gd(90);
     }
     turtleScene->gi(180);
     turtleScene->subelapiz();
-    turtleScene->avanza(100);
+    turtleScene->avanza(2);
     turtleScene->bajalapiz();
     for (int i=0; i<4; i++) {
-        turtleScene->avanza(100);
+        turtleScene->avanza(2);
         turtleScene->gi(90);
     }
     turtleScene->gd(90);
     for (int i=0; i<2; i++) {
-        turtleScene->avanza(200);
+        turtleScene->avanza(4);
         turtleScene->gd(90);
-        turtleScene->avanza(100);
+        turtleScene->avanza(2);
         turtleScene->gd(90);
     }
 
@@ -98,7 +99,7 @@ void MainWindow::turtle_start() {
 
     // Animación terminada
     turtleEnEjecucion = false;
-    ui->btn_reset->setEnabled(true); 
+    ui->btn_reset->setEnabled(true);
 
 }
 

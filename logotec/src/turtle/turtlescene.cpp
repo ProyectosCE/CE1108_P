@@ -165,37 +165,36 @@ void TurtleScene::usarFlecha() {
 // Metodos para controlar tortuga
 
 void TurtleScene::avanza(double n){
+    double distancia = n * m_unitSize;
     double rad = qDegreesToRadians(m_angleDeg);
-    QPointF dest = m_pos + QPointF(n*qCos(rad), n*qSin(rad));
+    QPointF dest = m_pos + QPointF(distancia*qCos(rad), distancia*qSin(rad));
 
     // calculamos pasos para animacion (dependiente del tamaño del desplazamiento)
     if (m_animado) {
-        int pasos = qMax(1, int(qAbs(n) / 3)); // paso ~3px
+        int pasos = qMax(1, int(qAbs(distancia) / 3)); // usar distancia en px
         QPointF pasoVec = (dest - m_pos) / pasos;
 
         for (int i = 0; i < pasos; ++i) {
             QPointF siguiente = m_pos + pasoVec;
             if (m_penDown) {
-                // dibujar segmento
                 addLine(QLineF(m_pos, siguiente), QPen(m_penColor, 2, Qt::SolidLine, Qt::RoundCap));
             }
             m_pos = siguiente;
             updateTurtle();
             animarDelay();
         }
-        // asegurar posición final exacta
         if (m_pos != dest) {
             if (m_penDown) addLine(QLineF(m_pos, dest), QPen(m_penColor, 2, Qt::SolidLine, Qt::RoundCap));
             m_pos = dest;
             updateTurtle();
         }
     } else {
-        // instantáneo
         if (m_penDown) addLine(QLineF(m_pos, dest), QPen(m_penColor, 2, Qt::SolidLine, Qt::RoundCap));
         m_pos = dest;
         updateTurtle();
     }
 }
+
 
 void TurtleScene::retrocede(double n){ avanza(-n); }
 
