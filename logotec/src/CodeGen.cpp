@@ -36,7 +36,7 @@ any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
         }
     }
     // Al finalizar, añadir los procedimientos fuera de main
-    codigo = procGen.generarCodigoProcedimientos() + "\n" + "int main() {\n" + codigoMain + "}\n";
+    codigo = procGen.generarCodigoProcedimientos() + "\n" + "int main() {\n" + codigoMain;
     return nullptr;
 }
 
@@ -495,7 +495,6 @@ any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext 
 
 any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) {
     if (hayError) return nullptr;
-    //check that the color is valid color or variable of type color
     string n1;
     if (context->colores_variable()->ID()) {
         std::string colorVar = context->colores_variable()->ID()->getText();
@@ -511,11 +510,12 @@ any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_vari
         n1 = colorVar;
     }
     else if (context->colores_variable()->colores()) {
-        n1 = context->colores_variable()->colores()->getText();
+        n1 = "\"" + context->colores_variable()->colores()->getText() + "\""; // literal de color: poner comillas
     } else {
         error("Color no válido en PONCOLORLAPIZ.");
         return nullptr;
     }
+
     codigo += "ponColorLapiz(" + n1 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
@@ -525,6 +525,7 @@ any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_vari
     codigo += "\n";
     return nullptr;
 }
+
 
 any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) {
     // Manejar scope de parámetros

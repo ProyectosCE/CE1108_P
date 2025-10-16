@@ -56,7 +56,7 @@ int Compiler::compileFile(const std::string& programPath) {
     outFile << "#include <iostream>\n";
     outFile << "#include <string>\n";
     outFile << "using namespace std;\n\n";
-    outFile << "int main() {\n";
+    //outFile << "int main() {\n";
     outFile << generator.codigo;
     outFile << "return 0;\n";
     outFile << "}\n";
