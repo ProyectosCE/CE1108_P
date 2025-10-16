@@ -7,23 +7,23 @@
 
 TurtleScene::TurtleScene(QObject *parent)
     : QGraphicsScene(parent),
-      m_pos(0,0),
+      m_pos(0,0),          // posición inicial en 0,0
       m_angleDeg(0),
       m_penDown(true),
       m_penColor(Qt::black),
       m_animado(false),
       m_velocidad(5),
-      m_turtle(nullptr)
+      m_turtle(nullptr),
+      m_unitSize(50)       // default de unidad de 50 px
 {
-    setSceneRect(0,0,800,600);
-    m_center = sceneRect().center();
-
+    setSceneRect(-400, -300, 800, 600);
     // crear tortuga por primera vez
     ensureTurtleExists();
-    m_turtle->setPos(m_center);
-    m_pos = m_center;
+    m_turtle->setPos(QPointF(0,0)); // inicializar en 0,0
+    m_pos = QPointF(0,0);
     updateTurtle();
 }
+
 
 void TurtleScene::ensureTurtleExists()
 {
@@ -277,32 +277,36 @@ void TurtleScene::ocultaTortuga() {
 
 
 void TurtleScene::ponPos(double x, double y){
-    QPointF dest(x, y);
+    // Convertir unidades a pixeles, eje Y positivo hacia arriba
+    QPointF dest(x * m_unitSize, -y * m_unitSize);
+
+    bool penOriginal = m_penDown;
     m_penDown = false;
+
     if (m_animado) {
-        int pasos = 30;
+        int pasos = qMax(1, int((dest - m_pos).manhattanLength() / 3));
         QPointF pasoVec = (dest - m_pos) / pasos;
         for (int i = 0; i < pasos; ++i) {
-            QPointF siguiente = m_pos + pasoVec;
-            if (m_penDown) {
-                addLine(QLineF(m_pos, siguiente), QPen(m_penColor, 2, Qt::SolidLine, Qt::RoundCap));
-            }
-            m_pos = siguiente;
+            m_pos += pasoVec;
             updateTurtle();
             animarDelay();
         }
-        // asegurar posicion final exacta
-        if (m_pos != dest) {
-            if (m_penDown) addLine(QLineF(m_pos, dest), QPen(m_penColor, 2, Qt::SolidLine, Qt::RoundCap));
-            m_pos = dest;
-            updateTurtle();
-        }
-    } else {
-        m_pos = dest;
-        updateTurtle();
     }
-    m_penDown = true;
+
+    m_pos = dest;
+    updateTurtle();
+    m_penDown = penOriginal;
 }
+
+void TurtleScene::ponX(double x){
+    ponPos(x, -m_pos.y() / m_unitSize);
+}
+
+void TurtleScene::ponY(double y){
+    ponPos(m_pos.x() / m_unitSize, y);
+}
+
+
 
 void TurtleScene::ponRumbo(double grados){
     // ajusta rumbo absoluto al angulo especificado (0..360)
@@ -328,14 +332,6 @@ void TurtleScene::ponRumbo(double grados){
     }
     m_angleDeg = target;
     updateTurtle();
-}
-
-void TurtleScene::ponX(double x){
-    ponPos(x, m_pos.y());
-}
-
-void TurtleScene::ponY(double y){
-    ponPos(m_pos.x(), y);
 }
 
 void TurtleScene::bajaLapiz(){ m_penDown = true; }

@@ -216,6 +216,8 @@
     </widget>
     <addaction name="actionShow_Grid"/>
     <addaction name="menuChange_Cursor"/>
+    <addaction name="separator"/>
+    <addaction name="actionTest"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -326,6 +328,11 @@
    </property>
    <property name="text">
     <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="text">
+    <string>Test</string>
    </property>
   </action>
  </widget>

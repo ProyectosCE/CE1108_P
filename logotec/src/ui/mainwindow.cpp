@@ -37,10 +37,12 @@ MainWindow::MainWindow(QWidget *parent)
     // Turtle
     turtleScene = new TurtleScene(this);
     turtleView = new TurtleView(this);
-
     turtleView->setScene(turtleScene);
     turtleView->setShowGrid(true);
     turtleView->setUnitSize(50);
+
+    // Inicializar parser con la escena
+    turtleParser = TurtleCodeGen(turtleScene);
 
     // -- Botones realcionados a turtle
     connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
@@ -53,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionLeonardo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
     connect(ui->actionMichaelangelo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
     connect(ui->actionRafael_3, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+    connect(ui->actionTest, &QAction::triggered, this, &MainWindow::turtle_test);
 
     QPixmap icono("../src/ui/assets/tortuga.png");
     //turtleScene->usarIcono(icono);
@@ -63,46 +66,59 @@ MainWindow::MainWindow(QWidget *parent)
 
 // Slots
 
-void MainWindow::turtle_start() {
+void MainWindow::turtle_test() {
     if (turtleEnEjecucion) return; // prevenir doble click
+
     turtleEnEjecucion = true;
     ui->btn_reset->setEnabled(false); // bloquear reset
 
-    // Ejemplo inicial
+    // Configuración inicial Turtle
     turtleScene->setAnimado(true);
     turtleScene->velocidad("fast");
 
-    turtleScene->sl();
-    turtleScene->av(1);
-    turtleScene->poncl("azul");
-    turtleScene->bajaLapiz();
-    for (int i=0; i<4; i++) {
-        turtleScene->av(2);
-        turtleScene->gd(90);
-    }
-    turtleScene->gi(180);
-    turtleScene->sl();
-    turtleScene->av(2);
-    turtleScene->bl();
-    for (int i=0; i<4; i++) {
-        turtleScene->av(2);
-        turtleScene->gi(90);
-    }
-    turtleScene->gd(90);
-    for (int i=0; i<2; i++) {
-        turtleScene->av(4);
-        turtleScene->gd(90);
-        turtleScene->av(2);
-        turtleScene->gd(90);
-    }
 
-    //turtleScene->ocultaTortuga();
+    turtleScene->setAnimado(true);
+    turtleScene->velocidad("fast");
+
+    turtleScene->ponPos(4 , 4);
+    turtleScene->ponY(2);
+    turtleScene->ponPos(0 , 0);
 
     // Animación terminada
     turtleEnEjecucion = false;
     ui->btn_reset->setEnabled(true);
-
 }
+
+void MainWindow::turtle_start() {
+    if (turtleEnEjecucion) return; // prevenir doble click
+    if (currentFilePath.isEmpty()) {
+        QMessageBox::warning(this, "Turtle Start", "No file loaded. Please open or create a file first.");
+        return;
+    }
+    if (!compiled) {
+        QMessageBox::warning(this, "Turtle Start", "File has not been compiled successfully.");
+        return;
+    }
+
+    turtleEnEjecucion = true;
+    ui->btn_reset->setEnabled(false); // bloquear reset
+
+    // Configuración inicial Turtle
+    turtleScene->setAnimado(true);
+    turtleScene->velocidad("fast");
+
+    // ---- Leer y parsear archivo .lt cargado ----
+    QStringList lineas = turtleParser.leerArchivo(currentFilePath);
+    QList<Bloque> bloques = turtleParser.parsearBloques(lineas);
+
+    // ---- Ejecutar bloques ----
+    turtleParser.ejecutarBloques(bloques);
+
+    // Animación terminada
+    turtleEnEjecucion = false;
+    ui->btn_reset->setEnabled(true);
+}
+
 
 void MainWindow::turtle_reset() {
     turtleScene->limpiar();

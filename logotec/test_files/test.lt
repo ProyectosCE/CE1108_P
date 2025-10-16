@@ -10,7 +10,7 @@ INC [y]
 INC [y 5]                            
 
 // Alteracion de variables
-INIC y = Suma 3 3 3   
+INIC y = 6 + 0
 
 // =============================
 // Movimientos de Tortuga
@@ -18,7 +18,7 @@ INIC y = Suma 3 3 3
 
 // Avanzar 
 av 5
-avanza 6
+avanza 3
 
 // Retroceder
 retrocede 5
@@ -160,8 +160,6 @@ SI (y<9) [av 2]
 
 // Suma
 //Suma 4 3 2
-
-// What the helly?
 
 
 

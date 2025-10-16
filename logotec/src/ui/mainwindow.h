@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "../utils/coutredirect.h"
+#include "../utils/turtlecodegen.h"
 #include "../turtle/turtlescene.h"
 #include "../turtle/turtleview.h"
 
@@ -33,6 +34,7 @@ private slots:
     void turtle_show_grid();
     void turtle_change_cursor_arrow();
     void turtle_change_cursor_icon();
+    void turtle_test();
 
 private:
     Ui::MainWindow *ui;
@@ -48,6 +50,8 @@ private:
     bool m_gridVisible = true;
     bool turtleEnEjecucion = false;
     QPixmap icono;
+
+    TurtleCodeGen turtleParser;
 };
 
 #endif // MAINWINDOW_H
