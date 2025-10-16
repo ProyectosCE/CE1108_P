@@ -29,6 +29,10 @@ private slots:
 
     void turtle_start();
     void turtle_reset();
+    void turtle_end();
+    void turtle_show_grid();
+    void turtle_change_cursor_arrow();
+    void turtle_change_cursor_icon();
 
 private:
     Ui::MainWindow *ui;
@@ -41,6 +45,9 @@ private:
 
     TurtleScene *turtleScene;
     TurtleView *turtleView;
+    bool m_gridVisible = true;
+    bool turtleEnEjecucion = false;
+    QPixmap icono;
 };
 
 #endif // MAINWINDOW_H

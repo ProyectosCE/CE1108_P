@@ -58,52 +58,55 @@ void TurtleScene::velocidad(const QString &modo){
     }
 }
 
-void TurtleScene::limpiar(){
-    // clear borra todos los items incluido m_turtle,
-    // así que guardamos pos/angle y re-creamos la tortuga
-    QPointF oldCenter = m_center;
-    double oldAngle = m_angleDeg;
-    bool oldPen = m_penDown;
-    QColor oldColor = m_penColor;
+void TurtleScene::limpiar() {
+    // Limpiar todos los items (dibujos, tortuga, icono)
     clear();
+
+    // Borrar referencias a la tortuga e icono
     m_turtle = nullptr;
-    ensureTurtleExists();
+    m_turtleIcon = nullptr;
+    m_usarIcono = false;
 
-    // posicionar en el centro guardado
-    m_center = oldCenter;
-    m_pos = m_center;
+    // Resetear estado inicial
+    m_pos = sceneRect().center(); // aparece centrada en la escena
     m_angleDeg = 0;
-    updateTurtle();
+    m_penDown = true;
+    m_penColor = Qt::black;
+    m_animado = false;
+    m_velocidad = 5;
 
-    // si queremos animar la aparición (fade-in)
-    if (m_animado) {
-        m_turtle->setOpacity(0.0);
-        m_turtle->setVisible(true);
-        int pasos = 8;
-        for (int i = 0; i <= pasos; ++i) {
-            qreal o = qreal(i) / pasos;
-            m_turtle->setOpacity(o);
-            animarDelay();
-        }
-    } else {
-        m_turtle->setOpacity(1.0);
-        m_turtle->setVisible(true);
-    }
-
-    // restaurar estado visual (pen/color)
-    m_penDown = oldPen;
-    m_penColor = oldColor;
-    updateTurtle();
-}
-
-void TurtleScene::updateTurtle(){
+    // Crear la flecha por defecto
     ensureTurtleExists();
-    m_turtle->setRotation(m_angleDeg);
-    m_turtle->setPos(m_pos);
-    // asegurar visible y opacidad
-    if (!m_turtle->isVisible()) m_turtle->setVisible(true);
-    if (m_turtle->opacity() <= 0.0) m_turtle->setOpacity(1.0);
+
+    // Actualizar visual
+    updateTurtle();
 }
+
+
+
+void TurtleScene::updateTurtle() {
+    if (m_usarIcono && m_turtleIcon) {
+        QRectF rect = m_turtleIcon->boundingRect();
+        QPointF centro = rect.center();
+
+        // Posicionar el centro del pixmap en m_pos
+        m_turtleIcon->setPos(m_pos - centro);
+
+        // Rotación: sumamos 90° a la derecha
+        m_turtleIcon->setRotation(m_angleDeg + 90.0);
+
+        if (!m_turtleIcon->isVisible()) m_turtleIcon->setVisible(true);
+        if (m_turtleIcon->opacity() <= 0.0) m_turtleIcon->setOpacity(1.0);
+    } else {
+        ensureTurtleExists();
+        m_turtle->setRotation(m_angleDeg);
+        m_turtle->setPos(m_pos);
+        if (!m_turtle->isVisible()) m_turtle->setVisible(true);
+        if (m_turtle->opacity() <= 0.0) m_turtle->setOpacity(1.0);
+    }
+}
+
+
 
 void TurtleScene::animarDelay(){
     if (!m_animado) return;
@@ -114,6 +117,50 @@ void TurtleScene::animarDelay(){
     QTimer::singleShot(delay, &loop, &QEventLoop::quit);
     loop.exec();
 }
+
+void TurtleScene::usarIcono(const QPixmap &pixmap) {
+    // Ocultar la flecha
+    if (m_turtle) m_turtle->setVisible(false);
+
+    // Tamaño base de la flecha
+    QRectF bbox = QRectF(-7, -6, 17, 12); // ancho = 17, alto = 12
+    QSizeF targetSize = bbox.size() * 2.5; // agrandar 1.5x
+
+    // Escalar pixmap al tamaño deseado
+    QPixmap scaled = pixmap.scaled(targetSize.width(), targetSize.height(),
+                                   Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Crear QGraphicsPixmapItem si no existe
+    if (!m_turtleIcon) {
+        m_turtleIcon = addPixmap(scaled);
+        m_turtleIcon->setZValue(10);
+    } else {
+        m_turtleIcon->setPixmap(scaled);
+        m_turtleIcon->setVisible(true);
+    }
+
+    // Ajustar el centro de la imagen al centro real
+    QRectF rect = m_turtleIcon->boundingRect();
+    m_turtleIcon->setTransformOriginPoint(rect.center());
+
+    // Rotación inicial de 90° a la derecha
+    m_turtleIcon->setRotation(90.0);
+
+    m_usarIcono = true;
+    updateTurtle();
+}
+
+
+
+void TurtleScene::usarFlecha() {
+    // Ocultar ícono
+    if (m_turtleIcon) m_turtleIcon->setVisible(false);
+    // Mostrar flecha
+    if (m_turtle) m_turtle->setVisible(true);
+    m_usarIcono = false;
+    updateTurtle();
+}
+
 
 // Metodos para controlar tortuga
 

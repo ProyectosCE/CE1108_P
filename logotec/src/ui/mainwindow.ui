@@ -149,16 +149,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_reset">
+      <widget class="QPushButton" name="btn_end">
        <property name="text">
-        <string>Reset</string>
+        <string>End</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_pause">
+      <widget class="QPushButton" name="btn_reset">
        <property name="text">
-        <string>Pause</string>
+        <string>Reset</string>
        </property>
       </widget>
      </item>
@@ -197,7 +197,25 @@
     <property name="title">
      <string>Turtle</string>
     </property>
+    <widget class="QMenu" name="menuChange_Cursor">
+     <property name="title">
+      <string>Change Cursor</string>
+     </property>
+     <widget class="QMenu" name="menuSpecials">
+      <property name="title">
+       <string>Specials</string>
+      </property>
+      <addaction name="actionLeonardo"/>
+      <addaction name="actionRafael_3"/>
+      <addaction name="actionMichaelangelo"/>
+      <addaction name="actionDonatello_3"/>
+     </widget>
+     <addaction name="actionArrow"/>
+     <addaction name="actionTurtle"/>
+     <addaction name="menuSpecials"/>
+    </widget>
     <addaction name="actionShow_Grid"/>
+    <addaction name="menuChange_Cursor"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -227,6 +245,87 @@
   <action name="actionShow_Grid">
    <property name="text">
     <string>Show Grid</string>
+   </property>
+  </action>
+  <action name="actionChange_Icon">
+   <property name="text">
+    <string>Change Icon</string>
+   </property>
+  </action>
+  <action name="actionArrow">
+   <property name="text">
+    <string>Arrow</string>
+   </property>
+  </action>
+  <action name="actionTurtle">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/tortuga.png</normaloff>assets/tortuga.png</iconset>
+   </property>
+   <property name="text">
+    <string>Turtle</string>
+   </property>
+  </action>
+  <action name="actionDonatello">
+   <property name="text">
+    <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionRafael">
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionDonatello_2">
+   <property name="text">
+    <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionRafael_2">
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionLeonardo">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/leonardo.png</normaloff>assets/leonardo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Leonardo</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRafael_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/rafael.png</normaloff>assets/rafael.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionMichaelangelo">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/michaelangelo.png</normaloff>assets/michaelangelo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Michaelangelo</string>
+   </property>
+  </action>
+  <action name="actionDonatello_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/donatello.png</normaloff>assets/donatello.png</iconset>
+   </property>
+   <property name="text">
+    <string>Donatello</string>
    </property>
   </action>
  </widget>

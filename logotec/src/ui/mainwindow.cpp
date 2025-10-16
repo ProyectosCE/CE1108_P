@@ -23,8 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
-    connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
-    connect(ui->btn_reset, &QPushButton::clicked, this, &MainWindow::turtle_reset);
 
     ui->plainTextEdit->setReadOnly(true);
     ui->plainTextEdit->setPlainText("Open File / New File to start editing...");
@@ -43,6 +41,21 @@ MainWindow::MainWindow(QWidget *parent)
     turtleView->setShowGrid(true);
     turtleView->setUnitSize(50);
 
+    // -- Botones realcionados a turtle
+    connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
+    connect(ui->btn_reset, &QPushButton::clicked, this, &MainWindow::turtle_reset);
+    connect(ui->btn_end, &QPushButton::clicked, this, &MainWindow::turtle_end);
+    connect(ui->actionShow_Grid, &QAction::triggered, this, &MainWindow::turtle_show_grid);
+    connect(ui->actionArrow, &QAction::triggered, this, &MainWindow::turtle_change_cursor_arrow);
+    connect(ui->actionTurtle, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+    connect(ui->actionDonatello_3, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+    connect(ui->actionLeonardo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+    connect(ui->actionMichaelangelo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+    connect(ui->actionRafael_3, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
+
+    QPixmap icono("../src/ui/assets/tortuga.png");
+    //turtleScene->usarIcono(icono);
+
     ui->verticalLayout->addWidget(turtleView);
 
 }
@@ -50,6 +63,9 @@ MainWindow::MainWindow(QWidget *parent)
 // Slots
 
 void MainWindow::turtle_start() {
+    if (turtleEnEjecucion) return; // prevenir doble click
+    turtleEnEjecucion = true;
+    ui->btn_reset->setEnabled(false); // bloquear reset
 
     // Ejemplo inicial
     turtleScene->setAnimado(true);
@@ -80,10 +96,54 @@ void MainWindow::turtle_start() {
 
     turtleScene->ocultaTortuga();
 
+    // Animación terminada
+    turtleEnEjecucion = false;
+    ui->btn_reset->setEnabled(true); 
+
 }
 
 void MainWindow::turtle_reset() {
     turtleScene->limpiar();
+}
+
+void MainWindow::turtle_end() {
+    turtleScene->setAnimado(false);
+}
+
+void MainWindow::turtle_show_grid() {
+    m_gridVisible = !m_gridVisible;
+    turtleView->setShowGrid(m_gridVisible);
+}
+
+void MainWindow::turtle_change_cursor_arrow() {
+    turtleScene->usarFlecha();
+}
+
+void MainWindow::turtle_change_cursor_icon() {
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (!action) return;
+
+    QString iconPath;
+
+    if (action == ui->actionTurtle)
+        iconPath = "../src/ui/assets/tortuga.png";
+    else if (action == ui->actionDonatello_3)
+        iconPath = "../src/ui/assets/donatello.png";
+    else if (action == ui->actionLeonardo)
+        iconPath = "../src/ui/assets/leonardo.png";
+    else if (action == ui->actionRafael_3)
+        iconPath = "../src/ui/assets/rafael.png";
+    else if (action == ui->actionMichaelangelo)
+        iconPath = "../src/ui/assets/michaelangelo.png";
+    else
+        return;
+    QPixmap pixmap;
+    if (!pixmap.load(iconPath)) {
+        qWarning("No se pudo cargar el icono: %s", qUtf8Printable(iconPath));
+        return;
+    }
+
+    turtleScene->usarIcono(pixmap);
 }
 
 void MainWindow::printTerminal(const QString &message) {

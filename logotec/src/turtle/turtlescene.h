@@ -50,6 +50,9 @@ public:
     void velocidad(const QString &modo);
     void limpiar();
 
+    void usarIcono(const QPixmap &pixmap);
+    void usarFlecha();
+
 private:
     //estados
     QPointF m_pos;
@@ -66,6 +69,9 @@ private:
     void animarDelay();
     void updateTurtle();
     void ensureTurtleExists();
+    //Icono
+    QGraphicsPixmapItem* m_turtleIcon = nullptr;
+    bool m_usarIcono = false;
 };
 
 
