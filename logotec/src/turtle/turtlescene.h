@@ -44,7 +44,7 @@ public:
     inline void ponXY(double x, double y) { ponPos(x, y); }
     inline void bl() { bajaLapiz(); }
     inline void sl() { subeLapiz(); }
-    inline void pocl(const QString &c) { ponColorLapiz(c); }
+    inline void poncl(const QString &c) { ponColorLapiz(c); }
 
     // Metodos adicionales
     void setAnimado(bool animado);

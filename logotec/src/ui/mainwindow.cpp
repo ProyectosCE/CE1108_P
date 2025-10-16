@@ -73,7 +73,7 @@ void MainWindow::turtle_start() {
 
     turtleScene->sl();
     turtleScene->av(1);
-    turtleScene->pocl("azul");
+    turtleScene->poncl("azul");
     turtleScene->bajaLapiz();
     for (int i=0; i<4; i++) {
         turtleScene->av(2);
