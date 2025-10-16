@@ -21,7 +21,7 @@ av 5
 avanza 3
 
 // Retroceder
-retrocede 5
+retrocede Suma 5 5
 re 6
 
 // Girar a la derecha

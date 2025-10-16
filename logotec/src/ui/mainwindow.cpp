@@ -9,6 +9,8 @@
 #include <QTextStream>
 #include "parsetreewindow.h"
 #include <QThread>
+#include <cstdlib>
+#include <ctime>
 
 
 
@@ -40,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     turtleView->setScene(turtleScene);
     turtleView->setShowGrid(true);
     turtleView->setUnitSize(50);
+    std::srand(std::time(nullptr));
 
     // Inicializar parser con la escena
     turtleParser = TurtleCodeGen(turtleScene);
