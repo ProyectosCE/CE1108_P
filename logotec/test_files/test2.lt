@@ -9,22 +9,25 @@ Haz y 1
 //av y
 //]
 
-//MIENTRAS (z < 4) [
-//INC [z]
-//GD 90
-//av 2
-//]
-//espera 120
-//av 3
-//OT
+MIENTRAS (z < 4) [
+INC [z]
+GD 90
+av 2
+SI (y == 5) [av 1] [av 2]
+]
+espera 120
+av 3
+OT
+
+//INC [z 5]
+//SI (y == 4) [av 2] [av z]
 
 
-SI (y == 4) [av 2]
 
-
-Haz x 0
-HAZ.MIENTRAS [
-    INC [x]
-    GD 90
-    av 2
-] (x < 5)
+//Haz x 0
+//HAZ.MIENTRAS [
+//  INC [x]
+//  GD 90
+//SI (y == 5) [av 1] [av 2]
+//SI (z == 0) [GI 180] [av 2]
+//] (x < 5)
