@@ -216,7 +216,7 @@ hasta_variable
     ;
 
 haz_mientras_variable
-    : HAZ_MIENTRAS '[' instruccion* ']' '[' exp_logica']'
+    : HAZ_MIENTRAS '[' instruccion* ']' '(' exp_logica')'
     ;
 
 mientras_variable

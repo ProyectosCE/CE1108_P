@@ -1,7 +1,30 @@
+Haz z 0
+Haz y 1
 
-REPITE 100 [
+//INIC y = 2 
 
-GD Azar 360
-av 1
 
-]
+//REPITE 5 [
+//GD Azar 360
+//av y
+//]
+
+//MIENTRAS (z < 4) [
+//INC [z]
+//GD 90
+//av 2
+//]
+//espera 120
+//av 3
+//OT
+
+
+SI (y == 4) [av 2]
+
+
+Haz x 0
+HAZ.MIENTRAS [
+    INC [x]
+    GD 90
+    av 2
+] (x < 5)

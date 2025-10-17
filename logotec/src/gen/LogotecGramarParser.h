@@ -940,7 +940,9 @@ public:
     Haz_mientras_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HAZ_MIENTRAS();
+    antlr4::tree::TerminalNode *PAR_OPEN();
     Exp_logicaContext *exp_logica();
+    antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 

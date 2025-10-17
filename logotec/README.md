@@ -53,7 +53,7 @@
 | **EJECUTA**         | `EJECUTA [instrucciones]`             | `do { ... }` | Ejecuta bloque una vez |
 | **HAZ.HASTA**       | `HAZ.HASTA [instrucciones] (cond)`    | `do { ... } while (!(cond));` | Bucle do-while inverso |
 | **HASTA**           | `HASTA (cond) [instrucciones]`        | `while (!(cond)) { ... }` | Bucle while inverso |
-| **HAZ.MIENTRAS**    | `HAZ.MIENTRAS [instrucciones] [cond]` | `do { ... } while (cond);` | Bucle do-while |
+| **HAZ.MIENTRAS**    | `HAZ.MIENTRAS [instrucciones] (cond)` | `do { ... } while (cond);` | Bucle do-while |
 | **MIENTRAS**        | `MIENTRAS (cond) [instrucciones]`     | `while (cond) { ... }` | Bucle while |
 
 ## 🔧 Operadores Lógicos y Comparación

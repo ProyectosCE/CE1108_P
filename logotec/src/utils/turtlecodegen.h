@@ -18,6 +18,7 @@ struct Bloque {
     QString condicion;     // para SI, HASTA, MIENTRAS
     QList<Bloque> lineas;  // bloques internos
     QString instruccion;   // para tipo "instruccion"
+    QString repeticionesStr;
 };
 
 // =======================================================
@@ -51,31 +52,62 @@ public:
         QList<Bloque> bloques;
         QList<Bloque*> stack;
 
-        for (const QString &linea : lineas) {
-            QString l = linea.trimmed();
+        for (int idx = 0; idx < lineas.size(); ++idx) {
+            const QString linea = lineas[idx].trimmed();
+            QString l = linea;
+
             if (l.startsWith("REPITE")) {
                 Bloque *b = new Bloque();
                 b->tipo = "REPITE";
-                b->repeticiones = l.section(' ',1,1).toInt();
+                b->repeticionesStr = l.section(' ', 1, 1); // guardar como string
                 stack.append(b);
-            } else if (l.startsWith("SI")) {
+            }
+            else if (l.startsWith("SI")) {
                 Bloque *b = new Bloque();
                 b->tipo = "SI";
-                b->condicion = l.section('(',1,1).section(')',0,0);
+                b->condicion = l.section('(', 1, 1).section(')', 0, 0);
                 stack.append(b);
-            } else if (l.startsWith("EJECUTA") || l.startsWith("HAZ") || l.startsWith("HASTA") || l.startsWith("MIENTRAS")) {
+            }
+            else if (l.startsWith("EJECUTA") || l.startsWith("HAZ ") || l == "HAZ" || l.startsWith("HASTA") || l.startsWith("MIENTRAS")) {
                 Bloque *b = new Bloque();
-                b->tipo = l.section(' ',0,0);
-                if (l.contains("(")) b->condicion = l.section('(',1,1).section(')',0,0);
+                b->tipo = l.section(' ', 0, 0);
+                if (l.contains("(")) b->condicion = l.section('(', 1, 1).section(')', 0, 0);
                 stack.append(b);
-            } else if (l.startsWith("]") || l.startsWith("}")) {
+            }
+            else if (l.startsWith("HAZ.MIENTRAS") || l == "HAZ.MIENTRAS") {
+                Bloque *b = new Bloque();
+                b->tipo = "HAZ.MIENTRAS";
+
+                // Verificar si la misma línea contiene la condición en paréntesis
+                int parenOpen = l.indexOf('(');
+                int parenClose = l.lastIndexOf(')');
+                if (parenOpen != -1 && parenClose != -1 && parenClose > parenOpen) {
+                    b->condicion = l.mid(parenOpen + 1, parenClose - parenOpen - 1).trimmed();
+                }
+
+                stack.append(b);
+            }
+            else if (l.startsWith("]") || l.startsWith("}")) {
                 if (!stack.isEmpty()) {
                     Bloque *cerrado = stack.takeLast();
+
+                    // Si es HAZ.MIENTRAS, tomar la condición entre paréntesis
+                    if (cerrado->tipo == "HAZ.MIENTRAS" && cerrado->condicion.isEmpty()) {
+                        int lastParenOpen = l.lastIndexOf('(');
+                        int lastParenClose = l.lastIndexOf(')');
+                        if (lastParenOpen != -1 && lastParenClose != -1 && lastParenClose > lastParenOpen) {
+                            cerrado->condicion = l.mid(lastParenOpen + 1, lastParenClose - lastParenOpen - 1).trimmed();
+                        }
+                    }
+
                     if (stack.isEmpty()) bloques.append(*cerrado);
                     else stack.last()->lineas.append(*cerrado);
+
                     delete cerrado;
                 }
-            } else { // instrucción normal
+            }
+
+            else { // instrucción normal
                 Bloque b;
                 b.tipo = "instruccion";
                 b.instruccion = l;
@@ -94,6 +126,8 @@ public:
         return bloques;
     }
 
+
+
     // ---------------------------------------------
     // Ejecutar bloques
     // ---------------------------------------------
@@ -106,33 +140,109 @@ public:
 private:
     TurtleScene *turtleScene;
 
+    QMap<QString,int> variables;
+
     // ---------------------------------------------
     // Ejecutar un bloque individual
     // ---------------------------------------------
     void ejecutarBloque(const Bloque &b) {
         if (b.tipo == "instruccion") {
+            QString l = b.instruccion.trimmed();
+
+            // --- Detectar asignación de variable ---
+            if (l.startsWith("Haz ")) {
+                QStringList parts = l.split(' ', Qt::SkipEmptyParts);
+                if (parts.size() >= 3) {
+                    QString varName = parts[1];
+                    int val = evaluarExpresion(parts.mid(2).join(" "));
+                    variables[varName] = val; // guardar en mapa
+                    return; // ya asignada, no ejecutar más
+                }
+            }
+
+            if (l.startsWith("INIC ")) {
+                QStringList parts = l.mid(5).split('=', Qt::SkipEmptyParts);
+                if (parts.size() == 2) {
+                    QString varName = parts[0].trimmed();
+                    int val = evaluarExpresion(parts[1].trimmed());
+                    variables[varName] = val;
+                    return;
+                }
+            }
+
+            if (l.startsWith("INC")) {
+                int start = l.indexOf('[');
+                int end   = l.indexOf(']', start);
+                if (start != -1 && end != -1 && end > start) {
+                    QString inside = l.mid(start + 1, end - start - 1).trimmed();
+                    QStringList parts = inside.split(' ', Qt::SkipEmptyParts);
+                    if (!parts.isEmpty()) {
+                        QString varName = parts[0];
+                        int incremento = 1; // default
+
+                        if (parts.size() >= 2) {
+                            QString incStr = parts[1];
+                            // Si es variable existente
+                            if (variables.contains(incStr))
+                                incremento = variables[incStr];
+                            else
+                                incremento = evaluarExpresion(incStr); // número literal o expresión
+                        }
+
+                        variables[varName] = variables.value(varName, 0) + incremento;
+                    }
+                }
+                return; // ya procesado INC
+            }
+
+
+
+            // --- Ejecutar instrucción normal ---
             ejecutarInstruccion(b.instruccion);
-        } else if (b.tipo == "REPITE") {
-            for (int i=0;i<b.repeticiones;i++)
+        }
+        else if (b.tipo == "REPITE") {
+            int reps = evaluarExpresion(b.repeticionesStr);
+            for (int i = 0; i < reps; ++i)
                 for (const Bloque &sub : b.lineas)
                     ejecutarBloque(sub);
-        } else if (b.tipo == "SI") {
+        }
+
+        else if (b.tipo == "SI") {
             if (evaluarCondicion(b.condicion))
                 for (const Bloque &sub : b.lineas)
                     ejecutarBloque(sub);
-        } else if (b.tipo == "EJECUTA" || b.tipo == "HAZ") {
+        }
+        else if (b.tipo == "EJECUTA" || b.tipo == "HAZ") {
             for (const Bloque &sub : b.lineas)
                 ejecutarBloque(sub);
-        } else if (b.tipo == "HASTA") {
+        }
+        else if (b.tipo == "HASTA") {
             while (!evaluarCondicion(b.condicion))
                 for (const Bloque &sub : b.lineas)
                     ejecutarBloque(sub);
-        } else if (b.tipo == "MIENTRAS") {
+        }
+        else if (b.tipo == "MIENTRAS") {
             while (evaluarCondicion(b.condicion))
                 for (const Bloque &sub : b.lineas)
                     ejecutarBloque(sub);
         }
+        else if (b.tipo == "HAZ.MIENTRAS") {
+            QString cond = b.condicion;  // copia segura de la condición original
+
+            while (true) {
+                // ejecutar el bloque al menos una vez
+                for (const Bloque &sub : b.lineas)
+                    ejecutarBloque(sub);
+
+                // reevaluar usando el valor actual de variables
+                if (!evaluarCondicion(cond))
+                    break;
+            }
+        }
+
     }
+
+
 
     // ---------------------------------------------
     // Ejecutar instrucción simple
@@ -183,18 +293,47 @@ private:
         QStringList tokens = linea.split(' ', Qt::SkipEmptyParts);
         if (tokens.size() < 2) return 0;
         QString expr = tokens.mid(1).join(" ");
+
+        // Si es una variable existente, devuelve su valor
+        if (variables.contains(expr))
+            return variables[expr];
+
+        // Si no, evalúa como expresión
         return evaluarExpresion(expr);
     }
+
 
     // ---------------------------------------------
     // Evaluar condiciones lógicas simples
     // ---------------------------------------------
     bool evaluarCondicion(const QString &cond) {
-        QString c = cond.trimmed().toLower();
-        if (c=="false") return false;
-        if (c=="true") return true;
-        return true; // default true para demo
+        QString c = cond.trimmed();
+
+        // Detectar operadores simples
+        QStringList ops = {"<=", ">=", "==", "!=", "<", ">"};
+        for (const QString &op : ops) {
+            int idx = c.indexOf(op);
+            if (idx != -1) {
+                QString left  = c.left(idx).trimmed();
+                QString right = c.mid(idx + op.length()).trimmed();
+
+                int valLeft  = variables.value(left, left.toInt());
+                int valRight = variables.value(right, right.toInt());
+
+                if (op == "<")  return valLeft < valRight;
+                if (op == "<=") return valLeft <= valRight;
+                if (op == ">")  return valLeft > valRight;
+                if (op == ">=") return valLeft >= valRight;
+                if (op == "==") return valLeft == valRight;
+                if (op == "!=") return valLeft != valRight;
+            }
+        }
+
+        // si no reconoce operador, considerar true si no es 0
+        int val = variables.value(c, c.toInt());
+        return val != 0;
     }
+
 
     // ---------------------------------------------
     // Evaluar expresiones aritméticas simples
@@ -242,6 +381,8 @@ private:
             return rand() % (n + 1); // número aleatorio entre 0 y n
         }
 
+        // Soporte de variables
+        if (variables.contains(op)) return variables[op];
 
         // Números literales
         bool ok=false;
