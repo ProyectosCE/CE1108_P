@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "../utils/coutredirect.h"
-#include "../utils/turtlecodegen.h"
+#include "../turtle/turtlecodegen.h"
 #include "../turtle/turtlescene.h"
 #include "../turtle/turtleview.h"
 
@@ -26,6 +26,7 @@ private slots:
     void openFile();
     void saveFile();
     void compileProgram();
+    void flashBoard();
     void parseTree();
 
     void turtle_start();

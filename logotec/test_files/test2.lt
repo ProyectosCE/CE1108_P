@@ -32,10 +32,10 @@ SI (y == 5) [av 1] [av 2]
 SI (z == 0) [GI 180] [av 2]
 ] (x < 5)
 
-EJECUTA [
-SI (y == 5) [av 1] [av 2]
-SI (z == 0) [GI 180] [av 2]
-]
+//EJECUTA [
+//SI (y == 5) [av 1] [av 2]
+//SI (z == 0) [GI 180] [av 2]
+//]
 
 HAZ.HASTA [
 INC [x]

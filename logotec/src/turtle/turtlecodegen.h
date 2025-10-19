@@ -8,7 +8,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QStack>
-#include "../turtle/turtlescene.h"
+#include "turtlescene.h"
 
 // =======================================================
 // Estructura de bloque

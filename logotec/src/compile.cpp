@@ -85,7 +85,7 @@ int Compiler::compileFile(const std::string& programPath) {
     outFile << "\nvoid loop() {\n}\n";
     outFile.close();
 
-    cout << "Archivo generado en out/logotec.cpp" << endl;
+    cout << "Archivo generado en out_files/out_files.ino" << endl;
     return 0;
 }
 

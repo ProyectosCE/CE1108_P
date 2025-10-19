@@ -219,10 +219,17 @@
     <addaction name="separator"/>
     <addaction name="actionTest"/>
    </widget>
+   <widget class="QMenu" name="menuBoard">
+    <property name="title">
+     <string>Board</string>
+    </property>
+    <addaction name="actionFlash"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuTurtle"/>
+   <addaction name="menuBoard"/>
   </widget>
   <action name="action_New_File">
    <property name="text">
@@ -333,6 +340,11 @@
   <action name="actionTest">
    <property name="text">
     <string>Test</string>
+   </property>
+  </action>
+  <action name="actionFlash">
+   <property name="text">
+    <string>Flash</string>
    </property>
   </action>
  </widget>

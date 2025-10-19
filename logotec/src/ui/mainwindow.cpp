@@ -11,6 +11,7 @@
 #include <QThread>
 #include <cstdlib>
 #include <ctime>
+#include <QProcess>
 
 
 
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionParser_Tree, &QAction::triggered, this, &MainWindow::parseTree);
     connect(ui->CompileButton, &QPushButton::clicked, this, &MainWindow::compileProgram);
-
+    connect(ui->actionFlash, &QAction::triggered, this, &MainWindow::flashBoard);
     ui->plainTextEdit->setReadOnly(true);
     ui->plainTextEdit->setPlainText("Open File / New File to start editing...");
 
@@ -252,30 +253,110 @@ void MainWindow::saveFile() {
 }
 
 
+
 void MainWindow::compileProgram() {
     if (currentFilePath.isEmpty()) {
         QMessageBox::warning(this, "Compile", "Please open a file first.");
         return;
     }
 
-    // Guardar antes de compilar
     saveFile();
 
     Compiler compiler;
-
     compiler.clear();
 
     int result = compiler.compileFile(currentFilePath.toStdString());
-
-    if (result == 0) {
-        QMessageBox::information(this, "Success", "Compilation finished successfully.");
-        compiled = true;
-        currentJsonPath = "./out/tree.json";
-    } else {
+    if (result != 0) {
         QMessageBox::critical(this, "Error", "There were errors during compilation.");
         compiled = false;
         currentJsonPath.clear();
+        return;
     }
+
+    QString sketchFolder = "../out_files";
+    QString buildFolder = sketchFolder + "/build";
+
+    QProcess *process = new QProcess(this);
+
+    // Conectar señales para recibir salida en tiempo real
+    connect(process, &QProcess::readyReadStandardOutput, [=]() {
+        QString output = process->readAllStandardOutput();
+        ui->terminal->appendPlainText(output);
+    });
+
+    connect(process, &QProcess::readyReadStandardError, [=]() {
+        QString error = process->readAllStandardError();
+        ui->terminal->appendPlainText(error);
+    });
+
+    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus status) {
+        if (exitCode == 0) {
+            QMessageBox::information(this, "Success", "Compilation finished successfully with Arduino CLI.");
+            compiled = true;
+            currentJsonPath = "../out/tree.json";
+        } else {
+            QMessageBox::critical(this, "Error", "Arduino CLI compilation failed.");
+            compiled = false;
+        }
+        process->deleteLater(); // liberar memoria
+    });
+
+    QStringList args;
+    args << "compile"
+         << "--fqbn" << "esp8266:esp8266:nodemcuv2"
+         << "--build-path" << buildFolder
+         << sketchFolder;
+
+    process->start("arduino-cli", args);
+}
+
+
+void MainWindow::flashBoard() {
+    if (!compiled) {
+        QMessageBox::warning(this, "Flash Error", "Cannot flash: The program has not been compiled successfully.");
+        return;
+    }
+    QString port = "/dev/ttyUSB0";
+    QString binFile = "../out_files/build/out_files.ino.bin";
+
+    // Verificar si el puerto existe
+    if (!QFile::exists(port)) {
+        QMessageBox::critical(this, "Flash Error", QString("Board not found on %1").arg(port));
+        return;
+    }
+
+    // Preparar QProcess
+    QProcess *process = new QProcess(this);
+
+    connect(process, &QProcess::readyReadStandardOutput, [=]() {
+        QString output = process->readAllStandardOutput();
+        ui->terminal->appendPlainText(output);
+    });
+
+    connect(process, &QProcess::readyReadStandardError, [=]() {
+        QString error = process->readAllStandardError();
+        ui->terminal->appendPlainText(error);
+    });
+
+    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus status) {
+        if (exitCode == 0) {
+            QMessageBox::information(this, "Flash Success", "Board flashed successfully!");
+        } else {
+            QMessageBox::critical(this, "Flash Failed", "Flashing the board failed.");
+        }
+        process->deleteLater();
+    });
+
+    // Comando a ejecutar
+    QStringList args;
+    args << "--port" << port
+         << "write_flash"
+         << "0x00000"
+         << binFile;
+
+    process->start("esptool.py", args);
 }
 
 

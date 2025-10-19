@@ -1043,3 +1043,4 @@ Thumbs.db
 # Extra
 out_files/out_files.ino
 out_files/tree.json
+out_files/build

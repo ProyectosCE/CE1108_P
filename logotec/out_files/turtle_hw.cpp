@@ -78,11 +78,11 @@ void centro() {
 
 // Operaciones aritmeticas
 
-int Producto(int a, int b) {
+int PRODUCTO(int a, int b) {
     return a * b;
 }
 
-int Division(int a, int b) {
+int DIVISION(int a, int b) {
     if (b == 0) {
         // Evita división por cero
         return 0;
@@ -90,9 +90,9 @@ int Division(int a, int b) {
     return a / b;  // División entera
 }
 
-int Potencia(int a, int b) {
+int POTENCIA(int a, int b) {
     return a * b;
 }
-int Azar(int n) {
+int AZAR(int n) {
     return rand() % (n + 1);
 }

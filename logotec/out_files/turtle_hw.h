@@ -38,28 +38,28 @@ inline void poncl(const char* color) { ponColorLapiz(color); }
 // Operaciones aritmeticas
 
 // Caso base de Suma
-inline int Suma(int x) { return x; }
+inline int SUMA(int x) { return x; }
 
 // Template recursivo para cualquier cantidad de argumentos
 template<typename... Args>
-inline int Suma(int x, Args... args) {
-    return x + Suma(args...);
+inline int SUMA(int x, Args... args) {
+    return x + SUMA(args...);
 }
 
 // Caso base de Resta
-inline int Resta(int x) { return x; }
+inline int DIFERENCIA(int x) { return x; }
 
 // Template recursivo para Resta
 template<typename... Args>
-inline int Resta(int x, Args... args) {
-    return x - Resta(args...);
+inline int DIFERENCIA(int x, Args... args) {
+    return x - DIFERENCIA(args...);
 }
 
 
-int Producto(int a, int b);
-int Division(int a, int b);
-int Potencia(int a, int b);
-int Azar(int n);
+int PRODUCTO(int a, int b);
+int DIVISION(int a, int b);
+int POTENCIA(int a, int b);
+int AZAR(int n);
 
 
 #endif //LOGOTEC_TURTLE_HW_H
