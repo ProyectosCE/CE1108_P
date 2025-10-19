@@ -36,7 +36,7 @@ any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
         }
     }
     // Al finalizar, añadir los procedimientos fuera de main
-    codigo = procGen.generarCodigoProcedimientos() + "\n" + "int main() {\n" + codigoMain;
+    codigo = procGen.generarCodigoProcedimientos() + "\n" + "void setup() {\n" + "initTurtle();\n" + codigoMain;
     return nullptr;
 }
 

@@ -4,10 +4,10 @@ Haz y 1
 //INIC y = 2 
 
 
-//REPITE 5 [
-//GD Azar 360
-//av y
-//]
+REPITE 5 [
+GD Azar 360
+av y
+]
 
 MIENTRAS (z < 4) [
 INC [z]
@@ -19,15 +19,34 @@ espera 120
 av 3
 OT
 
-//INC [z 5]
-//SI (y == 4) [av 2] [av z]
+INC [z 5]
+SI (y == 4) [av 2] [av z]
 
 
 
-//Haz x 0
-//HAZ.MIENTRAS [
-//  INC [x]
-//  GD 90
-//SI (y == 5) [av 1] [av 2]
-//SI (z == 0) [GI 180] [av 2]
-//] (x < 5)
+Haz x 0
+HAZ.MIENTRAS [
+  INC [x]
+  GD 90
+SI (y == 5) [av 1] [av 2]
+SI (z == 0) [GI 180] [av 2]
+] (x < 5)
+
+EJECUTA [
+SI (y == 5) [av 1] [av 2]
+SI (z == 0) [GI 180] [av 2]
+]
+
+HAZ.HASTA [
+INC [x]
+GD 90
+SI (y == 5) [av 1] [av 2]
+SI (z == 0) [GI 180] [av 2]
+] (x > 5)
+
+HASTA (z > 4) [
+INC [z]
+GD 90
+av 2
+SI (y == 5) [av 1] [av 2]
+]

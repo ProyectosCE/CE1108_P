@@ -73,15 +73,16 @@ int Compiler::compileFile(const std::string& programPath) {
     treeOut.close();
 
     // Generar archivo .cpp
-    std::ofstream outFile("./out/logotec.cpp");
+    std::ofstream outFile("./out/logotec.ino");
     if (!outFile.is_open()) {
         cerr << "Error al crear el archivo de salida." << endl;
         return 1;
     }
 
-    outFile << "#include <iostream>\n#include <string>\nusing namespace std;\n\n";
+    outFile << "#include \"turtle_hw.h\"\n";
     outFile << generator.codigo;
-    outFile << "return 0;\n}\n";
+    outFile << "}\n";
+    outFile << "\nvoid loop() {\n}\n";
     outFile.close();
 
     cout << "Archivo generado en out/logotec.cpp" << endl;
