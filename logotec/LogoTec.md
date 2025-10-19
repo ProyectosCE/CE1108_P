@@ -136,5 +136,3 @@
 | `<=` | `<=` |
 | `==` | `==` |
 | `!=` | `!=` |
-
-Este listado representa todas las instrucciones definidas en la gramática de LogoTec y su correspondiente generación en C++ según el código proporcionado.
