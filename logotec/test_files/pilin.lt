@@ -4,7 +4,7 @@ poncl azul
 BL
 
 REPITE 4 [
-av Potencia 2 2
+av Suma 2 2 2 2
 GD 90
 ]
 

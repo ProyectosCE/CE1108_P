@@ -64,16 +64,16 @@ int Compiler::compileFile(const std::string& programPath) {
         return 1;
     }
 
-    std::filesystem::create_directories("./out");
+    std::filesystem::create_directories("../out_files");
 
     // Guardar árbol JSON
     json treeJson = buildJsonFromANTLR(tree, &parser);
-    std::ofstream treeOut("./out/tree.json");
+    std::ofstream treeOut("../out_files/tree.json");
     treeOut << treeJson.dump(4);
     treeOut.close();
 
     // Generar archivo .cpp
-    std::ofstream outFile("./out/logotec.ino");
+    std::ofstream outFile("../out_files/out_files.ino");
     if (!outFile.is_open()) {
         cerr << "Error al crear el archivo de salida." << endl;
         return 1;

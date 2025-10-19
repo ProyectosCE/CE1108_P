@@ -1038,3 +1038,8 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+
+# Extra
+out_files/out_files.ino
+out_files/tree.json
