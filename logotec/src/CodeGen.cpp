@@ -3,46 +3,46 @@
 //
 
 #include "CodeGen.h"
-#include "TypeChecker.h"
-#include <fstream>
+#include "ProcedimientosGen.h"
+#include "SymbolTable.h"
+#include "TypeChecker.cpp"
+#include <algorithm>
+#include <cctype>
 
-CodeGen::CodeGen() {
-    codigoHeader =
-        "#include <Arduino.h>\n"
-        "#include \"turtle.h\"\n"
-        "void setup() {\n"
-        "    initTurtle();\n";
-    codigoFooter =
-        "}\n"
-        "void loop() {}\n";
-}
+#include "gen/LogotecGramarParser.h"
 
+
+// Recorre el programa
 any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
-    codigoMain.clear();
-    symbolTable = SymbolTable();      // reset symbols if desired
-    //errorReporter = ErrorReporter();  // reset errors
-
-    // visit every instruction‐line
-    for (auto linea : ctx->linea_instrucciones()) {
-        try {
-            visit(linea);   // procesar cada instrucción
-        } catch (const std::exception &e) {
-            std::cerr << "Excepción en línea: " << e.what() << std::endl;
-            continue;       // seguir con la siguiente
+    std::string codigoMain;
+    for (size_t i = 0; i < ctx->children.size(); ++i) {
+        auto child = ctx->children[i];
+        // Ignorar NEWLINE
+        if (dynamic_cast<antlr4::tree::TerminalNode*>(child)) {
+            auto terminal = dynamic_cast<antlr4::tree::TerminalNode*>(child);
+            if (terminal->getSymbol()->getType() == LogotecGramarParser::NEWLINE) {
+                continue;
+            }
+        }
+        // Visitar linea_instrucciones
+        if (auto linea = dynamic_cast<LogotecGramarParser::Linea_instruccionesContext*>(child)) {
+            visit(linea);
+            codigoMain += codigo;
+            codigo.clear();
+        }
+        // Visitar procedimiento
+        else if (auto proc = dynamic_cast<LogotecGramarParser::ProcedimientoContext*>(child)) {
+            visit(proc);
         }
     }
-
-    errorReporter.printAll();
-
-    // write final C++ file
-    std::ofstream out("out/logotec.cpp");
-    out << codigoHeader << codigoMain << codigoFooter;
+    // Al finalizar, añadir los procedimientos fuera de main
+    codigo = procGen.generarCodigoProcedimientos() + "\n" + "void setup() {\n" + "initTurtle();\n" + codigoMain;
     return nullptr;
 }
 
 // Haz: crear variable
 any CodeGen::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
-    //if (errorReporter.hasErrors()) return nullptr;
+    if (errorReporter.hasErrors()) return nullptr;
 
     std::string nombre = ctx->ID()->getText();
     Type tipo = getValorType(ctx->e, symbolTable);
@@ -77,67 +77,66 @@ any CodeGen::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
         return nullptr;
     }
     std::string valor = generarExprCodigo(ctx->e);
-    codigoMain += tipoStr + " " + nombre + " = " + valor + ";";
+    codigo += tipoStr + " " + nombre + " = " + valor + ";";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     cout << "Variable '" << nombre << "' creada de tipo " << tipoStr << endl;
     return nullptr;
 }
 
 // INIC: asignación
-antlrcpp::Any CodeGen::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) {
-    if (!ctx) return antlrcpp::Any(); // seguridad
+any CodeGen::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) {
+    if (errorReporter.hasErrors()) return nullptr;
 
-    // nombre de la variable (seguro)
-    std::string nombre = (ctx->ID() ? ctx->ID()->getText() : "<desconocido>");
-
-    // buscar símbolo
+    std::string nombre = ctx->ID()->getText();
     auto sym = symbolTable.lookup(nombre);
     if (!sym) {
-        errorReporter.error(ctx->getStart()->getLine(),
-                            "Variable '" + nombre + "' no declarada antes de asignar.");
-        return antlrcpp::Any(); // mantener esto simple, no return nullptr
+        errorReporter.error(ctx->getStart()->getLine(), "Variable '" + nombre + "' no declarada antes de asignar.");
+        return nullptr;
     }
-
-
-    // obtener el nodo de la expresión (soporta ctx->e o ctx->expr())
-    auto exprNode = (ctx->e ? (antlr4::ParserRuleContext*)ctx->e
-                            : (antlr4::ParserRuleContext*)ctx->expr());
-
-    // generar el código del RHS de manera segura
-    std::string valor = "0";
-    if (exprNode) {
-        // si tienes un generador propio para expresiones, úsalo
-        valor = generarExprCodigo(ctx->e ? ctx->e : ctx->expr());
-        if (valor.empty()) {
-            // fallback a texto si el generador devolviera vacío
-            valor = exprNode->getText();
-        }
+    // Inferir tipo de la expresión
+    Type tipoNuevo = getExprType(ctx->e, symbolTable);
+    // Solo validar expresión matemática si es int
+    if (tipoNuevo == Type::INT && checkMathExpr(ctx->e) != "int") {
+        error("La expresión de asignación para la variable '" + nombre + "' no es válida o no es de tipo int.");
+        return nullptr;
     }
-
-    // emitir la asignación SOLO si la variable existe (si no, no generes línea inválida)
-    if (sym) {
-        codigoMain += nombre + " = " + valor + ";\n";
+    // Actualizar tipo en tablaTipos (opcional, si quieres mantenerlo sincronizado)
+    switch (tipoNuevo) {
+        case Type::INT:
+            tablaTipos[nombre] = "int";
+            break;
+        case Type::BOOL:
+            tablaTipos[nombre] = "bool";
+            break;
+        case Type::STRING:
+            tablaTipos[nombre] = "string";
+            break;
+        case Type::COLOR:
+            tablaTipos[nombre] = "Color";
+            break;
+        default:
+            tablaTipos[nombre] = "desconocido";
+            break;
     }
-
-    // (Opcional) chequeo de tipos si tus helpers están listos:
-    // if (exprNode) {
-    //   Type tipoNuevo = getExprType(ctx->e ? ctx->e : ctx->expr(), symbolTable);
-    //   if (!tiposEquivalentes(sym->type, tipoNuevo)) {
-    //       errorReporter.error(ctx->getStart()->getLine(),
-    //         "Error semántico: asignación de tipo incorrecto a variable '" + nombre + "'.");
-    //   }
-    // }
-
-
-    return antlrcpp::Any();
+    // Verificar compatibilidad de tipos
+    if (!tiposEquivalentes(sym->type, tipoNuevo)) {
+        errorReporter.error(ctx->getStart()->getLine(), "Error semántico: asignación de tipo incorrecto a variable '" + nombre + "'.");
+        return nullptr;
+    }
+    std::string valor = generarExprCodigo(ctx->e);
+    codigo += nombre + " = " + valor + ";";
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+    codigo += "\n";
+    return nullptr;
 }
 
-
 any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
-    //if (errorReporter.hasErrors()) return nullptr;
+    if (errorReporter.hasErrors()) return nullptr;
 
     std::string n1 = ctx->ID()->getText();
     auto sym1 = symbolTable.lookup(n1);
@@ -153,12 +152,12 @@ any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
     string n2;
     if (!ctx->expr_mat_aritm()) {
         n2 = "++";
-        codigoMain += n1 + "++;";
+        codigo += n1 + "++;";
         // comentario si existe
         if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
             agregarComentarioLinea(instrCtx);
         }
-        codigoMain += "\n";
+        codigo += "\n";
         return nullptr;
     }
     if (checkMathExpr(ctx->expr_mat_aritm()) != "int") {
@@ -166,76 +165,119 @@ any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
         return nullptr;
     }
     n2 = generarExprCodigo(ctx->expr_mat_aritm());
-    codigoMain += n1 + " = " + n1 + " + " + n2 + ";";
+    codigo += n1 + " = " + n1 + " + " + n2 + ";";
     // comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
-// AVANZA
 any CodeGen::visitAvanza_variable(LogotecGramarParser::Avanza_variableContext *ctx) {
-    // validar pero no abortar
+    if (errorReporter.hasErrors()) return nullptr;
+
+    // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        errorReporter.error(ctx->getStart()->getLine(),
-            "La expresión en AVANZA no es válida o no es de tipo int.");
+        error("La expresión en AVANZA no es válida o no es de tipo int.");
+        return nullptr;
     }
-    std::string arg = ctx->e ? generarExprCodigo(ctx->e) : "";
-    if (arg.empty() && ctx->e) arg = ctx->e->getText();
-    codigoMain += "avanzaTortuga(" + arg + ");\n";
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
+
+    codigo += "avanzaTortuga(" + valor + ");";
+
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+    codigo += "\n";
     return nullptr;
 }
 
-// RETROCEDE
+
 any CodeGen::visitRetrocede_variable(LogotecGramarParser::Retrocede_variableContext *ctx) {
-    // validar pero no abortar
+    if (errorReporter.hasErrors()) return nullptr;
+
+    // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        errorReporter.error(ctx->getStart()->getLine(),
-            "La expresión en RETROCEDE no es válida o no es de tipo int.");
+        error("La expresión en AVANZA no es válida o no es de tipo int.");
+        return nullptr;
     }
-    std::string arg = ctx->e ? generarExprCodigo(ctx->e) : "";
-    if (arg.empty() && ctx->e) arg = ctx->e->getText();
-    codigoMain += "retrocedeTortuga(" + arg + ");\n";
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
+
+    codigo += "retrocedeTortuga(" + valor + ");";
+
+    // Agregar comentario si existe
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+
+    codigo += "\n";
     return nullptr;
 }
 
-// GIRA DERECHA
+
 any CodeGen::visitGira_derecha_variable(LogotecGramarParser::Gira_derecha_variableContext *ctx) {
-    // validar pero no abortar
+    if (errorReporter.hasErrors()) return nullptr;
+
+    // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        errorReporter.error(ctx->getStart()->getLine(),
-            "La expresión en GIRA_DERECHA no es válida o no es de tipo int.");
+        error("La expresión en AVANZA no es válida o no es de tipo int.");
+        return nullptr;
     }
-    std::string arg = ctx->e ? generarExprCodigo(ctx->e) : "";
-    if (arg.empty() && ctx->e) arg = ctx->e->getText();
-    codigoMain += "giraDerecha(" + arg + ");\n";
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
+
+    codigo += "giraDerecha(" + valor + ");";
+
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+
+    codigo += "\n";
     return nullptr;
 }
 
-// GIRA IZQUIERDA
+
 any CodeGen::visitGira_izquierda_variable(LogotecGramarParser::Gira_izquierda_variableContext *ctx) {
-    // validar pero no abortar
+    if (errorReporter.hasErrors()) return nullptr;
+
+    // Validar tipo de la expresión
     if (checkMathExpr(ctx->e) != "int") {
-        errorReporter.error(ctx->getStart()->getLine(),
-            "La expresión en GIRA_IZQUIERDA no es válida o no es de tipo int.");
+        error("La expresión no es válida o no es de tipo int.");
+        return nullptr;
     }
-    std::string arg = ctx->e ? generarExprCodigo(ctx->e) : "";
-    if (arg.empty() && ctx->e) arg = ctx->e->getText();
-    codigoMain += "giraIzquierda(" + arg + ");\n";
+
+    // Obtener valor de la expresión usando generarExprCodigo
+    string valor = generarExprCodigo(ctx->e);
+    if (hayError) return nullptr;
+
+    codigo += "giraIzquierda(" + valor + ");";
+
+    if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
+        agregarComentarioLinea(instrCtx);
+    }
+
+    codigo += "\n";
     return nullptr;
 }
 
 
 any CodeGen::visitOcultar_tortuga_variable(LogotecGramarParser::Ocultar_tortuga_variableContext *ctx) {
     if (hayError) return nullptr; // no generar nada si hay error previo
-    codigoMain += "ocultaTortuga();";
+    codigo += "ocultaTortuga();";
     // Agregar comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -251,13 +293,13 @@ any CodeGen::visitPonpos_variable(LogotecGramarParser::Ponpos_variableContext *c
         }
         string n1 = generarExprCodigo(ctx->expr_mat_aritm(0));
         string n2 = generarExprCodigo(ctx->expr_mat_aritm(1));
-        codigoMain += "ponPos(" + n1 + "," + n2 + ");";
+        codigo += "ponPos(" + n1 + "," + n2 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -274,13 +316,13 @@ any CodeGen::visitPonxy_variable(LogotecGramarParser::Ponxy_variableContext *ctx
     string n1 = generarExprCodigo(ctx->expr_mat_aritm(0));
     string n2 = generarExprCodigo(ctx->expr_mat_aritm(1));
 
-    codigoMain += "ponXY(" + n1 + "," + n2 + ");";
+    codigo += "ponXY(" + n1 + "," + n2 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -295,13 +337,13 @@ any CodeGen::visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContex
     }
     string n1 = generarExprCodigo(ctx->expr_mat_aritm());
 
-    codigoMain += "ponRumbo(" + n1 + ");";
+    codigo += "ponRumbo(" + n1 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -309,14 +351,14 @@ any CodeGen::visitPonrumbo_variable(LogotecGramarParser::Ponrumbo_variableContex
 
 any CodeGen::visitComentario(LogotecGramarParser::ComentarioContext *ctx) {
     // Simplemente agrega la línea de comentario al código generado
-    codigoMain += ctx->getText() + "\n";
+    codigo += ctx->getText() + "\n";
     return nullptr;
 }
 
 // Función auxiliar para agregar comentario si existe
 void CodeGen::agregarComentarioLinea(LogotecGramarParser::InstruccionContext *ctx) {
     if (ctx->comentario_linea()) {
-        codigoMain += " " + ctx->comentario_linea()->getText();
+        codigo += " " + ctx->comentario_linea()->getText();
     }
 }
 
@@ -365,13 +407,13 @@ any CodeGen::visitPonx_variable(LogotecGramarParser::Ponx_variableContext *conte
         return nullptr;
     }
     string n1 = generarExprCodigo(context->expr_mat_aritm());
-    codigoMain += "ponX(" + n1 + ");";
+    codigo += "ponX(" + n1 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -384,44 +426,44 @@ any CodeGen::visitPony_variable(LogotecGramarParser::Pony_variableContext *conte
         return nullptr;
     }
     string n1 = generarExprCodigo(context->expr_mat_aritm());
-    codigoMain += "ponY(" + n1 + ");";
+    codigo += "ponY(" + n1 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
 
 any CodeGen::visitCentro_variable(LogotecGramarParser::Centro_variableContext *context) {
     if (hayError) return nullptr;
-    codigoMain += "centro();";
+    codigo += "centro();";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
 any CodeGen::visitSubelapiz_variable(LogotecGramarParser::Subelapiz_variableContext *context) {
     if (hayError) return nullptr;
-    codigoMain += "subeLapiz();";
+    codigo += "subeLapiz();";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
 any CodeGen::visitBajalapiz_variable(LogotecGramarParser::Bajalapiz_variableContext *context) {
     if (hayError) return nullptr;
-    codigoMain += "bajaLapiz();";
+    codigo += "bajaLapiz();";
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -437,14 +479,14 @@ any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext 
         return nullptr;
     }
     // generar código usando el valor de la expresión usnado generarExprCodigo
-    codigoMain += "esperar(" + generarExprCodigo(context->exp_integer()) + ");";
+    codigo += "esperar(" + generarExprCodigo(context->exp_integer()) + ");";
     if (hayError) return nullptr;
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -472,13 +514,13 @@ any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_vari
         return nullptr;
     }
 
-    codigoMain += "ponColorLapiz(" + n1 + ");";
+    codigo += "ponColorLapiz(" + n1 + ");";
 
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(context->parent)) {
         agregarComentarioLinea(instrCtx);
     }
 
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -518,8 +560,8 @@ any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) 
         auto child = ctx->children[i];
         if (auto linea = dynamic_cast<LogotecGramarParser::Linea_instruccionesContext*>(child)) {
             visit(linea);
-            cuerpo += codigoMain;
-            codigoMain.clear();
+            cuerpo += codigo;
+            codigo.clear();
         }
     }
 
@@ -552,18 +594,18 @@ any CodeGen::visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llama
     }
 
     // Generar llamada al procedimiento
-    codigoMain += nombre + "(";
+    codigo += nombre + "(";
     for (size_t i = 0; i < args.size(); ++i) {
-        if (i > 0) codigoMain += ", ";
-        codigoMain += args[i];
+        if (i > 0) codigo += ", ";
+        codigo += args[i];
     }
-    codigoMain += ");";
+    codigo += ");";
 
     // Agregar comentario si existe
     if (auto instrCtx = dynamic_cast<LogotecGramarParser::InstruccionContext*>(ctx->parent)) {
         agregarComentarioLinea(instrCtx);
     }
-    codigoMain += "\n";
+    codigo += "\n";
     return nullptr;
 }
 
@@ -954,13 +996,13 @@ any CodeGen::visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext 
     if (hayError) return nullptr;
 
     // Abrir bloque de código para Ejecuta
-    codigoMain += "{\n";
+    codigo += "do{\n";
     // Recorrer cada instruccion dentro de EJECUTA
     for (auto instr : ctx->instruccion()) {
         visit(instr);
         // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
     }
-    codigoMain += "}\n";
+    codigo += "}\n";
     return nullptr;
 }
 
@@ -979,13 +1021,13 @@ any CodeGen::visitRepite_variable(LogotecGramarParser::Repite_variableContext *c
     if (hayError) return nullptr;
 
     // Abrir bloque de código para Repite
-    codigoMain += "for(int _i=0; _i<" + valor + "; _i++) {\n";
+    codigo += "for(int _i=0; _i<" + valor + "; _i++) {\n";
     // Recorrer cada instruccion dentro de REPITE
     for (auto instr : ctx->instruccion()) {
         visit(instr);
         // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
     }
-    codigoMain += "}\n";
+    codigo += "}\n";
     return nullptr;
 }
 
@@ -1234,13 +1276,13 @@ any CodeGen::visitSi_variable(LogotecGramarParser::Si_variableContext *ctx) {
     if (hayError) return nullptr;
 
     // Abrir bloque de código para Si
-    codigoMain += "if (" + valor + ") {\n";
+    codigo += "if (" + valor + ") {\n";
     // Recorrer cada instruccion dentro de SI
     for (auto instr : ctx->instruccion()) {
         visit(instr);
         // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
     }
-    codigoMain += "}\n";
+    codigo += "}\n";
 
     return nullptr;
 }
@@ -1262,18 +1304,18 @@ any CodeGen::visitSi_sino_variable(LogotecGramarParser::Si_sino_variableContext 
     if (hayError) return nullptr;
 
     // Bloque SI
-    codigoMain += "if (" + valor + ") {\n";
+    codigo += "if (" + valor + ") {\n";
     for (auto instr : siCtx->instruccion()) {
         visit(instr);
     }
-    codigoMain += "} else {\n";
+    codigo += "} else {\n";
 
     // Bloque SINO
     for (auto instr : ctx->instruccion()) {
         visit(instr);
     }
 
-    codigoMain += "}\n";
+    codigo += "}\n";
     return nullptr;
 }
 
@@ -1294,12 +1336,12 @@ any CodeGen::visitHaz_hasta_variable(LogotecGramarParser::Haz_hasta_variableCont
     if (hayError) return nullptr;
 
     // Abrir bloque do-while
-    codigoMain += "do {\n";
+    codigo += "do {\n";
     for (auto instr : ctx->instruccion()) {
         visit(instr);
         // El código generado por cada instrucción ya se agrega a 'codigo' por los visit
     }
-    codigoMain += "} while (!(" + condicion + "));\n";
+    codigo += "} while (!(" + condicion + "));\n";
 
     return nullptr;
 }
@@ -1318,7 +1360,7 @@ any CodeGen::visitHasta_variable(LogotecGramarParser::Hasta_variableContext *ctx
     if (hayError) return nullptr;
 
     // Abrir bloque while (se ejecuta mientras la condición sea falsa)
-    codigoMain += "while (!(" + condicion + ")) {\n";
+    codigo += "while (!(" + condicion + ")) {\n";
 
     // Generar las instrucciones dentro del bloque
     for (auto instr : ctx->instruccion()) {
@@ -1327,7 +1369,7 @@ any CodeGen::visitHasta_variable(LogotecGramarParser::Hasta_variableContext *ctx
     }
 
     // Cerrar el bloque
-    codigoMain += "}\n";
+    codigo += "}\n";
 
     return nullptr;
 }
@@ -1347,7 +1389,7 @@ any CodeGen::visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variab
     if (hayError) return nullptr;
 
     // Abrir bloque do-while
-    codigoMain += "do {\n";
+    codigo += "do {\n";
 
     // Generar las instrucciones dentro del bloque
     for (auto instr : ctx->instruccion()) {
@@ -1356,7 +1398,7 @@ any CodeGen::visitHaz_mientras_variable(LogotecGramarParser::Haz_mientras_variab
     }
 
     // Cerrar el bloque do-while
-    codigoMain += "} while (" + condicion + ");\n";
+    codigo += "} while (" + condicion + ");\n";
 
     return nullptr;
 }
@@ -1376,7 +1418,7 @@ any CodeGen::visitMientras_variable(LogotecGramarParser::Mientras_variableContex
     if (hayError) return nullptr;
 
     // Abrir bloque while
-    codigoMain += "while (" + condicion + ") {\n";
+    codigo += "while (" + condicion + ") {\n";
 
     // Generar las instrucciones dentro del bloque
     for (auto instr : ctx->instruccion()) {
@@ -1385,7 +1427,7 @@ any CodeGen::visitMientras_variable(LogotecGramarParser::Mientras_variableContex
     }
 
     // Cerrar el bloque
-    codigoMain += "}\n";
+    codigo += "}\n";
 
     return nullptr;
 }
@@ -1406,15 +1448,7 @@ any CodeGen::visitMuestra(LogotecGramarParser::MuestraContext *ctx) {
     if (hayError) return nullptr;
 
     // Generar el cout
-    codigoMain += "std::cout << " + valor + " << std::endl;\n";
+    codigo += "std::cout << " + valor + " << std::endl;\n";
 
-    return nullptr;
-}
-
-// override default to ensure we visit every instruccion() child
-any CodeGen::visitLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *ctx) {
-    for (auto instr : ctx->instruccion()) {
-        visit(instr);
-    }
     return nullptr;
 }
