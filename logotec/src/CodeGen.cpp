@@ -954,7 +954,7 @@ any CodeGen::visitEjecuta_variable(LogotecGramarParser::Ejecuta_variableContext 
     if (hayError) return nullptr;
 
     // Abrir bloque de código para Ejecuta
-    codigoMain += "do{\n";
+    codigoMain += "{\n";
     // Recorrer cada instruccion dentro de EJECUTA
     for (auto instr : ctx->instruccion()) {
         visit(instr);
