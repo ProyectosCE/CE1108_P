@@ -294,13 +294,15 @@ void MainWindow::compileProgram() {
         if (exitCode == 0) {
             QMessageBox::information(this, "Success", "Compilation finished successfully with Arduino CLI.");
             compiled = true;
-            currentJsonPath = "../out/tree.json";
+            currentJsonPath = "../out_files/tree.json";
         } else {
             QMessageBox::critical(this, "Error", "Arduino CLI compilation failed.");
             compiled = false;
         }
         process->deleteLater(); // liberar memoria
     });
+
+    printTerminal("Compilation with arduino-cli in progress...");
 
     QStringList args;
     args << "compile"

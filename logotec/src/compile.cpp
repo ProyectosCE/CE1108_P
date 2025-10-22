@@ -92,8 +92,8 @@ int Compiler::compileFile(const std::string& programPath) {
 void Compiler::clear() {
     // Limpieza de archivos generados
     try {
-        std::filesystem::remove("./out/tree.json");
-        std::filesystem::remove("./out/logotec.cpp");
+        std::filesystem::remove("../out_files/tree.json");
+        std::filesystem::remove("../out_files/out_files.ino");
     } catch (...) {
         // Ignorar errores si los archivos no existen
     }
