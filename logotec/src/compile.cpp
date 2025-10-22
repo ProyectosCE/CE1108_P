@@ -80,7 +80,8 @@ int Compiler::compileFile(const std::string& programPath) {
     }
 
     outFile << "#include \"turtle_hw.h\"\n";
-    outFile << generator.codigo;
+    outFile << "void setup() {\n";
+    outFile << generator.getCodigoMain();
     outFile << "}\n";
     outFile << "\nvoid loop() {\n}\n";
     outFile.close();
