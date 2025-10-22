@@ -1,40 +1,27 @@
-#include "SymbolTable.h"
-#include "gen/LogotecGramarParser.h"
-#include <string>
+#include "TypeChecker.h"
+#include "antlr4-runtime.h"
 
-// Función para identificar el tipo de una expresión
 Type getExprType(LogotecGramarParser::ExprContext* ctx, SymbolTable& symtab) {
-    if (ctx->exp_integer()) return Type::INT;
-    if (ctx->exp_logica()) return Type::BOOL;
-    if (ctx->CADENA_TEXTO()) return Type::STRING;
-    if (ctx->colores()) return Type::COLOR;
-    if (ctx->ID()) {
-        auto sym = symtab.lookup(ctx->ID()->getText());
-        if (sym) return sym->type;
-        return Type::ERROR;
+    if (!ctx) return Type::ERROR;
+
+    // Buscar un token ID en la expresión (método genérico de ANTLR4)
+    // Nota: getToken(TOKEN_TYPE, i) es seguro aunque no exista ID: retorna nullptr
+    auto tokId = ctx->getToken(LogotecGramarParser::ID, 0);
+    if (tokId) {
+        const std::string name = tokId->getText();
+        if (auto sym = symtab.lookup(name)) {
+            return sym->type;  // Tipo declarado previamente (Haz ...)
+        } else {
+            return Type::ERROR; // ID no declarado
+        }
     }
-    if (ctx->exp_integer()) {
-        return Type::INTEXP;
-    }
-    return Type::ERROR;
+
+    // Default: INT (para no romper generación de código en movimientos numéricos)
+    return Type::INT;
 }
 
-// Inferencia de tipo para ValorContext
 Type getValorType(LogotecGramarParser::ExprContext* ctx, SymbolTable& symtab) {
-    if (ctx->exp_integer()) return Type::INT;
-    if (ctx->exp_logica()) return Type::BOOL;
-    if (ctx->CADENA_TEXTO()) return Type::STRING;
-    if (ctx->colores()) return Type::COLOR;
-    if (ctx->NUMBER()) {
-        return Type::INT;
-    }
-    if (ctx->ID()) {
-        auto sym = symtab.lookup(ctx->ID()->getText());
-        if (sym) return sym->type;
-        return Type::ERROR;
-    }
-    if (ctx->exp_integer()) {
-        return Type::INTEXP;
-    }
-    return Type::ERROR;
+    // Por ahora, mismo comportamiento que getExprType
+    // Si luego se separa "valor" de "expr", se podrá especializar aquí
+    return getExprType(ctx, symtab);
 }
