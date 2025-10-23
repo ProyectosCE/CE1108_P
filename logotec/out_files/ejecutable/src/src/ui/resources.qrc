@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../main.lt</file> <!-- ruta relativa al qrc -->
+    </qresource>
+</RCC>

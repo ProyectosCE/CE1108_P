@@ -292,9 +292,10 @@ void MainWindow::compileProgram() {
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             [=](int exitCode, QProcess::ExitStatus status) {
         if (exitCode == 0) {
-            QMessageBox::information(this, "Success", "Compilation finished successfully with Arduino CLI.");
+            printTerminal("Compilation finished successfully with Arduino CLI.");
             compiled = true;
             currentJsonPath = "../out_files/tree.json";
+            compile_executable();
         } else {
             QMessageBox::critical(this, "Error", "Arduino CLI compilation failed.");
             compiled = false;
@@ -382,7 +383,109 @@ void MainWindow::parseTree() {
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
+void MainWindow::compile_executable() {
+    QString projectRoot = "../out_files/ejecutable";
+    QString sourceDir = projectRoot + "/src";
+    QString buildDir = projectRoot + "/build";
 
+    QDir dir;
+    if (!dir.exists(sourceDir))
+        dir.mkpath(sourceDir);
+    if (!dir.exists(buildDir))
+        dir.mkpath(buildDir);
+
+    // ===============================
+    // Copiar el archivo main.lt
+    // ===============================
+    QString destinationPath = sourceDir + "/src/main.lt";
+
+    if (QFile::exists(destinationPath))
+        QFile::remove(destinationPath);
+
+    if (!QFile::copy(currentFilePath, destinationPath)) {
+        QMessageBox::warning(this, "Copy Failed", "Could not copy the file to executable folder.");
+        return;
+    }
+
+#ifdef _WIN32
+    QString execName = "logotec.exe";
+    QString generator = "MinGW Makefiles";
+#elif __APPLE__
+    QString execName = "logotec.app";
+    QString generator = "Unix Makefiles";
+#else
+    QString execName = "logotec";
+    QString generator = "Unix Makefiles";
+#endif
+
+    printTerminal("Building external Qt5 project...");
+
+    QProcess *process = new QProcess(this);
+
+    // Redirigir salida en tiempo real
+    connect(process, &QProcess::readyReadStandardOutput, [=]() {
+        ui->terminal->appendPlainText(process->readAllStandardOutput());
+    });
+    connect(process, &QProcess::readyReadStandardError, [=]() {
+        ui->terminal->appendPlainText(process->readAllStandardError());
+    });
+
+    // ===============================
+    //  Fase 1: Configuración de CMake
+    // ===============================
+    QStringList cmakeConfigArgs{
+        "-S", sourceDir,
+        "-B", buildDir,
+        "-G", generator
+    };
+
+    ui->terminal->appendPlainText("Running CMake configuration...");
+    process->start("cmake", cmakeConfigArgs);
+
+    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus status) mutable {
+
+        if (exitCode != 0) {
+            QMessageBox::critical(nullptr, "Error", "CMake configuration failed.");
+            process->deleteLater();
+            return;
+        }
+
+        // ===============================
+        //  Fase 2: Compilación
+        // ===============================
+        ui->terminal->appendPlainText("CMake configuration completed. Building project...");
+
+        QStringList cmakeBuildArgs{ "--build", buildDir };
+        QObject::disconnect(process, nullptr, nullptr, nullptr);
+
+        // volver a conectar lecturas
+        connect(process, &QProcess::readyReadStandardOutput, [=]() {
+            ui->terminal->appendPlainText(process->readAllStandardOutput());
+        });
+        connect(process, &QProcess::readyReadStandardError, [=]() {
+            ui->terminal->appendPlainText(process->readAllStandardError());
+        });
+
+        connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+                [=](int buildExitCode, QProcess::ExitStatus buildStatus) mutable {
+            if (buildExitCode == 0) {
+                QString builtExecPath = buildDir + "/" + execName;
+                if (QFile::exists(builtExecPath)) {
+                    printTerminal("Executable built successfully at: " + builtExecPath);
+                } else {
+                    QMessageBox::warning(nullptr, "Warning", "Build finished but executable not found.");
+                }
+            } else {
+                QMessageBox::critical(nullptr, "Error", "Qt project compilation failed.");
+            }
+
+            process->deleteLater();
+        });
+
+        process->start("cmake", cmakeBuildArgs);
+    });
+}
 
 
 MainWindow::~MainWindow() {
