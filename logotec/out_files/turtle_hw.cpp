@@ -91,8 +91,13 @@ int DIVISION(int a, int b) {
 }
 
 int POTENCIA(int a, int b) {
-    return a * b;
+    int result = 1;
+    for (int i = 0; i < b; i++) {
+        result *= a;
+    }
+    return result;
 }
+
 int AZAR(int n) {
     return rand() % (n + 1);
 }

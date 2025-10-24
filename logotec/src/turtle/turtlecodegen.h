@@ -49,7 +49,7 @@ public:
     }
 
     // ---------------------------------------------
-    // Parsear bloques - VERSIÓN CORREGIDA
+    // Parsear bloques
     // ---------------------------------------------
 QList<Bloque> parsearBloques(const QStringList &lineas) {
     QList<Bloque> bloques;
@@ -496,7 +496,7 @@ void ejecutarBloque(const Bloque &b) {
     }
 
     // ---------------------------------------------
-    // Evaluar condiciones lógicas - CORREGIDO
+    // Evaluar condiciones lógicas
     // ---------------------------------------------
     bool evaluarCondicion(const QString &cond) {
         QString c = cond.trimmed();

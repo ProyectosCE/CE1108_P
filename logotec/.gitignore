@@ -1048,3 +1048,4 @@ out_files/build
 out_files/ejecutable/.idea
 out_files/ejecutable/build
 out_files/ejecutable/src/cmake-build-debug
+out_files/ejecutable/src/src/turtle_program.cpp

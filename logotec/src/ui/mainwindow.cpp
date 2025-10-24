@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Inicializar parser con la escena
     turtleParser = TurtleCodeGen(turtleScene);
 
+    inoTranslator = new InoTranslator();
+
     // -- Botones realcionados a turtle
     connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
     connect(ui->btn_reset, &QPushButton::clicked, this, &MainWindow::turtle_reset);
@@ -385,106 +387,76 @@ void MainWindow::parseTree() {
 
 void MainWindow::compile_executable() {
     QString projectRoot = "../out_files/ejecutable";
-    QString sourceDir = projectRoot + "/src";
+    QString sourceDir = projectRoot + "/src/src";
     QString buildDir = projectRoot + "/build";
+    QString objDir = buildDir + "/obj";
 
     QDir dir;
-    if (!dir.exists(sourceDir))
-        dir.mkpath(sourceDir);
     if (!dir.exists(buildDir))
         dir.mkpath(buildDir);
+    if (!dir.exists(objDir))
+        dir.mkpath(objDir);
 
-    // ===============================
-    // Copiar el archivo main.lt
-    // ===============================
-    QString destinationPath = sourceDir + "/src/main.lt";
+    // Traducir .ino a .cpp PRIMERO (esto se hace en C++)
+    QString inoFilePath = "../out_files/out_files.ino";
+    QString cppFilePath = sourceDir + "/turtle_program.cpp";
 
-    if (QFile::exists(destinationPath))
-        QFile::remove(destinationPath);
-
-    if (!QFile::copy(currentFilePath, destinationPath)) {
-        QMessageBox::warning(this, "Copy Failed", "Could not copy the file to executable folder.");
+    if (!inoTranslator->translateInoToCpp(inoFilePath, cppFilePath)) {
+        QMessageBox::warning(this, "Translation Failed", "Could not translate .ino to .cpp");
         return;
     }
 
-#ifdef _WIN32
-    QString execName = "logotec.exe";
-    QString generator = "MinGW Makefiles";
-#elif __APPLE__
-    QString execName = "logotec.app";
-    QString generator = "Unix Makefiles";
-#else
-    QString execName = "logotec";
-    QString generator = "Unix Makefiles";
-#endif
+    printTerminal("Starting executable compilation in background...");
 
-    printTerminal("Building external Qt5 project...");
+    // Crear un QProcess para manejar la compilación completa
+    QProcess *buildProcess = new QProcess(this);
 
-    QProcess *process = new QProcess(this);
-
-    // Redirigir salida en tiempo real
-    connect(process, &QProcess::readyReadStandardOutput, [=]() {
-        ui->terminal->appendPlainText(process->readAllStandardOutput());
-    });
-    connect(process, &QProcess::readyReadStandardError, [=]() {
-        ui->terminal->appendPlainText(process->readAllStandardError());
+    // Conectar señales para recibir salida en tiempo real
+    connect(buildProcess, &QProcess::readyReadStandardOutput, [=]() {
+        QString output = buildProcess->readAllStandardOutput();
+        ui->terminal->appendPlainText(output);
     });
 
-    // ===============================
-    //  Fase 1: Configuración de CMake
-    // ===============================
-    QStringList cmakeConfigArgs{
-        "-S", sourceDir,
-        "-B", buildDir,
-        "-G", generator
-    };
+    connect(buildProcess, &QProcess::readyReadStandardError, [=]() {
+        QString error = buildProcess->readAllStandardError();
+        ui->terminal->appendPlainText(error);
+    });
 
-    ui->terminal->appendPlainText("Running CMake configuration...");
-    process->start("cmake", cmakeConfigArgs);
+    connect(buildProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus status) {
+        if (exitCode == 0) {
+            printTerminal("Executable compilation completed successfully!");
 
-    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus status) mutable {
-
-        if (exitCode != 0) {
-            QMessageBox::critical(nullptr, "Error", "CMake configuration failed.");
-            process->deleteLater();
-            return;
+        } else {
+            printTerminal("Executable compilation failed");
+            QMessageBox::critical(this, "Build Error", "Executable compilation failed. Check terminal for details.");
         }
-
-        // ===============================
-        //  Fase 2: Compilación
-        // ===============================
-        ui->terminal->appendPlainText("CMake configuration completed. Building project...");
-
-        QStringList cmakeBuildArgs{ "--build", buildDir };
-        QObject::disconnect(process, nullptr, nullptr, nullptr);
-
-        // volver a conectar lecturas
-        connect(process, &QProcess::readyReadStandardOutput, [=]() {
-            ui->terminal->appendPlainText(process->readAllStandardOutput());
-        });
-        connect(process, &QProcess::readyReadStandardError, [=]() {
-            ui->terminal->appendPlainText(process->readAllStandardError());
-        });
-
-        connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-                [=](int buildExitCode, QProcess::ExitStatus buildStatus) mutable {
-            if (buildExitCode == 0) {
-                QString builtExecPath = buildDir + "/" + execName;
-                if (QFile::exists(builtExecPath)) {
-                    printTerminal("Executable built successfully at: " + builtExecPath);
-                } else {
-                    QMessageBox::warning(nullptr, "Warning", "Build finished but executable not found.");
-                }
-            } else {
-                QMessageBox::critical(nullptr, "Error", "Qt project compilation failed.");
-            }
-
-            process->deleteLater();
-        });
-
-        process->start("cmake", cmakeBuildArgs);
+        buildProcess->deleteLater();
     });
+
+    // Usar el archivo .sh existente
+    QString scriptPath = projectRoot + "/build_script.sh";
+
+    // Verificar que el script existe
+    if (!QFile::exists(scriptPath)) {
+        printTerminal("Build script not found: " + scriptPath);
+        QMessageBox::critical(this, "Build Error", "Build script not found:\n" + scriptPath);
+        buildProcess->deleteLater();
+        return;
+    }
+
+    // Dar permisos de ejecución (por si acaso)
+    QFile::setPermissions(scriptPath,
+        QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
+        QFile::ReadGroup | QFile::ExeGroup |
+        QFile::ReadOther | QFile::ExeOther);
+
+    // Ejecutar el script con los parámetros
+    QStringList scriptArgs;
+    scriptArgs << sourceDir << buildDir << objDir;
+
+    printTerminal("Executing: bash " + scriptPath + " " + scriptArgs.join(" "));
+    buildProcess->start("bash", QStringList() << scriptPath << scriptArgs);
 }
 
 
@@ -493,5 +465,6 @@ MainWindow::~MainWindow() {
         QFile::remove(currentJsonPath);
     }
     delete ui;
+    delete inoTranslator;
 }
 

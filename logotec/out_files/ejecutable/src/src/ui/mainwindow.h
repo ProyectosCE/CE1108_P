@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "../turtle/turtlecodegen.h"
 #include "../turtle/turtlescene.h"
 #include "../turtle/turtleview.h"
 
@@ -23,16 +22,17 @@ private slots:
     void turtle_reset();
     void turtle_end();
     void turtle_show_grid();
+
 private:
     Ui::MainWindow *ui;
-    QString currentFilePath = "../main.lt";
-
     TurtleScene *turtleScene;
     TurtleView *turtleView;
-    bool m_gridVisible = true;
-    bool turtleEnEjecucion = false;
 
-    TurtleCodeGen turtleParser;
+    bool turtleEnEjecucion = false;
+    bool m_gridVisible = true;
+
+    void executeTranslatedCode();
+    void executeLtFallback();
 };
 
 #endif // MAINWINDOW_H
