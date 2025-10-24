@@ -391,8 +391,6 @@ void MainWindow::compile_executable() {
     QString buildDir = projectRoot + "/build";
 
     QDir dir;
-    if (!dir.exists(sourceDir))
-        dir.mkpath(sourceDir);
     if (!dir.exists(buildDir))
         dir.mkpath(buildDir);
 
@@ -407,19 +405,28 @@ void MainWindow::compile_executable() {
         return;
     }
 
+    // ===============================
+    // Generar ui_mainwindow.h desde mainwindow.ui
+    // ===============================
+    QString uiFile = sourceDir + "/src/ui/mainwindow.ui";
+    QString uiHeaderFile = buildDir + "/src/ui_mainwindow.h";
+
+    QProcess uicProcess;
+    uicProcess.start("uic", QStringList() << uiFile << "-o" << uiHeaderFile);
+    uicProcess.waitForFinished(5000);
+
+    if (uicProcess.exitCode() != 0 || !QFile::exists(uiHeaderFile)) {
+        QMessageBox::warning(this, "UI Compilation", "Failed to generate ui_mainwindow.h");
+        return;
+    }
 
 #ifdef _WIN32
     QString execName = "logotec.exe";
-    QString generator = "MinGW Makefiles";
-#elif __APPLE__
-    QString execName = "logotec.app";
-    QString generator = "Unix Makefiles";
 #else
     QString execName = "logotec";
-    QString generator = "Unix Makefiles";
 #endif
 
-    printTerminal("Building external Qt5 project...");
+    printTerminal("Building executable with g++...");
 
     QProcess *process = new QProcess(this);
 
@@ -432,60 +439,103 @@ void MainWindow::compile_executable() {
     });
 
     // ===============================
-    //  Fase 1: Configuración de CMake
+    // Compilar directamente con g++
     // ===============================
-    QStringList cmakeConfigArgs{
-        "-S", sourceDir,
-        "-B", buildDir,
-        "-G", generator
+    QString outputPath = buildDir + "/" + execName;
+
+    // Obtener flags de Qt
+    QString qtFlags = getQtFlags();
+
+    // Lista de archivos fuente (corregidos los paths)
+    QStringList sourceFiles = {
+        sourceDir + "/src/main.cpp",
+        sourceDir + "/src/ui/mainwindow.cpp",
+        sourceDir + "/src/turtle/turtlescene.cpp",
+        sourceDir + "/src/turtle/turtleview.cpp",
+        sourceDir + "/src/turtle_program.cpp"
     };
 
-    ui->terminal->appendPlainText("Running CMake configuration...");
-    process->start("cmake", cmakeConfigArgs);
+    // Argumentos de compilación
+    QStringList compileArgs;
+    compileArgs << "-std=c++20"
+                << "-fPIC"
+                << "-o" << outputPath
+                << sourceFiles
+                // Incluir directorios necesarios
+                << "-I" + sourceDir
+                << "-I" + sourceDir + "/src/ui"
+                << "-I" + sourceDir + "/src/turtle"
+                << "-I" + buildDir  // Para ui_mainwindow.h generado
+                << qtFlags.split(' ', Qt::SkipEmptyParts)
+                << "-lstdc++"
+                << "-fpermissive"
+                << "-Wno-deprecated-enum-enum-conversion"  // Para los warnings específicos
+                << "-Wno-deprecated-declarations";
+
+    qDebug() << "Compiling with g++...";
+    ui->terminal->appendPlainText("Compiling with g++...");
+
+    process->start("g++", compileArgs);
 
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus status) mutable {
+            [=](int exitCode, QProcess::ExitStatus status) {
+        if (exitCode == 0) {
+            if (QFile::exists(outputPath)) {
+                printTerminal("Executable built successfully: " + outputPath);
 
-        if (exitCode != 0) {
-            QMessageBox::critical(nullptr, "Error", "CMake configuration failed.");
-            process->deleteLater();
-            return;
+                // Limpiar archivo temporal
+                QFile::remove(uiHeaderFile);
+            } else {
+                QMessageBox::warning(this, "Warning", "Build finished but executable not found.");
+            }
+        } else {
+            QMessageBox::critical(this, "Error", "Compilation failed. Check terminal for details.");
+        }
+        process->deleteLater();
+    });
+}
+
+QString MainWindow::getQtFlags() {
+    // Intentar con pkg-config primero
+    QProcess pkgConfig;
+    pkgConfig.start("pkg-config", QStringList() << "--cflags" << "--libs" << "Qt5Widgets");
+    pkgConfig.waitForFinished(3000);
+
+    if (pkgConfig.exitCode() == 0) {
+        QString flags = pkgConfig.readAllStandardOutput().trimmed();
+        qDebug() << "Using pkg-config flags:" << flags;
+        return flags;
+    }
+
+    // Intentar con qmake
+    QProcess qmake;
+    qmake.start("qmake", QStringList() << "-query" << "QT_INSTALL_HEADERS");
+    qmake.waitForFinished(3000);
+
+    if (qmake.exitCode() == 0) {
+        QString qtHeaders = qmake.readAllStandardOutput().trimmed();
+        QString qtLibs = qtHeaders;
+
+        QProcess qmakeLibs;
+        qmakeLibs.start("qmake", QStringList() << "-query" << "QT_INSTALL_LIBS");
+        qmakeLibs.waitForFinished(3000);
+        if (qmakeLibs.exitCode() == 0) {
+            qtLibs = qmakeLibs.readAllStandardOutput().trimmed();
         }
 
-        // ===============================
-        //  Fase 2: Compilación
-        // ===============================
-        ui->terminal->appendPlainText("CMake configuration completed. Building project...");
+        QString flags = QString("-I%1 -L%2 -lQt5Widgets -lQt5Core -lQt5Gui").arg(qtHeaders).arg(qtLibs);
+        qDebug() << "Using qmake flags:" << flags;
+        return flags;
+    }
 
-        QStringList cmakeBuildArgs{ "--build", buildDir };
-        QObject::disconnect(process, nullptr, nullptr, nullptr);
-
-        // volver a conectar lecturas
-        connect(process, &QProcess::readyReadStandardOutput, [=]() {
-            ui->terminal->appendPlainText(process->readAllStandardOutput());
-        });
-        connect(process, &QProcess::readyReadStandardError, [=]() {
-            ui->terminal->appendPlainText(process->readAllStandardError());
-        });
-
-        connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-                [=](int buildExitCode, QProcess::ExitStatus buildStatus) mutable {
-            if (buildExitCode == 0) {
-                QString builtExecPath = buildDir + "/" + execName;
-                if (QFile::exists(builtExecPath)) {
-                    printTerminal("Executable built successfully at: " + builtExecPath);
-                } else {
-                    QMessageBox::warning(nullptr, "Warning", "Build finished but executable not found.");
-                }
-            } else {
-                QMessageBox::critical(nullptr, "Error", "Qt project compilation failed.");
-            }
-
-            process->deleteLater();
-        });
-
-        process->start("cmake", cmakeBuildArgs);
-    });
+    // Valores por defecto para Linux
+    QString flags = "-I/usr/include/x86_64-linux-gnu/qt5 "
+                   "-I/usr/include/x86_64-linux-gnu/qt5/QtWidgets "
+                   "-I/usr/include/x86_64-linux-gnu/qt5/QtCore "
+                   "-I/usr/include/x86_64-linux-gnu/qt5/QtGui "
+                   "-lQt5Widgets -lQt5Core -lQt5Gui";
+    qDebug() << "Using default flags:" << flags;
+    return flags;
 }
 
 MainWindow::~MainWindow() {

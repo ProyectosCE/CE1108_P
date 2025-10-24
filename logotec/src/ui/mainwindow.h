@@ -57,6 +57,8 @@ private:
     TurtleCodeGen turtleParser;
 
     InoTranslator *inoTranslator;
+
+    QString getQtFlags();
 };
 
 #endif // MAINWINDOW_H
