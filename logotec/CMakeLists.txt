@@ -70,6 +70,8 @@ add_executable(logotec
         src/turtle/turtlecodegen.h
         src/TypeChecker.h
         src/TypeChecker.cpp
+        src/turtle/ino_translator.cpp
+        src/turtle/ino_translator.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)

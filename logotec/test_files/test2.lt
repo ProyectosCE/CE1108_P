@@ -1,8 +1,7 @@
 Haz z 0
 Haz y 1
 
-//INIC y = 2 
-
+INIC y = 2 
 
 REPITE 5 [
 GD Azar 360
@@ -12,7 +11,7 @@ av y
 MIENTRAS (z < 4) [
 INC [z]
 GD 90
-av 2
+av Suma 2 2 2 2
 SI (y == 5) [av 1] [av 2]
 ]
 espera 120
@@ -23,7 +22,6 @@ INC [z 5]
 SI (y == 4) [av 2] [av z]
 
 
-
 Haz x 0
 HAZ.MIENTRAS [
   INC [x]
@@ -32,10 +30,10 @@ SI (y == 5) [av 1] [av 2]
 SI (z == 0) [GI 180] [av 2]
 ] (x < 5)
 
-//EJECUTA [
-//SI (y == 5) [av 1] [av 2]
-//SI (z == 0) [GI 180] [av 2]
-//]
+EJECUTA [
+SI (y == 5) [av 1] [av 2]
+SI (z == 0) [GI 180] [av 2]
+]
 
 HAZ.HASTA [
 INC [x]
@@ -47,6 +45,6 @@ SI (z == 0) [GI 180] [av 2]
 HASTA (z > 4) [
 INC [z]
 GD 90
-av 2
+av Azar 5
 SI (y == 5) [av 1] [av 2]
 ]

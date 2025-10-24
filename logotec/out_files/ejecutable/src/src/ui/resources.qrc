@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>../main.lt</file> <!-- ruta relativa al qrc -->
+        <file>../turtle_program.cpp</file>
     </qresource>
 </RCC>

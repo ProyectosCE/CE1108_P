@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Inicializar parser con la escena
     turtleParser = TurtleCodeGen(turtleScene);
 
+    inoTranslator = new InoTranslator();
+
     // -- Botones realcionados a turtle
     connect(ui->btn_start, &QPushButton::clicked, this, &MainWindow::turtle_start);
     connect(ui->btn_reset, &QPushButton::clicked, this, &MainWindow::turtle_reset);
@@ -395,17 +397,16 @@ void MainWindow::compile_executable() {
         dir.mkpath(buildDir);
 
     // ===============================
-    // Copiar el archivo main.lt
+    // Traducir .ino a .cpp
     // ===============================
-    QString destinationPath = sourceDir + "/src/main.lt";
+    QString inoFilePath = "../out_files/out_files.ino";
+    QString cppFilePath = sourceDir + "/src/turtle_program.cpp";
 
-    if (QFile::exists(destinationPath))
-        QFile::remove(destinationPath);
-
-    if (!QFile::copy(currentFilePath, destinationPath)) {
-        QMessageBox::warning(this, "Copy Failed", "Could not copy the file to executable folder.");
+    if (!inoTranslator->translateInoToCpp(inoFilePath, cppFilePath)) {
+        QMessageBox::warning(this, "Translation Failed", "Could not translate .ino to .cpp");
         return;
     }
+
 
 #ifdef _WIN32
     QString execName = "logotec.exe";
@@ -487,11 +488,11 @@ void MainWindow::compile_executable() {
     });
 }
 
-
 MainWindow::~MainWindow() {
     if (!currentJsonPath.isEmpty()) {
         QFile::remove(currentJsonPath);
     }
     delete ui;
+    delete inoTranslator;
 }
 

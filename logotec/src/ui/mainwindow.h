@@ -6,6 +6,7 @@
 #include "../turtle/turtlecodegen.h"
 #include "../turtle/turtlescene.h"
 #include "../turtle/turtleview.h"
+#include "../turtle/ino_translator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -54,6 +55,8 @@ private:
     QPixmap icono;
 
     TurtleCodeGen turtleParser;
+
+    InoTranslator *inoTranslator;
 };
 
 #endif // MAINWINDOW_H

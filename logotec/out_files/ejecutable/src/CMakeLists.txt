@@ -17,8 +17,9 @@ add_executable(logotec
         src/turtle/turtlescene.h
         src/turtle/turtleview.cpp
         src/turtle/turtleview.h
-        src/turtle/turtlecodegen.h
-        src/ui/resources.qrc       # 🔹 agregar aquí
+        src/ui/resources.qrc
+        src/turtle_program.cpp
+        src/turtle_program.h
 )
 
 target_link_libraries(logotec PRIVATE Qt5::Widgets)

@@ -57,6 +57,49 @@ public:
     double unitSize() const { return m_unitSize; }
     void setUnitSize(double u) { m_unitSize = u; }
 
+    // Operaciones aritmeticas
+
+    // Caso base de Suma
+    inline int SUMA(int x) { return x; }
+
+    // Template recursivo para cualquier cantidad de argumentos
+    template<typename... Args>
+    inline int SUMA(int x, Args... args) {
+        return x + SUMA(args...);
+    }
+
+    // Caso base de Resta
+    inline int DIFERENCIA(int x) { return x; }
+
+    // Template recursivo para Resta
+    template<typename... Args>
+    inline int DIFERENCIA(int x, Args... args) {
+        return x - DIFERENCIA(args...);
+    }
+    int PRODUCTO(int a, int b) {
+        return a * b;
+    }
+
+    int DIVISION(int a, int b) {
+        if (b == 0) {
+            // Evita división por cero
+            return 0;
+        }
+        return a / b;  // División entera
+    }
+
+    int POTENCIA(int a, int b) {
+        int result = 1;
+        for (int i = 0; i < b; i++) {
+            result *= a;
+        }
+        return result;
+    }
+
+    int AZAR(int n) {
+        return rand() % (n + 1);
+    }
+
 
 private:
     //estados

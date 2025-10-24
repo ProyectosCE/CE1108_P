@@ -1,0 +1,5 @@
+Haz x 0
+SI (x==0) [
+Haz y 3
+av y
+]
