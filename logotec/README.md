@@ -134,3 +134,16 @@ esptool.py --port /dev/ttyUSB0 write_flash 0x00000 ./build/test_espv2.ino.bin
 ---
 
 
+## 8. Librerias Extra para el hardware
+
+* Con Arduino CLI:
+
+```bash
+arduino-cli lib install "Adafruit MPU6050"
+arduino-cli lib install "Adafruit Unified Sensor"
+arduino-cli lib install "Adafruit BusIO"
+```
+
+---
+
+
