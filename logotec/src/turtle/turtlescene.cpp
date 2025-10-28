@@ -16,7 +16,7 @@ TurtleScene::TurtleScene(QObject *parent)
       m_turtle(nullptr),
       m_unitSize(50)       // default de unidad de 50 px
 {
-    setSceneRect(-400, -300, 800, 600);
+    setSceneRect(-5000, -5000, 10000, 10000);
     // crear tortuga por primera vez
     ensureTurtleExists();
     m_turtle->setPos(QPointF(0,0)); // inicializar en 0,0
@@ -61,7 +61,7 @@ void TurtleScene::velocidad(const QString &modo){
 void TurtleScene::limpiar() {
     // Limpiar todos los items (dibujos, tortuga, icono)
     clear();
-
+    setSceneRect(-5000, -5000, 10000, 10000);
     // Borrar referencias a la tortuga e icono
     m_turtle = nullptr;
     m_turtleIcon = nullptr;

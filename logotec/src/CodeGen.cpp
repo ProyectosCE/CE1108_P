@@ -35,7 +35,7 @@ any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
 
     // write final C++ file
     std::ofstream out("out/logotec.cpp");
-    out << codigoHeader << codigoMain << codigoFooter;
+    out << codigoMain ;
     return nullptr;
 }
 

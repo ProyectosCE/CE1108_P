@@ -17,6 +17,14 @@ parsetreewindow::parsetreewindow(QWidget *parent) :
 
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    // Permitir arrastrar con el mouse
+    ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+
+    // Zoom centrado en el cursor
+    ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+
+    // Instalar filtro de eventos para capturar la rueda del mouse
+    ui->graphicsView->viewport()->installEventFilter(this);
 }
 
 parsetreewindow::~parsetreewindow()
@@ -104,5 +112,17 @@ void parsetreewindow::drawTreeFromJsonFile(const QString &filename) {
     drawJsonNode(root, 0, 0, 100);
 
     // Centrar árbol
-    scene->setSceneRect(-treeWidth/2, 0, treeWidth, 600);
+    scene->setSceneRect(scene->itemsBoundingRect().adjusted(-200, -200, 200, 200));
+}
+
+bool parsetreewindow::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == ui->graphicsView->viewport() && event->type() == QEvent::Wheel) {
+        QWheelEvent *wheelEvent = static_cast<QWheelEvent *>(event);
+        if (wheelEvent->angleDelta().y() > 0)
+            ui->graphicsView->scale(zoomFactor, zoomFactor);   // Zoom in
+        else
+            ui->graphicsView->scale(1.0 / zoomFactor, 1.0 / zoomFactor); // Zoom out
+        return true; // Evento manejado
+    }
+    return QWidget::eventFilter(obj, event);
 }

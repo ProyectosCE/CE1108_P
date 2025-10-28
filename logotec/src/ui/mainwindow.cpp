@@ -314,6 +314,8 @@ void MainWindow::compileProgram() {
          << sketchFolder;
 
     process->start("arduino-cli", args);
+    printTerminal("Starting process: " + process->program());
+
 }
 
 

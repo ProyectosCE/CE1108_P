@@ -1,16 +1,15 @@
 #ifndef PARSETREEWINDOW_H
 #define PARSETREEWINDOW_H
 
-
 #include <QTreeWidgetItem>
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QJsonObject>
+#include <QWheelEvent>
 
 namespace Ui {
-class parsetreewindow;
+    class parsetreewindow;
 }
-
 
 class parsetreewindow : public QWidget
 {
@@ -22,12 +21,15 @@ public:
 
     void drawTreeFromJsonFile(const QString &filename);
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     Ui::parsetreewindow *ui;
     QGraphicsScene* scene;
     int calculateSubtreeWidth(const QJsonObject &node);
     void drawJsonNode(const QJsonObject &node, int x, int y, int yOffset);
+    double zoomFactor = 1.15;
 };
 
 #endif // PARSETREEWINDOW_H
