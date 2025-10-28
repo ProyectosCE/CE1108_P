@@ -5,6 +5,16 @@
 #include <QPen>
 #include <QBrush>
 
+
+/* Function: TurtleScene
+   Descripción:
+     Constructor de la clase. Inicializa los valores predeterminados
+     de posición, rumbo, color del lápiz y velocidad de animación.
+
+   Detalles:
+     - Crea una escena de 10,000x10,000 unidades centrada en el origen.
+     - Instancia la figura de la tortuga (flecha) al centro.
+*/
 TurtleScene::TurtleScene(QObject *parent)
     : QGraphicsScene(parent),
       m_pos(0,0),          // posición inicial en 0,0
@@ -25,6 +35,11 @@ TurtleScene::TurtleScene(QObject *parent)
 }
 
 
+/* Function: ensureTurtleExists
+   Descripción:
+     Verifica si la figura de la tortuga ya fue creada en la escena.
+     Si no existe, la genera con forma de triángulo (flecha gris).
+*/
 void TurtleScene::ensureTurtleExists()
 {
     if (m_turtle) return;
@@ -37,10 +52,25 @@ void TurtleScene::ensureTurtleExists()
     m_turtle->setOpacity(1.0);
 }
 
+
+/* Function: setAnimado
+   Descripción:
+     Activa o desactiva el modo animado para los movimientos de la tortuga.
+
+   Params:
+     - animado: Valor booleano que indica si los movimientos deben animarse.
+*/
 void TurtleScene::setAnimado(bool animado){
     m_animado = animado;
 }
 
+/* Function: velocidad
+   Descripción:
+     Ajusta la velocidad de animación según un modo textual o valor numérico.
+
+   Params:
+     - modo: Puede ser “slow/lento”, “normal”, “fast/rápido”, o un número entre 1 y 10.
+*/
 void TurtleScene::velocidad(const QString &modo){
     QString m = modo.toLower();
     if (m == "slow" || m == "lento") m_velocidad = 2;
@@ -58,6 +88,11 @@ void TurtleScene::velocidad(const QString &modo){
     }
 }
 
+/* Function: limpiar
+   Descripción:
+     Borra todos los dibujos y reinicia el estado de la escena y la tortuga.
+     Restaura la posición central, rumbo, color y velocidad por defecto.
+*/
 void TurtleScene::limpiar() {
     // Limpiar todos los items (dibujos, tortuga, icono)
     clear();
@@ -82,8 +117,11 @@ void TurtleScene::limpiar() {
     updateTurtle();
 }
 
-
-
+/* Function: updateTurtle
+   Descripción:
+     Actualiza visualmente la posición y orientación de la tortuga en la escena.
+     Se encarga de mantener la visibilidad y opacidad correctas del ícono o flecha.
+*/
 void TurtleScene::updateTurtle() {
     if (m_usarIcono && m_turtleIcon) {
         QRectF rect = m_turtleIcon->boundingRect();
@@ -106,8 +144,11 @@ void TurtleScene::updateTurtle() {
     }
 }
 
-
-
+/* Function: animarDelay
+   Descripción:
+     Aplica una pausa breve proporcional a la velocidad configurada,
+     para suavizar las animaciones paso a paso.
+*/
 void TurtleScene::animarDelay(){
     if (!m_animado) return;
     // base: 50 ms / velocidad (1..10) -> rango aproximadamente 50..5ms
@@ -118,6 +159,13 @@ void TurtleScene::animarDelay(){
     loop.exec();
 }
 
+/* Function: usarIcono
+   Descripción:
+     Cambia la representación visual de la tortuga de una flecha a un ícono personalizado.
+
+   Params:
+     - pixmap: Imagen que se usará para representar la tortuga.
+*/
 void TurtleScene::usarIcono(const QPixmap &pixmap) {
     // Ocultar la flecha
     if (m_turtle) m_turtle->setVisible(false);
@@ -150,8 +198,10 @@ void TurtleScene::usarIcono(const QPixmap &pixmap) {
     updateTurtle();
 }
 
-
-
+/* Function: usarFlecha
+   Descripción:
+     Restaura la tortuga al modo visual por defecto (flecha).
+*/
 void TurtleScene::usarFlecha() {
     // Ocultar ícono
     if (m_turtleIcon) m_turtleIcon->setVisible(false);
@@ -162,8 +212,14 @@ void TurtleScene::usarFlecha() {
 }
 
 
-// Metodos para controlar tortuga
+/* Function: avanzaTortuga
+   Descripción:
+     Mueve la tortuga hacia adelante la cantidad de unidades especificadas.
+     Si el lápiz está abajo, se dibuja una línea en el trayecto.
 
+   Params:
+     - n: Distancia a avanzar, en unidades del sistema de dibujo.
+*/
 void TurtleScene::avanzaTortuga(double n){
     double distancia = n * m_unitSize;
     double rad = qDegreesToRadians(m_angleDeg);
@@ -196,8 +252,23 @@ void TurtleScene::avanzaTortuga(double n){
 }
 
 
+/* Function: retrocedeTortuga
+   Descripción:
+     Mueve la tortuga hacia atrás la cantidad de unidades especificadas.
+
+   Params:
+     - n: Distancia a retroceder.
+*/
 void TurtleScene::retrocedeTortuga(double n){ avanzaTortuga(-n); }
 
+
+/* Function: giraDerecha
+   Descripción:
+     Rota la tortuga hacia la derecha (en sentido horario) un número dado de grados.
+
+   Params:
+     - grados: Cantidad de grados de rotación.
+*/
 void TurtleScene::giraDerecha(double grados) {
     if (m_animado) {
         int pasos = qMax(1, int(qAbs(grados) / 3));
@@ -222,6 +293,13 @@ void TurtleScene::giraDerecha(double grados) {
     }
 }
 
+/* Function: giraIzquierda
+   Descripción:
+     Rota la tortuga hacia la izquierda (en sentido antihorario) un número dado de grados.
+
+   Params:
+     - grados: Cantidad de grados de rotación.
+*/
 void TurtleScene::giraIzquierda(double grados) {
     if (m_animado) {
         int pasos = qMax(1, int(qAbs(grados) / 3));
@@ -247,6 +325,11 @@ void TurtleScene::giraIzquierda(double grados) {
 }
 
 
+/* Function: ocultaTortuga
+   Descripción:
+     Oculta la tortuga con un efecto de desvanecimiento si está en modo animado,
+     y la reposiciona en el centro con rumbo cero.
+*/
 void TurtleScene::ocultaTortuga() {
     if (!m_turtle)
         return;
@@ -275,7 +358,14 @@ void TurtleScene::ocultaTortuga() {
         animarDelay();
 }
 
+/* Function: ponPos
+   Descripción:
+     Posiciona la tortuga en las coordenadas especificadas (x, y), sin dejar trazo.
 
+   Params:
+     - x: Coordenada horizontal (en unidades de tortuga).
+     - y: Coordenada vertical (en unidades de tortuga).
+*/
 void TurtleScene::ponPos(double x, double y){
     // Convertir unidades a pixeles, eje Y positivo hacia arriba
     QPointF dest(x * m_unitSize, -y * m_unitSize);
@@ -298,16 +388,37 @@ void TurtleScene::ponPos(double x, double y){
     m_penDown = penOriginal;
 }
 
+/* Function: ponX
+   Descripción:
+     Mueve la tortuga a la posición X especificada, manteniendo su coordenada Y actual.
+
+   Params:
+     - x: Nueva coordenada horizontal.
+*/
 void TurtleScene::ponX(double x){
     ponPos(x, -m_pos.y() / m_unitSize);
 }
 
+
+/* Function: ponY
+   Descripción:
+     Mueve la tortuga a la posición Y especificada, manteniendo su coordenada X actual.
+
+   Params:
+     - y: Nueva coordenada vertical.
+*/
 void TurtleScene::ponY(double y){
     ponPos(m_pos.x() / m_unitSize, y);
 }
 
+/* Function: ponRumbo
+   Descripción:
+     Ajusta el rumbo absoluto de la tortuga a un ángulo determinado (0–360°).
+     Si el modo animado está activado, el giro se realiza gradualmente.
 
-
+   Params:
+     - grados: Rumbo absoluto deseado en grados.
+*/
 void TurtleScene::ponRumbo(double grados){
     // ajusta rumbo absoluto al angulo especificado (0..360)
     double target = fmod(grados, 360.0);
@@ -334,9 +445,27 @@ void TurtleScene::ponRumbo(double grados){
     updateTurtle();
 }
 
+/* Function: bajaLapiz
+   Descripción:
+     Activa el lápiz para que los movimientos futuros dejen líneas en la escena.
+*/
 void TurtleScene::bajaLapiz(){ m_penDown = true; }
+
+
+/* Function: subeLapiz
+   Descripción:
+     Desactiva el lápiz para que los movimientos no dibujen líneas.
+*/
 void TurtleScene::subeLapiz(){ m_penDown = false; }
 
+/* Function: ponColorLapiz
+   Descripción:
+     Cambia el color actual del lápiz de dibujo.
+
+   Params:
+     - color: Nombre del color en texto (“rojo”, “azul”, “negro”, etc.),
+              o cualquier valor reconocido por QColor.
+*/
 void TurtleScene::ponColorLapiz(const QString &color){
     QString c = color.toLower();
     if (c == "rojo" || c == "red") m_penColor = Qt::red;
@@ -348,10 +477,22 @@ void TurtleScene::ponColorLapiz(const QString &color){
     }
 }
 
+/* Function: centro
+   Descripción:
+     Mueve la tortuga al centro de la escena manteniendo el rumbo actual.
+*/
 void TurtleScene::centro(){
     ponPos(m_center.x(), m_center.y());
 }
 
+
+/* Function: esperar
+   Descripción:
+     Pausa la ejecución durante una cantidad de frames equivalentes a 60 FPS.
+
+   Params:
+     - n: Cantidad de frames a esperar.
+*/
 void TurtleScene::esperar(int n){
     // n en frames de 60 FPS (como tenías)
     int ms = int(n * (1000.0 / 60.0));

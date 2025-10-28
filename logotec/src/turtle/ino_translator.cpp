@@ -5,8 +5,28 @@
 #include <QTextStream>
 #include <QRegularExpression>
 
+/* Function: translateInoToCpp
+   Descripción:
+     Traduce un archivo `.ino` (Arduino) a un archivo `.cpp` compatible con el sistema Turtle.
+     La función lee el código fuente del archivo `.ino`, extrae las secciones relevantes,
+     traduce las instrucciones al formato C++ y genera un archivo `.cpp` listo para compilación.
+
+   Params:
+     - inoFilePath: Ruta completa del archivo `.ino` de entrada.
+     - outputCppPath: Ruta donde se guardará el archivo `.cpp` generado.
+
+   Returns:
+     - bool: `true` si la traducción se realiza correctamente, `false` si ocurre un error.
+
+   Restricciones:
+     - El archivo `.ino` debe existir y ser accesible.
+     - El directorio de salida debe ser válido o crearse correctamente.
+     - Se asume que las funciones de tortuga (`avanzaTortuga`, `giraDerecha`, etc.) están definidas.
+
+   Ejemplo:
+     translateInoToCpp("programa.ino", "programa.cpp");
+*/
 bool InoTranslator::translateInoToCpp(const QString &inoFilePath, const QString &outputCppPath) {
-    // Leer archivo .ino
     QFile inoFile(inoFilePath);
     if (!inoFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "No se pudo abrir archivo .ino:" << inoFilePath;
@@ -16,14 +36,11 @@ bool InoTranslator::translateInoToCpp(const QString &inoFilePath, const QString 
     QString inoContent = inoFile.readAll();
     inoFile.close();
 
-    // Extraer y traducir código
     QString mainCode = extractMainCode(inoContent);
     QStringList lines = mainCode.split('\n', Qt::SkipEmptyParts);
 
-    // Procesar líneas manteniendo la estructura de bloques
     QString translatedCode = processLinesWithScope(lines);
 
-    // Generar código C++ completo
     QString cppCode = QString(R"(
 #include "turtle/turtlescene.h"
 #include <cstdlib>
@@ -35,10 +52,8 @@ void executeTurtleProgram(TurtleScene* turtleScene) {
 }
 )").arg(translatedCode);
 
-    // Asegurar que el directorio existe
     QDir().mkpath(QFileInfo(outputCppPath).absolutePath());
 
-    // Guardar archivo .cpp
     QFile outputFile(outputCppPath);
     if (!outputFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "No se pudo crear archivo .cpp:" << outputCppPath;
@@ -52,9 +67,24 @@ void executeTurtleProgram(TurtleScene* turtleScene) {
     return true;
 }
 
+/* Function: processLinesWithScope
+   Descripción:
+     Procesa una lista de líneas de código y las traduce al formato C++,
+     manteniendo el control de las variables declaradas y el alcance de cada bloque.
+
+   Params:
+     - lines: Lista de líneas de código extraídas del archivo `.ino`.
+
+   Returns:
+     - QString: Código traducido en formato C++.
+
+   Restricciones:
+     - Las líneas deben estar correctamente delimitadas por saltos de línea.
+     - Se asume que las variables declaradas siguen el formato del pseudolenguaje Turtle.
+*/
 QString InoTranslator::processLinesWithScope(const QStringList &lines) {
     QStringList resultLines;
-    QSet<QString> declaredVariables; // Variables ya declaradas
+    QSet<QString> declaredVariables;
 
     for (const QString &line : lines) {
         QString translated = translateLineWithVariables(line.trimmed(), declaredVariables);
@@ -66,6 +96,26 @@ QString InoTranslator::processLinesWithScope(const QStringList &lines) {
     return resultLines.join('\n');
 }
 
+/* Function: translateLineWithVariables
+   Descripción:
+     Traduce una línea individual del pseudolenguaje Turtle al equivalente en C++,
+     manejando declaraciones de variables, condicionales y llamadas a funciones de tortuga.
+
+   Params:
+     - line: Línea de código a traducir.
+     - declaredVariables: Conjunto de variables ya declaradas para evitar redefiniciones.
+
+   Returns:
+     - QString: Línea traducida en C++ o una cadena vacía si no requiere traducción.
+
+   Restricciones:
+     - Las sentencias "Haz", "SI" y las funciones de tortuga deben estar bien formadas.
+     - Se asume que los nombres de variables no contienen caracteres inválidos.
+
+   Ejemplo:
+     Entrada:  "Haz x 5"
+     Salida:   "int x = 5;"
+*/
 QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QString> &declaredVariables) {
     if (line.isEmpty() || line.startsWith("#include") ||
         line.startsWith("void ") || line.contains("initTurtle()")) {
@@ -74,7 +124,7 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
 
     QString result = line;
 
-    // Manejar declaraciones con "Haz"
+    // Declaraciones con "Haz"
     QRegularExpression hazRegex("Haz\\s+(\\w+)\\s+(.+)");
     QRegularExpressionMatch hazMatch = hazRegex.match(line);
     if (hazMatch.hasMatch()) {
@@ -89,17 +139,16 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
         }
     }
 
-    // Manejar condicionales SI
+    // Condicionales "SI"
     QRegularExpression siRegex("SI\\s*\\((.*?)\\)\\s*\\[(.*)\\]");
     QRegularExpressionMatch siMatch = siRegex.match(line);
     if (siMatch.hasMatch()) {
         QString condition = siMatch.captured(1);
         QString blockContent = siMatch.captured(2);
 
-        // Procesar el contenido del bloque
         QStringList blockLines = blockContent.split(';', Qt::SkipEmptyParts);
         QStringList translatedBlockLines;
-        QSet<QString> blockVariables = declaredVariables; // Copiar variables del ámbito padre
+        QSet<QString> blockVariables = declaredVariables;
 
         for (const QString &blockLine : blockLines) {
             QString translated = translateLineWithVariables(blockLine.trimmed(), blockVariables);
@@ -111,7 +160,7 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
         return QString("if (%1) {\n%2\n}").arg(condition).arg(translatedBlockLines.join('\n'));
     }
 
-    // Reemplazar funciones de tortuga
+    // Traducción de funciones de tortuga
     result.replace("avanzaTortuga(", "turtleScene->avanzaTortuga(");
     result.replace("retrocedeTortuga(", "turtleScene->retrocedeTortuga(");
     result.replace("giraDerecha(", "turtleScene->giraDerecha(");
@@ -127,7 +176,7 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
     result.replace("centro()", "turtleScene->centro()");
     result.replace("esperar(", "turtleScene->esperar(");
 
-    // Mantener operaciones aritméticas
+    // Operaciones aritméticas
     result.replace("AZAR(", "turtleScene->AZAR(");
     result.replace("SUMA(", "turtleScene->SUMA(");
     result.replace("DIFERENCIA(", "turtleScene->DIFERENCIA(");
@@ -135,7 +184,6 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
     result.replace("DIVISION(", "turtleScene->DIVISION(");
     result.replace("POTENCIA(", "turtleScene->POTENCIA(");
 
-    // Añadir punto y coma si falta
     if (!result.isEmpty() && !result.endsWith(';') && !result.endsWith('{') && !result.endsWith('}')) {
         result += ';';
     }
@@ -143,24 +191,44 @@ QString InoTranslator::translateLineWithVariables(const QString &line, QSet<QStr
     return result;
 }
 
+/* Function: extractMainCode
+   Descripción:
+     Extrae el bloque principal de código del archivo `.ino`, correspondiente al contenido
+     de la función `setup()`. Ignora el bloque `loop()` y limpia llaves y espacios innecesarios.
+
+   Params:
+     - inoCode: Contenido completo del archivo `.ino`.
+
+   Returns:
+     - QString: Código contenido dentro de `setup()` listo para traducción.
+
+   Restricciones:
+     - La función `setup()` debe existir y estar correctamente delimitada por llaves.
+     - Si no se encuentra la función `setup()`, se devuelve una cadena vacía.
+
+   Ejemplo:
+     Entrada:
+       void setup() {
+         avanzaTortuga(50);
+       }
+     Salida:
+       avanzaTortuga(50);
+*/
 QString InoTranslator::extractMainCode(const QString &inoCode) {
-    // extraer all entre setup() { y }
     int start = inoCode.indexOf("void setup()");
     if (start == -1) return "";
 
     start = inoCode.indexOf("{", start);
     if (start == -1) return "";
-    start++; // pasar la llave
+    start++;
 
     int end = inoCode.indexOf("void loop()");
     if (end == -1) {
         end = inoCode.length();
     }
 
-    // Extraer el contenido y limpiarlo
     QString content = inoCode.mid(start, end - start).trimmed();
 
-    // Remover la última llave de cierre si existe
     if (content.endsWith("}")) {
         content.chop(1);
     }

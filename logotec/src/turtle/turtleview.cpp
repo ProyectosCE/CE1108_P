@@ -8,6 +8,15 @@
 #include <QScrollBar>
 #include <QGraphicsScene>
 
+
+/* Function: TurtleView
+   Descripción:
+     Constructor que inicializa la vista con antialiasing, modo de arrastre
+     y anclaje de transformación bajo el cursor.
+
+   Params:
+     - parent: Widget padre del visor.
+*/
 TurtleView::TurtleView(QWidget *parent)
     : QGraphicsView(parent),
       m_showGrid(true),
@@ -18,11 +27,29 @@ TurtleView::TurtleView(QWidget *parent)
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
 }
 
+/* Function: setShowGrid
+   Descripción:
+     Activa o desactiva la visualización de la cuadrícula en la vista.
+
+   Params:
+     - show: Si es true, se muestra la cuadrícula; si es false, se oculta.
+*/
 void TurtleView::setShowGrid(bool show) {
     m_showGrid = show;
     viewport()->update();
 }
 
+/* Function: setUnitSize
+   Descripción:
+     Cambia el tamaño de la unidad de dibujo en la cuadrícula y actualiza la vista.
+
+   Detalles:
+     Si la escena asociada es de tipo TurtleScene, también actualiza
+     su tamaño de unidad interno.
+
+   Params:
+     - unit: Tamaño de la unidad en píxeles.
+*/
 void TurtleView::setUnitSize(double unit) {
     // actualizar la escena si existe
     TurtleScene* ts = dynamic_cast<TurtleScene*>(scene());
@@ -33,11 +60,28 @@ void TurtleView::setUnitSize(double unit) {
 }
 
 
+/* Function: resetZoom
+   Descripción:
+     Restaura el nivel de zoom a su valor original (1.0x) y reinicia la transformación.
+*/
 void TurtleView::resetZoom() {
     resetTransform();
     m_zoomLevel = 1.0;
 }
 
+/* Function: drawBackground
+   Descripción:
+     Dibuja el fondo de la vista, incluyendo la cuadrícula, los ejes y
+     el texto informativo con el nivel de zoom y el tamaño de la unidad.
+
+   Detalles:
+     - Si la cuadrícula está desactivada, solo muestra la información textual.
+     - Las líneas principales (ejes) se dibujan en color gris oscuro.
+     - Las líneas de cuadrícula se dibujan en gris claro.
+   Params:
+     - painter: Puntero al objeto QPainter para dibujar en el fondo.
+     - rect: Región visible actual de la vista.
+*/
 void TurtleView::drawBackground(QPainter *painter, const QRectF &rect) {
     QGraphicsView::drawBackground(painter, rect);
 
@@ -78,7 +122,16 @@ void TurtleView::drawBackground(QPainter *painter, const QRectF &rect) {
 }
 
 
+/* Function: wheelEvent
+   Descripción:
+     Maneja los eventos de la rueda del ratón para hacer zoom in/out.
 
+   Detalles:
+     - Usa un factor de escala constante (1.15).
+     - Aumenta o reduce el nivel de zoom de forma acumulativa.
+   Params:
+     - event: Evento de rueda del ratón (QWheelEvent).
+*/
 void TurtleView::wheelEvent(QWheelEvent *event) {
     constexpr double scaleFactor = 1.15;
     if (event->angleDelta().y() > 0) {

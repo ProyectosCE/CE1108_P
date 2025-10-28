@@ -11,6 +11,17 @@ namespace Ui {
     class parsetreewindow;
 }
 
+/* Class: parsetreewindow
+   Descripción:
+     Ventana para visualizar el árbol sintáctico (Parse Tree) generado a partir
+     de un archivo JSON. Utiliza QGraphicsScene para dibujar nodos y líneas
+     conectando padres con hijos.
+
+   Responsabilidades:
+     - Cargar un archivo JSON que representa un árbol sintáctico.
+     - Dibujar nodos y líneas jerárquicas con QGraphicsScene.
+     - Permitir zoom centrado en el cursor y desplazamiento con arrastre del mouse.
+*/
 class parsetreewindow : public QWidget
 {
     Q_OBJECT

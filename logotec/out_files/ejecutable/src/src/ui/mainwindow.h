@@ -9,6 +9,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/* Class: MainWindow
+   Descripción:
+     Ventana principal de la aplicación, con integración de TurtleGraphics.
+     Permite iniciar, resetear y finalizar la ejecución de programas Turtle,
+     además de mostrar u ocultar la cuadrícula de la escena.
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

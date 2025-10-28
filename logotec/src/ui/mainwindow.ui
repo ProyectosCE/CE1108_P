@@ -217,7 +217,6 @@
     <addaction name="actionShow_Grid"/>
     <addaction name="menuChange_Cursor"/>
     <addaction name="separator"/>
-    <addaction name="actionTest"/>
    </widget>
    <widget class="QMenu" name="menuBoard">
     <property name="title">

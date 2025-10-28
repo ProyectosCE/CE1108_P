@@ -14,7 +14,15 @@
 #include <QProcess>
 
 
+/* Function: MainWindow
+   Descripción:
+     Constructor de la clase. Inicializa la interfaz gráfica, configura los
+     componentes principales (editor, vista de tortuga, parser, compilador) y
+     conecta las señales y slots de la UI.
 
+   Params:
+     - parent: Puntero al widget padre. Por defecto es nullptr.
+*/
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -61,7 +69,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionLeonardo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
     connect(ui->actionMichaelangelo, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
     connect(ui->actionRafael_3, &QAction::triggered, this, &MainWindow::turtle_change_cursor_icon);
-    connect(ui->actionTest, &QAction::triggered, this, &MainWindow::turtle_test);
 
     QPixmap icono("../src/ui/assets/tortuga.png");
     //turtleScene->usarIcono(icono);
@@ -72,29 +79,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 // Slots
 
-void MainWindow::turtle_test() {
-    if (turtleEnEjecucion) return; // prevenir doble click
-
-    turtleEnEjecucion = true;
-    ui->btn_reset->setEnabled(false); // bloquear reset
-
-    // Configuración inicial Turtle
-    turtleScene->setAnimado(true);
-    turtleScene->velocidad("fast");
 
 
-    turtleScene->setAnimado(true);
-    turtleScene->velocidad("fast");
+/* Function: turtle_start
+   Descripción:
+     Inicia la ejecución del programa Logo cargado actualmente.
+     Verifica que el archivo haya sido compilado exitosamente, luego parsea
+     y ejecuta las instrucciones sobre la escena Turtle.
 
-    turtleScene->ponPos(4 , 4);
-    turtleScene->ponY(2);
-    turtleScene->ponPos(0 , 0);
-
-    // Animación terminada
-    turtleEnEjecucion = false;
-    ui->btn_reset->setEnabled(true);
-}
-
+   Errores:
+     - Si no hay archivo cargado, muestra una advertencia.
+     - Si no ha sido compilado, cancela la ejecución.
+*/
 void MainWindow::turtle_start() {
     if (turtleEnEjecucion) return; // prevenir doble click
     if (currentFilePath.isEmpty()) {
@@ -125,24 +121,49 @@ void MainWindow::turtle_start() {
     ui->btn_reset->setEnabled(true);
 }
 
-
+/* Function: turtle_reset
+   Descripción:
+     Limpia la escena de la tortuga, eliminando trazos y reiniciando la posición.
+*/
 void MainWindow::turtle_reset() {
     turtleScene->limpiar();
 }
 
+/* Function: turtle_end
+   Descripción:
+     Detiene la animación en curso de la tortuga.
+*/
 void MainWindow::turtle_end() {
     turtleScene->setAnimado(false);
 }
 
+/* Function: turtle_show_grid
+   Descripción:
+     Alterna la visibilidad de la cuadrícula en la vista de la tortuga.
+*/
 void MainWindow::turtle_show_grid() {
     m_gridVisible = !m_gridVisible;
     turtleView->setShowGrid(m_gridVisible);
 }
 
+/* Function: turtle_change_cursor_arrow
+   Descripción:
+     Cambia el cursor de la tortuga a una flecha genérica.
+*/
 void MainWindow::turtle_change_cursor_arrow() {
     turtleScene->usarFlecha();
 }
 
+
+/* Function: turtle_change_cursor_icon
+   Descripción:
+     Cambia el ícono del cursor de la tortuga dependiendo de la opción seleccionada
+     (Donatello, Leonardo, Miguel Ángel, Rafael, Tortuga genérica).
+
+   Detalles:
+     - Carga un QPixmap desde la ruta correspondiente.
+     - Si el archivo no existe o no se carga, muestra un mensaje de advertencia.
+*/
 void MainWindow::turtle_change_cursor_icon() {
     QAction* action = qobject_cast<QAction*>(sender());
     if (!action) return;
@@ -170,11 +191,23 @@ void MainWindow::turtle_change_cursor_icon() {
     turtleScene->usarIcono(pixmap);
 }
 
+
+/* Function: printTerminal
+   Descripción:
+     Imprime texto en la terminal integrada de la interfaz gráfica.
+   Params:
+     - message: Texto a mostrar.
+*/
 void MainWindow::printTerminal(const QString &message) {
     ui->terminal->appendPlainText(message);
 }
 
 
+/* Function: newFile
+   Descripción:
+     Crea un nuevo archivo de programa Logo (.lt) y lo prepara para edición.
+     Restablece el estado de compilación y muestra la ruta en la terminal.
+*/
 void MainWindow::newFile() {
     QString fileName = QFileDialog::getSaveFileName(
         this,
@@ -201,6 +234,14 @@ void MainWindow::newFile() {
 }
 
 
+/* Function: openFile
+   Descripción:
+     Abre un archivo de texto o programa Logo existente (.txt o .lt) para edición.
+     Carga su contenido en el área de texto principal.
+
+   Errores:
+     - Si el archivo no puede abrirse, muestra un mensaje de advertencia.
+*/
 void MainWindow::openFile() {
     QString fileName = QFileDialog::getOpenFileName(
         this,
@@ -235,6 +276,11 @@ void MainWindow::openFile() {
 }
 
 
+/* Function: saveFile
+   Descripción:
+     Guarda el contenido del área de texto actual en el archivo cargado.
+     Si no hay archivo abierto, muestra una advertencia.
+*/
 void MainWindow::saveFile() {
     if (currentFilePath.isEmpty()) {
         QMessageBox::warning(this, "Save", "Please open a file first.");
@@ -255,7 +301,19 @@ void MainWindow::saveFile() {
 }
 
 
+/* Function: compileProgram
+   Descripción:
+     Compila el archivo actualmente abierto utilizando el compilador interno
+     y posteriormente Arduino CLI para generar el binario .bin.
 
+   Flujo:
+     1. Guarda el archivo actual.
+     2. Ejecuta el compilador personalizado (Compiler).
+     3. Si la compilación es exitosa, llama a compile_executable().
+
+   Errores:
+     - Si Arduino CLI no se encuentra o falla, muestra un mensaje crítico.
+*/
 void MainWindow::compileProgram() {
     if (currentFilePath.isEmpty()) {
         QMessageBox::warning(this, "Compile", "Please open a file first.");
@@ -319,6 +377,18 @@ void MainWindow::compileProgram() {
 }
 
 
+/* Function: flashBoard
+   Descripción:
+     Flashea el binario generado (.bin) en la placa ESP8266 usando esptool.py.
+
+   Flujo:
+     1. Verifica que la compilación haya sido exitosa.
+     2. Comprueba la existencia del puerto /dev/ttyUSB0.
+     3. Ejecuta esptool.py con los argumentos adecuados.
+
+   Errores:
+     - Si la placa no está conectada o la ruta es incorrecta, se muestra un error.
+*/
 void MainWindow::flashBoard() {
     if (!compiled) {
         QMessageBox::warning(this, "Flash Error", "Cannot flash: The program has not been compiled successfully.");
@@ -368,6 +438,15 @@ void MainWindow::flashBoard() {
 
 
 
+/* Function: parseTree
+   Descripción:
+     Muestra una nueva ventana con el árbol sintáctico (Parse Tree)
+     generado por el compilador.
+
+   Requisitos:
+     - El archivo debe haber sido compilado exitosamente.
+     - Debe existir un archivo JSON válido (tree.json).
+*/
 void MainWindow::parseTree() {
     // Si no hay archivo cargado
     if (currentFilePath.isEmpty()) {
@@ -387,6 +466,19 @@ void MainWindow::parseTree() {
     treeWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
+/* Function: compile_executable
+   Descripción:
+     Compila un programa ejecutable local (turtle_program.cpp) traducido desde
+     el archivo .ino, usando un script de compilación Bash (build_script.sh).
+
+   Flujo:
+     1. Traduce el archivo .ino a .cpp usando InoTranslator.
+     2. Verifica existencia del script de compilación.
+     3. Ejecuta el script con QProcess y muestra la salida en la terminal.
+
+   Errores:
+     - Si la traducción o el script fallan, se muestra un mensaje crítico.
+*/
 void MainWindow::compile_executable() {
     QString projectRoot = "../out_files/ejecutable";
     QString sourceDir = projectRoot + "/src/src";
@@ -462,6 +554,11 @@ void MainWindow::compile_executable() {
 }
 
 
+/* Function: ~MainWindow
+   Descripción:
+     Destructor de la clase. Libera recursos, elimina el archivo JSON temporal
+     y destruye componentes asociados.
+*/
 MainWindow::~MainWindow() {
     if (!currentJsonPath.isEmpty()) {
         QFile::remove(currentJsonPath);

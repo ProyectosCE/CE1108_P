@@ -11,6 +11,19 @@
 #include <QPainter>
 #include "turtlescene.h"
 
+/* Class: TurtleView
+   Descripción:
+     Clase derivada de QGraphicsView que proporciona una vista interactiva
+     para la escena de dibujo tipo Logo. Permite hacer zoom, desplazarse y
+     visualizar una cuadrícula opcional para referencia visual.
+
+   Funcionalidad:
+     - Mostrar u ocultar una cuadrícula centrada en (0,0).
+     - Controlar el nivel de zoom con la rueda del ratón.
+     - Mostrar información del zoom actual y tamaño de unidad.
+     - Coordinar el tamaño de unidad con la escena TurtleScene.
+*/
+
 class TurtleView : public QGraphicsView {
     Q_OBJECT
 public:
