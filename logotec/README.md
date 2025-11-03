@@ -144,6 +144,18 @@ arduino-cli lib install "Adafruit Unified Sensor"
 arduino-cli lib install "Adafruit BusIO"
 ```
 
+## 9. Para debuggiar
+
+* Con Arduino CLI:
+*Para ver el serial 
+```bash
+arduino-cli monitor -p /dev/ttyUSB0 -b esp8266:esp8266:nodemcuv2 --config 115200
+
+
+```
+
+
+
 ---
 
 

@@ -21,7 +21,24 @@ float ultimoZ = 0.0;
 unsigned long ultimoTiempo = 0;
 
 
+float offsetZ = 0;
 
+void calibrarGyro() {
+    Serial.println("Calibrando giroscopio...");
+    float suma = 0;
+    const int n = 500; // ~0.5s
+
+    for (int i = 0; i < n; i++) {
+        sensors_event_t a, g, temp;
+        mpu.getEvent(&a, &g, &temp);
+        suma += g.gyro.z;
+        delay(1);
+    }
+
+    offsetZ = suma / n;
+    Serial.print("Offset Z = ");
+    Serial.println(offsetZ, 6);
+}
 
 void initTurtle() {
     pinMode(IN1, OUTPUT);
@@ -53,6 +70,7 @@ void initTurtle() {
     ultimoTiempo = millis();
 
     Serial.println("MPU6050 listo y calibrado.");
+    calibrarGyro();
 
 
 
@@ -60,10 +78,10 @@ void initTurtle() {
 }
 
 void detenerMotores() {
-    digitalWrite(IN1, LOW);
-    digitalWrite(IN2, LOW);
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, LOW);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, HIGH);
     esperar(2000);
 }
 
@@ -75,11 +93,15 @@ float leerAnguloZ() {
     sensors_event_t a, g, temp;
     mpu.getEvent(&a, &g, &temp);
 
+    static float anteriorVel = 0;
+    float velocidadZ = g.gyro.z * 57.2958;
+    velocidadZ = (g.gyro.z - offsetZ) * 57.2958;
+    anteriorVel = velocidadZ;
+
     unsigned long tiempoActual = millis();
-    float dt = (tiempoActual - ultimoTiempo) / 1000.0; // segundos
+    float dt = (tiempoActual - ultimoTiempo) / 1000.0;
     ultimoTiempo = tiempoActual;
 
-    float velocidadZ = g.gyro.z * 57.2958; // rad/s → deg/s
     anguloZ += velocidadZ * dt;
     return anguloZ;
 }
@@ -126,8 +148,11 @@ void giraDerecha(double grados) {
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, HIGH);
 
-    while (fabs(leerAnguloZ()) < grados) {
+    while (leerAnguloZ() < grados) {
+        float ang = leerAnguloZ(); // ✅ actualizar solo una vez
+        Serial.println(ang);
         delay(10);
+
     }
     detenerMotores();
 }
@@ -139,7 +164,7 @@ void giraIzquierda(double grados) {
     digitalWrite(IN3, HIGH);
     digitalWrite(IN4, LOW);
 
-    while (fabs(leerAnguloZ()) < grados) {
+    while (leerAnguloZ() > -grados) {
         delay(10);
     }
     detenerMotores();
