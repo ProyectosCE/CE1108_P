@@ -12,7 +12,12 @@
 
 #define rotate 13  // Girar
 
-Servo Color_turrent;
+
+#define PWM_IZQ 165   // velocidad base de la rueda izquierda (IN1/IN2)
+#define PWM_DER 240   // velocidad base de la rueda derecha (IN3/IN4) — un poco más
+
+
+Servo servoMotor;
 
 Adafruit_MPU6050 mpu;
 
@@ -50,7 +55,7 @@ void initTurtle() {
     pinMode(rotate, OUTPUT);
 
 
-    Color_turrent.attach(rotate);
+    servoMotor.attach(rotate);
     Serial.begin(115200);
     Wire.begin(4, 5); // SDA, SCL
 
@@ -78,10 +83,10 @@ void initTurtle() {
 }
 
 void detenerMotores() {
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, HIGH);
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, HIGH);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
     esperar(2000);
 }
 
@@ -116,58 +121,84 @@ void resetAngulo() {
 
 
 void avanzaTortuga(double n) {
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, LOW);
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
-    esperar(n*1000);
+    analogWrite(IN1, 0);         // IN1 = LOW
+    analogWrite(IN2, PWM_IZQ);   // izquierda adelante
+    analogWrite(IN3, PWM_DER);   // derecha adelante (más potencia)
+    analogWrite(IN4, 0);
+    esperar(n * 500);
     detenerMotores();
-
-
-
 }
 
 
 
 
 void retrocedeTortuga(double n) {
-    digitalWrite(IN1, LOW);
-    digitalWrite(IN2, HIGH);
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, HIGH);
-    esperar(n*1000);
+    analogWrite(IN1, PWM_IZQ);   // izquierda atrás
+    analogWrite(IN2, 0);
+    analogWrite(IN3, 0);
+    analogWrite(IN4, PWM_DER);   // derecha atrás (más potencia)
+    esperar(n * 500);
     detenerMotores();
-
-
 }
+
+
 
 void giraDerecha(double grados) {
     resetAngulo();
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, LOW);
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, HIGH);
 
-    while (leerAnguloZ() < grados) {
-        float ang = leerAnguloZ(); // ✅ actualizar solo una vez
-        Serial.println(ang);
+    const float margen = 2.0;   // grados de tolerancia
+    const int v_min = 130;      // velocidad mínima efectiva
+    const int v_max = 255;      // velocidad máxima
+    const float Kp = 3.0;       // ganancia proporcional
+
+    while (true) {
+        float ang = leerAnguloZ();
+        float error = grados - ang;
+
+        if (error <= margen) break; // ya estamos suficientemente cerca
+
+        int velocidad = (int)(Kp * error);
+        velocidad = constrain(velocidad, v_min, v_max);
+
+        analogWrite(IN1, 0);
+        analogWrite(IN2, velocidad);
+        analogWrite(IN3, 0);
+        analogWrite(IN4, velocidad);
+
         delay(10);
-
     }
+
     detenerMotores();
+
 }
 
 void giraIzquierda(double grados) {
     resetAngulo();
-    digitalWrite(IN1, LOW);
-    digitalWrite(IN2, HIGH);
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
 
-    while (leerAnguloZ() > -grados) {
+    const float margen = 2.0;
+    const int v_min = 130;
+    const int v_max = 255;
+    const float Kp = 3.0;
+
+    while (true) {
+        float ang = leerAnguloZ();
+        float error = -grados - ang;
+
+        if (error >= -margen) break;
+
+        int velocidad = (int)(-Kp * error);
+        velocidad = constrain(velocidad, v_min, v_max);
+
+        analogWrite(IN1, velocidad);
+        analogWrite(IN2, 0);
+        analogWrite(IN3, velocidad);
+        analogWrite(IN4, 0);
+
         delay(10);
     }
+
     detenerMotores();
+
 }
 
 void ocultaTortuga() {
@@ -192,17 +223,40 @@ void ponY(double y) {
 
 void bajaLapiz() {
 
+    servoMotor.write(60);
+    delay(800);
+
 }
 
 void subeLapiz() {
 
+    servoMotor.write(20);
+    delay(800);
+
 }
 
-void ponColorLapiz(const char* color) {
-        Color_turrent.write(90);
-        esperar(1000);
-        Color_turrent.write(0);
-        esperar(1000);
+void ponColorLapiz(const char* color)
+{
+    if (color == "azul")
+    {
+        servoMotor.write(60);
+        delay(800);
+
+    }
+    if (color == "negro")
+    {
+
+        servoMotor.write(80);
+        delay(800);
+
+    }
+    if (color == "rojo")
+    {
+
+        servoMotor.write(100);
+        delay(800);
+
+    }
 
 
 }
