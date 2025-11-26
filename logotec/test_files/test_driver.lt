@@ -1,20 +1,8 @@
 EJECUTA [
 
-REPITE 4 [
+avanza 1
 
-bajalapiz
+GiraDerecha 90
 
-subelapiz
-
-]
-poncolorlapiz azul
-
-poncolorlapiz negro
-
-poncolorlapiz rojo
-
-
-subelapiz
-
-
+avanza 1
 ]

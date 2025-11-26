@@ -120,24 +120,70 @@ void resetAngulo() {
 
 
 
-void avanzaTortuga(double n) {
-    analogWrite(IN1, 0);         // IN1 = LOW
-    analogWrite(IN2, PWM_IZQ);   // izquierda adelante
-    analogWrite(IN3, PWM_DER);   // derecha adelante (más potencia)
-    analogWrite(IN4, 0);
-    esperar(n * 500);
+void avanzaTortuga(double segundos) {
+    resetAngulo();
+    unsigned long t0 = millis();
+
+    const float Kp = 9.0;
+    const int baseL = PWM_IZQ;
+    const int baseR = PWM_DER;
+
+    while (millis() - t0 < segundos * 1000) {
+
+        float ang = leerAnguloZ();
+        float error = -ang; // queremos mantener 0 grados
+
+        // control proporcional
+        int correccion = Kp * error;
+
+        int velL = constrain(baseL + correccion, 0, 255);
+        int velR = constrain(baseR - correccion, 0, 255);
+
+        // avanzar corrigiendo
+        analogWrite(IN2, velL);
+        analogWrite(IN3, velR);
+
+
+    }
+
     detenerMotores();
 }
 
 
 
 
-void retrocedeTortuga(double n) {
-    analogWrite(IN1, PWM_IZQ);   // izquierda atrás
-    analogWrite(IN2, 0);
-    analogWrite(IN3, 0);
-    analogWrite(IN4, PWM_DER);   // derecha atrás (más potencia)
-    esperar(n * 500);
+void retrocedeTortuga(double segundos) {
+    resetAngulo();
+    unsigned long t0 = millis();
+
+    const float Kp = 5.0;
+    const int baseL = PWM_IZQ;  // base de la izquierda
+    const int baseR = PWM_DER;  // base de la derecha
+
+    while (millis() - t0 < segundos * 1000) {
+
+        float ang = leerAnguloZ();
+        float error = -ang;  // queremos mantener el rumbo en 0°
+
+        // corrección proporcional
+        int correccion = Kp * error;
+
+        // Al retroceder, las ruedas giran al revés:
+        // izquierda = IN1
+        // derecha   = IN4
+
+        int velL = constrain(baseL - correccion, 0, 255);
+        int velR = constrain(baseR + correccion, 0, 255);
+
+        // mover hacia atrás con corrección
+        analogWrite(IN1, velL);  // izquierda atrás
+        analogWrite(IN2, 0);
+        analogWrite(IN3, 0);
+        analogWrite(IN4, velR);  // derecha atrás
+
+        delay(1);
+    }
+
     detenerMotores();
 }
 
@@ -147,7 +193,7 @@ void giraDerecha(double grados) {
     resetAngulo();
 
     const float margen = 2.0;   // grados de tolerancia
-    const int v_min = 130;      // velocidad mínima efectiva
+    const int v_min = 140;      // velocidad mínima efectiva
     const int v_max = 255;      // velocidad máxima
     const float Kp = 3.0;       // ganancia proporcional
 
@@ -165,7 +211,7 @@ void giraDerecha(double grados) {
         analogWrite(IN3, 0);
         analogWrite(IN4, velocidad);
 
-        delay(10);
+        delay(1);
     }
 
     detenerMotores();
@@ -176,7 +222,7 @@ void giraIzquierda(double grados) {
     resetAngulo();
 
     const float margen = 2.0;
-    const int v_min = 130;
+    const int v_min = 140;
     const int v_max = 255;
     const float Kp = 3.0;
 
