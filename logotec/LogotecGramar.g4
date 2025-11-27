@@ -23,9 +23,13 @@ linea_instrucciones
     ;
 
 lista_parametros
-    : ID (',' ID)*
+    : variable_nombre (',' variable_nombre)*
    ;
 
+
+variable_nombre
+    : ID
+    ;
 // Instrucciones
 instruccion
     : (haz_variable (comentario_linea)?
@@ -95,15 +99,15 @@ lista_parametros_llamado
     : expr (',' expr)*
     ;
 // Haz: creación de variable
-haz_variable: HAZ ID e=expr;
+haz_variable: HAZ variable_nombre e=expr;
 
     // INIC: inicialización o asignación
 inic_variable
-    : INIC ID '=' e=expr;
+    : INIC variable_nombre '=' e=expr;
 
 // INC: incremento de variable
 inc_variable
-    : INC '[' ID (expr_mat_aritm)? ']'   // N1 obligatorio, N2 opcional
+    : INC '[' variable_nombre (expr_mat_aritm)? ']'   // N1 obligatorio, N2 opcional
     ;
 
     // AVANZA: mover avatar
@@ -185,7 +189,7 @@ exp_logica_operaciones:
     | o_variable
     | mayorque_variable
     | logico
-    | ID
+    | variable_nombre
     | NUMBER
     | exp_integer
     | CADENA_TEXTO
@@ -249,7 +253,7 @@ menorque_variable
     ;
 
 colores_variable:
-    colores |ID;
+    colores |variable_nombre;
 
 colores
     : AZUL | NEGRO | ROJO
@@ -257,7 +261,7 @@ colores
 // Expresiones (solo suma simple de momento)
 expr
     : CADENA_TEXTO
-    | ID
+    | variable_nombre
     | NUMBER
     | exp_integer
     | exp_logica
@@ -281,7 +285,7 @@ exp_matematica:
         | potencia_expr
         | division_expr
         | suma_expr
-        | ID
+        | variable_nombre
         | NUMBER;
 
 
@@ -462,6 +466,7 @@ FIN : 'Fin' | 'fin' | 'FIN' ;
 SALIDA : 'Salida' | 'salida' | 'SALIDA' ;
 EJECUTA : 'EJECUTA' | 'Ejecuta' | 'ejecuta' ;
 
+MINUSCULA  : [a-z];
 ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
 // Saltos de línea significativos
 NEWLINE      : [\r\n]+ ;

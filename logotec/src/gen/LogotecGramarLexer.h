@@ -25,7 +25,7 @@ public:
     MIENTRAS = 60, IGUALESQ = 61, Y = 62, O = 63, MAYORQUEQ = 64, MENORQUEQ = 65, 
     DIFERENCIA = 66, AZAR = 67, PRODUCTO = 68, POTENCIA = 69, DIVISION = 70, 
     SUMA = 71, RESTA = 72, PARA = 73, FIN = 74, SALIDA = 75, EJECUTA = 76, 
-    ID = 77, NEWLINE = 78, WS = 79, LINE_COMMENT = 80
+    MINUSCULA = 77, ID = 78, NEWLINE = 79, WS = 80, LINE_COMMENT = 81
   };
 
   explicit LogotecGramarLexer(antlr4::CharStream *input);

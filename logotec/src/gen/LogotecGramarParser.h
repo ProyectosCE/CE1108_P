@@ -25,30 +25,31 @@ public:
     MIENTRAS = 60, IGUALESQ = 61, Y = 62, O = 63, MAYORQUEQ = 64, MENORQUEQ = 65, 
     DIFERENCIA = 66, AZAR = 67, PRODUCTO = 68, POTENCIA = 69, DIVISION = 70, 
     SUMA = 71, RESTA = 72, PARA = 73, FIN = 74, SALIDA = 75, EJECUTA = 76, 
-    ID = 77, NEWLINE = 78, WS = 79, LINE_COMMENT = 80
+    MINUSCULA = 77, ID = 78, NEWLINE = 79, WS = 80, LINE_COMMENT = 81
   };
 
   enum {
     RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLinea_instrucciones = 3, 
-    RuleLista_parametros = 4, RuleInstruccion = 5, RuleSalida = 6, RuleMuestra = 7, 
-    RuleRumbo_get = 8, RuleComentario_linea = 9, RuleComentario = 10, RuleProcedimiento_llamado = 11, 
-    RuleParametros_llamado = 12, RuleLista_parametros_llamado = 13, RuleHaz_variable = 14, 
-    RuleInic_variable = 15, RuleInc_variable = 16, RuleAvanza_variable = 17, 
-    RuleRetrocede_variable = 18, RuleGira_derecha_variable = 19, RuleGira_izquierda_variable = 20, 
-    RuleOcultar_tortuga_variable = 21, RulePonpos_variable = 22, RulePonxy_variable = 23, 
-    RulePonrumbo_variable = 24, RulePonx_variable = 25, RulePony_variable = 26, 
-    RuleBajalapiz_variable = 27, RuleSubelapiz_variable = 28, RulePoncolorlapiz_variable = 29, 
-    RuleCentro_variable = 30, RuleEsperar_variable = 31, RuleEjecuta_variable = 32, 
-    RuleRepite_variable = 33, RuleExp_logica = 34, RuleExp_logica_operaciones = 35, 
-    RuleExp_logicas_expr = 36, RuleAndor = 37, RuleSi_variable = 38, RuleSi_sino_variable = 39, 
-    RuleHaz_hasta_variable = 40, RuleHasta_variable = 41, RuleHaz_mientras_variable = 42, 
-    RuleMientras_variable = 43, RuleIguales_variable = 44, RuleY_variable = 45, 
-    RuleO_variable = 46, RuleMayorque_variable = 47, RuleMenorque_variable = 48, 
-    RuleColores_variable = 49, RuleColores = 50, RuleExpr = 51, RuleExp_integer = 52, 
-    RuleExp_aritmetica = 53, RuleExp_matematica = 54, RuleExpr_mat_aritm = 55, 
-    RuleLogico = 56, RuleValor = 57, RuleOperador_logico = 58, RuleOperador = 59, 
-    RuleDiferencia_expr = 60, RuleAzar_expr = 61, RuleProducto_expr = 62, 
-    RulePotencia_expr = 63, RuleDivision_expr = 64, RuleSuma_expr = 65
+    RuleLista_parametros = 4, RuleVariable_nombre = 5, RuleInstruccion = 6, 
+    RuleSalida = 7, RuleMuestra = 8, RuleRumbo_get = 9, RuleComentario_linea = 10, 
+    RuleComentario = 11, RuleProcedimiento_llamado = 12, RuleParametros_llamado = 13, 
+    RuleLista_parametros_llamado = 14, RuleHaz_variable = 15, RuleInic_variable = 16, 
+    RuleInc_variable = 17, RuleAvanza_variable = 18, RuleRetrocede_variable = 19, 
+    RuleGira_derecha_variable = 20, RuleGira_izquierda_variable = 21, RuleOcultar_tortuga_variable = 22, 
+    RulePonpos_variable = 23, RulePonxy_variable = 24, RulePonrumbo_variable = 25, 
+    RulePonx_variable = 26, RulePony_variable = 27, RuleBajalapiz_variable = 28, 
+    RuleSubelapiz_variable = 29, RulePoncolorlapiz_variable = 30, RuleCentro_variable = 31, 
+    RuleEsperar_variable = 32, RuleEjecuta_variable = 33, RuleRepite_variable = 34, 
+    RuleExp_logica = 35, RuleExp_logica_operaciones = 36, RuleExp_logicas_expr = 37, 
+    RuleAndor = 38, RuleSi_variable = 39, RuleSi_sino_variable = 40, RuleHaz_hasta_variable = 41, 
+    RuleHasta_variable = 42, RuleHaz_mientras_variable = 43, RuleMientras_variable = 44, 
+    RuleIguales_variable = 45, RuleY_variable = 46, RuleO_variable = 47, 
+    RuleMayorque_variable = 48, RuleMenorque_variable = 49, RuleColores_variable = 50, 
+    RuleColores = 51, RuleExpr = 52, RuleExp_integer = 53, RuleExp_aritmetica = 54, 
+    RuleExp_matematica = 55, RuleExpr_mat_aritm = 56, RuleLogico = 57, RuleValor = 58, 
+    RuleOperador_logico = 59, RuleOperador = 60, RuleDiferencia_expr = 61, 
+    RuleAzar_expr = 62, RuleProducto_expr = 63, RulePotencia_expr = 64, 
+    RuleDivision_expr = 65, RuleSuma_expr = 66
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -73,6 +74,7 @@ public:
   class ParametrosContext;
   class Linea_instruccionesContext;
   class Lista_parametrosContext;
+  class Variable_nombreContext;
   class InstruccionContext;
   class SalidaContext;
   class MuestraContext;
@@ -219,8 +221,8 @@ public:
   public:
     Lista_parametrosContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<antlr4::tree::TerminalNode *> ID();
-    antlr4::tree::TerminalNode* ID(size_t i);
+    std::vector<Variable_nombreContext *> variable_nombre();
+    Variable_nombreContext* variable_nombre(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -230,6 +232,21 @@ public:
   };
 
   Lista_parametrosContext* lista_parametros();
+
+  class  Variable_nombreContext : public antlr4::ParserRuleContext {
+  public:
+    Variable_nombreContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ID();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Variable_nombreContext* variable_nombre();
 
   class  InstruccionContext : public antlr4::ParserRuleContext {
   public:
@@ -413,7 +430,7 @@ public:
     Haz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *HAZ();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     ExprContext *expr();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -431,7 +448,7 @@ public:
     Inic_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *INIC();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     antlr4::tree::TerminalNode *ASSIGN();
     ExprContext *expr();
 
@@ -449,7 +466,7 @@ public:
     Inc_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *INC();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     Expr_mat_aritmContext *expr_mat_aritm();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -765,7 +782,7 @@ public:
     O_variableContext *o_variable();
     Mayorque_variableContext *mayorque_variable();
     LogicoContext *logico();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     antlr4::tree::TerminalNode *NUMBER();
     Exp_integerContext *exp_integer();
     antlr4::tree::TerminalNode *CADENA_TEXTO();
@@ -1088,7 +1105,7 @@ public:
     Colores_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ColoresContext *colores();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -1121,7 +1138,7 @@ public:
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *CADENA_TEXTO();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     antlr4::tree::TerminalNode *NUMBER();
     Exp_integerContext *exp_integer();
     Exp_logicaContext *exp_logica();
@@ -1183,7 +1200,7 @@ public:
     Potencia_exprContext *potencia_expr();
     Division_exprContext *division_expr();
     Suma_exprContext *suma_expr();
-    antlr4::tree::TerminalNode *ID();
+    Variable_nombreContext *variable_nombre();
     antlr4::tree::TerminalNode *NUMBER();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;

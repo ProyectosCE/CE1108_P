@@ -55,7 +55,11 @@ any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
 any CodeGen::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
     if (errorReporter.hasErrors()) return nullptr;
 
-    std::string nombre = ctx->ID()->getText();
+    std::string nombre = visitvariable_nombre(ctx->variable_nombre());
+    if (nombre.empty()) {
+        errorReporter.error(ctx->getStart()->getLine(), "Nombre de variable inválido.");
+        return nullptr;
+    }
     Type tipo = getValorType(ctx->e, symbolTable);
     std::string tipoStr;
     switch (tipo) {
@@ -97,11 +101,43 @@ any CodeGen::visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) {
     return nullptr;
 }
 
+std::string CodeGen::visitvariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx) {
+    if (errorReporter.hasErrors()) return nullptr;
+
+    std::string nombre = ctx->ID()->getText();
+
+    // Verificar si el primer carácter es una letra minúscula
+    if (!nombre.empty() && !std::islower(nombre[0])) {
+        errorReporter.error(ctx->getStart()->getLine(), "El nombre de la variable debe comenzar con una letra minúscula.");
+        return "";
+    }
+
+    // Verificar que el nombre no contenga el símbolo '_'
+    if (nombre.find('_') != std::string::npos) {
+        errorReporter.error(ctx->getStart()->getLine(), "El nombre de la variable no debe contener el símbolo '_'.");
+        return "";
+    }
+
+    //verificar que tenga extrictamente menos de 10 caracteres
+    if (nombre.length() >= 10) {
+        errorReporter.error(ctx->getStart()->getLine(), "El nombre de la variable debe tener menos de 10 caracteres.");
+        return "";
+    }
+
+    return nombre;
+}
+
+
+
 // INIC: asignación
 any CodeGen::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) {
     if (errorReporter.hasErrors()) return nullptr;
 
-    std::string nombre = ctx->ID()->getText();
+    std::string nombre = visitvariable_nombre(ctx->variable_nombre());
+    if (nombre.empty()) {
+        errorReporter.error(ctx->getStart()->getLine(), "Nombre de variable inválido.");
+        return nullptr;
+    }
     auto sym = symbolTable.lookup(nombre);
     if (!sym) {
         errorReporter.error(ctx->getStart()->getLine(), "Variable '" + nombre + "' no declarada antes de asignar.");
@@ -149,7 +185,11 @@ any CodeGen::visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) 
 any CodeGen::visitInc_variable(LogotecGramarParser::Inc_variableContext *ctx) {
     if (errorReporter.hasErrors()) return nullptr;
 
-    std::string n1 = ctx->ID()->getText();
+    string n1 = visitvariable_nombre(ctx->variable_nombre());
+    if (n1.empty()) {
+        errorReporter.error(ctx->getStart()->getLine(), "Nombre de variable inválido.");
+        return nullptr;
+    }
     auto sym1 = symbolTable.lookup(n1);
     if (!sym1) {
         errorReporter.error(ctx->getStart()->getLine(), "Variable '" + n1 + "' no declarada antes de INC.");
@@ -386,10 +426,10 @@ any CodeGen::visitExpr(LogotecGramarParser::ExprContext *ctx) {
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
     if (ctx->colores()) return ctx->colores()->getText();
     if (ctx->CADENA_TEXTO()) return ctx->CADENA_TEXTO()->getText();
-    if (ctx->ID()) {
-        auto sym = symbolTable.lookup(ctx->ID()->getText());
-        if (!sym) errorReporter.error(ctx->getStart()->getLine(), "Variable '" + ctx->ID()->getText() + "' no declarada.");
-        return ctx->ID()->getText();
+    if (ctx->variable_nombre()) {
+        auto sym = symbolTable.lookup(visitvariable_nombre(ctx->variable_nombre()));
+        if (!sym) errorReporter.error(ctx->getStart()->getLine(), "Variable '" + visitvariable_nombre(ctx->variable_nombre()) + "' no declarada.");
+        return visitvariable_nombre(ctx->variable_nombre());
     }
     if (ctx->exp_integer()) return ctx->exp_integer()->getText();
     return std::string();
@@ -403,8 +443,8 @@ string CodeGen::inferTipo(LogotecGramarParser::ExprContext *ctx) {
     if (ctx->CADENA_TEXTO()) return "string";
     if (ctx->NUMBER()) return "int";
     if (ctx->colores()) return "Color";
-    if (ctx->ID()) {
-        auto it = tablaTipos.find(ctx->ID()->getText());
+    if (ctx->variable_nombre()) {
+        auto it = tablaTipos.find(visitvariable_nombre(ctx->variable_nombre()));
         if (it != tablaTipos.end()) return it->second;
         else return "desconocido";
     }
@@ -507,8 +547,8 @@ any CodeGen::visitEsperar_variable(LogotecGramarParser::Esperar_variableContext 
 any CodeGen::visitPoncolorlapiz_variable(LogotecGramarParser::Poncolorlapiz_variableContext *context) {
     if (hayError) return nullptr;
     string n1;
-    if (context->colores_variable()->ID()) {
-        std::string colorVar = context->colores_variable()->ID()->getText();
+    if (context->colores_variable()->variable_nombre()) {
+        std::string colorVar = visitvariable_nombre(context->colores_variable()->variable_nombre());
         auto sym = symbolTable.lookup(colorVar);
         if (!sym) {
             error("Variable de color '" + colorVar + "' no declarada.");
@@ -551,8 +591,8 @@ any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) 
     std::vector<std::string> parametros;
     if (ctx->parametros() &&ctx->parametros()->lista_parametros()) {
         auto lista = ctx->parametros()->lista_parametros();
-        for (size_t i = 0; i < lista->ID().size(); ++i) {
-            parametros.push_back(lista->ID(i)->getText());
+        for (size_t i = 0; i < lista->variable_nombre().size(); ++i) {
+            parametros.push_back(visitvariable_nombre(lista->variable_nombre(i)));
         }
     }
 
@@ -635,8 +675,8 @@ string CodeGen::checkMathExpr(LogotecGramarParser::ExprContext* ctx) {
     if (ctx->NUMBER()) {
         return "int";
     }
-    if (ctx->ID()) {
-        std::string nombre = ctx->ID()->getText();
+    if (ctx->variable_nombre()) {
+        std::string nombre = visitvariable_nombre(ctx->variable_nombre());
         auto it = tablaTipos.find(nombre);
         if (it == tablaTipos.end()) {
             error("Variable '" + nombre + "' no declarada.");
@@ -812,8 +852,8 @@ std::string CodeGen::checkMathExpr(LogotecGramarParser::Exp_matematicaContext* c
     if (ctx->potencia_expr()) return checkMathExpr(ctx->potencia_expr());
     if (ctx->division_expr()) return checkMathExpr(ctx->division_expr());
     if (ctx->suma_expr()) return checkMathExpr(ctx->suma_expr());
-    if (ctx->ID()) {
-        std::string nombre = ctx->ID()->getText();
+    if (ctx->variable_nombre()) {
+        std::string nombre = visitvariable_nombre(ctx->variable_nombre());
         auto it = tablaTipos.find(nombre);
         if (it == tablaTipos.end()) {
             error("Variable '" + nombre + "' no declarada.");
@@ -851,7 +891,7 @@ void replaceUnicode(std::string& str, const std::string& from, const std::string
 // Implementación faltante para generarExprCodigo(ExprContext*)
 std::string CodeGen::generarExprCodigo(LogotecGramarParser::ExprContext* ctx) {
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
-    if (ctx->ID()) return ctx->ID()->getText();
+    if (ctx->variable_nombre()) return visitvariable_nombre(ctx->variable_nombre());
     if (ctx->exp_integer()) return generarExprCodigo(ctx->exp_integer());
     if (ctx->CADENA_TEXTO()) {
         std::string texto = ctx->CADENA_TEXTO()->getText();
@@ -892,7 +932,7 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_matematicaContex
     if (ctx->potencia_expr()) return generarExprCodigo(ctx->potencia_expr());
     if (ctx->division_expr()) return generarExprCodigo(ctx->division_expr());
     if (ctx->suma_expr()) return generarExprCodigo(ctx->suma_expr());
-    if (ctx->ID()) return ctx->ID()->getText();
+    if (ctx->variable_nombre()) return visitvariable_nombre(ctx->variable_nombre());
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
     return "";
 }
@@ -978,7 +1018,7 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_logica_operacion
     if (ctx->mayorque_variable()) return generarExprCodigo(ctx->mayorque_variable());
     if (ctx->menorque_variable()) return generarExprCodigo(ctx->menorque_variable());
     if (ctx->logico()) return generarExprCodigo(ctx->logico());
-    if (ctx->ID()) return ctx->ID()->getText();
+    if (ctx->variable_nombre()) return visitvariable_nombre(ctx->variable_nombre());
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
     if (ctx->CADENA_TEXTO()) return ctx->CADENA_TEXTO()->getText();
 
@@ -1177,9 +1217,9 @@ std::string CodeGen::checkLogicExpr(LogotecGramarParser::Exp_logica_operacionesC
     if (ctx->mayorque_variable()) return checkLogicExpr(ctx->mayorque_variable());
     if (ctx->menorque_variable()) return checkLogicExpr(ctx->menorque_variable());
     if (ctx->logico()) return checkLogicExpr(ctx->logico());
-    if (ctx->ID()) {
+    if (ctx->variable_nombre()) {
        //check the id type, any type is valid not only bool
-        std::string nombre = ctx->ID()->getText();
+        std::string nombre = visitvariable_nombre(ctx->variable_nombre());
         auto it = tablaTipos.find(nombre);
         if (it == tablaTipos.end()) {
             error("Variable '" + nombre + "' no declarada.");

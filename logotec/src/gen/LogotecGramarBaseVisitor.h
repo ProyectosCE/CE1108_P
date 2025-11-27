@@ -35,6 +35,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitVariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *ctx) override {
     return visitChildren(ctx);
   }

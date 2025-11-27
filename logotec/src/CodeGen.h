@@ -44,6 +44,9 @@ public:
     // top‐level visitors
     virtual antlrcpp::Any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
     virtual antlrcpp::Any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
+
+    string visitvariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx);
+
     virtual antlrcpp::Any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
     virtual any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
     virtual any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) override;

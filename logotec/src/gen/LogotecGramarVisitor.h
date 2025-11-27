@@ -29,6 +29,8 @@ public:
 
     virtual std::any visitLista_parametros(LogotecGramarParser::Lista_parametrosContext *context) = 0;
 
+    virtual std::any visitVariable_nombre(LogotecGramarParser::Variable_nombreContext *context) = 0;
+
     virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *context) = 0;
 
     virtual std::any visitSalida(LogotecGramarParser::SalidaContext *context) = 0;

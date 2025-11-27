@@ -31,6 +31,9 @@ public:
   virtual void enterLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
   virtual void exitLista_parametros(LogotecGramarParser::Lista_parametrosContext * /*ctx*/) override { }
 
+  virtual void enterVariable_nombre(LogotecGramarParser::Variable_nombreContext * /*ctx*/) override { }
+  virtual void exitVariable_nombre(LogotecGramarParser::Variable_nombreContext * /*ctx*/) override { }
+
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext * /*ctx*/) override { }
 
