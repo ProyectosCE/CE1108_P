@@ -33,6 +33,10 @@ bool InoTranslator::translateInoToCpp(const QString &inoFilePath, const QString 
 #include "turtle/turtlescene.h"
 #include <cstdlib>
 #include <ctime>
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 %1
 
@@ -224,6 +228,8 @@ QString InoTranslator::translateLineWithVariables(const QString &line,
     result.replace("giraIzquierda(", "turtleScene->giraIzquierda(");
     result.replace("ocultaTortuga()", "turtleScene->ocultaTortuga()");
     result.replace("ponPos(", "turtleScene->ponPos(");
+    result.replace("ponXY(", "turtleScene->ponPos(");
+    result.replace("getRumbo(", "turtleScene->getRumbo(");
     result.replace("ponRumbo(", "turtleScene->ponRumbo(");
     result.replace("ponX(", "turtleScene->ponX(");
     result.replace("ponY(", "turtleScene->ponY(");

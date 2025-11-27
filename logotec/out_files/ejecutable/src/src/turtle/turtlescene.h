@@ -12,6 +12,7 @@
 #include <QGraphicsPolygonItem>
 #include <QTimer>
 #include <QPen>
+#include <initializer_list>
 
 class TurtleScene : public QGraphicsScene {
     Q_OBJECT
@@ -76,9 +77,15 @@ public:
     inline int DIFERENCIA(int x, Args... args) {
         return x - DIFERENCIA(args...);
     }
-    int PRODUCTO(int a, int b) {
-        return a * b;
+
+    int PRODUCTO(std::initializer_list<int> nums) {
+        int result = 1;
+        for (int n : nums) {
+            result *= n;
+        }
+        return result;
     }
+
 
     int DIVISION(int a, int b) {
         if (b == 0) {

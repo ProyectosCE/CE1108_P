@@ -251,13 +251,18 @@ void ocultaTortuga() {
 
 }
 
-void ponPos() {
+void ponPos(double x, double y) {
 
 }
 
 void ponRumbo(double n) {
     digitalWrite(rotate, HIGH);
 }
+
+double getRumbo() {
+    return anguloZ;
+}
+
 
 void ponX(double x) {
 

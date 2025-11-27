@@ -15,7 +15,7 @@ void giraIzquierda(double grados);
 void ocultaTortuga();
 void ponPos(double x, double y);
 void ponRumbo(double grados);
-//double getRumbo() const { return m_angleDeg; }
+double getRumbo();
 void ponX(double x);
 void ponY(double y);
 void bajaLapiz();

@@ -17,6 +17,8 @@ any CodeGen::visitPrograma(LogotecGramarParser::ProgramaContext *ctx) {
     codigoHeader =
             "#include <Arduino.h>\n"
             "#include \"turtle_hw.h\"\n"
+            "#include <string>\n"
+
             "using namespace std;\n\n";
     codigoFooter =
         "}\n"
