@@ -1,0 +1,21 @@
+# Carpetas de compilación de Qt Creator / CMake
+build-*/
+
+# Archivos generados
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.log
+*.user
+*.pro.user
+*.qmake.stash
+*.qrc.cpp
+ui_*.h
+moc_*.cpp
+qrc_*.cpp
+
+# Archivos de backup de Qt Creator
+*~

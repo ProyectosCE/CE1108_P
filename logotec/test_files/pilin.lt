@@ -1,0 +1,29 @@
+SL
+
+poncl negro
+BL
+
+REPITE 4 [
+av 2
+GD 90
+]
+
+GI 180
+SL
+av 2
+BL
+
+REPITE 4 [
+av 2
+GI 90
+]
+
+GD 90
+
+REPITE 2 [
+av 4
+GD 90
+av 2
+GD 90
+]
+

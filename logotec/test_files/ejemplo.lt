@@ -1,0 +1,31 @@
+Haz a 0
+Haz grad 0
+
+// Cuadrado
+Para cuad [a]
+   REPITE 4 [
+   av a
+   GD 90
+   ]
+Fin
+
+// Cuadrado iterativo
+Para cuad_iter [a, grad]
+   REPITE 360 [
+      GD grad
+      cuad [a]
+      INC [grad 1]
+   ]
+Fin
+
+// Llamada principal
+INIC a = 2
+REPITE 3 [
+
+   SI (a == 3)[poncl azul]
+   SI (a == 4)[poncl rojo]
+
+   INIC grad = 0
+   cuad_iter [a, grad]
+   INC [a 1]
+]

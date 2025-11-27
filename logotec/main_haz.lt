@@ -1,0 +1,72 @@
+Haz y 10
+Haz z 25+6-9*y
+Haz x Suma 5 10-3 y z Diferencia 20 (5+2*z) 2 4*9
+Haz a True
+Haz b "Hola"
+espera 10
+espera 5+3
+INIC y = Producto 20 5 x
+INIC x=Potencia 1 2
+Haz c Division 12 4
+INC [x Suma z 6] // N2 opcional
+INC [y]
+
+av 10 // avance comentario
+av Suma 5 (x*2+3)
+
+re 5
+re Producto 20 (5+3)
+
+GD 90
+GD (45+15)
+
+GI 30
+GI Diferencia 90 30
+
+OT
+
+ponpos [x 10]
+ponxy (5+9*7) Suma 10 y
+
+ponrumbo x
+ponrumbo (90-45)
+ponrumbo Suma 0 180
+ponrumbo Diferencia 90 45
+
+ponx 50
+ponx (100-30)
+ponx Suma 20 30
+ponx Producto 5 x
+
+pony 100
+pony (200-50)
+pony Suma 50 25
+pony Division 200 x
+
+BL
+SL
+
+
+Haz col azul
+poncl rojo
+poncl col
+
+centro
+
+// ejemplo ejecuta [instrucciones*]
+Ejecuta [
+Haz temp 5
+av temp
+GD 90
+av 10
+]
+
+//ejemplo repite n [instrucciones*]
+repite Suma 4 x [
+    av 50
+    GD 90
+]
+Haz novo True
+SI (O (x>10) False && MayorQue? x 5) [poncl rojo]
+
+Ejecuta [av 33 DG 1]
