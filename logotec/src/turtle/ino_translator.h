@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QSet>
+#include <QMap>
 
 class InoTranslator {
 public:
@@ -10,6 +11,10 @@ public:
     bool translateInoToCpp(const QString &inoFilePath, const QString &outputCppPath);
 
 private:
+    QString extractExtraFunctions(const QString &code);
+    QString extractMainCodeFromMain(const QString &code);
+    QMap<QString, bool> userFunctions;
+
     QString extractMainCode(const QString &inoCode);
     QString processLinesWithScope(const QStringList &lines);
     QString translateLineWithVariables(const QString &line, QSet<QString> &declaredVariables);
