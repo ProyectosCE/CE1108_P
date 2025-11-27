@@ -61,35 +61,47 @@ QString InoTranslator::extractExtraFunctions(const QString &code) {
 
     QString result;
 
-    QRegularExpression functionRegex(
-        R"((void|int|float|double)\s+(\w+)\s*\(([^)]*)\)\s*\{([\s\S]*?)\})",
-        QRegularExpression::DotMatchesEverythingOption
+    QRegularExpression funcHeader(
+        R"((void|int|float|double)\s+(\w+)\s*\(([^)]*)\)\s*\{)"
     );
 
-    QRegularExpressionMatchIterator i = functionRegex.globalMatch(code);
+    QRegularExpressionMatchIterator it = funcHeader.globalMatch(code);
 
-    while (i.hasNext()) {
-        QRegularExpressionMatch match = i.next();
+    while (it.hasNext()) {
 
-        QString returnType     = match.captured(1);
-        QString functionName   = match.captured(2);
+        QRegularExpressionMatch match = it.next();
+
+        QString returnType = match.captured(1);
+        QString functionName = match.captured(2);
         QString originalParams = match.captured(3).trimmed();
-        QString functionBody   = match.captured(4);
 
-        // Ignorar estas
         if (functionName == "setup" ||
             functionName == "loop" ||
             functionName == "main")
             continue;
 
+        int start = match.capturedEnd(0); // posición justo después del {
+
+        int braceCounter = 1;
+        int pos = start;
+
+        while (pos < code.length() && braceCounter > 0) {
+            if (code[pos] == '{')
+                braceCounter++;
+            else if (code[pos] == '}')
+                braceCounter--;
+
+            pos++;
+        }
+
+        QString functionBody = code.mid(start, pos - start - 1);
+
         // Registrar función
         bool hasParams = !originalParams.isEmpty();
         userFunctions.insert(functionName, hasParams);
 
-
-        // Nuevo parámetro con turtleScene
+        // Parámetros
         QString newParams;
-
         if (originalParams.isEmpty())
             newParams = "TurtleScene* turtleScene";
         else
