@@ -12,6 +12,19 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/* Class: MainWindow
+   Descripción:
+     Ventana principal de la aplicación Logotec. Gestiona la interfaz de usuario,
+     la compilación de programas, la simulación con Turtle Graphics y la comunicación
+     con la placa (ESP8266).
+
+   Responsabilidades:
+     - Crear, abrir, guardar y compilar archivos de código (.lt / .ino).
+     - Ejecutar programas Turtle y mostrar su animación.
+     - Mostrar el árbol de análisis sintáctico (Parse Tree).
+     - Enviar programas compilados a la placa mediante esptool.py.
+     - Redirigir la salida estándar (cout y cerr) a la terminal gráfica.
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
