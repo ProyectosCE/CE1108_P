@@ -313,9 +313,14 @@ void centro() {
 
 // Operaciones aritmeticas
 
-int PRODUCTO(int a, int b) {
-    return a * b;
+int PRODUCTO(std::initializer_list<int> args) {
+    int result = 1;
+    for (int value : args) {
+        result *= value;
+    }
+    return result;
 }
+
 
 int DIVISION(int a, int b) {
     if (b == 0) {

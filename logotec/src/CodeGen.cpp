@@ -745,15 +745,16 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::Diferencia_exprConte
 
 std::string CodeGen::generarExprCodigo(LogotecGramarParser::Producto_exprContext* ctx) {
     if (!ctx) return "";
-    std::string result = "PRODUCTO(";
+    std::string result = "PRODUCTO({";
     auto exprs = ctx->expr_mat_aritm();
     for (size_t i = 0; i < exprs.size(); ++i) {
         if (i > 0) result += ", ";
         result += generarExprCodigo(exprs[i]);
     }
-    result += ")";
+    result += "})";
     return result;
 }
+
 
 std::string CodeGen::generarExprCodigo(LogotecGramarParser::Suma_exprContext* ctx) {
     if (!ctx) return "";
@@ -838,15 +839,37 @@ std::string CodeGen::checkMathExpr(LogotecGramarParser::Exp_aritmeticaContext* c
     return "int";
 }
 
+
+void replaceUnicode(std::string& str, const std::string& from, const std::string& to) {
+    size_t pos = 0;
+    while ((pos = str.find(from, pos)) != std::string::npos) {
+        str.replace(pos, from.length(), to);
+        pos += to.length();
+    }
+}
+
 // Implementación faltante para generarExprCodigo(ExprContext*)
 std::string CodeGen::generarExprCodigo(LogotecGramarParser::ExprContext* ctx) {
     if (ctx->NUMBER()) return ctx->NUMBER()->getText();
     if (ctx->ID()) return ctx->ID()->getText();
     if (ctx->exp_integer()) return generarExprCodigo(ctx->exp_integer());
-    if (ctx->CADENA_TEXTO()) return ctx->CADENA_TEXTO()->getText();
+    if (ctx->CADENA_TEXTO()) {
+        std::string texto = ctx->CADENA_TEXTO()->getText();
+        replaceUnicode(texto, "\u201C", "\"");
+        replaceUnicode(texto, "\u201D", "\"");
+        return texto;
+    }
     if (ctx->colores()) return ctx->colores()->getText();
-    if (ctx->exp_logica()) if (ctx->exp_logica()->getText() == "True" || ctx->exp_logica()->getText() == "False")
-        return ctx->exp_logica()->getText() == "True" ? "true" : "false";
+    if (ctx->exp_logica()) {
+        std::string valorLogico = ctx->exp_logica()->getText();
+
+        // Convertir a minúsculas para comparación
+        std::transform(valorLogico.begin(), valorLogico.end(), valorLogico.begin(), ::tolower);
+
+        if (valorLogico == "true" || valorLogico == "false") {
+            return valorLogico == "true" ? "true" : "false";
+        }
+    }
     return "";
 }
 
@@ -902,7 +925,7 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::Exp_logicaContext* c
     return "";
 }
 
-string CodeGen::generarExprCodigo(LogotecGramarParser::OperacionLogicaSimpleContext* ctx) {
+std::string CodeGen::generarExprCodigo(LogotecGramarParser::OperacionLogicaSimpleContext* ctx) {
     string exp1 = generarExprCodigo(ctx->exp_logicas_expr(0));
     string exp2 = generarExprCodigo(ctx->exp_logicas_expr(1));
     string op = ctx->operador_logico()->getText();

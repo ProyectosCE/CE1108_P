@@ -56,7 +56,7 @@ inline int DIFERENCIA(int x, Args... args) {
 }
 
 
-int PRODUCTO(int a, int b);
+int PRODUCTO(std::initializer_list<int> args);
 int DIVISION(int a, int b);
 int POTENCIA(int a, int b);
 int AZAR(int n);
