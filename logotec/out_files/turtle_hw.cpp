@@ -296,6 +296,11 @@ void ponRumbo(double n) {
     digitalWrite(rotate, HIGH);
 }
 
+double getRumbo() {
+    return anguloZ;
+}
+
+
 void ponX(double x) {
 
 }
