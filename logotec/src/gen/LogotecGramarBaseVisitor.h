@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from C:/Users/amv22/Dev/repos/COMPILADORES/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -36,6 +36,10 @@ public:
   }
 
   virtual std::any visitInstruccion(LogotecGramarParser::InstruccionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSalida(LogotecGramarParser::SalidaContext *ctx) override {
     return visitChildren(ctx);
   }
 

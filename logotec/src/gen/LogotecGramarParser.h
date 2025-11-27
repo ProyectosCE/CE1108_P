@@ -1,5 +1,5 @@
 
-// Generated from /home/jimmy/Documents/GitHub/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from C:/Users/amv22/Dev/repos/COMPILADORES/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -13,43 +13,42 @@ class  LogotecGramarParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, HAZ = 4, INIC = 5, INC = 6, AVANZA = 7, 
-    AV = 8, RETROCEDE = 9, RE = 10, GIRA_DERECHA = 11, GD = 12, GIRA_IZQUIERDA = 13, 
-    GI = 14, OCULTAR_TORTUGA = 15, OT = 16, PONPOS = 17, PONXY = 18, PONRUMBO = 19, 
-    RUMBO = 20, MUESTRA = 21, PONX = 22, PONY = 23, BAJALAPIZ = 24, BL = 25, 
-    SUBELAPIZ = 26, SL = 27, AZUL = 28, NEGRO = 29, ROJO = 30, PONCOLORLAPIZ = 31, 
-    PCL = 32, CENTRO = 33, ESPERAR = 34, TRUE = 35, FALSE = 36, NUMBER = 37, 
-    CADENA_TEXTO = 38, PROGRAM = 39, VAR = 40, PRINTLN = 41, PLUS = 42, 
-    MINUS = 43, MULT = 44, DIV = 45, IF = 46, ELSE = 47, WHILE = 48, FOR = 49, 
-    AND = 50, OR = 51, NOT = 52, GT = 53, LT = 54, GEQ = 55, LEQ = 56, EQ = 57, 
-    NEQ = 58, ASSIGN = 59, BRACKET_OPEN = 60, BRACKET_CLOSE = 61, PAR_OPEN = 62, 
-    PAR_CLOSE = 63, SEMICOLON = 64, REPITE = 65, SI = 66, HAZ_HASTA = 67, 
-    HASTA = 68, HAZ_MIENTRAS = 69, MIENTRAS = 70, IGUALESQ = 71, Y = 72, 
-    O = 73, MAYORQUEQ = 74, MENORQUEQ = 75, DIFERENCIA = 76, AZAR = 77, 
-    PRODUCTO = 78, POTENCIA = 79, DIVISION = 80, SUMA = 81, RESTA = 82, 
-    PARA = 83, FIN = 84, EJECUTA = 85, ID = 86, NEWLINE = 87, WS = 88, LINE_COMMENT = 89
+    RETROCEDE = 8, GIRA_DERECHA = 9, GIRA_IZQUIERDA = 10, OCULTAR_TORTUGA = 11, 
+    PONPOS = 12, PONXY = 13, PONRUMBO = 14, RUMBO = 15, MUESTRA = 16, PONX = 17, 
+    PONY = 18, BAJALAPIZ = 19, SUBELAPIZ = 20, AZUL = 21, NEGRO = 22, ROJO = 23, 
+    PONCOLORLAPIZ = 24, PCL = 25, CENTRO = 26, ESPERAR = 27, TRUE = 28, 
+    FALSE = 29, NUMBER = 30, CADENA_TEXTO = 31, PLUS = 32, MINUS = 33, MULT = 34, 
+    DIV = 35, IF = 36, ELSE = 37, WHILE = 38, FOR = 39, AND = 40, OR = 41, 
+    NOT = 42, GT = 43, LT = 44, GEQ = 45, LEQ = 46, EQ = 47, NEQ = 48, ASSIGN = 49, 
+    BRACKET_OPEN = 50, BRACKET_CLOSE = 51, PAR_OPEN = 52, PAR_CLOSE = 53, 
+    SEMICOLON = 54, REPITE = 55, SI = 56, HAZ_HASTA = 57, HASTA = 58, HAZ_MIENTRAS = 59, 
+    MIENTRAS = 60, IGUALESQ = 61, Y = 62, O = 63, MAYORQUEQ = 64, MENORQUEQ = 65, 
+    DIFERENCIA = 66, AZAR = 67, PRODUCTO = 68, POTENCIA = 69, DIVISION = 70, 
+    SUMA = 71, RESTA = 72, PARA = 73, FIN = 74, SALIDA = 75, EJECUTA = 76, 
+    ID = 77, NEWLINE = 78, WS = 79, LINE_COMMENT = 80
   };
 
   enum {
     RulePrograma = 0, RuleProcedimiento = 1, RuleParametros = 2, RuleLinea_instrucciones = 3, 
-    RuleLista_parametros = 4, RuleInstruccion = 5, RuleMuestra = 6, RuleRumbo_get = 7, 
-    RuleComentario_linea = 8, RuleComentario = 9, RuleProcedimiento_llamado = 10, 
-    RuleParametros_llamado = 11, RuleLista_parametros_llamado = 12, RuleHaz_variable = 13, 
-    RuleInic_variable = 14, RuleInc_variable = 15, RuleAvanza_variable = 16, 
-    RuleRetrocede_variable = 17, RuleGira_derecha_variable = 18, RuleGira_izquierda_variable = 19, 
-    RuleOcultar_tortuga_variable = 20, RulePonpos_variable = 21, RulePonxy_variable = 22, 
-    RulePonrumbo_variable = 23, RulePonx_variable = 24, RulePony_variable = 25, 
-    RuleBajalapiz_variable = 26, RuleSubelapiz_variable = 27, RulePoncolorlapiz_variable = 28, 
-    RuleCentro_variable = 29, RuleEsperar_variable = 30, RuleEjecuta_variable = 31, 
-    RuleRepite_variable = 32, RuleExp_logica = 33, RuleExp_logica_operaciones = 34, 
-    RuleExp_logicas_expr = 35, RuleAndor = 36, RuleSi_variable = 37, RuleSi_sino_variable = 38, 
-    RuleHaz_hasta_variable = 39, RuleHasta_variable = 40, RuleHaz_mientras_variable = 41, 
-    RuleMientras_variable = 42, RuleIguales_variable = 43, RuleY_variable = 44, 
-    RuleO_variable = 45, RuleMayorque_variable = 46, RuleMenorque_variable = 47, 
-    RuleColores_variable = 48, RuleColores = 49, RuleExpr = 50, RuleExp_integer = 51, 
-    RuleExp_aritmetica = 52, RuleExp_matematica = 53, RuleExpr_mat_aritm = 54, 
-    RuleLogico = 55, RuleValor = 56, RuleOperador_logico = 57, RuleOperador = 58, 
-    RuleDiferencia_expr = 59, RuleAzar_expr = 60, RuleProducto_expr = 61, 
-    RulePotencia_expr = 62, RuleDivision_expr = 63, RuleSuma_expr = 64
+    RuleLista_parametros = 4, RuleInstruccion = 5, RuleSalida = 6, RuleMuestra = 7, 
+    RuleRumbo_get = 8, RuleComentario_linea = 9, RuleComentario = 10, RuleProcedimiento_llamado = 11, 
+    RuleParametros_llamado = 12, RuleLista_parametros_llamado = 13, RuleHaz_variable = 14, 
+    RuleInic_variable = 15, RuleInc_variable = 16, RuleAvanza_variable = 17, 
+    RuleRetrocede_variable = 18, RuleGira_derecha_variable = 19, RuleGira_izquierda_variable = 20, 
+    RuleOcultar_tortuga_variable = 21, RulePonpos_variable = 22, RulePonxy_variable = 23, 
+    RulePonrumbo_variable = 24, RulePonx_variable = 25, RulePony_variable = 26, 
+    RuleBajalapiz_variable = 27, RuleSubelapiz_variable = 28, RulePoncolorlapiz_variable = 29, 
+    RuleCentro_variable = 30, RuleEsperar_variable = 31, RuleEjecuta_variable = 32, 
+    RuleRepite_variable = 33, RuleExp_logica = 34, RuleExp_logica_operaciones = 35, 
+    RuleExp_logicas_expr = 36, RuleAndor = 37, RuleSi_variable = 38, RuleSi_sino_variable = 39, 
+    RuleHaz_hasta_variable = 40, RuleHasta_variable = 41, RuleHaz_mientras_variable = 42, 
+    RuleMientras_variable = 43, RuleIguales_variable = 44, RuleY_variable = 45, 
+    RuleO_variable = 46, RuleMayorque_variable = 47, RuleMenorque_variable = 48, 
+    RuleColores_variable = 49, RuleColores = 50, RuleExpr = 51, RuleExp_integer = 52, 
+    RuleExp_aritmetica = 53, RuleExp_matematica = 54, RuleExpr_mat_aritm = 55, 
+    RuleLogico = 56, RuleValor = 57, RuleOperador_logico = 58, RuleOperador = 59, 
+    RuleDiferencia_expr = 60, RuleAzar_expr = 61, RuleProducto_expr = 62, 
+    RulePotencia_expr = 63, RuleDivision_expr = 64, RuleSuma_expr = 65
   };
 
   explicit LogotecGramarParser(antlr4::TokenStream *input);
@@ -75,6 +74,7 @@ public:
   class Linea_instruccionesContext;
   class Lista_parametrosContext;
   class InstruccionContext;
+  class SalidaContext;
   class MuestraContext;
   class Rumbo_getContext;
   class Comentario_lineaContext;
@@ -139,6 +139,7 @@ public:
   public:
     ProgramaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    ComentarioContext *comentario();
     antlr4::tree::TerminalNode *EOF();
     std::vector<antlr4::tree::TerminalNode *> NEWLINE();
     antlr4::tree::TerminalNode* NEWLINE(size_t i);
@@ -162,10 +163,9 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PARA();
     antlr4::tree::TerminalNode *ID();
-    ParametrosContext *parametros();
-    std::vector<antlr4::tree::TerminalNode *> NEWLINE();
-    antlr4::tree::TerminalNode* NEWLINE(size_t i);
     antlr4::tree::TerminalNode *FIN();
+    antlr4::tree::TerminalNode *SEMICOLON();
+    ParametrosContext *parametros();
     std::vector<Linea_instruccionesContext *> linea_instrucciones();
     Linea_instruccionesContext* linea_instrucciones(size_t i);
 
@@ -197,8 +197,14 @@ public:
   public:
     Linea_instruccionesContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    std::vector<Comentario_lineaContext *> comentario_linea();
+    Comentario_lineaContext* comentario_linea(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> NEWLINE();
+    antlr4::tree::TerminalNode* NEWLINE(size_t i);
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> SEMICOLON();
+    antlr4::tree::TerminalNode* SEMICOLON(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -230,7 +236,6 @@ public:
     InstruccionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     Haz_variableContext *haz_variable();
-    Comentario_lineaContext *comentario_linea();
     Inic_variableContext *inic_variable();
     Inc_variableContext *inc_variable();
     Avanza_variableContext *avanza_variable();
@@ -264,7 +269,8 @@ public:
     Procedimiento_llamadoContext *procedimiento_llamado();
     Rumbo_getContext *rumbo_get();
     MuestraContext *muestra();
-    ComentarioContext *comentario();
+    SalidaContext *salida();
+    Comentario_lineaContext *comentario_linea();
     antlr4::tree::TerminalNode *NEWLINE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -275,6 +281,22 @@ public:
   };
 
   InstruccionContext* instruccion();
+
+  class  SalidaContext : public antlr4::ParserRuleContext {
+  public:
+    SalidaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *SALIDA();
+    ExprContext *expr();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  SalidaContext* salida();
 
   class  MuestraContext : public antlr4::ParserRuleContext {
   public:
@@ -444,9 +466,8 @@ public:
     LogotecGramarParser::Expr_mat_aritmContext *e = nullptr;
     Avanza_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *AVANZA();
-    antlr4::tree::TerminalNode *AV();
     Expr_mat_aritmContext *expr_mat_aritm();
+    antlr4::tree::TerminalNode *AVANZA();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -462,9 +483,8 @@ public:
     LogotecGramarParser::Expr_mat_aritmContext *e = nullptr;
     Retrocede_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *RETROCEDE();
-    antlr4::tree::TerminalNode *RE();
     Expr_mat_aritmContext *expr_mat_aritm();
+    antlr4::tree::TerminalNode *RETROCEDE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -480,9 +500,8 @@ public:
     LogotecGramarParser::Expr_mat_aritmContext *e = nullptr;
     Gira_derecha_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *GIRA_DERECHA();
-    antlr4::tree::TerminalNode *GD();
     Expr_mat_aritmContext *expr_mat_aritm();
+    antlr4::tree::TerminalNode *GIRA_DERECHA();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -498,9 +517,8 @@ public:
     LogotecGramarParser::Expr_mat_aritmContext *e = nullptr;
     Gira_izquierda_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *GIRA_IZQUIERDA();
-    antlr4::tree::TerminalNode *GI();
     Expr_mat_aritmContext *expr_mat_aritm();
+    antlr4::tree::TerminalNode *GIRA_IZQUIERDA();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -516,7 +534,6 @@ public:
     Ocultar_tortuga_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *OCULTAR_TORTUGA();
-    antlr4::tree::TerminalNode *OT();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -614,7 +631,6 @@ public:
     Bajalapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *BAJALAPIZ();
-    antlr4::tree::TerminalNode *BL();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -630,7 +646,6 @@ public:
     Subelapiz_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *SUBELAPIZ();
-    antlr4::tree::TerminalNode *SL();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -752,6 +767,7 @@ public:
     LogicoContext *logico();
     antlr4::tree::TerminalNode *ID();
     antlr4::tree::TerminalNode *NUMBER();
+    Exp_integerContext *exp_integer();
     antlr4::tree::TerminalNode *CADENA_TEXTO();
     Menorque_variableContext *menorque_variable();
 
@@ -866,6 +882,7 @@ public:
     antlr4::tree::TerminalNode *PAR_OPEN();
     Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
+    antlr4::tree::TerminalNode *NEWLINE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 
@@ -883,6 +900,7 @@ public:
     Si_sino_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     Si_variableContext *si_variable();
+    antlr4::tree::TerminalNode *NEWLINE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 
@@ -905,6 +923,7 @@ public:
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
+    antlr4::tree::TerminalNode *NEWLINE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -919,10 +938,12 @@ public:
   public:
     Hasta_variableContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *HASTA();
     antlr4::tree::TerminalNode *PAR_OPEN();
     Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
+    antlr4::tree::TerminalNode *HASTA();
+    antlr4::tree::TerminalNode *HAZ_HASTA();
+    antlr4::tree::TerminalNode *NEWLINE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 
@@ -945,6 +966,7 @@ public:
     antlr4::tree::TerminalNode *PAR_CLOSE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
+    antlr4::tree::TerminalNode *NEWLINE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -963,6 +985,7 @@ public:
     antlr4::tree::TerminalNode *PAR_OPEN();
     Exp_logicaContext *exp_logica();
     antlr4::tree::TerminalNode *PAR_CLOSE();
+    antlr4::tree::TerminalNode *NEWLINE();
     std::vector<InstruccionContext *> instruccion();
     InstruccionContext* instruccion(size_t i);
 
@@ -1232,6 +1255,7 @@ public:
     antlr4::tree::TerminalNode *GEQ();
     antlr4::tree::TerminalNode *LEQ();
     antlr4::tree::TerminalNode *EQ();
+    antlr4::tree::TerminalNode *ASSIGN();
     antlr4::tree::TerminalNode *NEQ();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;

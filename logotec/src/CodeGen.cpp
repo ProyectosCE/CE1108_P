@@ -549,7 +549,7 @@ any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) 
 
     // Obtener lista de parámetros
     std::vector<std::string> parametros;
-    if (ctx->parametros()->lista_parametros()) {
+    if (ctx->parametros() &&ctx->parametros()->lista_parametros()) {
         auto lista = ctx->parametros()->lista_parametros();
         for (size_t i = 0; i < lista->ID().size(); ++i) {
             parametros.push_back(lista->ID(i)->getText());
@@ -569,14 +569,21 @@ any CodeGen::visitProcedimiento(LogotecGramarParser::ProcedimientoContext *ctx) 
 
     // Generar cuerpo del procedimiento
     std::string cuerpo;
-    for (size_t i = 0; i < ctx->children.size(); ++i) {
-        auto child = ctx->children[i];
-        if (auto linea = dynamic_cast<LogotecGramarParser::Linea_instruccionesContext*>(child)) {
-            visit(linea);
-            cuerpo += codigo;
-            codigo.clear();
-        }
+
+    // Recorrer las instrucciones opcionales
+    for (size_t i = 0; i < ctx->linea_instrucciones().size(); ++i) {
+        auto linea = ctx->linea_instrucciones(i);
+        visit(linea);
+        cuerpo += codigo;
+        codigo.clear();
     }
+
+    // Validar que el procedimiento termine con FIN SEMICOLON
+    if (!ctx->FIN() || !ctx->SEMICOLON()) {
+        error("Error: El procedimiento no termina correctamente con 'FIN;'.");
+        hayError = true;
+    }
+
 
     // Registrar el procedimiento en ProcedimientosGen
     if (!procGen.registrarProcedimiento(nombre, parametrosTipados, cuerpo)) {
@@ -599,7 +606,7 @@ any CodeGen::visitProcedimiento_llamado(LogotecGramarParser::Procedimiento_llama
 
     std::string nombre = ctx->ID()->getText();
     std::vector<std::string> args;
-    if (ctx->parametros_llamado()->lista_parametros_llamado()) {
+    if (ctx->parametros_llamado() && ctx->parametros_llamado()->lista_parametros_llamado()) {
         auto lista = ctx->parametros_llamado()->lista_parametros_llamado();
         for (size_t i = 0; i < lista->expr().size(); ++i) {
             args.push_back(any_cast<std::string>(visit(lista->expr(i))));

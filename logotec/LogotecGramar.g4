@@ -4,13 +4,13 @@ options { language=Cpp;}
 
 // Programa
 programa
-    : (NEWLINE | linea_instrucciones | procedimiento)*
+    : comentario (NEWLINE | linea_instrucciones | procedimiento)*
       EOF
     ;
 
  // Definición de procedimiento
 procedimiento
-    : PARA ID parametros NEWLINE (linea_instrucciones NEWLINE)* linea_instrucciones? FIN
+    : PARA ID parametros? (linea_instrucciones)* linea_instrucciones? FIN SEMICOLON
     ;
 
 parametros
@@ -18,7 +18,8 @@ parametros
     ;
 
 linea_instrucciones
-    : (instruccion)+
+    : ((instruccion SEMICOLON)     | comentario_linea
+                                   | NEWLINE)+
     ;
 
 lista_parametros
@@ -27,7 +28,7 @@ lista_parametros
 
 // Instrucciones
 instruccion
-    : haz_variable (comentario_linea)?
+    : (haz_variable (comentario_linea)?
     | inic_variable (comentario_linea)?
     | inc_variable (comentario_linea)?
     | avanza_variable (comentario_linea)?
@@ -61,9 +62,12 @@ instruccion
     | procedimiento_llamado (comentario_linea)?
     | rumbo_get (comentario_linea)?
     | muestra (comentario_linea)?
-    | comentario
-    | NEWLINE
-    ;
+    | salida (comentario_linea)?)
+    | NEWLINE;
+
+
+salida:
+    SALIDA expr;
 
 muestra:
     MUESTRA (expr|rumbo_get);
@@ -80,7 +84,7 @@ comentario
     ;
 
 procedimiento_llamado
-    : ID parametros_llamado
+    : ID parametros_llamado?
     ;
 
 parametros_llamado
@@ -104,23 +108,23 @@ inc_variable
 
     // AVANZA: mover avatar
 avanza_variable
-    : (AVANZA | AV) e=expr_mat_aritm
+    : (AVANZA) e=expr_mat_aritm
     ;
 
 retrocede_variable
-    : (RETROCEDE | RE) e=expr_mat_aritm
+    : (RETROCEDE) e=expr_mat_aritm
     ;
 
 gira_derecha_variable
-    : (GIRA_DERECHA | GD) e=expr_mat_aritm
+    : (GIRA_DERECHA) e=expr_mat_aritm
     ;
 
 gira_izquierda_variable
-    : (GIRA_IZQUIERDA | GI) e=expr_mat_aritm
+    : (GIRA_IZQUIERDA) e=expr_mat_aritm
     ;
 
 ocultar_tortuga_variable
-    : (OCULTAR_TORTUGA | OT)
+    : (OCULTAR_TORTUGA)
     ;
 
 ponpos_variable
@@ -144,11 +148,11 @@ pony_variable
     ;
 
 bajalapiz_variable
-    : (BAJALAPIZ | BL)
+    : (BAJALAPIZ)
     ;
 
 subelapiz_variable
-    : (SUBELAPIZ | SL)
+    : (SUBELAPIZ)
     ;
 
 poncolorlapiz_variable
@@ -183,6 +187,7 @@ exp_logica_operaciones:
     | logico
     | ID
     | NUMBER
+    | exp_integer
     | CADENA_TEXTO
     | menorque_variable;
 
@@ -198,29 +203,29 @@ andor:
 AND | OR;
 
 si_variable
-    : SI '(' exp_logica ')' '[' instruccion* ']'
+    : (SI '(' exp_logica ')' NEWLINE?'[' instruccion* ']') | (SI '[' exp_logica ']' NEWLINE?'[' instruccion* ']')
     ;
 
 
 
 si_sino_variable
-    : si_variable '[' instruccion* ']'
+    : si_variable NEWLINE? '[' instruccion* ']'
     ;
 
 haz_hasta_variable
-    : HAZ_HASTA '[' instruccion* ']' '(' exp_logica ')'
+    : HAZ_HASTA '[' instruccion* ']' NEWLINE? '(' exp_logica ')'
     ;
 
 hasta_variable
-    : HASTA '(' exp_logica ')' '[' instruccion* ']'
+    : (HASTA|HAZ_HASTA) '(' exp_logica ')' NEWLINE? '[' instruccion* ']'
     ;
 
 haz_mientras_variable
-    : HAZ_MIENTRAS '[' instruccion* ']' '(' exp_logica')'
+    : HAZ_MIENTRAS '[' instruccion* ']' NEWLINE?'(' exp_logica')'
     ;
 
 mientras_variable
-    : MIENTRAS '(' exp_logica ')' '[' instruccion* ']'
+    : MIENTRAS '(' exp_logica ')' NEWLINE?'[' instruccion* ']'
     ;
 
 iguales_variable
@@ -305,6 +310,7 @@ operador_logico:
     | GEQ
     | LEQ
     | EQ
+    | ASSIGN
     | NEQ
     ;
 
@@ -343,57 +349,48 @@ HAZ          : 'Haz' ;
 INIC         : 'INIC' ;
 INC : 'INC' ;
 
-AVANZA : 'avanza' ;
-AV     : 'av' ;
+AVANZA : 'avanza' | 'AVANZA' | 'AV' | 'Avanza' | 'Av' | 'av' ;
 
-RETROCEDE: 'retrocede' ;
-RE: 're' ;
+RETROCEDE: 'retrocede' | 'RETROCEDE' | 'RE' | 'Retrocede' | 'Re' | 're' ;
 
 
-GIRA_DERECHA: 'GiraDerecha' ;
-GD: 'GD';
+GIRA_DERECHA: 'GiraDerecha' | 'GD' | 'giraderecha' | 'GIRADERECHA' | 'Giraderecha' | 'gd' ;
 
-GIRA_IZQUIERDA: 'GiraIzquierda' ;
-GI: 'GI';
+GIRA_IZQUIERDA: 'GiraIzquierda' | 'GI' | 'giraizquierda' | 'GIRAIZQUIERDA' | 'Girazquierda' | 'gi' ;
 
-OCULTAR_TORTUGA: 'OcultarTortuga' ;
-OT: 'OT';
+OCULTAR_TORTUGA: 'OcultarTortuga' | 'OT' | 'ocultartortuga' | 'OCULTARTORTUGA' | 'Ocultartortuga' | 'ot' | 'OcultaTortuga' | 'ocultaTortuga' | 'OCULTATORTUGA' ;
 
-PONPOS: 'ponpos' ;
-PONXY: 'ponxy' ;
+PONPOS: 'ponpos' | 'Ponpos'| 'PONPOS' | 'PonPos' | 'ponPos' | 'PonPOS' ;
+PONXY: 'ponxy' | 'Ponxy' | 'PONXY' | 'PonXY' | 'ponXY' | 'PONXy' ;
 
-PONRUMBO: 'ponrumbo' ;
-RUMBO: 'rumbo';
-MUESTRA: 'Muestra';
+PONRUMBO: 'ponrumbo' | 'Ponrumbo' | 'PONRUMBO' | 'PonRumbo' | 'ponRumbo' | 'PONRumbo' ;
+RUMBO: 'rumbo' | 'RUMBO' | 'Rumbo' ;
+MUESTRA: 'Muestra' | 'muestra' | 'MUESTRA' ;
 
-PONX: 'ponx' ;
+PONX: 'ponx' | 'Ponx' | 'PONX' | 'PonX' | 'ponX' | 'PONx' ;
 
-PONY: 'pony' ;
+PONY: 'pony' | 'Pony' | 'PONY' | 'PonY' | 'ponY' | 'PONy' ;
 
-BAJALAPIZ: 'bajalapiz' ;
-BL: 'BL' ;
+BAJALAPIZ: 'bajalapiz' | 'Bajalapiz' | 'BL' | 'BAJALAPIZ' | 'bl' | 'BajaLapiz' | 'bajaLapiz' | 'BAJALapiz' ;
 
-SUBELAPIZ: 'subelapiz' ;
-SL: 'SL' ;
+
+SUBELAPIZ: 'subelapiz' | 'Subelapiz' | 'SL' | 'SUBELAPIZ' | 'sl' | 'SubeLapiz' | 'subeLapiz' | 'SUBELapiz' ;
 
 AZUL: 'azul' ;
 NEGRO: 'negro' ;
 ROJO: 'rojo' ;
 
-PONCOLORLAPIZ: 'poncolorlapiz' ;
-PCL: 'poncl' ;
+PONCOLORLAPIZ: 'poncolorlapiz' | 'PonColoLapiz' | 'PONCOLORLAPIZ' | 'PonColorLapiz' | 'ponColorLapiz' | 'PONColorLapiz' ;
+PCL: 'poncl' | 'PonCL' | 'PONCL' | 'PonCl' | 'ponCl' | 'PONcL' ;
 
-CENTRO: 'centro' ;
-ESPERAR: 'espera' ;
+CENTRO: 'centro' | 'Centro' | 'CENTRO' ;
+ESPERAR: 'espera' | 'Espera' | 'ESPERA' ;
 
-TRUE         : 'True' ;
-FALSE        : 'False' ;
+TRUE         : 'True' | 'true'  | 'TRUE' ;
+FALSE        : 'False' | 'false' | 'FALSE' ;
 NUMBER       : [0-9]+ ;
-CADENA_TEXTO : '"' (~["\r\n])* '"' ;
+CADENA_TEXTO : '"' (~["\r\n])* '"' | '“' (~["\r\n])* '”' ;
 
-PROGRAM: 'program';
-VAR: 'var';
-PRINTLN: 'println';
 
 PLUS: '+';
 MINUS: '-';
@@ -455,14 +452,15 @@ MENORQUEQ : 'MenorQue?' ;
 DIFERENCIA : 'Diferencia' ;
 AZAR : 'Azar' ;
 
-PRODUCTO : 'Producto' ;
-POTENCIA : 'Potencia' ;
-DIVISION : 'Division' ;
-SUMA : 'Suma' ;
-RESTA : 'Resta' ;
-PARA : 'Para' ;
-FIN : 'Fin' ;
-EJECUTA : 'EJECUTA' ;
+PRODUCTO : 'Producto' | 'producto' | 'PRODUCTO' ;
+POTENCIA : 'Potencia' | 'potencia' | 'POTENCIA' ;
+DIVISION : 'Division' | 'division' | 'DIVISION' | 'División'| 'división' | 'DIVISIÓN' ;
+SUMA : 'Suma' | 'suma' | 'SUMA' ;
+RESTA : 'Resta' | 'resta' | 'RESTA' ;
+PARA : 'Para' | 'para' | 'PARA' ;
+FIN : 'Fin' | 'fin' | 'FIN' ;
+SALIDA : 'Salida' | 'salida' | 'SALIDA' ;
+EJECUTA : 'EJECUTA' | 'Ejecuta' | 'ejecuta' ;
 
 ID           : [a-zA-Z_][a-zA-Z0-9_]* ;
 // Saltos de línea significativos
