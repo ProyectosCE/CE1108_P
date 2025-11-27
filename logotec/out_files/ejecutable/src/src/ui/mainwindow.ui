@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>LogoTec - Preview</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>800</width>
+     <height>578</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100000</width>
+     <height>100000</height>
+    </size>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>60</y>
+      <width>731</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>20</y>
+      <width>263</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="btn_start">
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_end">
+       <property name="text">
+        <string>End</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_reset">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTurtle">
+    <property name="title">
+     <string>Turtle</string>
+    </property>
+    <addaction name="actionShow_Grid"/>
+   </widget>
+   <addaction name="menuTurtle"/>
+  </widget>
+  <action name="action_New_File">
+   <property name="text">
+    <string>New File</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="action_Save">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionParser_Tree">
+   <property name="text">
+    <string>Parser Tree</string>
+   </property>
+  </action>
+  <action name="actionShow_Grid">
+   <property name="text">
+    <string>Show Grid</string>
+   </property>
+  </action>
+  <action name="actionChange_Icon">
+   <property name="text">
+    <string>Change Icon</string>
+   </property>
+  </action>
+  <action name="actionArrow">
+   <property name="text">
+    <string>Arrow</string>
+   </property>
+  </action>
+  <action name="actionTurtle">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/tortuga.png</normaloff>assets/tortuga.png</iconset>
+   </property>
+   <property name="text">
+    <string>Turtle</string>
+   </property>
+  </action>
+  <action name="actionDonatello">
+   <property name="text">
+    <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionRafael">
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionDonatello_2">
+   <property name="text">
+    <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionRafael_2">
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionLeonardo">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/leonardo.png</normaloff>assets/leonardo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Leonardo</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRafael_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/rafael.png</normaloff>assets/rafael.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rafael</string>
+   </property>
+  </action>
+  <action name="actionMichaelangelo">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/michaelangelo.png</normaloff>assets/michaelangelo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Michaelangelo</string>
+   </property>
+  </action>
+  <action name="actionDonatello_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>assets/donatello.png</normaloff>assets/donatello.png</iconset>
+   </property>
+   <property name="text">
+    <string>Donatello</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="text">
+    <string>Test</string>
+   </property>
+  </action>
+  <action name="actionFlash">
+   <property name="text">
+    <string>Flash</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

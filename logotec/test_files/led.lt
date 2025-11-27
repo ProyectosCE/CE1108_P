@@ -1,0 +1,11 @@
+Para av4 []
+av 4
+GD 90
+Fin
+
+
+EJECUTA [
+REPITE 4 [
+av4 []
+]
+]

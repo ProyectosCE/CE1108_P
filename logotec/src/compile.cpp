@@ -1,28 +1,40 @@
+#include "compile.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <filesystem>
 
 #include "antlr4-runtime.h"
 #include "CodeGen.h"
 #include "gen/LogotecGramarLexer.h"
 #include "gen/LogotecGramarParser.h"
-#include "SemanticVisitor.h"
-
-#include "compile.h"
-
 #include "utils/parseTreeToJson.h"
 
 using namespace std;
 using namespace antlr4;
 using namespace antlr4::tree;
 
-int compileFile(const std::string& program) {
-    cout << "Interpreting file: " << program << endl;
+// ------------------
+// BailErrorListener
+// ------------------
+class BailErrorListener : public antlr4::BaseErrorListener {
+public:
+    void syntaxError(Recognizer *recognizer, Token *offendingSymbol,
+                     size_t line, size_t charPositionInLine,
+                     const std::string &msg, std::exception_ptr e) override {
+        throw std::runtime_error("Syntax error at line " + std::to_string(line) +
+                                 ":" + std::to_string(charPositionInLine) + " -> " + msg);
+    }
+};
 
-    std::ifstream stream(program);
-    if (!stream) {
-        std::cerr << "Could not open file: " << program << std::endl;
+// ------------------
+// CompileFile
+// ------------------
+int Compiler::compileFile(const std::string& programPath) {
+    cout << "Interpreting file: " << programPath << endl;
+
+    std::ifstream stream(programPath);
+    if (!stream.is_open()) {
+        cerr << "Could not open file: " << programPath << endl;
         return 1;
     }
 
@@ -31,43 +43,56 @@ int compileFile(const std::string& program) {
     CommonTokenStream tokens(&lexer);
     LogotecGramarParser parser(&tokens);
 
-    tree::ParseTree* tree = parser.programa();
+    parser.removeErrorListeners();
+    parser.addErrorListener(new BailErrorListener());
 
-    SemanticVisitor visitor;
-    visitor.visit(tree);
-
+    ParseTree* tree = nullptr;
     CodeGen generator;
-    generator.visit(tree);
 
-    if (generator.hayError) {
-        std::cerr << "Compilación cancelada debido a errores semánticos." << std::endl;
+    try {
+        generator.reset();
+        tree = parser.programa();
+        generator.visit(tree);
+
+        if (generator.hayError) {
+            cerr << "Compilación cancelada debido a errores semánticos." << endl;
+            return 1;
+        }
+
+    } catch (const std::runtime_error &e) {
+        cerr << "Error de sintaxis: " << e.what() << endl;
         return 1;
     }
 
-    std::filesystem::create_directories("./out");
+    std::filesystem::create_directories("../out_files");
 
-    // Guardar el arbol en un JSON
+    // Guardar árbol JSON
     json treeJson = buildJsonFromANTLR(tree, &parser);
-    std::ofstream treeOut("./out/tree.json");
+    std::ofstream treeOut("../out_files/tree.json");
     treeOut << treeJson.dump(4);
     treeOut.close();
 
-    std::ofstream outFile("./out/logotec.cpp");
+    // Generar archivo .cpp
+    std::ofstream outFile("../out_files/out_files.ino");
     if (!outFile.is_open()) {
-        std::cerr << "Error al crear el archivo de salida." << std::endl;
+        cerr << "Error al crear el archivo de salida." << endl;
         return 1;
     }
 
-    outFile << "#include <iostream>\n";
-    outFile << "#include <string>\n";
-    outFile << "using namespace std;\n\n";
-    outFile << "int main() {\n";
-    outFile << generator.codigo;
-    outFile << "return 0;\n";
-    outFile << "}\n";
 
+    outFile << generator.getCodigoMain();
     outFile.close();
-    std::cout << "Archivo generado en out/logotec.cpp" << std::endl;
 
+    cout << "Archivo generado en ../out_files/out_files.ino" << endl;
     return 0;
+}
+
+void Compiler::clear() {
+    // Limpieza de archivos generados
+    try {
+        std::filesystem::remove("../out_files/tree.json");
+        std::filesystem::remove("../out_files/out_files.ino");
+    } catch (...) {
+        // Ignorar errores si los archivos no existen
+    }
 }

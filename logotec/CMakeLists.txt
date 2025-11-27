@@ -63,6 +63,15 @@ add_executable(logotec
         src/ui/parsetreewindow.ui
         src/utils/coutredirect.h
         src/utils/parseTreeToJson.h
+        src/turtle/turtlescene.cpp
+        src/turtle/turtlescene.h
+        src/turtle/turtleview.cpp
+        src/turtle/turtleview.h
+        src/turtle/turtlecodegen.h
+        src/TypeChecker.h
+        src/TypeChecker.cpp
+        src/turtle/ino_translator.cpp
+        src/turtle/ino_translator.h
 )
 
 #target_link_libraries(cppInterprete PRIVATE antlr4-runtime)

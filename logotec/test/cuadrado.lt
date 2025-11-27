@@ -1,0 +1,7 @@
+// mi var
+Haz unidad 1;
+
+REPITE 4 [
+   AV unidad
+   GD 90
+];

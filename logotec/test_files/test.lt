@@ -1,0 +1,167 @@
+// =============================
+//Instrucciones basicas de variables
+// =============================
+
+// Declaracion de variables
+Haz y 5
+
+// Incrementos
+INC [y]                                
+INC [y 5]                            
+
+// Alteracion de variables
+INIC y = 6 + 0
+
+// =============================
+// Movimientos de Tortuga
+// =============================
+
+// Avanzar 
+av 5
+avanza 3
+
+// Retroceder
+retrocede Suma 5 5
+re 6
+
+// Girar a la derecha
+GiraDerecha 90
+GD 90
+
+// Girar a la izquierda
+GiraIzquierda 90
+GI 90
+
+// Ocultar Tortuga
+OcultarTortuga 
+OT
+
+// =============================
+// Instrucciones de Posicion
+// =============================
+
+// Posicionar en x, y
+ponpos [5 0]
+ponxy 5 0
+
+// Establecer angulo
+ponrumbo 90
+
+// Indicar orientacion actual
+rumbo
+
+// Posicionar en  x
+ponx 10
+
+// Posicionar en y
+pony 10
+
+// Posicionar en centro
+centro
+
+// =============================
+// Instrucciones de Dibujo
+// =============================
+
+// Bajar lapiz para dibujar
+bajalapiz
+BL
+
+// Subir lapiz para dejar de dibujar
+subelapiz
+SL
+
+// Establecer el color del lapiz
+poncolorlapiz negro
+poncl azul
+poncl rojo
+
+// =============================
+// Instrucciones de Control de Tiempo
+// =============================
+espera 5
+
+// =============================
+// Estructuras de Control
+// =============================
+
+// Bloque if
+SI (y == 50) [av 1]
+
+// Bloque if-else
+SI (False) [av 2] [av 3]
+
+// Repetir n veces instruccion
+REPITE 5 [av 2 av 3]
+
+// Ejecuta un bloque una vez
+EJECUTA [GD 90]
+
+// Bucle do while inverso (OJO)
+HAZ.HASTA [
+SI (y>9) [av 1]
+SI (y<9) [av 2]
+] (False)
+
+// Bucle While inverso   (OJO)
+HASTA (True) [av 1]
+
+// Bucle do-while
+HAZ.MIENTRAS [
+SI (y>9) [av 1]
+SI (y<9) [av 2]
+] [False]
+
+
+// Bucle while
+MIENTRAS (y == 1) [
+SI (y>9) [av 1]
+SI (y<9) [av 2]
+]
+
+
+// =============================
+// Operadores Logicos y Comparacion
+// =============================
+
+// CMP igualdad
+//Iguales? 10 10
+
+// AND logico
+//Y True True
+
+// OR logico
+//O False True
+
+// CMP mayorque
+//MayorQue? 10 5
+
+// CMP menorque
+//MenorQue? 8 3
+
+// =============================
+// Expresiones Matematicas
+// =============================
+
+// Diferencia
+//Diferencia 5 6 7
+
+// Num aleatorio de 0 hasta n
+//Azar 78
+
+// Producto
+//Producto 2 2 2
+
+// Potencia
+//Potencia 2 3
+
+// Division
+//Division 14 7
+
+// Suma
+//Suma 4 3 2
+
+
+
+
+

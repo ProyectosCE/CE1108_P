@@ -1,5 +1,5 @@
 
-// Generated from /home/alexmv/Documents/dev/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
+// Generated from C:/Users/amv22/Dev/repos/COMPILADORES/CE1108_P/logotec/LogotecGramar.g4 by ANTLR 4.13.2
 
 #pragma once
 
@@ -29,8 +29,14 @@ public:
   virtual void enterLista_parametros(LogotecGramarParser::Lista_parametrosContext *ctx) = 0;
   virtual void exitLista_parametros(LogotecGramarParser::Lista_parametrosContext *ctx) = 0;
 
+  virtual void enterVariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx) = 0;
+  virtual void exitVariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx) = 0;
+
   virtual void enterInstruccion(LogotecGramarParser::InstruccionContext *ctx) = 0;
   virtual void exitInstruccion(LogotecGramarParser::InstruccionContext *ctx) = 0;
+
+  virtual void enterSalida(LogotecGramarParser::SalidaContext *ctx) = 0;
+  virtual void exitSalida(LogotecGramarParser::SalidaContext *ctx) = 0;
 
   virtual void enterMuestra(LogotecGramarParser::MuestraContext *ctx) = 0;
   virtual void exitMuestra(LogotecGramarParser::MuestraContext *ctx) = 0;

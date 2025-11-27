@@ -1,30 +1,8 @@
-// Variables no inicializadas
-INIC z = 10      // ERROR: 'z' no fue declarada antes de INIC
+Haz y 1
 
-// Acceso a IDs nulas
-INC []           // ERROR: lista de IDs vacía
-INC [a b]        // ERROR: 'a' y 'b' no declaradas
+Para funt [x,y]
+GD 5
+Fin
 
-// Operaciones con expresiones incompletas
-avanza           // ERROR: falta expresión
-avanza x +       // ERROR: expresión incompleta
-retrocede        // ERROR: falta expresión
-retrocede y *    // ERROR: expresión incompleta
-
-// Expresiones binarias con hijos nulos
-GiraDerecha x +  // ERROR: operador sin segundo operando
-GiraIzquierda    // ERROR: falta expresión
-
-// PonPos / PonXY con menos números
-ponpos [10]      // ERROR: falta segundo número
-ponxy 20         // ERROR: falta segundo número
-
-// PonX/Y sin número
-ponx             // ERROR: falta número
-pony             // ERROR: falta número
-
-// Color lápiz nulo
-poncolorlapiz    // ERROR: falta color
-
-// Comentarios y líneas vacías
-// Línea vacía
+Haz x 1
+funt [x,y]

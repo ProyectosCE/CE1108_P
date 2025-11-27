@@ -2,14 +2,21 @@
 #include "gen/LogotecGramarParser.h"
 #include <string>
 
+
+
+std::string getnombre(LogotecGramarParser::Variable_nombreContext *ctx) {
+    std::string nombre = ctx->ID()->getText();
+    return nombre;
+}
+
 // Función para identificar el tipo de una expresión
 Type getExprType(LogotecGramarParser::ExprContext* ctx, SymbolTable& symtab) {
     if (ctx->exp_integer()) return Type::INT;
     if (ctx->exp_logica()) return Type::BOOL;
     if (ctx->CADENA_TEXTO()) return Type::STRING;
     if (ctx->colores()) return Type::COLOR;
-    if (ctx->ID()) {
-        auto sym = symtab.lookup(ctx->ID()->getText());
+    if (ctx->variable_nombre()) {
+        auto sym = symtab.lookup(getnombre(ctx->variable_nombre()));
         if (sym) return sym->type;
         return Type::ERROR;
     }
@@ -28,8 +35,8 @@ Type getValorType(LogotecGramarParser::ExprContext* ctx, SymbolTable& symtab) {
     if (ctx->NUMBER()) {
         return Type::INT;
     }
-    if (ctx->ID()) {
-        auto sym = symtab.lookup(ctx->ID()->getText());
+    if (ctx->variable_nombre()) {
+        auto sym = symtab.lookup(getnombre(ctx->variable_nombre()));
         if (sym) return sym->type;
         return Type::ERROR;
     }

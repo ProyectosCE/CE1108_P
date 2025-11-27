@@ -6,25 +6,48 @@
 #define CODEGEN_H
 
 #pragma once
+
+#include "antlr4-runtime.h"
+#include <string>
+#include <fstream>
 #include "gen/LogotecGramarBaseVisitor.h"
 #include "gen/LogotecGramarParser.h"
-#include <string>
-#include <unordered_map>
-#include <iostream>
+#include "SymbolTable.h"
+#include "TypeChecker.h"
+#include "ProcedimientosGen.h"
 
 using namespace std;
 
 
 class CodeGen : public LogotecGramarBaseVisitor {
 public:
+
+    CodeGen();
+
+    // Devuelve el código generado principal (para setup)
+    std::string getCodigoMain() const { return codigo; }
+
     unordered_map<string,string> tablaTipos;
-    string codigo;
 
     bool hayError = false; // <-- flag de error
 
-    virtual any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
-    virtual any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
-    virtual any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
+    procedimientos::ProcedimientosGen procGen;
+
+    void reset() {
+        tablaTipos.clear();
+        hayError = false;
+        procGen = procedimientos::ProcedimientosGen();
+        symbolTable = SymbolTable();
+        errorReporter = ErrorReporter();
+    }
+
+    // top‐level visitors
+    virtual antlrcpp::Any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
+    virtual antlrcpp::Any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
+
+    string visitvariable_nombre(LogotecGramarParser::Variable_nombreContext *ctx);
+
+    virtual antlrcpp::Any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
     virtual any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
     virtual any visitInc_variable(LogotecGramarParser::Inc_variableContext *context) override;
 
@@ -64,7 +87,17 @@ public:
     virtual any visitPony_variable(LogotecGramarParser::Pony_variableContext *context) override;
 
 private:
-    void error(const string &msg) {
+    SymbolTable symbolTable;
+    ErrorReporter errorReporter;
+
+
+    // code buffers
+    string codigo;
+    std::string codigoHeader;
+    std::string codigoMain;
+    std::string codigoFooter;
+
+    void error(const std::string &msg) {
         cerr << "Error: " << msg << endl;
         hayError = true;
     }

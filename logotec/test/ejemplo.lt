@@ -1,0 +1,32 @@
+// Declaracion variables
+Haz unidad 0;
+Haz grad 0;
+
+// Cuadrado
+Para cuad [unidad]
+   REPITE 4 [
+   AV unidad
+   GD 90
+   ];
+Fin;
+
+// Cuadrado iterativo
+Para cuad_iter [unidad, grad]
+   REPITE 360 [
+      GD grad
+      cuad [unidad]
+      INC [grad 1]
+   ];
+Fin;
+
+// Llamada principal
+INIC unidad = 2;
+REPITE 3 [
+
+   SI (unidad == 3)[poncl azul]
+   SI (unidad == 4)[poncl rojo]
+
+   INIC grad = 0
+   cuad_iter [unidad, grad]
+   INC [unidad 1]
+];

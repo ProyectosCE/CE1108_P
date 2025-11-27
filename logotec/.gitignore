@@ -1038,3 +1038,14 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+
+# Extra
+out_files/out_files.ino
+out_files/tree.json
+out_files/build
+
+out_files/ejecutable/.idea
+out_files/ejecutable/build
+out_files/ejecutable/src/cmake-build-debug
+out_files/ejecutable/src/src/turtle_program.cpp
