@@ -79,12 +79,8 @@ int Compiler::compileFile(const std::string& programPath) {
         return 1;
     }
 
-    outFile << "#include \"turtle_hw.h\"\n";
-    outFile << "void setup() {\n";
-    outFile << "    initTurtle();\n";
+
     outFile << generator.getCodigoMain();
-    outFile << "}\n";
-    outFile << "\nvoid loop() {\n}\n";
     outFile.close();
 
     cout << "Archivo generado en ../out_files/out_files.ino" << endl;

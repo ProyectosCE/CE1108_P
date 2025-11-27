@@ -21,10 +21,11 @@ using namespace std;
 
 class CodeGen : public LogotecGramarBaseVisitor {
 public:
+
     CodeGen();
 
     // Devuelve el código generado principal (para setup)
-    std::string getCodigoMain() const { return codigoMain; }
+    std::string getCodigoMain() const { return codigo; }
 
     unordered_map<string,string> tablaTipos;
 
@@ -42,7 +43,6 @@ public:
 
     // top‐level visitors
     virtual antlrcpp::Any visitPrograma(LogotecGramarParser::ProgramaContext *ctx) override;
-    virtual antlrcpp::Any visitLinea_instrucciones(LogotecGramarParser::Linea_instruccionesContext *ctx) override;
     virtual antlrcpp::Any visitHaz_variable(LogotecGramarParser::Haz_variableContext *ctx) override;
     virtual antlrcpp::Any visitInic_variable(LogotecGramarParser::Inic_variableContext *ctx) override;
     virtual any visitExpr(LogotecGramarParser::ExprContext *ctx) override;
@@ -87,7 +87,9 @@ private:
     SymbolTable symbolTable;
     ErrorReporter errorReporter;
 
+
     // code buffers
+    string codigo;
     std::string codigoHeader;
     std::string codigoMain;
     std::string codigoFooter;
