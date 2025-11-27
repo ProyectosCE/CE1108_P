@@ -969,7 +969,13 @@ std::string CodeGen::generarExprCodigo(LogotecGramarParser::OperacionLogicaSimpl
     string exp1 = generarExprCodigo(ctx->exp_logicas_expr(0));
     string exp2 = generarExprCodigo(ctx->exp_logicas_expr(1));
     string op = ctx->operador_logico()->getText();
-    return  exp1 + " " + op + " " + exp2 ;
+
+    // Verificar si el operador es '=' y cambiarlo por '=='
+    if (op == "=") {
+        op = "==";
+    }
+
+    return exp1 + " " + op + " " + exp2;
 }
 
 string CodeGen::generarExprCodigo(LogotecGramarParser::OperacionLogicaComplejaContext* ctx) {
