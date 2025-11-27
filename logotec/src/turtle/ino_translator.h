@@ -15,7 +15,6 @@ private:
     QString extractMainCodeFromMain(const QString &code);
     QMap<QString, bool> userFunctions;
 
-    QString extractMainCode(const QString &inoCode);
     QString processLinesWithScope(const QStringList &lines);
     QString translateLineWithVariables(const QString &line, QSet<QString> &declaredVariables);
 };

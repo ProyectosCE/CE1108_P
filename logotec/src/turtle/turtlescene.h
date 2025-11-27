@@ -13,6 +13,19 @@
 #include <QTimer>
 #include <QPen>
 
+/* Class: TurtleScene
+   Descripción:
+     Clase que representa la escena principal del entorno gráfico tipo Logo.
+     Gestiona el dibujo, movimiento y animación de una “tortuga” (flecha o ícono)
+     que traza líneas en respuesta a comandos gráficos.
+
+   Funcionalidad:
+     - Control de posición, rumbo y movimiento de la tortuga.
+     - Dibujo de líneas cuando el lápiz está abajo.
+     - Animaciones suaves y configurables en velocidad.
+     - Cambio entre modos visuales (flecha o ícono personalizado).
+     - Soporte para comandos como avanzar, girar, limpiar, esperar, etc.
+*/
 class TurtleScene : public QGraphicsScene {
     Q_OBJECT
 public:
