@@ -25,6 +25,9 @@ float anguloZ = 0.0;
 float ultimoZ = 0.0;
 unsigned long ultimoTiempo = 0;
 
+int ultimo_color;
+
+
 
 float offsetZ = 0;
 
@@ -128,7 +131,7 @@ void avanzaTortuga(double segundos) {
     const int baseL = PWM_IZQ;
     const int baseR = PWM_DER;
 
-    while (millis() - t0 < segundos * 1000) {
+    while (millis() - t0 < segundos * 700) {
 
         float ang = leerAnguloZ();
         float error = -ang; // queremos mantener 0 grados
@@ -160,7 +163,7 @@ void retrocedeTortuga(double segundos) {
     const int baseL = PWM_IZQ;  // base de la izquierda
     const int baseR = PWM_DER;  // base de la derecha
 
-    while (millis() - t0 < segundos * 1000) {
+    while (millis() - t0 < segundos * 700) {
 
         float ang = leerAnguloZ();
         float error = -ang;  // queremos mantener el rumbo en 0°
@@ -192,10 +195,12 @@ void retrocedeTortuga(double segundos) {
 void giraDerecha(double grados) {
     resetAngulo();
 
+
     const float margen = 2.0;   // grados de tolerancia
     const int v_min = 140;      // velocidad mínima efectiva
     const int v_max = 255;      // velocidad máxima
     const float Kp = 3.0;       // ganancia proporcional
+    subeLapiz();
 
     while (true) {
         float ang = leerAnguloZ();
@@ -211,10 +216,26 @@ void giraDerecha(double grados) {
         analogWrite(IN3, 0);
         analogWrite(IN4, velocidad);
 
-        delay(1);
+
     }
 
+
     detenerMotores();
+    if(ultimo_color == 1)
+    {
+        ponColorLapiz("azul");
+
+    }
+    if(ultimo_color == 2)
+    {
+        ponColorLapiz("negro");
+
+    }
+    if(ultimo_color == 3)
+    {
+        ponColorLapiz("rojo");
+    }
+
 
 }
 
@@ -225,6 +246,7 @@ void giraIzquierda(double grados) {
     const int v_min = 140;
     const int v_max = 255;
     const float Kp = 3.0;
+    subeLapiz();
 
     while (true) {
         float ang = leerAnguloZ();
@@ -240,10 +262,25 @@ void giraIzquierda(double grados) {
         analogWrite(IN3, velocidad);
         analogWrite(IN4, 0);
 
-        delay(10);
+
     }
 
     detenerMotores();
+    if(ultimo_color == 1)
+    {
+        ponColorLapiz("azul");
+
+    }
+    if(ultimo_color == 2)
+    {
+        ponColorLapiz("negro");
+
+    }
+    if(ultimo_color == 3)
+    {
+        ponColorLapiz("rojo");
+    }
+
 
 }
 
@@ -259,11 +296,6 @@ void ponRumbo(double n) {
     digitalWrite(rotate, HIGH);
 }
 
-double getRumbo() {
-    return anguloZ;
-}
-
-
 void ponX(double x) {
 
 }
@@ -274,6 +306,8 @@ void ponY(double y) {
 
 void bajaLapiz() {
 
+
+    ultimo_color = 1;
     servoMotor.write(60);
     delay(800);
 
@@ -290,20 +324,21 @@ void ponColorLapiz(const char* color)
 {
     if (color == "azul")
     {
+        ultimo_color = 1;
         servoMotor.write(60);
         delay(800);
 
     }
     if (color == "negro")
     {
-
+        ultimo_color = 2;
         servoMotor.write(80);
         delay(800);
 
     }
     if (color == "rojo")
     {
-
+        ultimo_color = 3;
         servoMotor.write(100);
         delay(800);
 
